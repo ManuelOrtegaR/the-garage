@@ -1,0 +1,15 @@
+.contenedor {
+  background-color: #cccccc;
+}
+
+.login__contenedor {
+  background-color: #ffffff;
+}
+
+.login__logo > img {
+  height: 10rem;
+}
+
+.register_Methods {
+  height: 1.6rem;
+}
