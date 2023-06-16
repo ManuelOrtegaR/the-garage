@@ -1,14 +1,16 @@
-import './App.css';
-import { Home } from './layouts/Home';
-import ItemList from './layouts/ItemList';
-import Login from './layouts/login';
+import "./App.css";
+import { Home } from "./layouts/Home";
+import ItemList from "./layouts/ItemList";
+import SingUp from "./layouts/SingUp";
+import Login from "./layouts/login";
 
 function App() {
   return (
     <>
-      <Home />
+      {/*<Home />
       <Login />
-      <ItemList />
+  <ItemList />*/}
+      <SingUp />
     </>
   );
 }
