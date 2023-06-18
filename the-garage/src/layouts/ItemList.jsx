@@ -2,6 +2,7 @@ import {
   Accordion,
   Badge,
   Breadcrumb,
+  CloseButton,
   Col,
   Container,
   Dropdown,
@@ -35,17 +36,25 @@ function ItemList() {
           {/* <div className="d-flex justify-content-between border-bottom  pb-2"></div> */}
           <div className="pt-5 pb-5">
             <div className="d-flex justify-content-between align-items-center pt-1 ">
-              <Badge bg="secondary">Filtro 1</Badge>
-              <span className="close-btn"> &times;</span>
+              <Badge bg="secondary">
+                Calificacion <CloseButton />
+              </Badge>
+              {/* <span className="close-btn"> &times;</span> */}
 
-              <Badge bg="secondary">filtro 2</Badge>
-              <span className="close-btn"> &times;</span>
+              <Badge bg="secondary">
+                Categoria <CloseButton />
+              </Badge>
+              {/* <span className="close-btn"> &times;</span> */}
 
-              <Badge bg="secondary">filtro 3</Badge>
-              <span className="close-btn"> &times;</span>
+              <Badge bg="secondary">
+                Almacen <CloseButton />
+              </Badge>
+              {/* <span className="close-btn"> &times;</span> */}
 
-              <Badge bg="secondary">Filtro 4</Badge>
-              <span className="close-btn"> &times;</span>
+              <Badge bg="secondary">
+                Precio <CloseButton />
+              </Badge>
+              {/* <span className="close-btn"> &times;</span> */}
 
               <a href="#"> Borrar todo</a>
             </div>
