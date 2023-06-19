@@ -1,0 +1,14 @@
+@import './custom.scss';
+
+:export {
+  @each $name, $value in $grays {
+    gray-#{unquote($name)}: $value;
+  }
+  @each $name, $value in $font-sizes {
+    font-#{$name}: $value;
+  }
+  mainColor: $main-color;
+  lineHeightBase: $line-height-base;
+  lineHeightSm: $line-height-sm;
+  lineHeightLg: $line-height-lg;
+}
