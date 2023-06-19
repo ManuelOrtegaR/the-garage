@@ -1,4 +1,4 @@
-import { Col, Container, Pagination, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Item from "./Item";
 import Controls from "./Controls";
 import Filter from "./Filter";
