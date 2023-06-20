@@ -1,5 +1,7 @@
 .contenedor {
   background-color: #cccccc;
+  width: 100vw;
+  height: 100vh;
 }
 
 .login__contenedor {
