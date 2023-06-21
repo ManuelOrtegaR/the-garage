@@ -1,9 +1,11 @@
-import "./App.css";
-import { Home } from "./layouts/Home";
-import ItemList from "./layouts/ItemList";
+import './App.css';
+import ClientProfile from './layouts/ClientProfile';
+import { Home } from './layouts/Home';
+import ItemList from './layouts/ItemList';
+import Login from './layouts/login';
+
 
 import SingUp from "./layouts/SingUp";
-import Login from "./layouts/login";
 
 import { FooterComponent } from "./layouts/components/FooterComponent";
 import { NavComponent } from "./layouts/components/NavComponent";
@@ -15,6 +17,7 @@ function App() {
       <NavComponent />
       <Home />
       <ItemList />
+      <ClientProfile />
       <FooterComponent />
     </>
   );
