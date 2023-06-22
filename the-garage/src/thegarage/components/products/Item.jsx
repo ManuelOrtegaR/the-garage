@@ -1,16 +1,16 @@
-import { Button, Card } from "react-bootstrap";
+import { Button, Card } from 'react-bootstrap';
 
-export default function Item() {
+export function Item() {
   return (
-    <div>
-      <Card className="card" style={{ width: "20rem" }}>
+    <div className="pt-2">
+      <Card className="card" style={{ width: '17rem' }}>
         <Card.Img
           className="card__img"
           variant="top"
           src="https://placehold.co/288x196"
         />
         <Card.Body className="card__body">
-          <Card.Title className="card__titlle">Aceite refrigerante</Card.Title>
+          <Card.Title className="card__titlle">Refrigerante</Card.Title>
           <Card.Text className="card_text">
             Some quick example text to build on the card title and make up the
             bulk of the cards content.
@@ -31,12 +31,12 @@ export default function Item() {
             <span>(4)</span>
           </Card.Text>
           <div className="d-flex justify-content-between gap-1">
-            <Button className="px-1" variant="success">
-              Agregar al Carrito
+            <Button className="px-1 w-100" variant="success">
+              <i className="bi bi-cart-plus"></i> Agregar al Carrito
             </Button>
-            <Button className="px-4" variant="primary">
+            {/* <Button className="px-4" variant="primary">
               Ver Detalle
-            </Button>
+            </Button> */}
           </div>
         </Card.Body>
       </Card>

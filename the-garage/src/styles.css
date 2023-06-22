@@ -1,0 +1,53 @@
+.contenedor {
+  background-color: #cccccc;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login__contenedor {
+  background-color: #ffffff;
+}
+
+.login__logo > img {
+  height: 10rem;
+}
+
+.register_Methods {
+  height: 1.6rem;
+}
+
+.carrouselItem {
+  font-family: 'Anton', sans-serif;
+  font-size: 4rem;
+  text-shadow: 4px 3px 2px black;
+}
+
+.circle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 10px solid yellow;
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+}
+
+.stepNumb {
+  font-family: 'Anton', sans-serif;
+  font-size: 3rem;
+}
+
+.star-rating button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.on {
+  color: #000;
+}
+.off {
+  color: #ccc;
+}
