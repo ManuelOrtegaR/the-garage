@@ -1,8 +1,17 @@
-import { Pagination } from 'react-bootstrap';
+import { Pagination } from "react-bootstrap";
+import styled from "@emotion/styled";
+
+const ContainerStyled = styled("div")(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  paddingTop: 20,
+  // color: theme.mainColor,
+}));
 
 export function Paginator() {
   return (
-    <div className="d-flex justify-content-center pt-3">
+    // <div className="d-flex justify-content-center pt-3">
+    <ContainerStyled>
       <Pagination>
         <Pagination.First />
         <Pagination.Prev />
@@ -20,6 +29,7 @@ export function Paginator() {
         <Pagination.Next />
         <Pagination.Last />
       </Pagination>
-    </div>
+      {/* </div> */}
+    </ContainerStyled>
   );
 }
