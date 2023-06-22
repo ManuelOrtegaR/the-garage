@@ -1,24 +1,40 @@
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card } from "react-bootstrap";
+import styled from "@emotion/styled";
+
+const ContainerStyled = styled("div")(({ theme }) => ({
+  paddingTop: 20,
+  // color: theme.mainColor,
+}));
+const ContainerButtonStyled = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  gap: 1,
+
+  // color: theme.mainColor,
+}));
+
+const ButtonStyle = styled(Button)(({ theme }) => ({
+  width: "100%",
+
+  // color: theme.mainColor,
+}));
 
 export function Item() {
   return (
-    <div className="pt-2">
-      <Card className="card" style={{ width: '17rem' }}>
-        <Card.Img
-          className="card__img"
-          variant="top"
-          src="https://placehold.co/288x196"
-        />
-        <Card.Body className="card__body">
-          <Card.Title className="card__titlle">Refrigerante</Card.Title>
-          <Card.Text className="card_text">
+    <ContainerStyled>
+      <Card style={{ width: "17rem" }}>
+        <Card.Img variant="top" src="https://placehold.co/288x196" />
+        <Card.Body>
+          <Card.Title>Refrigerante</Card.Title>
+          <Card.Text>
             Some quick example text to build on the card title and make up the
             bulk of the cards content.
           </Card.Text>
-          <Card.Text className="card_text fs-4">
+          <Card.Text className="fs-4">
             <strong>$120.000</strong>
           </Card.Text>
-          <Card.Text className="card_text d-flex">
+          <Card.Text className="d-flex">
             <i className="bi bi-check2-circle">Disponible para despacho</i>
             <i className="bi bi-check2-circle">Disponible para retiro</i>
           </Card.Text>
@@ -30,16 +46,19 @@ export function Item() {
             <i className="bi bi-star"></i>
             <span>(4)</span>
           </Card.Text>
-          <div className="d-flex justify-content-between gap-1">
-            <Button className="px-1 w-100" variant="success">
+          <ContainerButtonStyled>
+            <ButtonStyle variant="success">
               <i className="bi bi-cart-plus"></i> Agregar al Carrito
+            </ButtonStyle>
+            <Button className="px-1 w-100" variant="primary">
+              <i className="bi bi-cart-plus"></i> Ver Detalle
             </Button>
             {/* <Button className="px-4" variant="primary">
               Ver Detalle
             </Button> */}
-          </div>
+          </ContainerButtonStyled>
         </Card.Body>
       </Card>
-    </div>
+    </ContainerStyled>
   );
 }
