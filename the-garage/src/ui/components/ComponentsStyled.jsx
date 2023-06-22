@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import { Nav, NavDropdown } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
-export const NavLinkStyled = styled(Nav.Link)({
+export const NavLinkStyled = styled(NavLink)({
   color: 'white',
   '&:hover': {
     color: 'white',

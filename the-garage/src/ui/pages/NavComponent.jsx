@@ -1,6 +1,7 @@
 import { Button, Container, Navbar } from 'react-bootstrap';
 import { NavLogo, SearchInput, NavLocation, NavMenu } from '../components';
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const NavComponent = () => {
   return (
@@ -8,8 +9,13 @@ export const NavComponent = () => {
       <ContainerNavStyled>
         <NavLogo />
         <SearchInput />
-        <ButtonStyled variant="outline-light" href="/login">
-          Ingresa / Crea una cuenta
+        <ButtonStyled variant="outline-light">
+          <NavLink
+            to={'/login'}
+            style={{ textDecoration: 'none', color: 'white' }}
+          >
+            Ingresa / Crea una cuenta
+          </NavLink>
         </ButtonStyled>
       </ContainerNavStyled>
       <ContainerNavStyled>

@@ -2,8 +2,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import googleIcon from '../../../assets/authIcons/google-icono.svg';
 import facebookIcon from '../../../assets/authIcons/facebook-icono.svg';
+import { NavLink } from 'react-router-dom';
 
-export default function Login() {
+export function Login() {
   return (
     <div className="contenedor row justify-content-center align-items-center vh-100">
       <div className="login col-5">
@@ -44,7 +45,12 @@ export default function Login() {
                   size="lg"
                   className="w-100"
                 >
-                  Ingresar
+                  <NavLink
+                    to={'/home'}
+                    style={{ textDecoration: 'none', color: 'white' }}
+                  >
+                    Ingresar
+                  </NavLink>
                 </Button>
               </div>
             </Form>

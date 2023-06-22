@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from '@emotion/react';
+import { BrowserRouter } from 'react-router-dom';
 import theme from './theme';
 import TheGarageApp from './TheGarageApp.jsx';
 import './theme/index.css';
@@ -9,8 +10,10 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <TheGarageApp />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <TheGarageApp />
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 );
