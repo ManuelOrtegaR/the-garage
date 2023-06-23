@@ -2,10 +2,11 @@ import { Accordion, Button, Card, Col, Container, Row } from "react-bootstrap";
 
 export function ProductDetail() {
   return (
-    <div>
-      <Container>
+    <Container>
+      <div className="pt-5">
         <Row>
-          <Col className="border-start border-end" md={6}>
+          <Col className="border-start border-end" md={6} sm={12}>
+            <h2>Name Product</h2>
             <div>
               <img src="https://placehold.co/600x600" alt="" />
             </div>
@@ -66,7 +67,7 @@ export function ProductDetail() {
               </Accordion>
             </div>
           </Col>
-          <Col md={6}>
+          <Col md={6} sm={12}>
             <div>
               <Card>
                 <Card.Body>
@@ -75,43 +76,52 @@ export function ProductDetail() {
                     Codigo: 9848793
                   </Card.Subtitle>
                   <Card.Text>
-                    <span>
+                    <div>
                       Some quick example text to build on the card title and
                       make up the bulk of the cards content.
-                    </span>
-                    <span className="fs-4">$200,000</span>
+                    </div>
+                    <div className="fs-4">$200,000</div>
                     <div>
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star"></i>
-                      <span>(4)</span>
+                      <div>(4)</div>
+                    </div>
 
-                      <div className="  d-flex justify-content-center">
-                        <Button className="border px-3" variant="light">
-                          -
-                        </Button>
-                        <div className="px-3">5</div>
-                        <Button className=" border px-3" variant="light">
-                          {" "}
-                          +{" "}
-                        </Button>
-                      </div>
+                    <div className="  d-flex justify-content-center">
+                      <Button className="border px-3" variant="light">
+                        -
+                      </Button>
+                      <div className="px-3">5</div>
+                      <Button className=" border px-3" variant="light">
+                        {" "}
+                        +{" "}
+                      </Button>
                     </div>
                   </Card.Text>
 
-                  <Card.Link href="#">
-                    <Button className="px-1 w-100" variant="success">
-                      <i className="bi bi-cart-plus"></i> Agregar al Carrito
-                    </Button>
-                  </Card.Link>
+                  <div className="pt-1">
+                    <Card.Link href="#">
+                      <Button className=" w-100" variant="success">
+                        <i className="bi bi-cart-plus"></i> Agregar al Carrito
+                      </Button>
+                    </Card.Link>
+                  </div>
+                  <div className="pt-1">
+                    <Card.Link href="#">
+                      <Button className=" w-100" variant="danger">
+                        <i className="bi bi-box-arrow-left"></i> Salir
+                      </Button>
+                    </Card.Link>
+                  </div>
                 </Card.Body>
               </Card>
             </div>
           </Col>
         </Row>
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 }
