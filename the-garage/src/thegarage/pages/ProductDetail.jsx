@@ -75,10 +75,10 @@ export function ProductDetail() {
                     Codigo: 9848793
                   </Card.Subtitle>
                   <Card.Text>
-                    <p>
+                    <span>
                       Some quick example text to build on the card title and
                       make up the bulk of the cards content.
-                    </p>
+                    </span>
                     <span className="fs-4">$200,000</span>
                     <div>
                       <i className="bi bi-star-fill"></i>
@@ -87,16 +87,17 @@ export function ProductDetail() {
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star"></i>
                       <span>(4)</span>
-                    </div>
-                    <div className="  d-flex justify-content-center">
-                      <Button className="border px-3" variant="light">
-                        -
-                      </Button>
-                      <div className="px-3">5</div>
-                      <Button className=" border px-3" variant="light">
-                        {" "}
-                        +{" "}
-                      </Button>
+
+                      <div className="  d-flex justify-content-center">
+                        <Button className="border px-3" variant="light">
+                          -
+                        </Button>
+                        <div className="px-3">5</div>
+                        <Button className=" border px-3" variant="light">
+                          {" "}
+                          +{" "}
+                        </Button>
+                      </div>
                     </div>
                   </Card.Text>
 

@@ -1,5 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 const ContainerStyled = styled("div")(({ theme }) => ({
   paddingTop: 20,
@@ -38,6 +39,10 @@ const mockData = {
 };
 
 export function Item() {
+  const navigate = useNavigate();
+  function handleClick() {
+    navigate("/productDetail");
+  }
   return (
     <ContainerStyled>
       <Card style={{ width: "17rem" }}>
@@ -69,7 +74,7 @@ export function Item() {
           </Card.Text>
           {mockData.userRole === "cliente" ? (
             <ContainerButtonStyled>
-              <ButtonStyle variant="success">
+              <ButtonStyle onClick={handleClick} variant="success">
                 <i className="bi bi-cart-plus"></i> Agregar al Carrito
               </ButtonStyle>
               <Button className="px-1 w-100" variant="primary">
