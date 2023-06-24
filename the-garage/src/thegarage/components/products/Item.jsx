@@ -74,10 +74,14 @@ export function Item() {
           </Card.Text>
           {mockData.userRole === "cliente" ? (
             <ContainerButtonStyled>
-              <ButtonStyle onClick={handleClick} variant="success">
+              <ButtonStyle variant="success">
                 <i className="bi bi-cart-plus"></i> Agregar al Carrito
               </ButtonStyle>
-              <Button className="px-1 w-100" variant="primary">
+              <Button
+                onClick={handleClick}
+                className="px-1 w-100"
+                variant="primary"
+              >
                 <i className="bi bi-eye"></i> Ver Detalle
               </Button>
             </ContainerButtonStyled>

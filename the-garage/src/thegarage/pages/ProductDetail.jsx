@@ -5,7 +5,7 @@ export function ProductDetail() {
     <Container>
       <div className="pt-5">
         <Row>
-          <Col className="border-start border-end" md={6} sm={12}>
+          <Col className="border-end" md={6} sm={12}>
             <h2>Name Product</h2>
             <div>
               <img src="https://placehold.co/600x600" alt="" />
@@ -32,7 +32,7 @@ export function ProductDetail() {
                 alt=""
               />
             </div>
-            <div className="border-bottom">
+            <div className="">
               <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Descripcion</Accordion.Header>
@@ -49,7 +49,7 @@ export function ProductDetail() {
                 </Accordion.Item>
               </Accordion>
             </div>
-            <div className="border-bottom">
+            <div className="">
               <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Ficha tecnica</Accordion.Header>
@@ -68,7 +68,7 @@ export function ProductDetail() {
             </div>
           </Col>
           <Col md={6} sm={12}>
-            <div>
+            <div className="pb-5">
               <Card>
                 <Card.Body>
                   <Card.Title>Pastillas Frenos traseros</Card.Title>
@@ -119,6 +119,23 @@ export function ProductDetail() {
                 </Card.Body>
               </Card>
             </div>
+            <div>DATOS ALMACEN</div>
+            <Card>
+              <Card.Header>Almacen: AutoParts</Card.Header>
+              <Card.Body>
+                <Card.Title>AutoParts: el mejor distribuidor</Card.Title>
+                <Card.Text>
+                  En nuestro almacén, contamos con un extenso catálogo de
+                  repuestos que abarca desde piezas de automóviles, como frenos,
+                  filtros, correas y baterías, hasta repuestos para maquinaria
+                  pesada, como motores, transmisiones, componentes hidráulicos y
+                  eléctricos. Trabajamos con los principales fabricantes y
+                  proveedores de repuestos reconocidos en el mercado, lo que nos
+                  permite ofrecer productos de confianza y duraderos.
+                </Card.Text>
+                <Button variant="primary">Ver mas productos</Button>
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       </div>

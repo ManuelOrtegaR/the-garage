@@ -1,4 +1,4 @@
-import { Accordion, Badge, Form, ListGroup } from 'react-bootstrap';
+import { Accordion, Badge, Form, ListGroup } from "react-bootstrap";
 
 export function Filter() {
   return (
@@ -67,7 +67,7 @@ export function Filter() {
                   <Form.Check
                     type="checkbox"
                     id="flexCheckChecked1"
-                    label="Mercedes"
+                    label="Chevrolet"
                   />
                   <Badge bg="secondary" pill>
                     145
@@ -77,7 +77,7 @@ export function Filter() {
                   <Form.Check
                     type="checkbox"
                     id="flexCheckChecked1"
-                    label="Mercedes"
+                    label="Bmw"
                   />
                   <Badge bg="secondary" pill>
                     150
@@ -139,7 +139,7 @@ export function Filter() {
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
+                      <i className="bi bi-star"></i>
                     </Form.Check.Label>
                   </Form.Check>
                 </div>
@@ -150,8 +150,8 @@ export function Filter() {
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
+                      <i className="bi bi-star"></i>
+                      <i className="bi bi-star"></i>
                     </Form.Check.Label>
                   </Form.Check>
                 </div>
@@ -160,10 +160,10 @@ export function Filter() {
                     <Form.Check.Input type="checkbox" />
                     <Form.Check.Label>
                       <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
+                      <i className="bi bi-star-"></i>
+                      <i className="bi bi-star"></i>
+                      <i className="bi bi-star"></i>
+                      <i className="bi bi-star"></i>
                     </Form.Check.Label>
                   </Form.Check>
                 </div>
