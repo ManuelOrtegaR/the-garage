@@ -1,5 +1,5 @@
-import { StepComponent } from './StepComponent';
-import { SubTitleStyled, TextStyled } from './StyledsComponents';
+import { StepComponent } from "./StepComponent";
+import { SubTitleStyled, TextStyled } from "./StyledsComponents";
 
 export const HowWork = () => {
   return (
