@@ -1,22 +1,26 @@
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import googleIcon from '../../../assets/authIcons/google-icono.svg';
-import facebookIcon from '../../../assets/authIcons/facebook-icono.svg';
-import { NavLink } from 'react-router-dom';
+import {
+  MainConteiner,
+  TitlePg,
+  ButtonStyled,
+} from "../components/StyledsComponents";
+import Form from "react-bootstrap/Form";
+import googleIcon from "../../../assets/authIcons/google-icono.svg";
+import facebookIcon from "../../../assets/authIcons/facebook-icono.svg";
+import { NavLink } from "react-router-dom";
 
 export function Login() {
   return (
-    <div className="contenedor row justify-content-center align-items-center vh-100">
+    <MainConteiner>
       <div className="login col-5">
         <div className="login__contenedor p-4 m-1 rounded-5">
           <div className="login__logo d-flex justify-content-center">
-            <img src="/src/assets/logo-icono.png" alt="logo" />
+            <img src="/../assets/logos/logo-icono.png" alt="logo" />
           </div>
           <div className="login__form row">
-            <h1 className="login__form__title text-center">Login</h1>
+            <TitlePg>Inicio de Sesión</TitlePg>
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Correo Electronico</Form.Label>
+                <Form.Label>Correo Electrónico</Form.Label>
                 <Form.Control type="email" placeholder="Ingrese su correo" />
                 <Form.Text className="text-muted">
                   Nosotros nunca compartiremos su correo con nadie más.
@@ -39,26 +43,29 @@ export function Login() {
                 </a>
               </Form.Group>
               <div className="d-flex justify-content-center">
-                <Button
+                <ButtonStyled
                   variant="primary"
                   type="submit"
                   size="lg"
                   className="w-100"
                 >
                   <NavLink
-                    to={'/home'}
-                    style={{ textDecoration: 'none', color: 'white' }}
+                    to={"/home"}
+                    style={{ textDecoration: "none", color: "white" }}
                   >
                     Ingresar
                   </NavLink>
-                </Button>
+                </ButtonStyled>
               </div>
             </Form>
             <div className="d-flex gap-1 mt-2 justify-content-center">
               <label>¿No tienes un usuario?</label>
-              <a href="#" className="text-decoration-none">
+              <NavLink
+                to={"/Singup"}
+                style={{ textDecoration: "none", color: "black" }}
+              >
                 ¡Registrate!
-              </a>
+              </NavLink>
             </div>
             <div className="d-flex justify-content-center m-2">
               <span>o</span>
@@ -74,7 +81,6 @@ export function Login() {
           </div>
         </div>
       </div>
-      <div className="col"></div>
-    </div>
+    </MainConteiner>
   );
 }

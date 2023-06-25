@@ -1,5 +1,11 @@
+import {
+  NavItemStyled,
+  ButtonStyled,
+  NavLinkStyled,
+  NavStyled,
+} from "./StyledsComponents";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+//import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
@@ -10,17 +16,19 @@ function CompanySingUp() {
     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
       <Row>
         <Col sm={3}>
-          <Nav variant="pills" className="flex-column">
-            <Nav.Item>
-              <Nav.Link eventKey="first">Información General</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="second">Datos de Contacto</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="third">Información Legal</Nav.Link>
-            </Nav.Item>
-          </Nav>
+          <NavStyled>
+            <NavItemStyled>
+              <NavLinkStyled eventKey="first">
+                Información General
+              </NavLinkStyled>
+            </NavItemStyled>
+            <NavItemStyled>
+              <NavLinkStyled eventKey="second">Datos de Contacto</NavLinkStyled>
+            </NavItemStyled>
+            <NavItemStyled>
+              <NavLinkStyled eventKey="third">Información Legal</NavLinkStyled>
+            </NavItemStyled>
+          </NavStyled>
         </Col>
         <Col sm={9}>
           <Tab.Content>
@@ -56,14 +64,14 @@ function CompanySingUp() {
                 </Form.Group>
 
                 <div className="d-flex justify-content-center">
-                  <Button
+                  <ButtonStyled
                     variant="primary"
                     type="submit"
                     size="lg"
                     className="w-100"
                   >
                     Continuar
-                  </Button>
+                  </ButtonStyled>
                 </div>
               </Form>
             </Tab.Pane>
@@ -99,14 +107,14 @@ function CompanySingUp() {
                 </Form.Group>
 
                 <div className="d-flex justify-content-center">
-                  <Button
+                  <ButtonStyled
                     variant="primary"
                     type="submit"
                     size="lg"
                     className="w-100"
                   >
                     Continuar
-                  </Button>
+                  </ButtonStyled>
                 </div>
               </Form>
             </Tab.Pane>
@@ -128,14 +136,14 @@ function CompanySingUp() {
                   <Form.Control type="file" size="sm" />
                 </Form.Group>
                 <div className="d-flex justify-content-center">
-                  <Button
+                  <ButtonStyled
                     variant="primary"
                     type="submit"
                     size="lg"
                     className="w-100"
                   >
                     Guardar
-                  </Button>
+                  </ButtonStyled>
                 </div>
               </Form>
             </Tab.Pane>
