@@ -1,25 +1,11 @@
-import { Button, Card } from "react-bootstrap";
-import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-
-const ContainerStyled = styled("div")(({ theme }) => ({
-  paddingTop: 20,
-  // color: theme.mainColor,
-}));
-const ContainerButtonStyled = styled("div")(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-  gap: 1,
-
-  // color: theme.mainColor,
-}));
-
-const ButtonStyle = styled(Button)(({ theme }) => ({
-  width: "100%",
-
-  // color: theme.mainColor,
-}));
+import {
+  ButtonStyledDetail,
+  ButtonStyledSuccess,
+  ContainerButtonStyled,
+  ContainerStyled,
+} from "./styledsComponentsProducts";
+import { Card } from "react-bootstrap";
 
 //DATA MOCK EXAMPLE
 const mockData = {
@@ -74,16 +60,16 @@ export function Item() {
           </Card.Text>
           {mockData.userRole === "cliente" ? (
             <ContainerButtonStyled>
-              <ButtonStyle variant="success">
+              <ButtonStyledSuccess variant="success">
                 <i className="bi bi-cart-plus"></i> Agregar al Carrito
-              </ButtonStyle>
-              <Button
+              </ButtonStyledSuccess>
+              <ButtonStyledDetail
                 onClick={handleClick}
+                variant="danger"
                 className="px-1 w-100"
-                variant="primary"
               >
                 <i className="bi bi-eye"></i> Ver Detalle
-              </Button>
+              </ButtonStyledDetail>
             </ContainerButtonStyled>
           ) : null}
         </Card.Body>

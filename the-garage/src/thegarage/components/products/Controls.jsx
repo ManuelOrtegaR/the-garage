@@ -13,11 +13,21 @@ const ContainerBreadcumStyled = styled("div")(({ theme }) => ({
   gap: 2,
   paddingTop: "50px",
 }));
+
+const BreadcumItemStyled = styled(Breadcrumb.Item)(({ theme }) => ({
+  color: theme.colors.mainColor,
+  fontFamily: theme.fontFamily.mainFont,
+  // fontSize: theme.fonts[4],
+}));
 const ContainerBadgeStyled = styled("div")(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   paddingTop: "50px",
   paddingBottom: "50px",
+}));
+
+const Badgestyled = styled(Badge)(({ theme }) => ({
+  backgroundColor: theme.colors.mainColor,
 }));
 
 export function Controls() {
@@ -27,12 +37,12 @@ export function Controls() {
         <ContainerBreadcumStyled>
           <i className="bi bi-house"></i>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+            <BreadcumItemStyled href="#">Home</BreadcumItemStyled>
             <Breadcrumb.Item href="#">Products</Breadcrumb.Item>
             <Breadcrumb.Item href="#">Category</Breadcrumb.Item>
             <Breadcrumb.Item href="#">Accesories</Breadcrumb.Item>
             <Breadcrumb.Item href="#">Discounts</Breadcrumb.Item>
-            <Breadcrumb.Item active>Data</Breadcrumb.Item>
+            <BreadcumItemStyled active>Data</BreadcumItemStyled>
           </Breadcrumb>
         </ContainerBreadcumStyled>
         {/* aqui van controles de filtros por ordenamiento o el avance que lleva */}
@@ -51,12 +61,12 @@ export function Controls() {
           </Badge>
           {/* <span className="close-btn"> &times;</span> */}
 
-          <Badge bg="secondary">
+          <Badgestyled>
             Almacen <CloseButton />
-          </Badge>
+          </Badgestyled>
           {/* <span className="close-btn"> &times;</span> */}
 
-          <Badge bg="secondary">
+          <Badge bg="warning">
             Precio <CloseButton />
           </Badge>
           {/* <span className="close-btn"> &times;</span> */}
