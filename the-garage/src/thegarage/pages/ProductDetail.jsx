@@ -1,36 +1,40 @@
 import { Accordion, Button, Card, Col, Container, Row } from "react-bootstrap";
+import { ButtonStyledDetail, ButtonStyledSuccess, Item } from "../components";
 
 export function ProductDetail() {
   return (
     <Container>
       <div className="pt-5">
         <Row>
-          <Col className="border-end" md={6} sm={12}>
-            <h2>Name Product</h2>
-            <div>
-              <img src="https://placehold.co/600x600" alt="" />
-            </div>
-            <div className="d-flex gap-3 border-bottom pt-2 pb-2">
-              <img
-                className="border border-dark-subtle"
-                src="https://placehold.co/70x70"
-                alt=""
-              />
-              <img
-                className="border border-dark-subtle"
-                src="https://placehold.co/70x70"
-                alt=""
-              />
-              <img
-                className="border border-dark-subtle"
-                src="https://placehold.co/70x70"
-                alt=""
-              />
-              <img
-                className="border border-dark-subtle"
-                src="https://placehold.co/70x70"
-                alt=""
-              />
+          <Col className="" md={6} sm={12}>
+            <h2>{"ACEITE kh-89273"}</h2>
+
+            <div className="pt-2">
+              <div>
+                <img src="https://placehold.co/600x600" alt="" />
+              </div>
+              <div className="d-flex gap-3 border-bottom pt-2 pb-2">
+                <img
+                  className="border border-dark-subtle"
+                  src="https://placehold.co/70x70"
+                  alt=""
+                />
+                <img
+                  className="border border-dark-subtle"
+                  src="https://placehold.co/70x70"
+                  alt=""
+                />
+                <img
+                  className="border border-dark-subtle"
+                  src="https://placehold.co/70x70"
+                  alt=""
+                />
+                <img
+                  className="border border-dark-subtle"
+                  src="https://placehold.co/70x70"
+                  alt=""
+                />
+              </div>
             </div>
             <div className="">
               <Accordion defaultActiveKey="0">
@@ -68,7 +72,7 @@ export function ProductDetail() {
             </div>
           </Col>
           <Col md={6} sm={12}>
-            <div className="pb-5">
+            <div className="pb-5 pt-5">
               <Card>
                 <Card.Body>
                   <Card.Title>Pastillas Frenos traseros</Card.Title>
@@ -104,16 +108,16 @@ export function ProductDetail() {
 
                   <div className="pt-1">
                     <Card.Link href="#">
-                      <Button className=" w-100" variant="success">
+                      <ButtonStyledSuccess className=" w-100" variant="success">
                         <i className="bi bi-cart-plus"></i> Agregar al Carrito
-                      </Button>
+                      </ButtonStyledSuccess>
                     </Card.Link>
                   </div>
                   <div className="pt-1">
                     <Card.Link href="#">
-                      <Button className=" w-100" variant="danger">
+                      <ButtonStyledDetail className=" w-100" variant="danger">
                         <i className="bi bi-box-arrow-left"></i> Salir
-                      </Button>
+                      </ButtonStyledDetail>
                     </Card.Link>
                   </div>
                 </Card.Body>
@@ -133,9 +137,14 @@ export function ProductDetail() {
                   proveedores de repuestos reconocidos en el mercado, lo que nos
                   permite ofrecer productos de confianza y duraderos.
                 </Card.Text>
-                <Button variant="primary">Ver mas productos</Button>
+                <ButtonStyledSuccess>Ver mas productos</ButtonStyledSuccess>
               </Card.Body>
             </Card>
+            <div className="pt-5">PRODUCTOS RECOMENDADOS</div>
+            <div className="d-flex  flex-wrap justify-content-between ">
+              <Item className="w-50" />
+              <Item className="w-50" />
+            </div>
           </Col>
         </Row>
       </div>

@@ -2,9 +2,10 @@ import { useNavigate } from "react-router-dom";
 import {
   ButtonStyledDetail,
   ButtonStyledSuccess,
+  CardStyle,
   ContainerButtonStyled,
   ContainerStyled,
-} from "./styledsComponentsProducts";
+} from "./StyledsComponentsProducts";
 import { Card } from "react-bootstrap";
 
 //DATA MOCK EXAMPLE
@@ -29,9 +30,14 @@ export function Item() {
   function handleClick() {
     navigate("/productDetail");
   }
+
+  function handleClickSuceess() {
+    navigate("/shoppingCart");
+  }
+
   return (
     <ContainerStyled>
-      <Card style={{ width: "17rem" }}>
+      <CardStyle style={{ width: "17rem" }}>
         <Card.Img variant="top" src="https://placehold.co/288x196" />
         <Card.Body>
           <Card.Title>{mockData.title}</Card.Title>
@@ -60,7 +66,10 @@ export function Item() {
           </Card.Text>
           {mockData.userRole === "cliente" ? (
             <ContainerButtonStyled>
-              <ButtonStyledSuccess variant="success">
+              <ButtonStyledSuccess
+                onClick={handleClickSuceess}
+                variant="success"
+              >
                 <i className="bi bi-cart-plus"></i> Agregar al Carrito
               </ButtonStyledSuccess>
               <ButtonStyledDetail
@@ -73,7 +82,7 @@ export function Item() {
             </ContainerButtonStyled>
           ) : null}
         </Card.Body>
-      </Card>
+      </CardStyle>
     </ContainerStyled>
   );
 }

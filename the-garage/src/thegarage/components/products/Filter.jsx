@@ -1,11 +1,12 @@
 import { Accordion, Badge, Form, ListGroup } from "react-bootstrap";
+import { H4Styled } from "./StyledsComponentsProducts";
 
 export function Filter() {
   return (
     <>
       <div className="d-flex flex-column  gap-5 vh-100 pt-5">
         <div>
-          <span>FILTRAR POR:</span>
+          <H4Styled>FILTRAR POR:</H4Styled>
         </div>
         <div>
           <Accordion>

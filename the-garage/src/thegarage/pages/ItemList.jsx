@@ -1,25 +1,13 @@
 import { Col, Container, Row } from "react-bootstrap";
-import { Item, Controls, Filter, Paginator } from "../components";
-import styled from "@emotion/styled";
-
-const RowItemStyled = styled(Row)(({ theme }) => ({
-  borderTop: "1px solid",
-  // borderColor: theme.colors.mainColor,
-  borderColor: "#1d426b",
-}));
-const ContainerNumberItemsStyled = styled("div")(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-between",
-  paddingTop: "40px",
-  paddingLeft: "30px",
-  paddingRight: "30px",
-}));
-const ContainerVisualizationStyled = styled("div")(({ theme }) => ({
-  display: "flex",
-  flexWrap: "wrap",
-  justifyContent: "space-around",
-  paddingTop: "40px",
-}));
+import {
+  Item,
+  Controls,
+  Filter,
+  Paginator,
+  RowItemStyled,
+  ContainerNumberItemsStyled,
+  ContainerVisualizationStyled,
+} from "../components";
 
 export function ItemList() {
   const products = [1, 2, 3, 4, 5, 6]; // Cantidad de productos que quiero mostrar

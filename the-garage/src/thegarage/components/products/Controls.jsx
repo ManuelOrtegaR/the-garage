@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import {
   Badge,
   Breadcrumb,
@@ -7,28 +6,10 @@ import {
   Dropdown,
   DropdownButton,
 } from "react-bootstrap";
-
-const ContainerBreadcumStyled = styled("div")(({ theme }) => ({
-  display: "flex",
-  gap: 2,
-  paddingTop: "50px",
-}));
-
-const BreadcumItemStyled = styled(Breadcrumb.Item)(({ theme }) => ({
-  color: theme.colors.mainColor,
-  fontFamily: theme.fontFamily.mainFont,
-  // fontSize: theme.fonts[4],
-}));
-const ContainerBadgeStyled = styled("div")(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-between",
-  paddingTop: "50px",
-  paddingBottom: "50px",
-}));
-
-const Badgestyled = styled(Badge)(({ theme }) => ({
-  backgroundColor: theme.colors.mainColor,
-}));
+import {
+  ContainerBadgeStyled,
+  ContainerBreadcumStyled,
+} from "./StyledsComponentsProducts";
 
 export function Controls() {
   return (
@@ -37,12 +18,12 @@ export function Controls() {
         <ContainerBreadcumStyled>
           <i className="bi bi-house"></i>
           <Breadcrumb>
-            <BreadcumItemStyled href="#">Home</BreadcumItemStyled>
+            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
             <Breadcrumb.Item href="#">Products</Breadcrumb.Item>
             <Breadcrumb.Item href="#">Category</Breadcrumb.Item>
             <Breadcrumb.Item href="#">Accesories</Breadcrumb.Item>
             <Breadcrumb.Item href="#">Discounts</Breadcrumb.Item>
-            <BreadcumItemStyled active>Data</BreadcumItemStyled>
+            <Breadcrumb.Item active>Data</Breadcrumb.Item>
           </Breadcrumb>
         </ContainerBreadcumStyled>
         {/* aqui van controles de filtros por ordenamiento o el avance que lleva */}
@@ -61,12 +42,12 @@ export function Controls() {
           </Badge>
           {/* <span className="close-btn"> &times;</span> */}
 
-          <Badgestyled>
+          <Badge bg="secondary">
             Almacen <CloseButton />
-          </Badgestyled>
+          </Badge>
           {/* <span className="close-btn"> &times;</span> */}
 
-          <Badge bg="warning">
+          <Badge bg="secondary">
             Precio <CloseButton />
           </Badge>
           {/* <span className="close-btn"> &times;</span> */}

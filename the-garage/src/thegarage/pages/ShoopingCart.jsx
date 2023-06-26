@@ -1,4 +1,5 @@
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import { ButtonStyledSuccess } from "../components";
 
 export const ShoppingCart = () => {
   return (
@@ -13,14 +14,14 @@ export const ShoppingCart = () => {
                     <h5 className="mb-3">
                       <a href="#!" className="text-body">
                         <i className="fas fa-long-arrow-alt-left me-2"></i>
-                        Continue shopping
+                        Continuar comprando
                       </a>
                     </h5>
                     <hr />
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <div>
                         <p className="mb-1">Shopping cart</p>
-                        <p className="mb-0">You have 4 items in your cart</p>
+                        <p className="mb-0">You have {4} items in your cart</p>
                       </div>
                       <div>
                         <p className="mb-0">
@@ -37,14 +38,14 @@ export const ShoppingCart = () => {
                           <div className="d-flex flex-row align-items-center">
                             <div>
                               <img
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                                src="https://placehold.co/65x65"
                                 className="img-fluid rounded-3"
                                 alt="Shopping item"
                                 style={{ width: "65px" }}
                               />
                             </div>
                             <div className="ms-3">
-                              <h5>Iphone 11 pro</h5>
+                              <h5>Pastillas</h5>
                               <p className="small mb-0">256GB, Navy Blue</p>
                             </div>
                           </div>
@@ -61,18 +62,18 @@ export const ShoppingCart = () => {
                           </div>
                         </div>
 
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex justify-content-between pt-3">
                           <div className="d-flex flex-row align-items-center">
                             <div>
                               <img
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                                src="https://placehold.co/65x65"
                                 className="img-fluid rounded-3"
                                 alt="Shopping item"
                                 style={{ width: "65px" }}
                               />
                             </div>
                             <div className="ms-3">
-                              <h5>Iphone 11 pro</h5>
+                              <h5>Refrigerante</h5>
                               <p className="small mb-0">256GB, Navy Blue</p>
                             </div>
                           </div>
@@ -88,22 +89,22 @@ export const ShoppingCart = () => {
                             </a>
                           </div>
                         </div>
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex justify-content-between pt-3">
                           <div className="d-flex flex-row align-items-center">
                             <div>
                               <img
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                                src="https://placehold.co/65x65"
                                 className="img-fluid rounded-3"
                                 alt="Shopping item"
                                 style={{ width: "65px" }}
                               />
                             </div>
                             <div className="ms-3">
-                              <h5>Iphone 11 pro</h5>
+                              <h5>Aceite</h5>
                               <p className="small mb-0">256GB, Navy Blue</p>
                             </div>
                           </div>
-                          <div className="d-flex flex-row align-items-center">
+                          <div className="d-flex flex-row align-items-center pt-3">
                             <div style={{ width: "50px" }}>
                               <h5 className="fw-normal mb-0">2</h5>
                             </div>
@@ -120,7 +121,7 @@ export const ShoppingCart = () => {
                     {/* Resto de los elementos del carrito */}
                   </Col>
                   <Col lg={5}>
-                    <Card bg="primary" text="white" className="rounded-3">
+                    <Card bg="secondary" text="white" className="rounded-3">
                       <Card.Body>
                         <div className="d-flex justify-content-between align-items-center mb-4">
                           <h5 className="mb-0">Card details</h5>
@@ -202,7 +203,7 @@ export const ShoppingCart = () => {
                           <p className="mb-2">Total(Incl. taxes)</p>
                           <p className="mb-2">$4818.00</p>
                         </div>
-                        <Button variant="info" size="lg" block>
+                        <ButtonStyledSuccess variant="info" size="lg" block>
                           <div className="d-flex justify-content-between">
                             <span>$4818.00</span>
                             <span>
@@ -210,7 +211,7 @@ export const ShoppingCart = () => {
                               <i className="fas fa-long-arrow-alt-right ms-2"></i>
                             </span>
                           </div>
-                        </Button>
+                        </ButtonStyledSuccess>
                       </Card.Body>
                     </Card>
                   </Col>
