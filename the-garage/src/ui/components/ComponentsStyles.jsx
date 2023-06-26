@@ -60,9 +60,6 @@ export const NavLinkStyled = styled(NavLink)(({ ...props }) => ({
     color: 'white',
     fontWeight: 'bold',
   },
-  '&:active': {
-    color: 'red',
-  },
 }));
 
 export const NavDropDownStyled = styled(NavDropdown)(({ theme }) => ({
