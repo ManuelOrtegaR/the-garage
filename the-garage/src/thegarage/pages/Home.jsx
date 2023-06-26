@@ -1,4 +1,4 @@
-import { CarrouselComponent, HowWork, ReviewsComponent } from '../components';
+import { CarrouselComponent, HowWork, ReviewsComponent } from "../components";
 
 export const Home = () => {
   return (
