@@ -8,6 +8,8 @@
     font-#{$name}: $value;
   }
   mainColor: $main-color;
+  secondaryColor: $secondary-color;
+  buttonColor: $button-color;
   lineHeightBase: $line-height-base;
   lineHeightSm: $line-height-sm;
   lineHeightLg: $line-height-lg;
