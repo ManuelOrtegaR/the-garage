@@ -1,5 +1,5 @@
 import { TitlePg, TabsStyled, TabStyled } from "./StyledsComponents";
-import Tab from "react-bootstrap/Tab";
+
 //import Tabs from "react-bootstrap/Tabs";
 import ClientSingUp from "./ClientSingUp";
 import CompanySingUp from "./CompanySingUp";
