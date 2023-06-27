@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Badge, Button, Card, Row } from "react-bootstrap";
+import { Badge, Button, Card, Navbar, Row } from "react-bootstrap";
 
 export const ContainerStyled = styled("div")(({ theme }) => ({
   paddingTop: 20,
@@ -86,4 +86,21 @@ export const ContainerVisualizationStyled = styled("div")(({ theme }) => ({
   justifyContent: "space-around",
   paddingTop: "40px",
   color: theme.colors.mainColor,
+}));
+
+//chat
+export const MessageDivStyled = styled("div")(({ theme }) => ({
+  backgroundColor: theme.colors.mainColor,
+  color: "white",
+}));
+
+export const MessageNavbarStyled = styled(Navbar)(({ theme }) => ({
+  backgroundColor: theme.colors.mainColor,
+  color: "white",
+  "&:hover": {
+    backgroundColor: "gray",
+  },
+}));
+export const MessageBrandStyled = styled(Navbar.Brand)(({ theme }) => ({
+  color: "white",
 }));
