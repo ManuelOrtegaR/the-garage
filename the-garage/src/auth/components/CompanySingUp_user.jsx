@@ -1,19 +1,16 @@
 import Form from "react-bootstrap/Form";
-//import Button from "react-bootstrap/Button";
-import { BtnSubmitStyled } from "../../components/StyledButtons";
+import { BtnLinkStyled } from "../../components/StyledButtons";
 
-function ClientSingUp() {
+function CompanySingUp_user() {
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label>Nombre Completo</Form.Label>
-        <Form.Control type="texto" placeholder="Ingrese su nombre completo" />
+        <Form.Label>Nombre o Razón Social</Form.Label>
+        <Form.Control
+          type="texto"
+          placeholder="Ingrese su Nombre o Razón Social"
+        />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicUserName">
-        <Form.Label>Nombre de Usuario</Form.Label>
-        <Form.Control type="texto" placeholder="Ingrese su nombre de Usuario" />
-      </Form.Group>
-
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Correo Electrónico</Form.Label>
         <Form.Control type="email" placeholder="Ingrese su correo" />
@@ -28,9 +25,10 @@ function ClientSingUp() {
       </Form.Group>
 
       <div className="d-flex justify-content-center">
-        <BtnSubmitStyled>Guardar</BtnSubmitStyled>
+        <BtnLinkStyled to="CompanySingUp_contact">Continuar</BtnLinkStyled>
       </div>
     </Form>
   );
 }
-export default ClientSingUp;
+
+export default CompanySingUp_user;
