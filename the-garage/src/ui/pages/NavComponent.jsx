@@ -17,8 +17,6 @@ export const NavComponent = () => {
           <SearchInput />
           <LoginSpace />
         </ContainerNavStyled>
-      </NavbarStyled>
-      <NavbarStyled>
         <ContainerNavStyled>
           <NavLocation />
           <NavMenu />
