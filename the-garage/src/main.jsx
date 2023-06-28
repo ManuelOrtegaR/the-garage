@@ -7,12 +7,13 @@ import TheGarageApp from './TheGarageApp.jsx';
 import './theme/index.css';
 import './theme/custom.scss';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { ClientProfile, Config } from './thegarage/pages';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <TheGarageApp />
+        {Config ? <ClientProfile /> : <TheGarageApp />}
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
