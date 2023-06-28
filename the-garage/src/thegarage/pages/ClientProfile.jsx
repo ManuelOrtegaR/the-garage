@@ -15,7 +15,7 @@ import { AdminProfile } from './AdminProfile';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const User = 'Admin';
-export const Config = true;
+export const Config = false;
 // eslint-disable-next-line react-refresh/only-export-components
 export const navTest = 1;
 

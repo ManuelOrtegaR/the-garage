@@ -1,8 +1,16 @@
-import { Button, Container, Navbar } from 'react-bootstrap';
-import { NavLogo, SearchInput, NavLocation, NavMenu } from '../components';
-import styled from '@emotion/styled';
+//import { Button, Container, Navbar } from 'react-bootstrap';
+import {
+  NavLogo,
+  SearchInput,
+  NavLocation,
+  NavMenu,
+  NavbarStyled,
+  ContainerNavStyled,
+} from '../components';
+//import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import { Config } from '../../thegarage/pages';
+import { ButtonStyled } from '../../thegarage/components';
 
 export const NavComponent = () => {
   return (
@@ -38,6 +46,5 @@ export const NavComponent = () => {
         </>
       ) : null}
     </NavbarStyled>
-
   );
 };
