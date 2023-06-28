@@ -4,7 +4,7 @@ import { FooterSection, NavbarStyled } from '../components';
 export const FooterComponent = () => {
   return (
     <NavbarStyled>
-      <div className="row mt-4">
+      <div className="row mt-4 m-0">
         <FooterSection />
       </div>
       <div className="text-center text-secondary">

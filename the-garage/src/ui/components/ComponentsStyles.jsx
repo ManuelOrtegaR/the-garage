@@ -74,7 +74,7 @@ export const FormSelectStyled = styled(Form.Select)(({ theme }) => ({
   backgroundColor: theme.colors.mainColor,
   appearance: 'listbox',
   backgroundImage: 'none',
-  border: 'none',
+  border: `1px solid ${theme.colors.mainColor}`,
   padding: '8px',
   '&:hover': {
     border: '1px solid white',

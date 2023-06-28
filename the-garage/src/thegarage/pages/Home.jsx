@@ -1,3 +1,4 @@
+import { BtnDangerLinkStyled } from '../../components/StyledButtons';
 import {
   AboutUs,
   CarrouselComponent,
@@ -13,7 +14,7 @@ export const Home = () => {
         <CarrouselComponent />
         <div className="m-5" />
         <HowWork />
-        <div className="m-5" />
+        <div className="m-5 align-items-center" />
         <AboutUs />
         <div className="m-5" />
         <OurCompanys />

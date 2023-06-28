@@ -3,7 +3,7 @@ import {
   TextStyled,
 } from '../components/home/ComponentsStyles';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { BtnSubmitStyled } from '../../components/StyledButtons';
 
 export const Contact = () => {
   return (
@@ -33,7 +33,7 @@ export const Contact = () => {
             <Form.Label className="text-secondary">
               Nosotros no compartiremos sus datos con nadie
             </Form.Label>
-            <Button className="bg-main-color">Enviar</Button>
+            <BtnSubmitStyled>Enviar</BtnSubmitStyled>
           </div>
           <div className="col-6 d-flex flex-column">
             <TextStyled>Encuentranos</TextStyled>
