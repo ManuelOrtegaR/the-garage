@@ -1,5 +1,6 @@
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+//import Button from "react-bootstrap/Button";
+import { ButtonStyled } from "./StyledsComponents";
 
 function ClientSingUp() {
   return (
@@ -27,9 +28,14 @@ function ClientSingUp() {
       </Form.Group>
 
       <div className="d-flex justify-content-center">
-        <Button variant="primary" type="submit" size="lg" className="w-100">
+        <ButtonStyled
+          variant="primary"
+          type="submit"
+          size="lg"
+          className="w-100"
+        >
           Guardar
-        </Button>
+        </ButtonStyled>
       </div>
     </Form>
   );

@@ -1,8 +1,9 @@
-import { Pagination } from 'react-bootstrap';
+import { Pagination } from "react-bootstrap";
+import { ContainerStyledPaginator } from "./StyledsComponentsProducts";
 
 export function Paginator() {
   return (
-    <div className="d-flex justify-content-center pt-3">
+    <ContainerStyledPaginator>
       <Pagination>
         <Pagination.First />
         <Pagination.Prev />
@@ -19,7 +20,9 @@ export function Paginator() {
         <Pagination.Item>{20}</Pagination.Item>
         <Pagination.Next />
         <Pagination.Last />
+
+        {/* </div> */}
       </Pagination>
-    </div>
+    </ContainerStyledPaginator>
   );
 }

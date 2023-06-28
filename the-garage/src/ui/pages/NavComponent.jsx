@@ -38,24 +38,6 @@ export const NavComponent = () => {
         </>
       ) : null}
     </NavbarStyled>
+
   );
 };
-
-const NavbarStyled = styled(Navbar)(({ theme }) => ({
-  backgroundColor: theme.colors.mainColor,
-  display: 'flex',
-  flexDirection: 'column',
-  fontSize: theme.fonts[6],
-}));
-
-const ContainerNavStyled = styled(Container)(({ theme }) => ({
-  gap: 30,
-  marginTop: 5,
-  marginBottom: 5,
-  maxWidth: '100%',
-  fontFamily: theme.fontFamily.mainFont,
-}));
-
-const ButtonStyled = styled(Button)(() => ({
-  width: '30rem',
-}));

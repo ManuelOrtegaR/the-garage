@@ -2,8 +2,11 @@ import variables from './theme.module.scss';
 
 const theme = {
   colors: {
-    'gray-200': variables['gray-200'],
+    gray200: variables['gray-200'],
+    gray100: variables['gray-100'],
     mainColor: variables.mainColor,
+    secondaryColor: variables.secondaryColor,
+    buttonColor: variables.buttonColor,
   },
   fonts: [
     '14px',

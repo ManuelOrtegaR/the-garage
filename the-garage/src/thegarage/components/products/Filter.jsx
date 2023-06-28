@@ -1,11 +1,12 @@
-import { Accordion, Badge, Form, ListGroup } from 'react-bootstrap';
+import { Accordion, Badge, Form, ListGroup } from "react-bootstrap";
+import { H4Styled } from "./StyledsComponentsProducts";
 
 export function Filter() {
   return (
     <>
       <div className="d-flex flex-column  gap-5 vh-100 pt-5">
         <div>
-          <span>FILTRAR POR:</span>
+          <H4Styled>FILTRAR POR:</H4Styled>
         </div>
         <div>
           <Accordion>
@@ -67,7 +68,7 @@ export function Filter() {
                   <Form.Check
                     type="checkbox"
                     id="flexCheckChecked1"
-                    label="Mercedes"
+                    label="Chevrolet"
                   />
                   <Badge bg="secondary" pill>
                     145
@@ -77,7 +78,7 @@ export function Filter() {
                   <Form.Check
                     type="checkbox"
                     id="flexCheckChecked1"
-                    label="Mercedes"
+                    label="Bmw"
                   />
                   <Badge bg="secondary" pill>
                     150
@@ -139,7 +140,7 @@ export function Filter() {
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
+                      <i className="bi bi-star"></i>
                     </Form.Check.Label>
                   </Form.Check>
                 </div>
@@ -150,8 +151,8 @@ export function Filter() {
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
                       <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
+                      <i className="bi bi-star"></i>
+                      <i className="bi bi-star"></i>
                     </Form.Check.Label>
                   </Form.Check>
                 </div>
@@ -160,10 +161,10 @@ export function Filter() {
                     <Form.Check.Input type="checkbox" />
                     <Form.Check.Label>
                       <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
+                      <i className="bi bi-star-"></i>
+                      <i className="bi bi-star"></i>
+                      <i className="bi bi-star"></i>
+                      <i className="bi bi-star"></i>
                     </Form.Check.Label>
                   </Form.Check>
                 </div>
