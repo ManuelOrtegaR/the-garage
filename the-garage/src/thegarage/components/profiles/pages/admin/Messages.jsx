@@ -4,57 +4,63 @@ import Pagination from 'react-bootstrap/Pagination';
 
 export const Messages = () => {
   return (
-    <div className="position-relative border text-center m-auto w-75">
+    <div className="position-relative border text-center my-4 mx-auto w-75">
       <div className="bg-body z-3 py-1 px-2 position-absolute translate-middle mt-0 start-50 text-center border rounded-pill">
-        <h5>Messages</h5>
+        <h5>Mensages</h5>
       </div>
 
       <div className="mx-5 mt-5 mb-2 d-flex flex-column align-items-center">
         <ListGroup as="ul">
           <ListGroup.Item
             as="li"
-            className="d-flex justify-content-center align-items-center m-0"
+            className="d-flex justify-content-around align-items-center p-2"
           >
-            <img
-              src="https://placehold.co/100x60"
-              className="rounded m-1 col-1"
-            />
-            <span className="p-1 col-8 lh-1 text-start">
+            <img src="https://placehold.co/50x25" className="rounded" />
+            <span className="lh-1 text-start w-50">
               Este es un texto con ciertas caracteristicas que no puedo
               mensionar gustele a quien le guste.
             </span>
-            <span className="p-2 col-2">Status</span>
-            <Nav.Link href="/home" className="p-2 col-1">
+            <span>Status</span>
+            <Nav.Link href="/home">
               <i className="bi bi-eye-fill"></i>
             </Nav.Link>
           </ListGroup.Item>
 
           <ListGroup.Item
             as="li"
-            className="d-flex justify-content-center align-items-center m-0"
+            className="d-flex justify-content-around align-items-center p-2"
           >
-            <img
-              src="https://placehold.co/100x60"
-              className="rounded m-1 col-1"
-            />
-            <span className="p-1 col-8 lh-1 text-start">Messages.</span>
-            <span className="p-2 col-2">Status</span>
-            <Nav.Link href="/home" className="p-2 col-1">
+            <img src="https://placehold.co/50x25" className="rounded" />
+            <span className="lh-1 text-start w-50">Messages.</span>
+            <span>Status</span>
+            <Nav.Link href="/home">
               <i className="bi bi-eye-fill"></i>
             </Nav.Link>
           </ListGroup.Item>
 
           <ListGroup.Item
             as="li"
-            className="d-flex justify-content-center align-items-center m-0"
+            className="d-flex justify-content-around align-items-center p-2"
           >
-            <img
-              src="https://placehold.co/100x60"
-              className="rounded m-1 col-1"
-            />
-            <span className="p-1 col-8 lh-1 text-start">Messages.</span>
-            <span className="p-2 col-2">Status</span>
-            <Nav.Link href="/home" className="p-2 col-1">
+            <img src="https://placehold.co/50x25" className="rounded" />
+            <span className="lh-1 text-start w-50">Messages.</span>
+            <span>Status</span>
+            <Nav.Link href="/home">
+              <i className="bi bi-eye-fill"></i>
+            </Nav.Link>
+          </ListGroup.Item>
+
+          <ListGroup.Item
+            as="li"
+            className="d-flex justify-content-around align-items-center p-2"
+          >
+            <img src="https://placehold.co/50x25" className="rounded" />
+            <span className="lh-1 text-start w-50">
+              Este es un texto con ciertas caracteristicas que no puedo
+              mensionar gustele a quien le guste.
+            </span>
+            <span>Status</span>
+            <Nav.Link href="/home">
               <i className="bi bi-eye-fill"></i>
             </Nav.Link>
           </ListGroup.Item>

@@ -1,10 +1,12 @@
-import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
-import { ButtonStyledSuccess } from "../components";
+import { Container, Row, Col, Card, Form } from 'react-bootstrap';
+import { ButtonStyledSuccess } from '../components';
 
 export const ShoppingCart = () => {
   return (
-    <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
-      <Container className="py-5 h-100">
+    <section>
+      {/*className="h-100 h-custom" style={{ backgroundColor: '#eee' }}*/}
+      <Container>
+        {/*className="py-5 h-100"*/}
         <Row className="d-flex justify-content-center align-items-center h-100">
           <Col>
             <Card>
@@ -25,7 +27,7 @@ export const ShoppingCart = () => {
                       </div>
                       <div>
                         <p className="mb-0">
-                          <span className="text-muted">Sort by:</span>{" "}
+                          <span className="text-muted">Sort by:</span>{' '}
                           <a href="#!" className="text-body">
                             price <i className="fas fa-angle-down mt-1"></i>
                           </a>
@@ -41,7 +43,7 @@ export const ShoppingCart = () => {
                                 src="https://placehold.co/65x65"
                                 className="img-fluid rounded-3"
                                 alt="Shopping item"
-                                style={{ width: "65px" }}
+                                style={{ width: '65px' }}
                               />
                             </div>
                             <div className="ms-3">
@@ -50,13 +52,13 @@ export const ShoppingCart = () => {
                             </div>
                           </div>
                           <div className="d-flex flex-row align-items-center">
-                            <div style={{ width: "50px" }}>
+                            <div style={{ width: '50px' }}>
                               <h5 className="fw-normal mb-0">2</h5>
                             </div>
-                            <div style={{ width: "80px" }}>
+                            <div style={{ width: '80px' }}>
                               <h5 className="mb-0">$900</h5>
                             </div>
-                            <a href="#!" style={{ color: "#cecece" }}>
+                            <a href="#!" style={{ color: '#cecece' }}>
                               <i className="fas fa-trash-alt"></i>
                             </a>
                           </div>
@@ -69,7 +71,7 @@ export const ShoppingCart = () => {
                                 src="https://placehold.co/65x65"
                                 className="img-fluid rounded-3"
                                 alt="Shopping item"
-                                style={{ width: "65px" }}
+                                style={{ width: '65px' }}
                               />
                             </div>
                             <div className="ms-3">
@@ -78,13 +80,13 @@ export const ShoppingCart = () => {
                             </div>
                           </div>
                           <div className="d-flex flex-row align-items-center">
-                            <div style={{ width: "50px" }}>
+                            <div style={{ width: '50px' }}>
                               <h5 className="fw-normal mb-0">2</h5>
                             </div>
-                            <div style={{ width: "80px" }}>
+                            <div style={{ width: '80px' }}>
                               <h5 className="mb-0">$900</h5>
                             </div>
-                            <a href="#!" style={{ color: "#cecece" }}>
+                            <a href="#!" style={{ color: '#cecece' }}>
                               <i className="fas fa-trash-alt"></i>
                             </a>
                           </div>
@@ -96,7 +98,7 @@ export const ShoppingCart = () => {
                                 src="https://placehold.co/65x65"
                                 className="img-fluid rounded-3"
                                 alt="Shopping item"
-                                style={{ width: "65px" }}
+                                style={{ width: '65px' }}
                               />
                             </div>
                             <div className="ms-3">
@@ -105,13 +107,13 @@ export const ShoppingCart = () => {
                             </div>
                           </div>
                           <div className="d-flex flex-row align-items-center pt-3">
-                            <div style={{ width: "50px" }}>
+                            <div style={{ width: '50px' }}>
                               <h5 className="fw-normal mb-0">2</h5>
                             </div>
-                            <div style={{ width: "80px" }}>
+                            <div style={{ width: '80px' }}>
                               <h5 className="mb-0">$900</h5>
                             </div>
-                            <a href="#!" style={{ color: "#cecece" }}>
+                            <a href="#!" style={{ color: '#cecece' }}>
                               <i className="fas fa-trash-alt"></i>
                             </a>
                           </div>
@@ -128,7 +130,7 @@ export const ShoppingCart = () => {
                           <img
                             src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
                             className="img-fluid rounded-3"
-                            style={{ width: "45px" }}
+                            style={{ width: '45px' }}
                             alt="Avatar"
                           />
                         </div>
@@ -207,7 +209,7 @@ export const ShoppingCart = () => {
                           <div className="d-flex justify-content-between">
                             <span>$4818.00</span>
                             <span>
-                              Checkout{" "}
+                              Checkout{' '}
                               <i className="fas fa-long-arrow-alt-right ms-2"></i>
                             </span>
                           </div>

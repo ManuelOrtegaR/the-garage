@@ -1,65 +1,67 @@
-import {
-  NavClient,
-  ChangePassword,
-  Messages,
-  Orders,
-  PersonalInformation,
-  ShoppingCart,
-} from '../components';
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { NavComponent } from '../../ui/pages/NavComponent';
-import { AdminProfile } from './AdminProfile';
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const User = 'Admin';
+// import { Container, NavLink } from 'react-bootstrap';
+// import { ClientRoute } from '../components';
+// import {
+//   ChangePassword,
+//   Orders,
+//   Messages,
+// } from '../components/profiles/pages/client/';
+// import userImg from '../../../assets/images/home/user.png';
+// import { Route, Routes, Navigate } from 'react-router-dom';
+import { SettingsAdmin } from '../components';
 export const Config = false;
-// eslint-disable-next-line react-refresh/only-export-components
-export const navTest = 1;
 
 export function ClientProfile() {
+  // const user = {
+  //   type: 'Admin',
+  //   name: 'test',
+  //   email: 'test@thegarage.com',
+  //   phone: '+57 321-2000-824',
+  //   address: 'CR 24 #50-21',
+  // };
   return (
     <>
-      <NavComponent />
-      {User != 'Admin' ? (
-        <Container fluid>
-          <Row>
-            <Col md={2} className="border-end">
-              <NavClient />
-            </Col>
-            <Col>
-              <PersonalInformation />
-              {User === 'Client' ? (
-                navTest === 1 ? (
-                  <ChangePassword />
-                ) : navTest === 2 ? (
-                  <Orders />
-                ) : navTest === 3 ? (
-                  <ShoppingCart />
-                ) : (
-                  <Messages />
-                )
-              ) : User === 'Company' ? (
-                navTest === 1 ? (
-                  <ChangePassword />
-                ) : navTest === 2 ? (
-                  <ChangePassword />
-                ) : navTest === 3 || navTest === 4 ? (
-                  <ShoppingCart />
-                ) : navTest === 5 ? (
-                  <Orders />
-                ) : navTest === 6 ? (
-                  <Messages />
-                ) : null
-              ) : null}
-            </Col>
-          </Row>
+      {/* <SettingsClient />
+      <SettingsCompany /> */}
+      <SettingsAdmin />
+      {/* <Container fluid className="d-flex flex-row">
+        {user.type !== 'Admin' && (
+          <Container>
+            <img src={userImg} style={{ width: 100 }}></img>
+          </Container>
+        )}
+        <Container>
+          <div>Nombre: {user.name}</div>
+          <div>Correo: {user.email}</div>
+          <div>Telefono: {user.phone}</div>
+          <div>Direccion: {user.address}</div>
         </Container>
-      ) : (
-        <AdminProfile />
-      )}
+      </Container>
+      <Container className="d-flex flex-row">
+        <Container>
+          {user.type !== 'Admin' && <NavLink>Contraseña</NavLink>}
+          <NavLink>Ordenes</NavLink>
+          {user.type === 'Client' && <NavLink>Carro de compras</NavLink>}
+          {user.type === 'Company' && <NavLink>Detalles</NavLink>}
+          {user.type !== 'Client' && (
+            <>
+              <NavLink>Productos</NavLink>
+              <NavLink>Servicios</NavLink>
+            </>
+          )}
+          {user.type === 'Admin' && (
+            <>
+              <NavLink>Solicitus de empresas</NavLink>
+              <NavLink>Cuentas</NavLink>
+            </>
+          )}
+          <NavLink>Mensages</NavLink>
+          <NavLink>Cerrar sesion</NavLink>
+        </Container>
+        <Container>
+          <div>Selecciona una opcion</div>
+        </Container>
+      </Container> */}
     </>
   );
 }
+
