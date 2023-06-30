@@ -1,3 +1,7 @@
+import SingUpModal from "../components/SingUpModal";
+import Button from "react-bootstrap/Button";
+import { useState } from "react";
+
 import {
   MainConteiner,
   TitlePg,
@@ -9,6 +13,9 @@ import facebookIcon from "../../../assets/authIcons/facebook-icono.svg";
 import { NavLink } from "react-router-dom";
 
 export function Login() {
+  const [showModal, setShowModal] = useState(false);
+  const handleShow = () => setShowModal(true);
+
   return (
     <MainConteiner>
       <div className="login col-5">
@@ -60,12 +67,9 @@ export function Login() {
             </Form>
             <div className="d-flex gap-1 mt-2 justify-content-center">
               <label>¿No tienes un usuario?</label>
-              <NavLink
-                to={"/Singup"}
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                ¡Registrate!
-              </NavLink>
+              <Button variant="outline-secondary" onClick={handleShow}>
+                Registrate!
+              </Button>
             </div>
             <div className="d-flex justify-content-center m-2">
               <span>o</span>
@@ -81,6 +85,7 @@ export function Login() {
           </div>
         </div>
       </div>
+      {showModal ? <SingUpModal /> : <></>}
     </MainConteiner>
   );
 }

@@ -2,7 +2,7 @@ import { TitlePg, TabsStyled, TabStyled } from "./StyledsComponents";
 
 //import Tabs from "react-bootstrap/Tabs";
 import ClientSingUp from "./ClientSingUp";
-import CompanySingUp from "./CompanySingUp";
+import CompanySingUp_user from "./CompanySingUp_user";
 
 function SingUp() {
   return (
@@ -22,7 +22,7 @@ function SingUp() {
             <ClientSingUp />
           </TabStyled>
           <TabStyled eventKey="empresa" title="Empresa">
-            <CompanySingUp />
+            <CompanySingUp_user />
           </TabStyled>
         </TabsStyled>
       </div>
