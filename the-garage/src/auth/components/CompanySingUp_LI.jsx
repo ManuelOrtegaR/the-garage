@@ -1,7 +1,7 @@
 import { BtnSubmitStyled } from "../../components/StyledButtons";
 import Form from "react-bootstrap/Form";
 
-function CompanySingUp() {
+function CompanySingUp_LI() {
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formLInfo">
@@ -22,5 +22,4 @@ function CompanySingUp() {
     </Form>
   );
 }
-
-export default CompanySingUp;
+export default CompanySingUp_LI;
