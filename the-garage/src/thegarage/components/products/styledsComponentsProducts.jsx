@@ -3,6 +3,7 @@ import { Badge, Button, Card, Navbar, Row } from "react-bootstrap";
 
 export const ContainerStyled = styled("div")(({ theme }) => ({
   paddingTop: 20,
+  // display: "flex",
 }));
 export const ContainerButtonStyled = styled("div")(({ theme }) => ({
   display: "flex",

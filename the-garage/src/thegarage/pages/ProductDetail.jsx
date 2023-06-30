@@ -1,13 +1,25 @@
 import { Accordion, Button, Card, Col, Container, Row } from "react-bootstrap";
-import { ButtonStyledDetail, ButtonStyledSuccess, Item } from "../components";
+import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../components";
+import {
+  ButtonStyledDetail,
+  ButtonStyledSuccess,
+  Controls,
+  H4Styled,
+  Item,
+} from "../components";
+import { BreadCrumbRoute } from "../components/products/BreadCrumbRoute";
+import { detail1_MockTest, detail2_MockTest } from "../dataTest/dataMock";
 
 export function ProductDetail() {
   return (
     <Container>
-      <div className="pt-5">
-        <Row>
+      <Row>
+        <BreadCrumbRoute />
+      </Row>
+      <div className="pt-5 pb-5">
+        <Row className="mt-5">
           <Col className="" md={6} sm={12}>
-            <h2>{"ACEITE kh-89273"}</h2>
+            <H4Styled>{"ACEITE kh-89273"}</H4Styled>
 
             <div className="pt-2">
               <div>
@@ -107,23 +119,23 @@ export function ProductDetail() {
                   </Card.Text>
 
                   <div className="pt-1">
-                    <Card.Link href="#">
-                      <ButtonStyledSuccess className=" w-100" variant="success">
-                        <i className="bi bi-cart-plus"></i> Agregar al Carrito
-                      </ButtonStyledSuccess>
-                    </Card.Link>
+                    {/* <Card.Link href="#"> */}
+                    <BtnSubmitStyled width="100%">
+                      <i className="bi bi-cart-plus"></i> Agregar al Carrito
+                    </BtnSubmitStyled>
+                    {/* </Card.Link> */}
                   </div>
                   <div className="pt-1">
-                    <Card.Link href="#">
-                      <ButtonStyledDetail className=" w-100" variant="danger">
-                        <i className="bi bi-box-arrow-left"></i> Salir
-                      </ButtonStyledDetail>
-                    </Card.Link>
+                    {/* <Card.Link href="#"> */}
+                    <BtnDangerSubmitStyled width="100%">
+                      <i className="bi bi-box-arrow-left"></i> Salir
+                    </BtnDangerSubmitStyled>
+                    {/* </Card.Link> */}
                   </div>
                 </Card.Body>
               </Card>
             </div>
-            <div>DATOS ALMACEN</div>
+            <div className="mb-3">DATOS ALMACEN</div>
             <Card>
               <Card.Header>Almacen: AutoParts</Card.Header>
               <Card.Body>
@@ -137,13 +149,15 @@ export function ProductDetail() {
                   proveedores de repuestos reconocidos en el mercado, lo que nos
                   permite ofrecer productos de confianza y duraderos.
                 </Card.Text>
-                <ButtonStyledSuccess>Ver mas productos</ButtonStyledSuccess>
+                <BtnSubmitStyled to="/productos" width="100%">
+                  Ver mas productos
+                </BtnSubmitStyled>
               </Card.Body>
             </Card>
             <div className="pt-5">PRODUCTOS RECOMENDADOS</div>
             <div className="d-flex  flex-wrap justify-content-between ">
-              <Item className="w-50" />
-              <Item className="w-50" />
+              <Item className="w-50" key={1} item={detail1_MockTest} />
+              <Item className="w-50" key={2} item={detail2_MockTest} />
             </div>
           </Col>
         </Row>

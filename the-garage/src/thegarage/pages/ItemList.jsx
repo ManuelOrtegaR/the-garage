@@ -8,9 +8,10 @@ import {
   ContainerNumberItemsStyled,
   ContainerVisualizationStyled,
 } from "../components";
+import { mockDataTest } from "../dataTest/dataMock";
 
 export function ItemList() {
-  const products = [1, 2, 3, 4, 5, 6]; // Cantidad de productos que quiero mostrar
+  // const products = [1, 2, 3, 4, 5, 6]; // Cantidad de productos que quiero mostrar
   return (
     <Container>
       <Row>
@@ -24,7 +25,7 @@ export function ItemList() {
         <Col md={9}>
           <ContainerNumberItemsStyled>
             <strong>
-              <span> {products.length} Productos Encontrados</span>
+              <span> {mockDataTest.length} Productos Encontrados</span>
             </strong>
             <div>
               <span>Visualizacion: </span>
@@ -33,8 +34,8 @@ export function ItemList() {
             </div>
           </ContainerNumberItemsStyled>
           <ContainerVisualizationStyled>
-            {products.map((element) => (
-              <Item key={element} />
+            {mockDataTest.map((element) => (
+              <Item key={element.id} item={element} />
             ))}
           </ContainerVisualizationStyled>
           <Paginator />

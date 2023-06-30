@@ -10,12 +10,14 @@ import {
   ContainerBadgeStyled,
   ContainerBreadcumStyled,
 } from "./StyledsComponentsProducts";
+import { BreadCrumbRoute } from "./BreadCrumbRoute";
 
 export function Controls() {
   return (
     <>
       <Col md={5} className="">
-        <ContainerBreadcumStyled>
+        <BreadCrumbRoute />
+        {/* <ContainerBreadcumStyled>
           <i className="bi bi-house"></i>
           <Breadcrumb>
             <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
@@ -25,7 +27,7 @@ export function Controls() {
             <Breadcrumb.Item href="#">Discounts</Breadcrumb.Item>
             <Breadcrumb.Item active>Data</Breadcrumb.Item>
           </Breadcrumb>
-        </ContainerBreadcumStyled>
+        </ContainerBreadcumStyled> */}
         {/* aqui van controles de filtros por ordenamiento o el avance que lleva */}
       </Col>
       <Col md={5}>

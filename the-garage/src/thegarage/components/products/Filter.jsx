@@ -13,38 +13,36 @@ export function Filter() {
             <Accordion.Item eventKey="0">
               <Accordion.Header>Categorias</Accordion.Header>
               <Accordion.Body>
-                <ListGroup variant="flush">
-                  <ListGroup.Item>
-                    <div className="d-flex justify-content-between">
-                      <a href="#" className="text-dark">
-                        Suspension
-                      </a>
-                      <Badge bg="secondary" pill>
-                        120
-                      </Badge>
-                    </div>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <div className="d-flex justify-content-between">
-                      <a href="#" className="text-dark">
-                        Electronics
-                      </a>
-                      <Badge bg="secondary" pill>
-                        120
-                      </Badge>
-                    </div>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <div className="d-flex justify-content-between">
-                      <a href="#" className="text-dark">
-                        Mecanica
-                      </a>
-                      <Badge bg="secondary" pill>
-                        120
-                      </Badge>
-                    </div>
-                  </ListGroup.Item>
-                </ListGroup>
+                <div className="d-flex justify-content-between pb-2 pe-3">
+                  <Form.Check
+                    type="checkbox"
+                    id="flexCheckChecked1"
+                    label="Suspension"
+                  />
+                  <Badge bg="secondary" pill>
+                    120
+                  </Badge>
+                </div>
+                <div className="d-flex justify-content-between pb-2 pe-3">
+                  <Form.Check
+                    type="checkbox"
+                    id="flexCheckChecked1"
+                    label="Mecanica"
+                  />
+                  <Badge bg="secondary" pill>
+                    145
+                  </Badge>
+                </div>
+                <div className="d-flex justify-content-between pb-2 pe-3">
+                  <Form.Check
+                    type="checkbox"
+                    id="flexCheckChecked1"
+                    label="Electricidad"
+                  />
+                  <Badge bg="secondary" pill>
+                    150
+                  </Badge>
+                </div>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
