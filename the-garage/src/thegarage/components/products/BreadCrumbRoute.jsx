@@ -5,14 +5,13 @@ export const BreadCrumbRoute = () => {
   return (
     <div>
       <ContainerBreadcumStyled>
-        <i className="bi bi-house"></i>
         <Breadcrumb>
           <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-          <Breadcrumb.Item href="#">Products</Breadcrumb.Item>
-          <Breadcrumb.Item href="#">Category</Breadcrumb.Item>
-          <Breadcrumb.Item href="#">Accesories</Breadcrumb.Item>
-          <Breadcrumb.Item href="#">Discounts</Breadcrumb.Item>
-          <Breadcrumb.Item active>Data</Breadcrumb.Item>
+          <Breadcrumb.Item href="#">Productos</Breadcrumb.Item>
+          <Breadcrumb.Item href="#">Carros</Breadcrumb.Item>
+          <Breadcrumb.Item href="#">Repuestos</Breadcrumb.Item>
+          <Breadcrumb.Item href="#">Llantas</Breadcrumb.Item>
+          {/* <Breadcrumb.Item active>Data</Breadcrumb.Item> */}
         </Breadcrumb>
       </ContainerBreadcumStyled>
     </div>
