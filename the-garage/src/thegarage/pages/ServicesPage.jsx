@@ -34,7 +34,7 @@ export function ServicesPage() {
           </ContainerNumberItemsStyled>
           <ContainerVisualizationStyled>
             {mockDataTestServices.map((element) => (
-              <Item key={element.id} item={element} />
+              <Item key={element.id} item={element} isService={true} />
             ))}
           </ContainerVisualizationStyled>
           <Paginator />

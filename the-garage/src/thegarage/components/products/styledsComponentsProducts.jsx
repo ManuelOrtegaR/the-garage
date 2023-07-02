@@ -167,11 +167,12 @@ export const CardStoreStyle = styled(Card)(({ theme }) => ({
   color: theme.colors.mainColor,
 }));
 export const CardStoreDescriptionStyle = styled("div")(({ theme }) => ({
-  width: "430px",
+  width: "400px",
 }));
 
 export const ButtonCountStyled = styled(Button)(({ theme }) => ({
   height: "50%",
+  backgroundColor: "white",
 }));
 
 export const ColumnSheetStyle = styled("div")(({ theme }) => ({

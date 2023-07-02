@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../../components";
 import {
+  AlertStyled,
   ButtonCountStyled,
   CardStoreDescriptionStyle,
   CardStoreStyle,
   IconStyled,
 } from "./StyledsComponentsProducts";
+import { useNavigate } from "react-router-dom";
 
 export const CardProduct_store = () => {
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
+  function handleReturn() {
+    navigate("/productos");
+  }
+
+  function handleClickSuceess() {
+    setShowAlert(!showAlert);
+  }
+
   return (
     <div className="pb-5 pt-2">
       <CardStoreStyle>
@@ -26,7 +38,10 @@ export const CardProduct_store = () => {
             </CardStoreDescriptionStyle>
             <div>
               <Card.Text>
-                <div className="d-flex gap-5">
+                <div
+                  className="d-flex align-items-center gap-5"
+                  style={{ width: "330px" }}
+                >
                   <div>
                     <div>Precio por Unidad.</div>
                     <div className="fs-4">$100,000</div>
@@ -44,26 +59,31 @@ export const CardProduct_store = () => {
                     <ButtonCountStyled className="border px-3" variant="light">
                       -
                     </ButtonCountStyled>
-                    <div className="px-3">5</div>
+                    <div className="px-3 pt-2">{2}</div>
                     <ButtonCountStyled className=" border px-3" variant="light">
                       +
                     </ButtonCountStyled>
                   </div>
                 </div>
               </Card.Text>
-              <div className="pt-1">
-                {/* <Card.Link href="#"> */}
-                <BtnSubmitStyled width="100%">
-                  Agregar al Carrito
+
+              <div className="d-flex gap-3">
+                <BtnSubmitStyled onClick={handleClickSuceess} width="100%">
+                  Agregar al carrito
                 </BtnSubmitStyled>
-                {/* </Card.Link> */}
-              </div>
-              <div className="pt-1">
-                {/* <Card.Link href="#"> */}
-                <BtnDangerSubmitStyled width="100%">
+                {showAlert && (
+                  <AlertStyled
+                    variant="primary"
+                    onClose={handleClickSuceess}
+                    dismissible
+                  >
+                    Producto agregado
+                  </AlertStyled>
+                )}
+
+                <BtnDangerSubmitStyled onClick={handleReturn} width="100%">
                   Volver
                 </BtnDangerSubmitStyled>
-                {/* </Card.Link> */}
               </div>
             </div>
           </div>

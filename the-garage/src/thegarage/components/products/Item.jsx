@@ -14,12 +14,16 @@ import { useState } from "react";
 
 const userTest = { userRole: "cliente" };
 
-export function Item({ item }) {
+export function Item({ item, isService }) {
   const [showAlert, setShowAlert] = useState(false);
 
   const navigate = useNavigate();
   function handleClick() {
-    navigate("/productDetail");
+    if (isService) {
+      navigate("/servicesDetail");
+    } else {
+      navigate("/productDetail");
+    }
   }
 
   function handleClickSuceess() {
@@ -43,7 +47,7 @@ export function Item({ item }) {
             ) : (
               <i className="bi bi-x"></i>
             )}
-            Disponible para Despacho
+            {isService ? "Servicio a domicilio" : "Disponible para despacho"}
           </CardAvalaibleStyle>
           <CardAvalaibleStyle>
             {item.availability.retiro ? (
@@ -51,7 +55,7 @@ export function Item({ item }) {
             ) : (
               <i className="bi bi-x"></i>
             )}
-            Disponible para Retiro
+            {isService ? "Servicio en Taller" : "Disponible para Retiro"}
           </CardAvalaibleStyle>
           <Card.Text>
             {/* Creo array undefined con el numero de raiting */}
@@ -67,7 +71,7 @@ export function Item({ item }) {
           {userTest.userRole === "cliente" ? (
             <ContainerButtonStyled>
               <BtnSubmitStyled onClick={handleClickSuceess} variant="success">
-                <i className="bi bi-cart-plus"></i> Agregar al Carrito
+                {isService ? "Solicitar Servicio" : "Agregar al carrito"}
               </BtnSubmitStyled>
 
               {showAlert && (
@@ -97,7 +101,7 @@ export function Item({ item }) {
                 variant="danger"
                 className="px-1 w-100"
               >
-                <i className="bi bi-eye"></i> Ver Detalle
+                Ver Detalles
               </BtnDangerSubmitStyled>
             </ContainerButtonStyled>
           ) : null}

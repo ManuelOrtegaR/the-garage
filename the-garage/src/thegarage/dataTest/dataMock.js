@@ -198,10 +198,10 @@ export const mockDataTestServices = [
     id: 1,
     image: "https://placehold.co/288x196/87CEEB/FFF",
 
-    title: "Aceite motor Moly sintetico 5X30",
+    title: "Servicio de Colorimetria",
     description:
-      "Aceite sintético de alta calidad para motores de automóviles, con nivel de acetatos 3x2",
-    price: "$54,999",
+      "Nuestros expertos aplicarán técnicas precisas para lograr una coloración uniforme y duradera.",
+    price: "$54.999 - $80.000",
     category: "Lubricantes",
     store: "AutoParts",
     brand: "ACME",
@@ -214,10 +214,10 @@ export const mockDataTestServices = [
   {
     id: 2,
     image: "https://placehold.co/288x196/87CEEB/FFF",
-    title: "Filtro de aire para automóvil H239848",
+    title: "Servicio de Mecania General",
     description:
-      "Filtro de aire de alto rendimiento para automóviles, mejora la eficiencia y la calidad del aire",
-    price: "$2,499",
+      "Ajustes finos para asegurar que la sincronización sea estable y confiable",
+    price: "$2,499 - $80.000",
     category: "Filtros",
     store: "AutoRepuestos",
     brand: "XYZ",
@@ -230,10 +230,10 @@ export const mockDataTestServices = [
   {
     id: 3,
     image: "https://placehold.co/288x196/87CEEB/FFF",
-    title: "Pastillas de freno delanteras",
+    title: "Servicio de pulida y pintura",
     description:
       "Pastillas de freno de alto rendimiento para automóviles y motociletas",
-    price: "$1,999",
+    price: "$1,999 - $80.000",
     category: "Frenos",
     store: "AutoServicio",
     brand: "123Brakes",
@@ -249,7 +249,7 @@ export const mockDataTestServices = [
     title: "Batería para automóvil de alto rendimiento",
     description:
       "Batería de larga duración y alto rendimiento para automóviles, confiable y de calidad",
-    price: "$9,999",
+    price: "$9,999 - $80.000",
     category: "Baterías",
     store: "Autopartes Express",
     brand: "PowerStart",
@@ -266,7 +266,7 @@ export const mockDataTestServices = [
     title: "Amortiguadores traseros",
     description:
       "Amortiguadores de alta calidad para el sistema de suspensión de automóviles",
-    price: "$6,499",
+    price: "$6,499 - $80.000",
     category: "Suspensión",
     store: "AutoRepuestos",
     brand: "RideWell",
@@ -282,7 +282,7 @@ export const mockDataTestServices = [
     title: "Líquido refrigerante para automóvil",
     description:
       "Líquido refrigerante de larga duración para automóviles, protege el sistema genral",
-    price: "$999",
+    price: "$999 - $80.000",
     category: "Refrigeración",
     store: "AutoParts",
     brand: "CoolMax",
@@ -297,7 +297,7 @@ export const mockDataTestServices = [
     image: "https://placehold.co/288x196/87CEEB/FFF",
     title: "Filtro de combustible para automóvil",
     description: "Filtro de combustible de alto rendimiento para automóviles.",
-    price: "$1,199",
+    price: "$1,199 - $80.000",
     category: "Filtros",
     store: "Repuestos Vehiculares",
     brand: "FuelGuard",
@@ -312,7 +312,7 @@ export const mockDataTestServices = [
     image: "https://placehold.co/288x196/87CEEB/FFF",
     title: "Llantas deportivas",
     description: "Llantas deportivas de alto rendimiento para automóviles.",
-    price: "$12,999",
+    price: "$12,999 - $80.000",
     category: "Llantas",
     store: "Neumáticos Plus",
     brand: "SpeedMaster",
@@ -327,7 +327,7 @@ export const mockDataTestServices = [
     image: "https://placehold.co/288x196/87CEEB/FFF",
     title: "Kit de embrague para automóvil",
     description: "Kit de embrague completo para automóviles .",
-    price: "$8,599",
+    price: "$8,599 - $80.000",
     category: "Transmisión",
     store: "Autopartes Express",
     brand: "ClutchPro",
@@ -343,7 +343,7 @@ export const mockDataTestServices = [
     title: "Filtro de aceite para automóvil",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: "$799 - $80.000",
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",

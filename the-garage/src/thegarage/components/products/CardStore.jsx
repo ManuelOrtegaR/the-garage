@@ -1,8 +1,13 @@
 import { Card } from "react-bootstrap";
 import { BtnSubmitStyled } from "../../../components";
 import { CardStoreStyle } from "./StyledsComponentsProducts";
+import { useNavigate } from "react-router-dom";
 
 export const CardStore = () => {
+  const navigate = useNavigate();
+  function handleClick() {
+    navigate("/productos");
+  }
   return (
     <>
       <CardStoreStyle>
@@ -19,8 +24,8 @@ export const CardStore = () => {
             productos de confianza y duraderos.
           </Card.Text>
           <div className="d-flex justify-content-end">
-            <BtnSubmitStyled to="/productos" width="40%">
-              Ver mas productos
+            <BtnSubmitStyled onClick={handleClick} width="40%">
+              Ver mas productoss
             </BtnSubmitStyled>
           </div>
         </Card.Body>
