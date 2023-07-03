@@ -1,5 +1,5 @@
 import { Accordion, Badge, Form, ListGroup } from "react-bootstrap";
-import { H4Styled } from "./StyledsComponentsProducts";
+import { AccordionStyle, H4Styled } from "./StyledsComponentsProducts";
 
 export function Filter() {
   return (
@@ -9,7 +9,7 @@ export function Filter() {
           <H4Styled>FILTRAR POR:</H4Styled>
         </div>
         <div>
-          <Accordion>
+          <AccordionStyle>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Categorias</Accordion.Header>
               <Accordion.Body>
@@ -45,10 +45,10 @@ export function Filter() {
                 </div>
               </Accordion.Body>
             </Accordion.Item>
-          </Accordion>
+          </AccordionStyle>
         </div>
         <div>
-          <Accordion>
+          <AccordionStyle>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Marcas</Accordion.Header>
               <Accordion.Body>
@@ -84,10 +84,10 @@ export function Filter() {
                 </div>
               </Accordion.Body>
             </Accordion.Item>
-          </Accordion>
+          </AccordionStyle>
         </div>
         <div>
-          <Accordion>
+          <AccordionStyle>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Precio</Accordion.Header>
               <Accordion.Body>
@@ -123,10 +123,10 @@ export function Filter() {
                 </div>
               </Accordion.Body>
             </Accordion.Item>
-          </Accordion>
+          </AccordionStyle>
         </div>
         <div>
-          <Accordion>
+          <AccordionStyle>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Calificacion</Accordion.Header>
               <Accordion.Body>
@@ -168,7 +168,7 @@ export function Filter() {
                 </div>
               </Accordion.Body>
             </Accordion.Item>
-          </Accordion>
+          </AccordionStyle>
         </div>
       </div>
     </>

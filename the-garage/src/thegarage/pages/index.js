@@ -5,3 +5,5 @@ export * from "./ShoopingCart";
 export * from "./ProductDetail";
 export * from "./Contact";
 export * from "./Chat";
+export * from "./ServicesPage";
+export * from "./ServicesDetail";
