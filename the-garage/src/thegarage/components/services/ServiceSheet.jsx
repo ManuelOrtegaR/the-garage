@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Accordion } from "react-bootstrap";
 import { AccordionStyle, ColumnSheetStyle } from "../products";
 
@@ -62,7 +60,7 @@ export const ServiceSheet = () => {
       <div className="">
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
-            <Accordion.Header>Ficha tecnica SERVICIO</Accordion.Header>
+            <Accordion.Header>Ficha tecnica</Accordion.Header>
             <Accordion.Body>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

@@ -80,7 +80,7 @@ export function Item({ item, isService }) {
                   onClose={handleClickSuceess}
                   dismissible
                 >
-                  Producto agregado
+                  {isService ? "Servicio Solicitado" : "Producto Agregado"}
                 </AlertStyled>
               )}
 

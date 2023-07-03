@@ -1,19 +1,18 @@
+import { CardStoreStyle } from "../products";
 import { Card } from "react-bootstrap";
 import { BtnSubmitStyled } from "../../../components";
-import { CardStoreStyle } from "./StyledsComponentsProducts";
 import { useNavigate } from "react-router-dom";
 
-export const CardStore = () => {
+export const CardStoreServices = () => {
   const navigate = useNavigate();
   function handleClick() {
-    navigate("/productos");
+    navigate("/servicios");
   }
   return (
     <>
       <CardStoreStyle>
-        {/* <Card.Header>AutoParts</Card.Header> */}
         <Card.Body>
-          <Card.Title>AutoParts</Card.Title>
+          <Card.Title>{"Mayor-Autos"}</Card.Title>
           <Card.Text>
             En nuestro almacén, contamos con un extenso catálogo de repuestos
             que abarca desde piezas de automóviles, como frenos, filtros,
@@ -25,7 +24,7 @@ export const CardStore = () => {
           </Card.Text>
           <div className="d-flex justify-content-end">
             <BtnSubmitStyled onClick={handleClick} width="40%">
-              Ver mas productos
+              Ver mas servicios
             </BtnSubmitStyled>
           </div>
         </Card.Body>

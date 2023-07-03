@@ -1,20 +1,20 @@
-import { Button, Card } from "react-bootstrap";
-import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../../components";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   AlertStyled,
   ButtonCountStyled,
   CardStoreDescriptionStyle,
   CardStoreStyle,
   IconStyled,
-} from "./StyledsComponentsProducts";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+} from "../products";
+import { Card } from "react-bootstrap";
+import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../../components";
 
-export const CardProduct_store = () => {
+export const CardServiceStore = () => {
   const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
   function handleReturn() {
-    navigate("/productos");
+    navigate("/servicios");
   }
 
   function handleClickSuceess() {
@@ -69,7 +69,7 @@ export const CardProduct_store = () => {
 
               <div className="d-flex gap-3">
                 <BtnSubmitStyled onClick={handleClickSuceess} width="100%">
-                  Agregar al carrito
+                  Solicitar Servicio
                 </BtnSubmitStyled>
                 {showAlert && (
                   <AlertStyled
@@ -77,7 +77,7 @@ export const CardProduct_store = () => {
                     onClose={handleClickSuceess}
                     dismissible
                   >
-                    Producto agregado
+                    Servicio Solicitado
                   </AlertStyled>
                 )}
 

@@ -1,14 +1,8 @@
-import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { BreadCrumbRoute } from "../components/products/BreadCrumbRoute";
-import {
-  CardProduct_store,
-  CardStore,
-  Item,
-  ProductSheet,
-  ServiceSheet,
-} from "../components";
+import { CardServiceStore, Item, ServiceSheet } from "../components";
 import { detail1_MockTest, detail2_MockTest } from "../dataTest/dataMock";
+import { CardStoreServices } from "../components/services";
 
 export const ServicesDetail = () => {
   return (
@@ -22,8 +16,8 @@ export const ServicesDetail = () => {
             <ServiceSheet />
           </Col>
           <Col md={8}>
-            <CardProduct_store />
-            <CardStore />
+            <CardServiceStore />
+            <CardStoreServices />
             <div className="pt-5">SERVICIOS RECOMENDADOS</div>
 
             <div className="d-flex gap-1 ">
