@@ -2,19 +2,26 @@ import styled from "@emotion/styled";
 
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
+import background from "./../../../assets/authIcons/AuthBgFull.png";
 
-export const MainConteiner = styled("div")(({ theme }) => ({
+// export const MainConteiner = styled("div")(({ theme }) => ({
+//   display: "flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   height: "100vh",
+//   width: "100vw",
+//   flexDirection: "column",
+//   backgroundColor: theme.colors.mainColor,
+// }));
+
+export const MainConteiner = styled("div")(() => ({
   display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
   height: "100vh",
   width: "100vw",
-  flexDirection: "column",
-  backgroundColor: theme.colors.mainColor,
+  backgroundImage: `url(${background})`,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
 }));
-
 export const TitlePg = styled("h1")(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
@@ -22,31 +29,6 @@ export const TitlePg = styled("h1")(({ theme }) => ({
   fontFamily: theme.fontFamily.titleFont,
   fontSize: theme.fonts[1],
   color: theme.colors.mainColor,
-}));
-
-export const TabsStyled = styled(Tabs)(({ theme }) => ({
-  fontFamily: theme.fontFamily.mainFont,
-  color: theme.colors.mainColor,
-  fontSize: theme.fonts[4],
-}));
-export const TabStyled = styled(Tab)(({ theme }) => ({
-  fontFamily: theme.fontFamily.mainFont,
-  "&:hover": {
-    backgroundColor: "gray",
-    color: theme.colors.mainColor,
-  },
-}));
-
-export const NavStyled = styled(Nav)(({ theme }) => ({
-  fontFamily: theme.fontFamily.mainFont,
-  color: theme.colors.mainColor,
-}));
-
-export const NavItemStyled = styled(Nav.Item)(({ theme }) => ({
-  color: theme.colors.mainColor,
-  display: "flex",
-  justifyContent: "center",
-  fontFamily: theme.fontFamily.mainFont,
 }));
 
 export const NavLinkStyled = styled(Nav.Link)(({ theme }) => ({
