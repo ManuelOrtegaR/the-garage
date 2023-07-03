@@ -12,6 +12,32 @@ import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 //import { ClientRoute } from './routes';
 
+const user = [
+  {
+    name: 'User Test Client',
+    email: 'test@thegarage.com',
+    phone: '(+57) 321-2000-824',
+    address: 'Calle 40 #52-66 BR EL PERDIDO',
+    id: 1,
+    type: 'Client',
+  },
+  {
+    name: 'User Test Company',
+    email: 'test@thegarage.com',
+    phone: '(+57) 321-2000-824',
+    address: 'Calle 40 #52-66 BR EL PERDIDO',
+    id: 2,
+    type: 'Company',
+  },
+  {
+    name: 'User Test Admin',
+    email: 'test@thegarage.com',
+    role: 'Admin',
+    id: 3,
+    type: 'Admin',
+  },
+];
+
 export function SettingsClient() {
   return (
     <>
@@ -21,7 +47,7 @@ export function SettingsClient() {
             <NavClient />
           </Col>
           <Col>
-            <PersonalInformation />
+            <PersonalInformation user={user} />
             <Messages />
           </Col>
         </Row>

@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container';
-import { user } from '../../../../../ui/components';
-export const AdminInformation = () => {
+
+export const AdminInformation = ({ user }) => {
   return (
     <Container fluid>
       <div className="d-flex justify-content-around border rounded m-2 fs-4 fw-bold">

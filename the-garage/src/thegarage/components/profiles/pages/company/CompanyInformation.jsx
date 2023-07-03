@@ -1,6 +1,4 @@
-import { user } from '../../../../../ui/components';
-
-export const CompanyInformation = () => {
+export const CompanyInformation = ({ user }) => {
   return (
     <div className="z-2 position-relative z-2 m-5 border">
       <div className="bg-body z-3 py-1 px-2 position-absolute translate-middle mt-0 start-50 text-center border rounded-pill">

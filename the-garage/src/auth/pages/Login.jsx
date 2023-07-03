@@ -1,16 +1,15 @@
-import SingUpModal from "../components/SingUpModal";
-import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import SingUpModal from '../components/SingUpModal';
+import { useState } from 'react';
 
 import {
   MainConteiner,
   TitlePg,
   ButtonStyled,
-} from "../components/StyledsComponents";
-import Form from "react-bootstrap/Form";
-import googleIcon from "../../../assets/authIcons/google-icono.svg";
-import facebookIcon from "../../../assets/authIcons/facebook-icono.svg";
-import { NavLink } from "react-router-dom";
+} from '../components/StyledsComponents';
+import Form from 'react-bootstrap/Form';
+import googleIcon from '../../../assets/authIcons/google-icono.svg';
+import facebookIcon from '../../../assets/authIcons/facebook-icono.svg';
+import { NavLink } from 'react-router-dom';
 
 export function Login() {
   const [showModal, setShowModal] = useState(false);
@@ -42,8 +41,8 @@ export function Login() {
             >
               <Form.Check type="checkbox" label="Recuerdáme" />
               <NavLink
-                to={"/Recoverypassword"}
-                style={{ textDecoration: "none", color: "darkblue" }}
+                to={'/Recoverypassword'}
+                style={{ textDecoration: 'none', color: 'darkblue' }}
               >
                 ¿Olvidaste tu Constraseña?
               </NavLink>
@@ -56,8 +55,8 @@ export function Login() {
                 className="w-100"
               >
                 <NavLink
-                  to={"/home"}
-                  style={{ textDecoration: "none", color: "white" }}
+                  to={'/home'}
+                  style={{ textDecoration: 'none', color: 'white' }}
                 >
                   Ingresar
                 </NavLink>
@@ -65,12 +64,7 @@ export function Login() {
             </div>
             <div className="d-flex gap-1 mt-2 justify-content-center">
               <label>¿No tienes un usuario?</label>
-              <Button
-                variant="outline-secondary aling-self-center"
-                onClick={handleShow}
-              >
-                Registrate!
-              </Button>
+              <NavLink onClick={handleShow}>Registrate</NavLink>
             </div>
           </Form>
 
