@@ -1,5 +1,9 @@
 import { Accordion, Badge, Form, ListGroup } from "react-bootstrap";
-import { AccordionStyle, H4Styled } from "./StyledsComponentsProducts";
+import {
+  AccordionStyle,
+  Badgestyled,
+  H4Styled,
+} from "./StyledsComponentsProducts";
 
 export function Filter() {
   return (
@@ -19,9 +23,9 @@ export function Filter() {
                     id="flexCheckChecked1"
                     label="Suspension"
                   />
-                  <Badge bg="secondary" pill>
+                  <Badgestyled bg="secondary" pill>
                     120
-                  </Badge>
+                  </Badgestyled>
                 </div>
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
@@ -29,9 +33,9 @@ export function Filter() {
                     id="flexCheckChecked1"
                     label="Mecanica"
                   />
-                  <Badge bg="secondary" pill>
+                  <Badgestyled bg="secondary" pill>
                     145
-                  </Badge>
+                  </Badgestyled>
                 </div>
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
@@ -39,9 +43,9 @@ export function Filter() {
                     id="flexCheckChecked1"
                     label="Electricidad"
                   />
-                  <Badge bg="secondary" pill>
+                  <Badgestyled bg="secondary" pill>
                     150
-                  </Badge>
+                  </Badgestyled>
                 </div>
               </Accordion.Body>
             </Accordion.Item>
@@ -58,9 +62,9 @@ export function Filter() {
                     id="flexCheckChecked1"
                     label="Mercedes"
                   />
-                  <Badge bg="secondary" pill>
+                  <Badgestyled bg="secondary" pill>
                     120
-                  </Badge>
+                  </Badgestyled>
                 </div>
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
@@ -68,9 +72,9 @@ export function Filter() {
                     id="flexCheckChecked1"
                     label="Chevrolet"
                   />
-                  <Badge bg="secondary" pill>
+                  <Badgestyled bg="secondary" pill>
                     145
-                  </Badge>
+                  </Badgestyled>
                 </div>
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
@@ -78,9 +82,9 @@ export function Filter() {
                     id="flexCheckChecked1"
                     label="Bmw"
                   />
-                  <Badge bg="secondary" pill>
+                  <Badgestyled bg="secondary" pill>
                     150
-                  </Badge>
+                  </Badgestyled>
                 </div>
               </Accordion.Body>
             </Accordion.Item>
@@ -97,9 +101,9 @@ export function Filter() {
                     id="flexCheckChecked1"
                     label="0 - 100.000"
                   />
-                  <Badge bg="secondary" pill>
+                  <Badgestyled bg="secondary" pill>
                     120
-                  </Badge>
+                  </Badgestyled>
                 </div>
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
@@ -107,9 +111,9 @@ export function Filter() {
                     id="flexCheckChecked1"
                     label="100.000 - 200.000"
                   />
-                  <Badge bg="secondary" pill>
+                  <Badgestyled bg="secondary" pill>
                     145
-                  </Badge>
+                  </Badgestyled>
                 </div>
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
@@ -117,9 +121,9 @@ export function Filter() {
                     id="flexCheckChecked1"
                     label="200.000 300.000"
                   />
-                  <Badge bg="secondary" pill>
+                  <Badgestyled bg="secondary" pill>
                     150
-                  </Badge>
+                  </Badgestyled>
                 </div>
               </Accordion.Body>
             </Accordion.Item>
