@@ -85,7 +85,7 @@ export const ContainerBadgeStyled = styled("div")(({ theme }) => ({
 }));
 
 export const Badgestyled = styled(Badge)(({ theme }) => ({
-  backgroundColor: theme.colors.mainColor,
+  color: "white",
 }));
 export const H4Styled = styled("h4")(({ theme }) => ({
   color: theme.colors.mainColor,
