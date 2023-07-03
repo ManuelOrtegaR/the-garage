@@ -5,7 +5,7 @@ import { BtnSubmitStyled } from "../../components/StyledButtons";
 
 function CompanySingUp() {
   return (
-    <Form>
+    <Form className="Form_company m-5">
       <Row>
         <Col>
           <Form.Group className="mb-3" controlId="formLInfo">

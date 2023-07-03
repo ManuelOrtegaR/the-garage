@@ -10,7 +10,7 @@ function ClientSingUp() {
   const handleShowVerifyModal = () => setVerifyAccount(true);
   return (
     <>
-      <Form>
+      <Form className="Form_client m-5">
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Nombre Completo</Form.Label>
           <Form.Control type="texto" placeholder="Ingrese su nombre completo" />
