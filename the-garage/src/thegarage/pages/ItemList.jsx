@@ -9,18 +9,31 @@ import {
   ContainerVisualizationStyled,
 } from "../components";
 import { mockDataTest } from "../dataTest/dataMock";
+import { useState } from "react";
 
 export function ItemList() {
-  // const products = [1, 2, 3, 4, 5, 6]; // Cantidad de productos que quiero mostrar
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const addFilter = (filter) => {
+    setSelectedFilters([filter, ...selectedFilters]);
+  };
+
+  const deleteFilter = (filter) => {
+    const aux = [...selectedFilters];
+    setSelectedFilters(aux.filter((element) => element != filter));
+  };
+
+  const clean = () => {
+    setSelectedFilters([]);
+  };
   return (
     <Container>
       <Row>
-        <Controls />
+        <Controls filters={selectedFilters} clean={clean} />
       </Row>
 
       <RowItemStyled className="">
         <Col md={3}>
-          <Filter />
+          <Filter addFilter={addFilter} deleteFilter={deleteFilter} />
         </Col>
         <Col md={9}>
           <ContainerNumberItemsStyled>

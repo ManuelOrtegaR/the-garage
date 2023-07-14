@@ -5,7 +5,15 @@ import {
   H4Styled,
 } from "./StyledsComponentsProducts";
 
-export function Filter() {
+export function Filter({ addFilter, deleteFilter }) {
+  const handlerChange = (event) => {
+    const label = event.target.labels[0].innerText;
+    if (event.target.checked) {
+      addFilter(label);
+    } else {
+      deleteFilter(label);
+    }
+  };
   return (
     <>
       <div className="d-flex flex-column  gap-5 vh-100 pt-5">
@@ -20,8 +28,9 @@ export function Filter() {
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
                     type="checkbox"
-                    id="flexCheckChecked1"
+                    id="flexCheckChecked0"
                     label="Suspension"
+                    onChange={handlerChange}
                   />
                   <Badgestyled bg="secondary" pill>
                     120
@@ -32,6 +41,7 @@ export function Filter() {
                     type="checkbox"
                     id="flexCheckChecked1"
                     label="Mecanica"
+                    onChange={handlerChange}
                   />
                   <Badgestyled bg="secondary" pill>
                     145
@@ -40,8 +50,9 @@ export function Filter() {
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
                     type="checkbox"
-                    id="flexCheckChecked1"
+                    id="flexCheckChecked2"
                     label="Electricidad"
+                    onChange={handlerChange}
                   />
                   <Badgestyled bg="secondary" pill>
                     150
@@ -59,8 +70,9 @@ export function Filter() {
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
                     type="checkbox"
-                    id="flexCheckChecked1"
+                    id="flexCheckChecked3"
                     label="Mercedes"
+                    onChange={handlerChange}
                   />
                   <Badgestyled bg="secondary" pill>
                     120
@@ -69,8 +81,9 @@ export function Filter() {
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
                     type="checkbox"
-                    id="flexCheckChecked1"
+                    id="flexCheckChecked4"
                     label="Chevrolet"
+                    onChange={handlerChange}
                   />
                   <Badgestyled bg="secondary" pill>
                     145
@@ -79,8 +92,9 @@ export function Filter() {
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
                     type="checkbox"
-                    id="flexCheckChecked1"
+                    id="flexCheckChecked5"
                     label="Bmw"
+                    onChange={handlerChange}
                   />
                   <Badgestyled bg="secondary" pill>
                     150
@@ -98,8 +112,9 @@ export function Filter() {
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
                     type="checkbox"
-                    id="flexCheckChecked1"
+                    id="flexCheckChecked6"
                     label="0 - 100.000"
+                    onChange={handlerChange}
                   />
                   <Badgestyled bg="secondary" pill>
                     120
@@ -108,8 +123,9 @@ export function Filter() {
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
                     type="checkbox"
-                    id="flexCheckChecked1"
+                    id="flexCheckChecked7"
                     label="100.000 - 200.000"
+                    onChange={handlerChange}
                   />
                   <Badgestyled bg="secondary" pill>
                     145
@@ -118,8 +134,9 @@ export function Filter() {
                 <div className="d-flex justify-content-between pb-2 pe-3">
                   <Form.Check
                     type="checkbox"
-                    id="flexCheckChecked1"
+                    id="flexCheckChecked8"
                     label="200.000 300.000"
+                    onChange={handlerChange}
                   />
                   <Badgestyled bg="secondary" pill>
                     150

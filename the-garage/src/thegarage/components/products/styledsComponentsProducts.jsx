@@ -78,6 +78,7 @@ export const ContainerBreadcumStyled = styled("div")(({ theme }) => ({
 // }));
 export const ContainerBadgeStyled = styled("div")(({ theme }) => ({
   display: "flex",
+  flexWrap: "wrap",
   justifyContent: "flex-end",
   paddingTop: "50px",
   paddingBottom: "50px",
