@@ -15,7 +15,7 @@ export function ProductDetail() {
       <Row>
         <BreadCrumbRoute />
       </Row>
-      <div className="pt-5 pb-5">
+      <div className="pb-5">
         <Row className="mt-5">
           <Col className="" md={4}>
             <ProductSheet />
