@@ -157,6 +157,262 @@ export const mockDataTest = [
     },
     rating: 3,
   },
+  {
+    id: 11,
+    title: "Filtro de aceite para automóvil",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 12,
+    title: "Filtro de aceite para automóvil",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 13,
+    title: "Filtro de aceite para automóvil",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 14,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 15,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 16,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 17,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 18,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 19,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 20,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 21,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 22,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 23,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 24,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 25,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 26,
+    title: "Filtro de aceite para automóvil2",
+    image: "https://placehold.co/288x196",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
 ];
 
 export const detail1_MockTest = {
@@ -339,6 +595,54 @@ export const mockDataTestServices = [
   },
   {
     id: 10,
+    image: "https://placehold.co/288x196/87CEEB/FFF",
+    title: "Filtro de aceite para automóvil",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799 - $80.000",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 11,
+    image: "https://placehold.co/288x196/87CEEB/FFF",
+    title: "Filtro de aceite para automóvil",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799 - $80.000",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 12,
+    image: "https://placehold.co/288x196/87CEEB/FFF",
+    title: "Filtro de aceite para automóvil",
+    description:
+      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+    price: "$799 - $80.000",
+    category: "Filtros",
+    store: "AutoServicio",
+    brand: "PureFlow",
+    availability: {
+      despacho: true,
+      retiro: true,
+    },
+    rating: 3,
+  },
+  {
+    id: 13,
     image: "https://placehold.co/288x196/87CEEB/FFF",
     title: "Filtro de aceite para automóvil",
     description:

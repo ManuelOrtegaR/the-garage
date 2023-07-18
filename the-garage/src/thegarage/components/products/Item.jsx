@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import {
   AlertStyled,
   CardAvalaibleStyle,
+  CardDescroptionStyle,
   CardStyle,
   CardTitleStyle,
   ContainerButtonStyled,
@@ -37,7 +38,7 @@ export function Item({ item, isService }) {
         <Card.Img variant="top" src={item.image} />
         <Card.Body>
           <CardTitleStyle>{item.title}</CardTitleStyle>
-          <Card.Text>{item.description}</Card.Text>
+          <CardDescroptionStyle>{item.description}</CardDescroptionStyle>
           <Card.Text className="fs-4">
             <strong>{item.price}</strong>
           </Card.Text>
