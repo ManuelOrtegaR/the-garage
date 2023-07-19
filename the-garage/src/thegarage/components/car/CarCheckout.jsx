@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, Col, Form, Row } from "react-bootstrap";
 import { ButtonStyledSuccess } from "../products";
 import { BtnSubmitStyled } from "../../../components";
@@ -18,13 +17,14 @@ const CarCheckout = () => {
           />
         </div>
         <p className="small mb-2">Tipo de tarjeta</p>
+        <i className="bi bi-credit-card"></i>
         {/* Iconos de las tarjetas */}
         <Form className="mt-4">
           <Form.Group className="mb-4">
             <Form.Control
               type="text"
               id="typeName"
-              placeholder="Nombre de quien aparece en la tarjeta"
+              placeholder="Nombre Completo"
               size="lg"
             />
             <Form.Label htmlFor="typeName">Nombre</Form.Label>

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import {
   AlertStyled,
   CardAvalaibleStyle,
+  CardDescroptionStyle,
   CardStyle,
   CardTitleStyle,
   ContainerButtonStyled,
@@ -18,11 +19,11 @@ export function Item({ item, isService }) {
   const [showAlert, setShowAlert] = useState(false);
 
   const navigate = useNavigate();
-  function handleClick() {
+  function handleClick(id) {
     if (isService) {
-      navigate("/servicesDetail");
+      navigate(`/servicesDetail/${id}`);
     } else {
-      navigate("/productDetail");
+      navigate(`/productDetail/${id}`);
     }
   }
 
@@ -37,7 +38,7 @@ export function Item({ item, isService }) {
         <Card.Img variant="top" src={item.image} />
         <Card.Body>
           <CardTitleStyle>{item.title}</CardTitleStyle>
-          <Card.Text>{item.description}</Card.Text>
+          <CardDescroptionStyle>{item.description}</CardDescroptionStyle>
           <Card.Text className="fs-4">
             <strong>{item.price}</strong>
           </Card.Text>
@@ -97,7 +98,9 @@ export function Item({ item, isService }) {
                 </Alert>
               )} */}
               <BtnDangerSubmitStyled
-                onClick={handleClick}
+                onClick={() => {
+                  handleClick(item.id);
+                }}
                 variant="danger"
                 className="px-1 w-100"
               >
