@@ -87,7 +87,7 @@ export const mockDataTest = [
     description:
       "Líquido refrigerante de larga duración para automóviles, protege el sistema genral",
     price: "$999",
-    category: "Refrigeración",
+    category: "Lubricantes",
     store: "AutoParts",
     brand: "CoolMax",
     availability: {
@@ -404,7 +404,7 @@ export const mockDataTest = [
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
     price: "$799",
-    category: "Filtros",
+    category: "Lubricantes",
     store: "AutoServicio",
     brand: "PureFlow",
     availability: {
@@ -433,7 +433,7 @@ export const detail1_MockTest = {
 };
 
 export const detail2_MockTest = {
-  id: 1,
+  id: 2,
   image: "https://placehold.co/288x196",
   title: "Aceite motor Moly sintetico 5X30",
   description:

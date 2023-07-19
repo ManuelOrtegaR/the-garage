@@ -33,6 +33,7 @@ export function ItemList() {
   const [data, setData] = useState(mockDataTest);
   //limito a 10 por pagina
   const ITEM_PER_PAGE = 5;
+
   const [items, setItems] = useState([...data].splice(0, ITEM_PER_PAGE));
 
   //pagina actual
@@ -63,7 +64,7 @@ export function ItemList() {
     const firstIndex = (specificPage - 1) * ITEM_PER_PAGE;
     setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
     setCurrentPage(specificPage - 1);
-    console.log(specificPage);
+    // console.log(specificPage);
   };
 
   return (
@@ -74,7 +75,11 @@ export function ItemList() {
 
       <RowItemStyled className="">
         <Col md={3}>
-          <Filter addFilter={addFilter} deleteFilter={deleteFilter} />
+          <Filter
+            data={data}
+            addFilter={addFilter}
+            deleteFilter={deleteFilter}
+          />
         </Col>
         <Col md={9}>
           <ContainerNumberItemsStyled>

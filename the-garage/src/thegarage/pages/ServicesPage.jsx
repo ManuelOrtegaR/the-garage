@@ -61,7 +61,11 @@ export function ServicesPage() {
 
       <RowItemStyled className="">
         <Col md={3}>
-          <Filter addFilter={addFilter} deleteFilter={deleteFilter} />
+          <Filter
+            data={data}
+            addFilter={addFilter}
+            deleteFilter={deleteFilter}
+          />
         </Col>
         <Col md={9}>
           <ContainerNumberItemsStyled>

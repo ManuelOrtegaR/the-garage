@@ -13,7 +13,7 @@ import CardElements from "../components/car/CardElements";
 import CarCheckout from "../components/car/CarCheckout";
 
 export const ShoppingCart = () => {
-  const type = "productss";
+  const type = "products";
   return (
     <section>
       <Container className="pt-5 mb-5">

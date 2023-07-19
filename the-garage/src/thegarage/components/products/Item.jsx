@@ -19,11 +19,11 @@ export function Item({ item, isService }) {
   const [showAlert, setShowAlert] = useState(false);
 
   const navigate = useNavigate();
-  function handleClick() {
+  function handleClick(id) {
     if (isService) {
-      navigate("/servicesDetail");
+      navigate(`/servicesDetail/${id}`);
     } else {
-      navigate("/productDetail");
+      navigate(`/productDetail/${id}`);
     }
   }
 
@@ -98,7 +98,9 @@ export function Item({ item, isService }) {
                 </Alert>
               )} */}
               <BtnDangerSubmitStyled
-                onClick={handleClick}
+                onClick={() => {
+                  handleClick(item.id);
+                }}
                 variant="danger"
                 className="px-1 w-100"
               >

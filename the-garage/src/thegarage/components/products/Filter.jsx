@@ -5,7 +5,7 @@ import {
   H4Styled,
 } from "./StyledsComponentsProducts";
 
-export function Filter({ addFilter, deleteFilter }) {
+export function Filter({ data, addFilter, deleteFilter }) {
   const handlerChange = (event) => {
     const label = event.target.labels[0].innerText;
     if (event.target.checked) {
@@ -14,6 +14,43 @@ export function Filter({ addFilter, deleteFilter }) {
       deleteFilter(label);
     }
   };
+
+  const generateFilter = () => {
+    let elements = [];
+    let uniqueElements = [];
+    elements = data.map((element) => {
+      return element.category;
+    });
+
+    uniqueElements = elements.filter(
+      (element, i) => elements.indexOf(element) === i
+    );
+
+    const countFilter = (filt) => {
+      let count = 0;
+      elements.map((element) => {
+        if (element === filt) {
+          count++;
+        }
+      });
+      return count;
+    };
+
+    return uniqueElements.map((filt, index) => (
+      <div key={index} className="d-flex justify-content-between pb-2 pe-3">
+        <Form.Check
+          type="checkbox"
+          id={`flexCheckChecked${index}`}
+          label={filt}
+          onChange={handlerChange}
+        />
+        <Badgestyled bg="secondary" pill>
+          {countFilter(filt)}
+        </Badgestyled>
+      </div>
+    ));
+  };
+
   return (
     <>
       <div className="d-flex flex-column  gap-5 vh-100 pt-5">
@@ -24,44 +61,11 @@ export function Filter({ addFilter, deleteFilter }) {
           <AccordionStyle>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Categorias</Accordion.Header>
-              <Accordion.Body>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="flexCheckChecked0"
-                    label="Suspension"
-                    onChange={handlerChange}
-                  />
-                  <Badgestyled bg="secondary" pill>
-                    120
-                  </Badgestyled>
-                </div>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="flexCheckChecked1"
-                    label="Mecanica"
-                    onChange={handlerChange}
-                  />
-                  <Badgestyled bg="secondary" pill>
-                    145
-                  </Badgestyled>
-                </div>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="flexCheckChecked2"
-                    label="Electricidad"
-                    onChange={handlerChange}
-                  />
-                  <Badgestyled bg="secondary" pill>
-                    150
-                  </Badgestyled>
-                </div>
-              </Accordion.Body>
+              <Accordion.Body>{generateFilter()}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
         </div>
+
         <div>
           <AccordionStyle>
             <Accordion.Item eventKey="0">
