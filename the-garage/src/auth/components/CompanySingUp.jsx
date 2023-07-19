@@ -26,7 +26,7 @@ const phoneRqd = z.number({
   required_error: "El teléfono o celular es requerido",
 });
 
-const webRqd = z.string().url().optional;
+const webRqd = z.string().url().optional();
 
 const ccomerceRqd = z.string({
   required_error: "La camara de comercio es requerida",
@@ -50,43 +50,47 @@ const cpasswordRqd = z.string({
 
 const companySignUpSchema = z
   .object({
-    n_it: nitRqd,
+    n_it: nitRqd
+      .gt(100000000, "El NIT debe tener 9 dígitos")
+      .lt(999999999, "El NIT debe tener 9 dígitos"),
+
     name: nameRqd,
     address: addressRqd,
     city: cityRqd,
-    phone: phoneRqd,
-    website: webRqd,
-    ccomerce: ccomerceRqd
-      .refine((value) => !!value, {
-        message: "Debe seleccionar un archivo",
-        path: ["ccomerce"],
-      })
-      .refine(
-        (value) => {
-          const acceptedExtensions = ["pdf"]; // Extensiones permitidas
-          const fileExtension = value
-            .substring(value.lastIndexOf(".") + 1)
-            .toLowerCase();
-          return acceptedExtensions.includes(fileExtension);
-        },
-        { message: "Formato de archivo no válido", path: ["ccomerce"] }
-      ),
+    phone: phoneRqd
+      .gt(1000000000, "El número de contacto debe tener 9 dígitos")
+      .lt(9999999999, "El número de contacto debe tener 9 dígitos"),
 
-    image: imgRqd
-      .refine((value) => !!value, {
-        message: "Debe seleccionar un archivo",
-        path: ["image"],
-      })
-      .refine(
-        (value) => {
-          const acceptedExtensions = ["jpg", "jpeg", "png"]; // Extensiones permitidas
-          const fileExtension = value
-            .substring(value.lastIndexOf(".") + 1)
-            .toLowerCase();
-          return acceptedExtensions.includes(fileExtension);
-        },
-        { message: "Formato de archivo no válido", path: ["image"] }
-      ),
+    website: webRqd,
+    ccomerce: ccomerceRqd.refine((value) => !!value, {
+      message: "Debe seleccionar un archivo",
+      path: ["ccomerce"],
+    }),
+    // .refine(
+    //   (value) => {
+    //     const acceptedExtensions = ["pdf"]; // Extensiones permitidas
+    //     const fileExtension = value
+    //       .substring(value.lastIndexOf(".") + 1)
+    //       .toLowerCase();
+    //     return acceptedExtensions.includes(fileExtension);
+    //   },
+    //   { message: "Formato de archivo no válido", path: ["ccomerce"] }
+    // ),
+
+    image: imgRqd.refine((value) => !!value, {
+      message: "Debe seleccionar un archivo",
+      path: ["image"],
+    }),
+    // .refine(
+    //   (value) => {
+    //     const acceptedExtensions = ["jpg", "jpeg", "png"]; // Extensiones permitidas
+    //     const fileExtension = value
+    //       .substring(value.lastIndexOf(".") + 1)
+    //       .toLowerCase();
+    //     return acceptedExtensions.includes(fileExtension);
+    //   },
+    //   { message: "Formato de archivo no válido", path: ["image"] }
+    // ),
 
     email: emailRqd.email("Dirección de correo incorrecto"),
 
