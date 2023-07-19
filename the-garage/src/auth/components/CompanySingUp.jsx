@@ -50,7 +50,7 @@ const cpasswordRqd = z.string({
 
 const companySignUpSchema = z
   .object({
-    n_it: nitRqd,
+    nit: nitRqd,
     name: nameRqd,
     address: addressRqd,
     city: cityRqd,
@@ -106,7 +106,7 @@ const companySignUpSchema = z
 //
 function CompanySingUp() {
   const initialValues = {
-    n_it: "",
+    nit: "",
     name: "",
     address: "",
     city: "",
@@ -121,7 +121,7 @@ function CompanySingUp() {
 
   return (
     <>
-      <h1 className="fs-4 my-2 fw-bolder">Sign Up</h1>
+      
       <Formik
         initialValues={initialValues}
         onSubmit={(values, { setSubmitting }) => {
@@ -147,14 +147,14 @@ function CompanySingUp() {
                   <Form.Control
                     type="number"
                     placeholder="Ingrese el NIT de la empresa"
-                    name="n_it"
+                    name="nit"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.n_it}
-                    className={touched.n_it && errors.n_it ? "is-invalid" : ""}
+                    value={values.nit}
+                    className={touched.nit && errors.nit ? "is-invalid" : ""}
                   />
                   <ErrorMessage
-                    name="n_it"
+                    name="nit"
                     component="div"
                     className="invalid-feedback"
                   />

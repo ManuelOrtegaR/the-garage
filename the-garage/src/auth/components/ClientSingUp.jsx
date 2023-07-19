@@ -64,7 +64,7 @@ function ClientSingUp() {
 
   return (
     <>
-      <h1 className="fs-4 my-2 fw-bolder">Sign Up</h1>
+   
       <Formik
         initialValues={initialValues}
         onSubmit={(values, { setSubmitting }) => {
