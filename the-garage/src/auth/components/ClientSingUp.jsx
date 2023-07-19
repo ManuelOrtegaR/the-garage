@@ -24,6 +24,10 @@ const passwordRqd = z.string({
   required_error: "La contraseña es requerida",
 });
 
+const cpasswordRqd = z.string({
+  required_error: "La confirmación de contraseña es requerida",
+});
+
 const clientSignUpSchema = z
   .object({
     name: nameRqd,
@@ -32,20 +36,19 @@ const clientSignUpSchema = z
     password: passwordRqd
       .min(6, "La contraseña debe tener mínimo 6 caracteres")
       .max(16, "La contraseña debe tener máximo 16 caracteres"),
-    // cpassword: z.string().refine(
-    //   (data) => data.cpassword !== data.password,
-    //   (data) => ({ message: `No paila, ${data.password}, ${data.cpassword}` })
-    // ),
-    cpassword: z.string().min(1, "COnfirmar la contraseña es requerido"),
+    cpassword: cpasswordRqd
+      .min(6, "La contraseña debe tener mínimo 6 caracteres")
+      .max(16, "La contraseña debe tener máximo 16 caracteres"),
   })
-  // .refine(
-  //   (data) => data.cpassword === data.password,
-  //   (data) => ({ message: `No paila, ${data.password}, ${data.cpassword}` })
-  // );
   .refine((data) => data.password === data.cpassword, {
-    message: "Passwords don't match",
+    message: "Las contraseñas no coinciden",
     path: ["cpassword"], // path of error
   });
+
+// .refine(
+//   (data) => data.cpassword === data.password,
+//   (data) => ({ message: `No paila, ${data.password}, ${data.cpassword}` })
+// );
 
 function ClientSingUp() {
   const [verifyAccount, setVerifyAccount] = useState(false);

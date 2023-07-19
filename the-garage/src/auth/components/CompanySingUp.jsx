@@ -1,10 +1,11 @@
 import { Formik, ErrorMessage } from "formik";
+import { toFormikValidationSchema } from "zod-formik-adapter";
+import { z } from "zod";
+
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { BtnSubmitStyled } from "../../components/StyledButtons";
-import { toFormikValidationSchema } from "zod-formik-adapter";
-import { z } from "zod";
 
 const nitRqd = z.number({
   required_error: "El NIT es requerido",
@@ -25,14 +26,14 @@ const phoneRqd = z.number({
   required_error: "El teléfono o celular es requerido",
 });
 
-const webRqd = z.string().optional;
+const webRqd = z.string().url().optional;
 
 const ccomerceRqd = z.string({
-  required_error: "El correo es requerido",
+  required_error: "La camara de comercio es requerida",
 });
 
 const imgRqd = z.string({
-  required_error: "El correo es requerido",
+  required_error: "El logo o imagen coorporativa es requerida",
 });
 
 const emailRqd = z.string({
@@ -40,33 +41,72 @@ const emailRqd = z.string({
 });
 
 const passwordRqd = z.string({
-  required_error: "La contraseña es requerido",
+  required_error: "La contraseña es requerida",
 });
 
-const companySignUpSchema = z.object({
-  nit: nitRqd,
-  name: nameRqd,
-  address: addressRqd,
-  city: cityRqd,
-  phone: phoneRqd,
-  website: webRqd,
-  ccomerce: ccomerceRqd,
-  image: imgRqd,
-  email: emailRqd.email("Dirección de correo incorrecto"),
-
-  password: passwordRqd
-    .min(6, "La contraseña debe tener mínimo 6 caracteres")
-    .max(16, "La contraseña debe tener máximo 6 caracteres"),
-
-  cpassword: z.string().refine(
-    (value) => value === passwordRqd.value,
-    (value) => ({ message: `cpass ${value} pass ${passwordRqd.value}` })
-  ),
+const cpasswordRqd = z.string({
+  required_error: "La confirmación de contraseña es requerida",
 });
+
+const companySignUpSchema = z
+  .object({
+    n_it: nitRqd,
+    name: nameRqd,
+    address: addressRqd,
+    city: cityRqd,
+    phone: phoneRqd,
+    website: webRqd,
+    ccomerce: ccomerceRqd
+      .refine((value) => !!value, {
+        message: "Debe seleccionar un archivo",
+        path: ["ccomerce"],
+      })
+      .refine(
+        (value) => {
+          const acceptedExtensions = ["pdf"]; // Extensiones permitidas
+          const fileExtension = value
+            .substring(value.lastIndexOf(".") + 1)
+            .toLowerCase();
+          return acceptedExtensions.includes(fileExtension);
+        },
+        { message: "Formato de archivo no válido", path: ["ccomerce"] }
+      ),
+
+    image: imgRqd
+      .refine((value) => !!value, {
+        message: "Debe seleccionar un archivo",
+        path: ["image"],
+      })
+      .refine(
+        (value) => {
+          const acceptedExtensions = ["jpg", "jpeg", "png"]; // Extensiones permitidas
+          const fileExtension = value
+            .substring(value.lastIndexOf(".") + 1)
+            .toLowerCase();
+          return acceptedExtensions.includes(fileExtension);
+        },
+        { message: "Formato de archivo no válido", path: ["image"] }
+      ),
+
+    email: emailRqd.email("Dirección de correo incorrecto"),
+
+    password: passwordRqd
+      .min(6, "La contraseña debe tener mínimo 6 caracteres")
+      .max(16, "La contraseña debe tener máximo 16 caracteres"),
+
+    cpassword: cpasswordRqd
+      .min(6, "La contraseña debe tener mínimo 6 caracteres")
+      .max(16, "La contraseña debe tener máximo 16 caracteres"),
+  })
+  .refine((data) => data.password === data.cpassword, {
+    message: "Las contraseñas no coinciden",
+    path: ["cpassword"], // path of error
+  });
+
 //
 function CompanySingUp() {
   const initialValues = {
-    nit: "",
+    n_it: "",
     name: "",
     address: "",
     city: "",
@@ -105,16 +145,16 @@ function CompanySingUp() {
                 <Form.Group className="mb-3" controlId="formLInfo">
                   <Form.Label>NIT</Form.Label>
                   <Form.Control
-                    type="texto"
+                    type="number"
                     placeholder="Ingrese el NIT de la empresa"
-                    name="nit"
+                    name="n_it"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.nit}
-                    className={touched.nit && errors.nit ? "is-invalid" : ""}
+                    value={values.n_it}
+                    className={touched.n_it && errors.n_it ? "is-invalid" : ""}
                   />
                   <ErrorMessage
-                    name="nit"
+                    name="n_it"
                     component="div"
                     className="invalid-feedback"
                   />
@@ -224,7 +264,18 @@ function CompanySingUp() {
               <Col>
                 <Form.Group controlId="formFileCCommerce" className="mb-3">
                   <Form.Label>Cámara de Comercio</Form.Label>
-                  <Form.Control type="file" size="sm" />
+                  <Form.Control
+                    type="file"
+                    size="sm"
+                    placeholder="Seleccione un archivo"
+                    name="ccomerce"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.ccomerce}
+                    className={
+                      touched.ccomerce && errors.ccomerce ? "is-invalid" : ""
+                    }
+                  />
                   <ErrorMessage
                     name="ccomerce"
                     component="div"
@@ -235,7 +286,18 @@ function CompanySingUp() {
               <Col>
                 <Form.Group controlId="formFileIMG" className="mb-3">
                   <Form.Label>Imagen o Logo</Form.Label>
-                  <Form.Control type="file" size="sm" />
+                  <Form.Control
+                    type="file"
+                    size="sm"
+                    placeholder="Seleccione un archivo"
+                    name="image"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.image}
+                    className={
+                      touched.image && errors.image ? "is-invalid" : ""
+                    }
+                  />
                   <ErrorMessage
                     name="image"
                     component="div"
