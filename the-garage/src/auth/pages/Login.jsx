@@ -26,8 +26,13 @@ const passwordRqd = z.string({
 const singUpSchema = z.object({
   email: emailRqd.email("Dirección de correo incorrecto"),
   password: passwordRqd
+<<<<<<< HEAD
     .min(6, "La contraseña debe tener mínimo 6 caracteres")
     .max(16, "La contraseña debe tener máximo 16 caracteres"),
+=======
+  .min(6, "La contraseña debe tener mínimo 6 caracteres")
+  .max(16, "La contraseña debe tener máximo 16 caracteres"),
+>>>>>>> fc3622d451512d38ae57a16684e5c9bcc0104aeb
 });
 
 export function Login() {
