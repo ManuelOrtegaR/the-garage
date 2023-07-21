@@ -44,7 +44,7 @@ export const ServiceSheet = () => {
       <div className="">
         <AccordionStyle defaultActiveKey="0">
           <Accordion.Item eventKey="0">
-            <Accordion.Header>Descripcions</Accordion.Header>
+            <Accordion.Header>{"Descripcion"}</Accordion.Header>
             <Accordion.Body>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -57,7 +57,7 @@ export const ServiceSheet = () => {
           </Accordion.Item>
         </AccordionStyle>
       </div>
-      <div className="">
+      {/* <div className="">
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
             <Accordion.Header>Ficha tecnica</Accordion.Header>
@@ -72,7 +72,7 @@ export const ServiceSheet = () => {
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
-      </div>
+      </div> */}
     </ColumnSheetStyle>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { Accordion } from "react-bootstrap";
 import { AccordionStyle, ColumnSheetStyle } from "./StyledsComponentsProducts";
 
-export const ProductSheet = () => {
+export const ProductSheet = ({ item }) => {
   return (
     <ColumnSheetStyle>
       <div className="pt-2 ">
@@ -46,15 +46,7 @@ export const ProductSheet = () => {
         <AccordionStyle defaultActiveKey="0">
           <Accordion.Item eventKey="0">
             <Accordion.Header>Descripcion</Accordion.Header>
-            <Accordion.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Accordion.Body>
+            <Accordion.Body>{item.description}</Accordion.Body>
           </Accordion.Item>
         </AccordionStyle>
       </div>
@@ -62,15 +54,7 @@ export const ProductSheet = () => {
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
             <Accordion.Header>Ficha tecnica</Accordion.Header>
-            <Accordion.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Accordion.Body>
+            <Accordion.Body>{item.description}</Accordion.Body>
           </Accordion.Item>
         </Accordion>
       </div>

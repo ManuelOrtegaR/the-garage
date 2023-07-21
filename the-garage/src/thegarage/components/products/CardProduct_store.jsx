@@ -9,8 +9,10 @@ import {
 } from "./StyledsComponentsProducts";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useCounter } from "../../../hooks/useCounter";
 
 export const CardProduct_store = () => {
+  const { counter, increment, decrement } = useCounter(2);
   const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
   function handleReturn() {
@@ -56,11 +58,23 @@ export const CardProduct_store = () => {
                   </div>
 
                   <div className="  d-flex justify-content-center">
-                    <ButtonCountStyled className="border px-3" variant="light">
+                    <ButtonCountStyled
+                      onClick={() => {
+                        decrement(1);
+                      }}
+                      className="border px-3"
+                      variant="light"
+                    >
                       -
                     </ButtonCountStyled>
-                    <div className="px-3 pt-2">{2}</div>
-                    <ButtonCountStyled className=" border px-3" variant="light">
+                    <div className="px-3 pt-2">{counter}</div>
+                    <ButtonCountStyled
+                      onClick={() => {
+                        increment(1);
+                      }}
+                      className=" border px-3"
+                      variant="light"
+                    >
                       +
                     </ButtonCountStyled>
                   </div>

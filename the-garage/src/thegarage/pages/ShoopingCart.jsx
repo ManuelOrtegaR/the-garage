@@ -1,15 +1,22 @@
 import { Container, Row, Col, Card, Form } from "react-bootstrap";
 
-import { Continue } from "../components/car";
+import {
+  Continue,
+  Schedule,
+  ServiceDetail,
+  ServiceElement,
+  Title,
+} from "../components/car";
 import { Divisor } from "../components/car/Divisor";
 import { Description } from "../components/car/Description";
 import CardElements from "../components/car/CardElements";
 import CarCheckout from "../components/car/CarCheckout";
 
 export const ShoppingCart = () => {
+  const type = "products";
   return (
     <section>
-      <Container className="pt-5">
+      <Container className="pt-5 mb-5">
         <Row className="d-flex justify-content-center align-items-center h-100">
           <Col>
             <Card>
@@ -19,8 +26,23 @@ export const ShoppingCart = () => {
                     <Continue />
 
                     <Divisor />
-                    <Description />
-                    <CardElements />
+                    {type === "products" ? (
+                      <>
+                        <Description />
+                        <CardElements />
+                      </>
+                    ) : (
+                      <>
+                        <Title />
+                        <ServiceElement />
+                        <ServiceDetail />
+                        <Schedule />
+                      </>
+                    )}
+                    {/* Varia entre Podudcto y Servicio */}
+                    {/* <Description />
+                    <CardElements /> */}
+                    {/* Varia entre Podudcto y Servicio */}
                   </Col>
                   <Col lg={4}>
                     <CarCheckout />

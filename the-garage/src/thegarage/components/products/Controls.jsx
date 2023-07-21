@@ -10,7 +10,10 @@ import { ContainerBadgeStyled } from "./StyledsComponentsProducts";
 import { BreadCrumbRoute } from "./BreadCrumbRoute";
 import { BtnSubmitStyled } from "../../../components";
 
-export function Controls() {
+export function Controls({ filters, clean }) {
+  const cleanAll = () => {
+    clean();
+  };
   return (
     <>
       <Col md={5} className="">
@@ -18,32 +21,36 @@ export function Controls() {
       </Col>
       <Col md={6}>
         <ContainerBadgeStyled>
-          <Badge bg="secondary">
+          {filters.map((filter) => (
+            <Badge key={filter} bg="secondary">
+              {filter}
+              <CloseButton />
+            </Badge>
+          ))}
+          {/* <Badge bg="secondary">
             Calificacion <CloseButton />
           </Badge>
-          {/* <span className="close-btn"> &times;</span> */}
 
           <Badge bg="secondary">
             Categoria <CloseButton />
           </Badge>
-          {/* <span className="close-btn"> &times;</span> */}
 
           <Badge bg="secondary">
             Almacen <CloseButton />
           </Badge>
-          {/* <span className="close-btn"> &times;</span> */}
 
           <Badge bg="secondary">
             Precio <CloseButton />
-          </Badge>
-          {/* <span className="close-btn"> &times;</span> */}
+          </Badge> */}
         </ContainerBadgeStyled>
 
         {/* aqui van controles de filtros por ordenamiento o el avance que lleva */}
       </Col>
       <Col className="">
         <div className=" d-flex justify-content-end pt-5 ">
-          <BtnSubmitStyled variant="success">Limpiar</BtnSubmitStyled>
+          <BtnSubmitStyled variant="success" onClick={cleanAll}>
+            Limpiar
+          </BtnSubmitStyled>
           {/* <DropdownButton
             id="dropdown-basic-button"
             title="Ordenar por"

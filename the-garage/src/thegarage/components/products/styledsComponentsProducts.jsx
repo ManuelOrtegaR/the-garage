@@ -78,6 +78,7 @@ export const ContainerBreadcumStyled = styled("div")(({ theme }) => ({
 // }));
 export const ContainerBadgeStyled = styled("div")(({ theme }) => ({
   display: "flex",
+  flexWrap: "wrap",
   justifyContent: "flex-end",
   paddingTop: "50px",
   paddingBottom: "50px",
@@ -108,7 +109,7 @@ export const ContainerNumberItemsStyled = styled("div")(({ theme }) => ({
 export const ContainerVisualizationStyled = styled("div")(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
-  justifyContent: "space-between",
+  justifyContent: "space-evenly",
   paddingTop: "40px",
   color: theme.colors.mainColor,
 }));
@@ -186,4 +187,11 @@ export const AccordionStyle = styled(Accordion)(({ theme }) => ({
   "& * ": {
     color: theme.colors.mainColor,
   },
+}));
+
+export const CardDescroptionStyle = styled(Card.Text)(({ theme }) => ({
+  height: "70px",
+  overflow: "hidden",
+  whiteSpace: "normal",
+  textOverflow: "ellipsis",
 }));
