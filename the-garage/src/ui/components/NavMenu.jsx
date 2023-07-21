@@ -14,7 +14,7 @@ const navItems = [
 
 export const NavMenu = () => {
   return (
-    <Nav className="align-items-center">
+    <Nav variant="pills" className="align-items-center">
       {navItems.map(({ name, url }) => {
         return (
           <>
