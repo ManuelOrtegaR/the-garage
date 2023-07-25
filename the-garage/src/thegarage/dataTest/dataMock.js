@@ -1,7 +1,8 @@
 export const mockDataTest = [
   {
     id: 1,
-    image: "https://placehold.co/288x196",
+    image:
+      "https://iecologics.files.wordpress.com/2013/12/escaladegrises_bossa_artesanal.jpg",
     title: "Aceite motor Moly sintetico 5X30",
     description:
       "Aceite sintético de alta calidad para motores de automóviles, con nivel de acetatos 3x2",
@@ -18,7 +19,7 @@ export const mockDataTest = [
   {
     id: 2,
     title: "Filtro de aire para automóvil H239848",
-    image: "https://placehold.co/288x196",
+    image: "https://via.placeholder.com/600/771796",
     description:
       "Filtro de aire de alto rendimiento para automóviles, mejora la eficiencia y la calidad del aire",
     price: "$2,499",

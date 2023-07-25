@@ -11,21 +11,35 @@ import {
 import { mockDataTestServices } from "../dataTest/dataMock";
 
 import { useFilter } from "../../hooks/useFilter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function ServicesPage() {
-  const { selectedFilters, addFilter, deleteFilter, clean } = useFilter();
-
   //Estado para el listado de elementos que vienesn de BD API
   const [data, setData] = useState(mockDataTestServices);
+
+  const {
+    selectedFilters,
+    addFilter,
+    deleteFilter,
+    clean,
+    checkFilter,
+    setCheckFilter,
+    dataFiltered,
+  } = useFilter([], data);
+
   //limito a 10 por pagina
   const ITEM_PER_PAGE = 5;
   const [items, setItems] = useState([...data].splice(0, ITEM_PER_PAGE));
 
+  useEffect(() => {
+    // Aquí actualizamos 'items' con los nuevos datos filtrados
+    setItems([...dataFiltered].splice(0, ITEM_PER_PAGE));
+  }, [dataFiltered]);
+
   //pagina actual
   const [currentPage, setCurrentPage] = useState(0);
   //totalPages
-  const totalPages = Math.ceil(data.length / ITEM_PER_PAGE);
+  const totalPages = Math.ceil(dataFiltered.length / ITEM_PER_PAGE);
 
   //Funciones para paginacion
   const nextHandler = () => {
@@ -65,12 +79,14 @@ export function ServicesPage() {
             data={data}
             addFilter={addFilter}
             deleteFilter={deleteFilter}
+            setCheckFilter={setCheckFilter}
+            checkFilter={checkFilter}
           />
         </Col>
         <Col md={9}>
           <ContainerNumberItemsStyled>
             <strong>
-              <span> {data.length} Servicios Encontrados</span>
+              <span> {dataFiltered.length} Servicios Encontrados</span>
             </strong>
             <div>
               <span>Visualizacion: </span>

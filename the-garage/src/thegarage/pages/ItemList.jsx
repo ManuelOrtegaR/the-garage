@@ -10,45 +10,47 @@ import {
 } from "../components";
 import { mockDataTest } from "../dataTest/dataMock";
 import { useFilter } from "../../hooks/useFilter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function ItemList() {
-  // const [selectedFilters, setSelectedFilters] = useState([]);
-  // const addFilter = (filter) => {
-  //   setSelectedFilters([filter, ...selectedFilters]);
-  // };
-
-  // const deleteFilter = (filter) => {
-  //   const aux = [...selectedFilters];
-  //   setSelectedFilters(aux.filter((element) => element != filter));
-  // };
-
-  // const clean = () => {
-  //   setSelectedFilters([]);
-  // };
-
-  const { selectedFilters, addFilter, deleteFilter, clean } = useFilter();
-
   //Estado para el listado de elementos que vienesn de BD API
   const [data, setData] = useState(mockDataTest);
+
+  const {
+    selectedFilters,
+    addFilter,
+    deleteFilter,
+    clean,
+    checkFilter,
+    setCheckFilter,
+    dataFiltered,
+  } = useFilter([], data);
+
   //limito a 10 por pagina
   const ITEM_PER_PAGE = 5;
 
-  const [items, setItems] = useState([...data].splice(0, ITEM_PER_PAGE));
+  const [items, setItems] = useState(
+    [...dataFiltered].splice(0, ITEM_PER_PAGE)
+  );
+
+  useEffect(() => {
+    // Aquí actualizamos 'items' con los nuevos datos filtrados
+    setItems([...dataFiltered].splice(0, ITEM_PER_PAGE));
+  }, [dataFiltered]);
 
   //pagina actual
   const [currentPage, setCurrentPage] = useState(0);
   //totalPages
-  const totalPages = Math.ceil(data.length / ITEM_PER_PAGE);
+  const totalPages = Math.ceil(dataFiltered.length / ITEM_PER_PAGE);
 
   //Funciones para paginacion
   const nextHandler = () => {
     const nextPage = currentPage + 1;
     const firstIndex = nextPage * ITEM_PER_PAGE;
-    if (firstIndex >= data.length) {
+    if (firstIndex >= dataFiltered.length) {
       return;
     }
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
+    setItems([...dataFiltered].splice(firstIndex, ITEM_PER_PAGE));
     setCurrentPage(nextPage);
   };
   const prevHandler = () => {
@@ -56,13 +58,13 @@ export function ItemList() {
     if (prevPage < 0) return;
 
     const firstIndex = prevPage * ITEM_PER_PAGE;
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
+    setItems([...dataFiltered].splice(firstIndex, ITEM_PER_PAGE));
     setCurrentPage(prevPage);
   };
 
   const specificHandler = (specificPage) => {
     const firstIndex = (specificPage - 1) * ITEM_PER_PAGE;
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
+    setItems([...dataFiltered].splice(firstIndex, ITEM_PER_PAGE));
     setCurrentPage(specificPage - 1);
     // console.log(specificPage);
   };
@@ -79,12 +81,14 @@ export function ItemList() {
             data={data}
             addFilter={addFilter}
             deleteFilter={deleteFilter}
+            setCheckFilter={setCheckFilter}
+            checkFilter={checkFilter}
           />
         </Col>
         <Col md={9}>
           <ContainerNumberItemsStyled>
             <strong>
-              <span> {data.length} Productos Encontrados</span>
+              <span> {dataFiltered.length} Productos Encontrados</span>
             </strong>
             <div>
               <span>Visualizacion: </span>
