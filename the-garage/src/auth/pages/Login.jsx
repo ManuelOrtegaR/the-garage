@@ -1,5 +1,5 @@
 import SingUpModal from '../components/SingUpModal';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import {
   MainConteiner,
@@ -9,11 +9,11 @@ import {
 import Form from 'react-bootstrap/Form';
 import googleIcon from '../../../assets/authIcons/google-icono.svg';
 import facebookIcon from '../../../assets/authIcons/facebook-icono.svg';
-import { NavLink } from 'react-router-dom';
-
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { z } from 'zod';
+import { AuthContext } from '../context/AuthContext';
 
 const emailRqd = z.string({
   required_error: 'El correo es requerido',
@@ -26,16 +26,26 @@ const passwordRqd = z.string({
 const singUpSchema = z.object({
   email: emailRqd.email('Dirección de correo incorrecto'),
   password: passwordRqd
+
     .min(6, 'La contraseña debe tener mínimo 6 caracteres')
     .max(16, 'La contraseña debe tener máximo 16 caracteres'),
 });
 
 export function Login() {
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
   const initialValues = {
     email: '',
     password: '',
+  };
+
+  const onLogin = () => {
+    login('Manuel Ortega', 'company');
+    navigate('/home', {
+      replace: true,
+    });
   };
 
   return (
@@ -117,15 +127,12 @@ export function Login() {
                 <div className="d-flex justify-content-center">
                   <ButtonStyled
                     variant="primary"
-                    type="submit"
+                    onClick={onLogin}
                     size="lg"
                     className="w-100"
                     disabled={isSubmitting}
                   >
-                    <NavLink
-                      to={'/home'}
-                      style={{ textDecoration: 'none', color: 'white' }}
-                    >
+                    <NavLink style={{ textDecoration: 'none', color: 'white' }}>
                       Ingresar
                     </NavLink>
                   </ButtonStyled>
