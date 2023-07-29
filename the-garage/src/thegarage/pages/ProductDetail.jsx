@@ -13,6 +13,9 @@ import {
   mockDataTest,
 } from "../dataTest/dataMock";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { getProduct } from "../../api-services/products";
+import { useState } from "react";
 
 export function ProductDetail() {
   const { id } = useParams();
@@ -25,6 +28,15 @@ export function ProductDetail() {
     //hacer un fecth o consultar en el Local
     return mockDataTest[id - 1];
   };
+
+  const [product, setProduct] = useState(findItem());
+
+  // useEffect(() => {
+  //   getProduct(id).then((product) => {
+  //     setProduct(product);
+  //   });
+  // }, [id]);
+
   return (
     <Container>
       <Row>
@@ -33,7 +45,7 @@ export function ProductDetail() {
       <div className="pb-5">
         <Row className="mt-5">
           <Col className="" md={4}>
-            <ProductSheet item={findItem()} />
+            <ProductSheet item={product} />
           </Col>
           <Col md={8}>
             <CardProduct_store />

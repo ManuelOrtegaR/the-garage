@@ -52,10 +52,15 @@ export const CardStyle = styled(Card)(({ theme }) => ({
   color: theme.colors.mainColor,
   width: "288px",
   height: "625px",
-  "& > :first-child": {
-    width: "285px",
-    height: "196px",
-  },
+  // "& > :first-child": {
+  //   width: "285px",
+  //   height: "196px",
+  // },
+}));
+
+export const CardImgStyle = styled(Card.Img)(({ theme }) => ({
+  width: "285px",
+  height: "196px",
 }));
 export const CardTitleStyle = styled(Card.Title)(({ theme }) => ({
   height: "66px",

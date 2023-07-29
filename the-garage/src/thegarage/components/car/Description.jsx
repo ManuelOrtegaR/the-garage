@@ -1,12 +1,14 @@
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { DescriptionStyled } from "./StylesComponentsCar";
 
-export const Description = () => {
+export const Description = ({ products }) => {
   return (
     <DescriptionStyled>
       <div>
         <p className="mb-1">{"Carrito de Compras"}</p>
-        <p className="mb-0">Tienes {4} Elementos en tu carrito</p>
+        <p className="mb-0">
+          Tienes {products.length} Elemento(s) en tu carrito
+        </p>
       </div>
       <div className=" d-flex justify-content-center pt-5 ">
         <DropdownButton

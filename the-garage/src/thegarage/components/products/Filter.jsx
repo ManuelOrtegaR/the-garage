@@ -11,6 +11,8 @@ export function Filter({
   deleteFilter,
   checkFilter,
   setCheckFilter,
+  // selectedFiltersCategory,
+  // setSelectedFiltersCategory,
 }) {
   const handlerChange = (event) => {
     const label = event.target.labels[0].innerText;
@@ -21,6 +23,7 @@ export function Filter({
     }
 
     setCheckFilter({ ...checkFilter, [label]: !checkFilter[label] });
+    // setSelectedFiltersCategory([...selectedFiltersCategory, "Lubricantes"]);
   };
 
   const generateFilter = (dataFilter, type) => {
@@ -100,7 +103,7 @@ export function Filter({
 
         <div>
           <AccordionStyle>
-            <Accordion.Item eventKey="0">
+            <Accordion.Item eventKey="1">
               <Accordion.Header>Almacen</Accordion.Header>
               <Accordion.Body>{generateFilter(data, "store")}</Accordion.Body>
             </Accordion.Item>
@@ -109,7 +112,7 @@ export function Filter({
 
         <div>
           <AccordionStyle>
-            <Accordion.Item eventKey="0">
+            <Accordion.Item eventKey="2">
               <Accordion.Header>Marcas</Accordion.Header>
               <Accordion.Body>{generateFilter(data, "brand")}</Accordion.Body>
             </Accordion.Item>
@@ -117,7 +120,7 @@ export function Filter({
         </div>
         <div>
           <AccordionStyle>
-            <Accordion.Item eventKey="0">
+            <Accordion.Item eventKey="3">
               <Accordion.Header>Calificacion</Accordion.Header>
               <Accordion.Body>{generateFilter(data, "rating")}</Accordion.Body>
             </Accordion.Item>
@@ -125,7 +128,7 @@ export function Filter({
         </div>
         <div>
           <AccordionStyle>
-            <Accordion.Item eventKey="0">
+            <Accordion.Item eventKey="4">
               <Accordion.Header>Precios</Accordion.Header>
               <Accordion.Body>{generateFilter(data, "price")}</Accordion.Body>
             </Accordion.Item>

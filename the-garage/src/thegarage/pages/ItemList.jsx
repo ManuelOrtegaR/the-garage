@@ -12,9 +12,22 @@ import { mockDataTest } from "../dataTest/dataMock";
 import { useFilter } from "../../hooks/useFilter";
 import { useEffect, useState } from "react";
 
+import {
+  // getAllProductFilteres,
+  getAllProducts,
+} from "../../api-services/products";
+
 export function ItemList() {
   //Estado para el listado de elementos que vienesn de BD API
-  const [data, setData] = useState(mockDataTest);
+  // const [data, setData] = useState([]);
+  const [data2, setData2] = useState(mockDataTest);
+
+  // useEffect(() => {
+  //   console.log("ENTRE POR EL NORMAL");
+  //   getAllProducts().then((products) => {
+  //     setData(products);
+  //   });
+  // }, []);
 
   const {
     selectedFilters,
@@ -24,7 +37,20 @@ export function ItemList() {
     checkFilter,
     setCheckFilter,
     dataFiltered,
-  } = useFilter([], data);
+    // selectedFiltersCategory,
+    // setSelectedFiltersCategory,
+  } = useFilter([], data2);
+
+  //LLAMADO FETCH POR FILTRO
+  // useEffect(() => {
+  //   console.log("ENTRE POR EL LLAMADO DE FILTRO");
+  //   if (selectedFiltersCategory.length > 1) {
+  //     console.log("ENTRE POR EL LLAMADO DE FILTRO if if");
+  //     getAllProductFilteres("Lubricantes").then((products) => {
+  //       setData(products);
+  //     });
+  //   }
+  // }, [selectedFiltersCategory]);
 
   //limito a 10 por pagina
   const ITEM_PER_PAGE = 5;
@@ -78,11 +104,13 @@ export function ItemList() {
       <RowItemStyled className="">
         <Col md={3}>
           <Filter
-            data={data}
+            data={data2}
             addFilter={addFilter}
             deleteFilter={deleteFilter}
             setCheckFilter={setCheckFilter}
             checkFilter={checkFilter}
+            // selectedFiltersCategory={selectedFiltersCategory}
+            // setSelectedFiltersCategory={setSelectedFiltersCategory}
           />
         </Col>
         <Col md={9}>

@@ -3,6 +3,7 @@ import {
   AlertStyled,
   CardAvalaibleStyle,
   CardDescroptionStyle,
+  CardImgStyle,
   CardStyle,
   CardTitleStyle,
   ContainerButtonStyled,
@@ -34,7 +35,7 @@ export function Item({ item, isService }) {
   return (
     <ContainerStyled>
       <CardStyle>
-        <Card.Img variant="top" src={item.image} />
+        <CardImgStyle variant="top" src={item.image} />
         <Card.Body>
           <CardTitleStyle>{item.title}</CardTitleStyle>
           <CardDescroptionStyle>{item.description}</CardDescroptionStyle>

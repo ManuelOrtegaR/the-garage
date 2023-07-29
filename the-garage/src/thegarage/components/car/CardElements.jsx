@@ -17,7 +17,6 @@ const CardElements = () => {
           </div>
           <div className="d-flex align-items-center gap-4 justify-content-between">
             <div>cantidad: 5</div>
-
             <div>
               <strong>$274.000</strong>
             </div>

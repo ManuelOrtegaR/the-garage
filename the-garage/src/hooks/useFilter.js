@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 export const useFilter = (initialFilter = [], data) => {
   const [selectedFilters, setSelectedFilters] = useState(initialFilter);
   const [checkFilter, setCheckFilter] = useState({});
-  const [dataFiltered, setDataFiltered] = useState(data);
+  const [dataFiltered, setDataFiltered] = useState([...data]);
+  // const [selectedFiltersCategory, setSelectedFiltersCategory] = useState([]);
 
   const addFilter = (filter) => {
     //  setSelectedFilters([filter, ...selectedFilters]);
     setSelectedFilters((prevFilters) => [filter, ...prevFilters]);
     // filterStart();
-    console.log(selectedFilters);
+    // console.log(selectedFilters);
   };
 
   const deleteFilter = (filter) => {
@@ -22,18 +23,6 @@ export const useFilter = (initialFilter = [], data) => {
     setCheckFilter({});
   };
 
-  const filterStart2 = () => {
-    console.log("entre por aqui");
-    let provisional = [...dataFiltered];
-
-    const newDataFiltered = provisional.filter((element) => {
-      // return element.category === "Lubricantes";
-      return selectedFilters.includes(element.category);
-    });
-
-    setDataFiltered([...newDataFiltered]);
-  };
-
   //////////////////////////////////////
 
   let provisional2 = [...data];
@@ -43,7 +32,7 @@ export const useFilter = (initialFilter = [], data) => {
     let newDataFiltered = [];
 
     const filterStart = () => {
-      console.log("entre por aqui");
+      console.log("entre por aqui a filtrar alguna vez");
 
       newDataFiltered = provisional2.filter((element) => {
         // return element.category === "Lubricantes";
@@ -61,7 +50,7 @@ export const useFilter = (initialFilter = [], data) => {
     };
     if (selectedFilters.length < 1) setDataFiltered([...data]);
     if (selectedFilters.length > 0) filterStart();
-  }, [selectedFilters]); //Esta advertencia no se porque aparece
+  }, [selectedFilters, data]); //Esta advertencia no se porque aparece
 
   /////////////////////////////////
 
@@ -74,5 +63,7 @@ export const useFilter = (initialFilter = [], data) => {
     checkFilter,
     setCheckFilter,
     dataFiltered,
+    // selectedFiltersCategory,
+    // setSelectedFiltersCategory,
   };
 };
