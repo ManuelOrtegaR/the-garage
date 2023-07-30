@@ -1,6 +1,8 @@
 import Nav from 'react-bootstrap/Nav';
 import { users } from './TestProfiles';
 import { NavLinkStyled } from './StylesComponentsProfiles';
+import { useContext } from 'react';
+import { AuthContext } from '../../../auth/context/AuthContext';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const itemsProfiles = [
@@ -58,15 +60,14 @@ export const itemsProfiles = [
     by: ['admin', 'company', 'client'],
     icon: <i className="bi bi-chat-square-dots me-2" />,
   },
-  {
-    name: 'Cerrar sesion',
-    url: '/home',
-    by: ['admin', 'company', 'client'],
-    icon: <i className="bi bi-box-arrow-right me-2" />,
-  },
 ];
 
 export const NavProfiles = () => {
+  const { logout } = useContext(AuthContext);
+  const onLogout = () => {
+    logout();
+  };
+
   return (
     <Nav variant="pills" defaultActiveKey="/home" className="flex-column">
       {itemsProfiles.map(({ name, url, icon, by }) => {
@@ -87,6 +88,12 @@ export const NavProfiles = () => {
           }
         }
       })}
+      <Nav.Item>
+        <NavLinkStyled to={'/home'} onClick={onLogout} className={'inactive'}>
+          <i className="bi bi-box-arrow-right me-2" />
+          Cerrar sesión
+        </NavLinkStyled>
+      </Nav.Item>
     </Nav>
   );
 };

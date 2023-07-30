@@ -1,5 +1,5 @@
 import SingUpModal from '../components/SingUpModal';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import {
   MainConteiner,
@@ -9,11 +9,11 @@ import {
 import Form from 'react-bootstrap/Form';
 import googleIcon from '../../../assets/authIcons/google-icono.svg';
 import facebookIcon from '../../../assets/authIcons/facebook-icono.svg';
-import { NavLink } from 'react-router-dom';
-
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { z } from 'zod';
+import { AuthContext } from '../context/AuthContext';
 
 const emailRqd = z.string({
   required_error: 'El correo es requerido',
@@ -26,11 +26,14 @@ const passwordRqd = z.string({
 const singUpSchema = z.object({
   email: emailRqd.email('Dirección de correo incorrecto'),
   password: passwordRqd
+
     .min(6, 'La contraseña debe tener mínimo 6 caracteres')
     .max(16, 'La contraseña debe tener máximo 16 caracteres'),
 });
 
 export function Login() {
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
   const initialValues = {
@@ -38,6 +41,20 @@ export function Login() {
     password: '',
   };
 
+  const onLogin = (formData) => {
+    const { email } = formData;
+    const [name, domain] = email.split('@');
+    const [type] = domain.split('.');
+    login(name, type);
+    navigate('/home', {
+      replace: true,
+    });
+  };
+  const onSubmit = (values, { setSubmitting }) => {
+    console.log(JSON.stringify(values, null, 2));
+    onLogin(values);
+    setSubmitting(false);
+  };
   return (
     <MainConteiner className="img-fluid">
       <div className="login d-flex row w-50 bg-white">
@@ -45,10 +62,7 @@ export function Login() {
           <TitlePg>Inicio de Sesión</TitlePg>
           <Formik
             initialValues={initialValues}
-            onSubmit={(values, { setSubmitting }) => {
-              console.log(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }}
+            onSubmit={onSubmit}
             validationSchema={toFormikValidationSchema(singUpSchema)}
           >
             {({
@@ -122,10 +136,7 @@ export function Login() {
                     className="w-100"
                     disabled={isSubmitting}
                   >
-                    <NavLink
-                      to={'/home'}
-                      style={{ textDecoration: 'none', color: 'white' }}
-                    >
+                    <NavLink style={{ textDecoration: 'none', color: 'white' }}>
                       Ingresar
                     </NavLink>
                   </ButtonStyled>

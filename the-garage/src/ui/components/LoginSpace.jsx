@@ -1,17 +1,12 @@
+import { useContext } from 'react';
 import { LoginStyled } from './ComponentsStyles';
 import { UserLogged } from './UserLogged';
+import { AuthContext } from '../../auth/context/AuthContext';
 
 // eslint-disable-next-line react-refresh/only-export-components
 
 export const LoginSpace = () => {
-  // const user = {
-  //   name: 'Manuel Ortega',
-  //   type: 'Client',
-  //   id: 1,
-  // };
-
-  const user = null;
-
+  const { user } = useContext(AuthContext);
   return (
     <>
       {user ? (

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import {
   AlertStyled,
   CardAvalaibleStyle,
@@ -8,16 +8,15 @@ import {
   ContainerButtonStyled,
   ContainerStyled,
   IconStyled,
-} from "./StyledsComponentsProducts";
-import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../../components";
-import { Alert, Card } from "react-bootstrap";
-import { useState } from "react";
+} from './StyledsComponentsProducts';
+import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../components';
+import { Alert, Card } from 'react-bootstrap';
+import { useState } from 'react';
 
-const userTest = { userRole: "cliente" };
+const userTest = { userRole: 'cliente' };
 
 export function Item({ item, isService }) {
   const [showAlert, setShowAlert] = useState(false);
-
   const navigate = useNavigate();
   function handleClick(id) {
     if (isService) {
@@ -48,7 +47,7 @@ export function Item({ item, isService }) {
             ) : (
               <i className="bi bi-x"></i>
             )}
-            {isService ? "Servicio a domicilio" : "Disponible para despacho"}
+            {isService ? 'Servicio a domicilio' : 'Disponible para despacho'}
           </CardAvalaibleStyle>
           <CardAvalaibleStyle>
             {item.availability.retiro ? (
@@ -56,7 +55,7 @@ export function Item({ item, isService }) {
             ) : (
               <i className="bi bi-x"></i>
             )}
-            {isService ? "Servicio en Taller" : "Disponible para Retiro"}
+            {isService ? 'Servicio en Taller' : 'Disponible para Retiro'}
           </CardAvalaibleStyle>
           <Card.Text>
             {/* Creo array undefined con el numero de raiting */}
@@ -69,10 +68,10 @@ export function Item({ item, isService }) {
 
             <span> {item.rating} </span>
           </Card.Text>
-          {userTest.userRole === "cliente" ? (
+          {userTest.userRole === 'cliente' ? (
             <ContainerButtonStyled>
               <BtnSubmitStyled onClick={handleClickSuceess} variant="success">
-                {isService ? "Solicitar Servicio" : "Agregar al carrito"}
+                {isService ? 'Solicitar Servicio' : 'Agregar al carrito'}
               </BtnSubmitStyled>
 
               {showAlert && (
@@ -81,7 +80,7 @@ export function Item({ item, isService }) {
                   onClose={handleClickSuceess}
                   dismissible
                 >
-                  {isService ? "Servicio Solicitado" : "Producto Agregado"}
+                  {isService ? 'Servicio Solicitado' : 'Producto Agregado'}
                 </AlertStyled>
               )}
 
