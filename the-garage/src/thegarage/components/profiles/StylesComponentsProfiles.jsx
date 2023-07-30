@@ -57,6 +57,7 @@ export const BtnStateStyle = styled('button')(({ theme, variant }) => ({
 }));
 
 export const ItemStyle = styled(ListGroup.Item)(() => ({
+  margin: 5,
   display: 'flex',
   justifyContent: 'space-between',
   textAlign: 'center',
@@ -214,4 +215,20 @@ export const DateStyle = styled.span(() => ({
   top: '25px',
   margin: 0,
   padding: 0,
+}));
+
+export const StatusRequestStyle = styled.span(() => ({
+  padding: '2px 5px',
+  borderRadius: '10px',
+  color: 'white',
+  fontWeight: 'bold',
+  '&.pending': {
+    background: '#8E98A8',
+  },
+  '&.approved': {
+    background: '#0FBC00',
+  },
+  '&.dismissed': {
+    background: '#FF0000',
+  },
 }));
