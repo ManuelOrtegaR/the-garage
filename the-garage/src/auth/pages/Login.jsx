@@ -1,34 +1,34 @@
-import SingUpModal from "../components/SingUpModal";
-import { useContext, useState } from "react";
+import SingUpModal from '../components/SingUpModal';
+import { useContext, useState } from 'react';
 
 import {
   MainConteiner,
   TitlePg,
   ButtonStyled,
-} from "../components/StyledsComponents";
-import Form from "react-bootstrap/Form";
-import googleIcon from "../../../assets/authIcons/google-icono.svg";
-import facebookIcon from "../../../assets/authIcons/facebook-icono.svg";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Formik, ErrorMessage } from "formik";
-import { toFormikValidationSchema } from "zod-formik-adapter";
-import { z } from "zod";
-import { AuthContext } from "../context/AuthContext";
+} from '../components/StyledsComponents';
+import Form from 'react-bootstrap/Form';
+import googleIcon from '../../../assets/authIcons/google-icono.svg';
+import facebookIcon from '../../../assets/authIcons/facebook-icono.svg';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Formik, ErrorMessage } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { z } from 'zod';
+import { AuthContext } from '../context/AuthContext';
 
 const emailRqd = z.string({
-  required_error: "El correo es requerido",
+  required_error: 'El correo es requerido',
 });
 
 const passwordRqd = z.string({
-  required_error: "La contraseña es requerida",
+  required_error: 'La contraseña es requerida',
 });
 
 const singUpSchema = z.object({
-  email: emailRqd.email("Dirección de correo incorrecto"),
+  email: emailRqd.email('Dirección de correo incorrecto'),
   password: passwordRqd
 
-    .min(6, "La contraseña debe tener mínimo 6 caracteres")
-    .max(16, "La contraseña debe tener máximo 16 caracteres"),
+    .min(6, 'La contraseña debe tener mínimo 6 caracteres')
+    .max(16, 'La contraseña debe tener máximo 16 caracteres'),
 });
 
 export function Login() {
@@ -37,15 +37,16 @@ export function Login() {
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
   const initialValues = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
 
   const onLogin = (formData) => {
-    const { email, password } = formData;
-    console.log("en onLogin", email, password);
-    login("Manuel Ortega", "company");
-    navigate("/home", {
+    const { email } = formData;
+    const [name, domain] = email.split('@');
+    const [type] = domain.split('.');
+    login(name, type);
+    navigate('/home', {
       replace: true,
     });
   };
@@ -84,7 +85,7 @@ export function Login() {
                     onBlur={handleBlur}
                     value={values.email}
                     className={
-                      touched.email && errors.email ? "is-invalid" : ""
+                      touched.email && errors.email ? 'is-invalid' : ''
                     }
                   />
                   <ErrorMessage
@@ -106,7 +107,7 @@ export function Login() {
                     onBlur={handleBlur}
                     value={values.password}
                     className={
-                      touched.password && errors.password ? "is-invalid" : ""
+                      touched.password && errors.password ? 'is-invalid' : ''
                     }
                   />
                   <ErrorMessage
@@ -121,8 +122,8 @@ export function Login() {
                 >
                   <Form.Check type="checkbox" label="Recuerdáme" />
                   <NavLink
-                    to={"/Recoverypassword"}
-                    style={{ textDecoration: "none", color: "darkblue" }}
+                    to={'/Recoverypassword'}
+                    style={{ textDecoration: 'none', color: 'darkblue' }}
                   >
                     ¿Olvidaste tu Constraseña?
                   </NavLink>
@@ -135,7 +136,7 @@ export function Login() {
                     className="w-100"
                     disabled={isSubmitting}
                   >
-                    <NavLink style={{ textDecoration: "none", color: "white" }}>
+                    <NavLink style={{ textDecoration: 'none', color: 'white' }}>
                       Ingresar
                     </NavLink>
                   </ButtonStyled>

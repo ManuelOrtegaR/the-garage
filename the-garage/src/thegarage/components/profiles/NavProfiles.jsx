@@ -1,7 +1,6 @@
 import Nav from 'react-bootstrap/Nav';
 import { users } from './TestProfiles';
 import { NavLinkStyled } from './StylesComponentsProfiles';
-import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../../auth/context/AuthContext';
 
@@ -64,13 +63,9 @@ export const itemsProfiles = [
 ];
 
 export const NavProfiles = () => {
-  const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
   const onLogout = () => {
     logout();
-    navigate('/home', {
-      replace: true,
-    });
   };
 
   return (
@@ -94,7 +89,7 @@ export const NavProfiles = () => {
         }
       })}
       <Nav.Item>
-        <NavLinkStyled onClick={onLogout} className={'inactive'}>
+        <NavLinkStyled to={'/home'} onClick={onLogout} className={'inactive'}>
           <i className="bi bi-box-arrow-right me-2" />
           Cerrar sesión
         </NavLinkStyled>
