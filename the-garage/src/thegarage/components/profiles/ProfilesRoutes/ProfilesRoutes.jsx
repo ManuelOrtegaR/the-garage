@@ -1,8 +1,18 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { MessagesId, OrderId, PasswordUpdate } from '../../profiles';
-import { Messages } from '../Messages';
-import { users } from '../TestProfiles';
-import { Orders } from '../Orders';
+import {
+  Accounts,
+  Details,
+  Messages,
+  MessagesId,
+  OrderId,
+  Orders,
+  PasswordUpdate,
+  Products,
+  Requests,
+  Services,
+  users,
+} from '../../profiles';
+import { ProductsForm, ServicesForm } from '../../products';
 
 export const ProfilesRoutes = () => {
   return (
@@ -13,6 +23,13 @@ export const ProfilesRoutes = () => {
         <Route path="messages/id" element={<MessagesId />} />
         <Route path="orders" element={<Orders />} />
         <Route path="orders/id" element={<OrderId />} />
+        <Route path="details" element={<Details />} />
+        <Route path="products" element={<Products />} />
+        <Route path="products/id" element={<ProductsForm />} />
+        <Route path="services" element={<Services />} />
+        <Route path="services/id" element={<ServicesForm />} />
+        <Route path="requests" element={<Requests />} />
+        <Route path="accounts" element={<Accounts />} />
         <Route
           path="/"
           element={
@@ -22,7 +39,7 @@ export const ProfilesRoutes = () => {
                   ? 'change-pws'
                   : users[0].type === 'company'
                   ? 'details'
-                  : 'request'
+                  : 'requests'
               }
             />
           }

@@ -20,7 +20,7 @@ export const itemsProfiles = [
   },
   {
     name: 'Solicitudes',
-    url: 'request',
+    url: 'requests',
     by: ['admin'],
     icon: <i className="bi bi-building me-2" />,
   },
@@ -50,7 +50,7 @@ export const itemsProfiles = [
   },
   {
     name: 'Carro de compras',
-    url: 'shopping',
+    url: '/shoppingCart',
     by: ['client'],
     icon: <i className="bi bi-cart-check-fill me-2" />,
   },
