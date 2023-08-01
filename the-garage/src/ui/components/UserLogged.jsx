@@ -2,20 +2,25 @@ import {
   UserContainer,
   NavLinkStyled,
   IconContainer,
-} from './ComponentsStyles';
+} from "./ComponentsStyles";
 
-import userImg from '../../../assets/images/home/user.png';
-import basketIcon from '../../../assets/images/nav/basketIconW.svg';
+import userImg from "../../../assets/images/home/user.png";
+import basketIcon from "../../../assets/images/nav/basketIconW.svg";
+import { useNavigate } from "react-router-dom";
 
 export const UserLogged = ({ user }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/ShoppingCart");
+  };
   return (
     <>
       <UserContainer>
-        <NavLinkStyled className={'nav-link'} to={'/profile'}>
+        <NavLinkStyled className={"nav-link"} to={"/profile"}>
           {user.name}
         </NavLinkStyled>
         <IconContainer borderRadius="50%" src={userImg} />
-        <IconContainer maxWidth="25px" src={basketIcon} />
+        <IconContainer onClick={handleClick} maxWidth="25px" src={basketIcon} />
       </UserContainer>
     </>
   );

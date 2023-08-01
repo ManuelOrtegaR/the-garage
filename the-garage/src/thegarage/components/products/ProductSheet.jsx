@@ -1,43 +1,48 @@
 import React from "react";
 import { Accordion } from "react-bootstrap";
-import { AccordionStyle, ColumnSheetStyle } from "./StyledsComponentsProducts";
+import {
+  AccordionStyle,
+  ColumnSheetStyle,
+  PrincipalImg,
+  SecondaryImg,
+} from "./StyledsComponentsProducts";
 
 export const ProductSheet = ({ item }) => {
   return (
     <ColumnSheetStyle>
       <div className="pt-2 ">
         <div className="d-flex flex-wrap justify-content-center">
-          <img src="https://placehold.co/400x400" alt="" />
+          <PrincipalImg src={item.image} alt="" />
         </div>
         <div className="d-flex flex-wrap justify-content-between gap-3 border-bottom pt-2 pb-2">
-          <img
+          <SecondaryImg
             className="border border-dark-subtle"
-            src="https://placehold.co/50x50"
+            src={item.image}
             alt=""
           />
-          <img
+          <SecondaryImg
             className="border border-dark-subtle"
-            src="https://placehold.co/50x50"
+            src={item.image}
             alt=""
           />
-          <img
+          <SecondaryImg
             className="border border-dark-subtle"
-            src="https://placehold.co/50x50"
+            src={item.image}
             alt=""
           />
-          <img
+          <SecondaryImg
             className="border border-dark-subtle"
-            src="https://placehold.co/50x50"
+            src={item.image}
             alt=""
           />
-          <img
+          <SecondaryImg
             className="border border-dark-subtle"
-            src="https://placehold.co/50x50"
+            src={item.image}
             alt=""
           />
-          <img
+          <SecondaryImg
             className="border border-dark-subtle"
-            src="https://placehold.co/50x50"
+            src={item.image}
             alt=""
           />
         </div>

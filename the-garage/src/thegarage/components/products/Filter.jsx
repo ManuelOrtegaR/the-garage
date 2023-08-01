@@ -5,7 +5,15 @@ import {
   H4Styled,
 } from "./StyledsComponentsProducts";
 
-export function Filter({ data, addFilter, deleteFilter }) {
+export function Filter({
+  data,
+  addFilter,
+  deleteFilter,
+  checkFilter,
+  setCheckFilter,
+  // selectedFiltersCategory,
+  // setSelectedFiltersCategory,
+}) {
   const handlerChange = (event) => {
     const label = event.target.labels[0].innerText;
     if (event.target.checked) {
@@ -13,13 +21,26 @@ export function Filter({ data, addFilter, deleteFilter }) {
     } else {
       deleteFilter(label);
     }
+
+    setCheckFilter({ ...checkFilter, [label]: !checkFilter[label] });
+    // setSelectedFiltersCategory([...selectedFiltersCategory, "Lubricantes"]);
   };
 
-  const generateFilter = () => {
+  const generateFilter = (dataFilter, type) => {
     let elements = [];
     let uniqueElements = [];
-    elements = data.map((element) => {
-      return element.category;
+    elements = dataFilter.map((element) => {
+      return type === "category"
+        ? element.category
+        : type === "price"
+        ? element.price
+        : type === "brand"
+        ? element.brand
+        : type === "rating"
+        ? element.rating
+        : type === "store"
+        ? element.store
+        : null;
     });
 
     uniqueElements = elements.filter(
@@ -40,10 +61,22 @@ export function Filter({ data, addFilter, deleteFilter }) {
       <div key={index} className="d-flex justify-content-between pb-2 pe-3">
         <Form.Check
           type="checkbox"
-          id={`flexCheckChecked${index}`}
+          id={`flexCheckChecked${filt}`}
           label={filt}
           onChange={handlerChange}
+          checked={checkFilter[filt] || false}
         />
+        {type === "rating"
+          ? [...Array(filt)].map((_, index) => (
+              <i key={index} className="bi bi-star-fill"></i>
+            ))
+          : null}
+        {type === "rating"
+          ? [...Array(5 - filt)].map((_, index) => (
+              <i key={index} className="bi bi-star"></i>
+            ))
+          : null}
+
         <Badgestyled bg="secondary" pill>
           {countFilter(filt)}
         </Badgestyled>
@@ -61,137 +94,43 @@ export function Filter({ data, addFilter, deleteFilter }) {
           <AccordionStyle>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Categorias</Accordion.Header>
-              <Accordion.Body>{generateFilter()}</Accordion.Body>
+              <Accordion.Body>
+                {generateFilter(data, "category")}
+              </Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
         </div>
 
         <div>
           <AccordionStyle>
-            <Accordion.Item eventKey="0">
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>Almacen</Accordion.Header>
+              <Accordion.Body>{generateFilter(data, "store")}</Accordion.Body>
+            </Accordion.Item>
+          </AccordionStyle>
+        </div>
+
+        <div>
+          <AccordionStyle>
+            <Accordion.Item eventKey="2">
               <Accordion.Header>Marcas</Accordion.Header>
-              <Accordion.Body>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="flexCheckChecked3"
-                    label="Mercedes"
-                    onChange={handlerChange}
-                  />
-                  <Badgestyled bg="secondary" pill>
-                    120
-                  </Badgestyled>
-                </div>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="flexCheckChecked4"
-                    label="Chevrolet"
-                    onChange={handlerChange}
-                  />
-                  <Badgestyled bg="secondary" pill>
-                    145
-                  </Badgestyled>
-                </div>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="flexCheckChecked5"
-                    label="Bmw"
-                    onChange={handlerChange}
-                  />
-                  <Badgestyled bg="secondary" pill>
-                    150
-                  </Badgestyled>
-                </div>
-              </Accordion.Body>
+              <Accordion.Body>{generateFilter(data, "brand")}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
         </div>
         <div>
           <AccordionStyle>
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Precio</Accordion.Header>
-              <Accordion.Body>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="flexCheckChecked6"
-                    label="0 - 100.000"
-                    onChange={handlerChange}
-                  />
-                  <Badgestyled bg="secondary" pill>
-                    120
-                  </Badgestyled>
-                </div>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="flexCheckChecked7"
-                    label="100.000 - 200.000"
-                    onChange={handlerChange}
-                  />
-                  <Badgestyled bg="secondary" pill>
-                    145
-                  </Badgestyled>
-                </div>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="flexCheckChecked8"
-                    label="200.000 300.000"
-                    onChange={handlerChange}
-                  />
-                  <Badgestyled bg="secondary" pill>
-                    150
-                  </Badgestyled>
-                </div>
-              </Accordion.Body>
-            </Accordion.Item>
-          </AccordionStyle>
-        </div>
-        <div>
-          <AccordionStyle>
-            <Accordion.Item eventKey="0">
+            <Accordion.Item eventKey="3">
               <Accordion.Header>Calificacion</Accordion.Header>
-              <Accordion.Body>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check type="checkbox" id="flexCheckDefault" checked>
-                    <Form.Check.Input type="checkbox" />
-                    <Form.Check.Label>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star"></i>
-                    </Form.Check.Label>
-                  </Form.Check>
-                </div>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check type="checkbox" id="flexCheckDefault" checked>
-                    <Form.Check.Input type="checkbox" />
-                    <Form.Check.Label>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star"></i>
-                      <i className="bi bi-star"></i>
-                    </Form.Check.Label>
-                  </Form.Check>
-                </div>
-                <div className="d-flex justify-content-between pb-2 pe-3">
-                  <Form.Check type="checkbox" id="flexCheckDefault" checked>
-                    <Form.Check.Input type="checkbox" />
-                    <Form.Check.Label>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-"></i>
-                      <i className="bi bi-star"></i>
-                      <i className="bi bi-star"></i>
-                      <i className="bi bi-star"></i>
-                    </Form.Check.Label>
-                  </Form.Check>
-                </div>
-              </Accordion.Body>
+              <Accordion.Body>{generateFilter(data, "rating")}</Accordion.Body>
+            </Accordion.Item>
+          </AccordionStyle>
+        </div>
+        <div>
+          <AccordionStyle>
+            <Accordion.Item eventKey="4">
+              <Accordion.Header>Precios</Accordion.Header>
+              <Accordion.Body>{generateFilter(data, "price")}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
         </div>

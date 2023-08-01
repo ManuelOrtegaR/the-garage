@@ -1,5 +1,5 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { FooterComponent, NavComponent } from '../../ui/pages';
+import { Navigate, Route, Routes } from "react-router-dom";
+import { FooterComponent, NavComponent } from "../../ui/pages";
 
 import {
   Contact,
@@ -11,7 +11,7 @@ import {
   ServicesPage,
   ServicesDetail,
   Profiles,
-} from '../pages';
+} from "../pages";
 
 export const TheGarageRoutes = () => {
   return (
@@ -20,6 +20,7 @@ export const TheGarageRoutes = () => {
       <Routes>
         <Route path="home" element={<Home />} />
         <Route path="productos" element={<ItemList />} />
+        <Route path="productos/:searchValue" element={<ItemList />} />
         <Route path="productDetail/:id" element={<ProductDetail />} />
         <Route path="servicios" element={<ServicesPage />} />
         <Route path="shoppingCart" element={<ShoppingCart />} />
@@ -27,7 +28,7 @@ export const TheGarageRoutes = () => {
         <Route path="/profile/*" element={<Profiles />} />
         <Route path="servicesDetail/:id" element={<ServicesDetail />} />
         <Route path="chat" element={<Chat />} />
-        <Route path="/" element={<Navigate to={'home'} />} />
+        <Route path="/" element={<Navigate to={"home"} />} />
       </Routes>
       <FooterComponent />
     </>

@@ -10,81 +10,66 @@ import {
 } from "../components";
 import { mockDataTest } from "../dataTest/dataMock";
 import { useFilter } from "../../hooks/useFilter";
+import { usePaginator } from "../../hooks/usePaginator";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 export function ItemList() {
-  // const [selectedFilters, setSelectedFilters] = useState([]);
-  // const addFilter = (filter) => {
-  //   setSelectedFilters([filter, ...selectedFilters]);
-  // };
-
-  // const deleteFilter = (filter) => {
-  //   const aux = [...selectedFilters];
-  //   setSelectedFilters(aux.filter((element) => element != filter));
-  // };
-
-  // const clean = () => {
-  //   setSelectedFilters([]);
-  // };
-
-  const { selectedFilters, addFilter, deleteFilter, clean } = useFilter();
-
-  //Estado para el listado de elementos que vienesn de BD API
+  const { searchValue } = useParams();
   const [data, setData] = useState(mockDataTest);
-  //limito a 10 por pagina
+
+  const {
+    selectedFilters,
+    addFilter,
+    deleteFilter,
+    clean,
+    checkFilter,
+    setCheckFilter,
+    dataFiltered,
+    dataSearch,
+    dataSearch2,
+  } = useFilter([], data, searchValue);
+
   const ITEM_PER_PAGE = 5;
 
-  const [items, setItems] = useState([...data].splice(0, ITEM_PER_PAGE));
-
-  //pagina actual
-  const [currentPage, setCurrentPage] = useState(0);
-  //totalPages
-  const totalPages = Math.ceil(data.length / ITEM_PER_PAGE);
-
-  //Funciones para paginacion
-  const nextHandler = () => {
-    const nextPage = currentPage + 1;
-    const firstIndex = nextPage * ITEM_PER_PAGE;
-    if (firstIndex >= data.length) {
-      return;
-    }
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
-    setCurrentPage(nextPage);
-  };
-  const prevHandler = () => {
-    const prevPage = currentPage - 1;
-    if (prevPage < 0) return;
-
-    const firstIndex = prevPage * ITEM_PER_PAGE;
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
-    setCurrentPage(prevPage);
-  };
-
-  const specificHandler = (specificPage) => {
-    const firstIndex = (specificPage - 1) * ITEM_PER_PAGE;
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
-    setCurrentPage(specificPage - 1);
-    // console.log(specificPage);
-  };
+  const {
+    totalPages,
+    nextHandler,
+    specificHandler,
+    prevHandler,
+    items,
+    currentPage,
+    setCurrentPage,
+  } = usePaginator(searchValue ? dataSearch : dataFiltered, ITEM_PER_PAGE, 0);
 
   return (
-    <Container>
+    <Container className="">
       <Row>
-        <Controls filters={selectedFilters} clean={clean} />
+        <Controls
+          filters={selectedFilters}
+          clean={clean}
+          setCurrentPage={setCurrentPage}
+        />
       </Row>
 
       <RowItemStyled className="">
         <Col md={3}>
           <Filter
-            data={data}
+            data={searchValue ? dataSearch2 : data}
             addFilter={addFilter}
             deleteFilter={deleteFilter}
+            setCheckFilter={setCheckFilter}
+            checkFilter={checkFilter}
           />
         </Col>
         <Col md={9}>
           <ContainerNumberItemsStyled>
             <strong>
-              <span> {data.length} Productos Encontrados</span>
+              <span>
+                {" "}
+                {searchValue ? dataSearch.length : dataFiltered.length}{" "}
+                Productos Encontrados
+              </span>
             </strong>
             <div>
               <span>Visualizacion: </span>
@@ -93,9 +78,13 @@ export function ItemList() {
             </div>
           </ContainerNumberItemsStyled>
           <ContainerVisualizationStyled>
-            {items.map((element) => (
-              <Item key={element.id} item={element} />
-            ))}
+            {searchValue
+              ? dataSearch.map((element) => (
+                  <Item key={element.id} item={element} />
+                ))
+              : items.map((element) => (
+                  <Item key={element.id} item={element} />
+                ))}
           </ContainerVisualizationStyled>
           <Paginator
             totalPages={totalPages}

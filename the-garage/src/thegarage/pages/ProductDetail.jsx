@@ -1,5 +1,5 @@
-import { Accordion, Button, Card, Col, Container, Row } from "react-bootstrap";
-import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../components";
+import { Col, Container, Row } from "react-bootstrap";
+
 import {
   Item,
   CardStore,
@@ -13,18 +13,17 @@ import {
   mockDataTest,
 } from "../dataTest/dataMock";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 export function ProductDetail() {
   const { id } = useParams();
 
-  // console.log("PARAMETRO_ID" + id);
-  // console.log(mockDataTest[id]);
-  //Hacer un fetch a Bd de todos los datos de ese Producto
-
   const findItem = () => {
-    //hacer un fecth o consultar en el Local
     return mockDataTest[id - 1];
   };
+
+  const item = findItem();
+
   return (
     <Container>
       <Row>
@@ -33,11 +32,11 @@ export function ProductDetail() {
       <div className="pb-5">
         <Row className="mt-5">
           <Col className="" md={4}>
-            <ProductSheet item={findItem()} />
+            <ProductSheet item={item} />
           </Col>
           <Col md={8}>
-            <CardProduct_store />
-            <CardStore />
+            <CardProduct_store item={item} />
+            <CardStore item={item} />
             <div className="pt-5">PRODUCTOS RECOMENDADOS</div>
 
             <div className="d-flex gap-1 ">
