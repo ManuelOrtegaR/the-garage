@@ -45,7 +45,7 @@ export function Item({ item, isService }) {
           <CardTitleStyle>{item.title}</CardTitleStyle>
           <CardDescroptionStyle>{item.description}</CardDescroptionStyle>
           <Card.Text className="fs-4">
-            <strong>${item.price}</strong>
+            <strong>${item.price.toLocaleString("es-CO")}</strong>
           </Card.Text>
           <CardAvalaibleStyle>
             {item.availability.despacho ? (
