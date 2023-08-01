@@ -15,7 +15,11 @@ export function Filter({
   // setSelectedFiltersCategory,
 }) {
   const handlerChange = (event) => {
-    const label = event.target.labels[0].innerText;
+    let label = event.target.labels[0].innerText;
+    if (label.startsWith("$")) {
+      label = label.replace(/[$.]/g, "");
+    }
+
     if (event.target.checked) {
       addFilter(label);
     } else {
@@ -62,7 +66,7 @@ export function Filter({
         <Form.Check
           type="checkbox"
           id={`flexCheckChecked${filt}`}
-          label={filt}
+          label={type === "price" ? "$" + filt.toLocaleString("es-CO") : filt}
           onChange={handlerChange}
           checked={checkFilter[filt] || false}
         />
