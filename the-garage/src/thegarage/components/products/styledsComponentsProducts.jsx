@@ -10,11 +10,12 @@ import {
   Row,
 } from "react-bootstrap";
 
-export const ContainerStyled = styled("div")(({ theme }) => ({
+export const ContainerStyled = styled("div")(() => ({
   paddingTop: 20,
   color: "red",
 }));
-export const ContainerButtonStyled = styled("div")(({ theme }) => ({
+
+export const ContainerButtonStyled = styled("div")(() => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
@@ -34,38 +35,37 @@ export const ButtonStyledSuccess = styled(Button)(({ theme }) => ({
 
 export const ButtonStyledDetail = styled(Button)(({ theme }) => ({
   width: "100%",
-
   "&:hover": {
     backgroundColor: "gray",
     borderColor: theme.colors.mainColor,
   },
 }));
 
-export const ContainerStyledPaginator = styled("div")(({ theme }) => ({
+export const ContainerStyledPaginator = styled("div")(() => ({
   display: "flex",
   justifyContent: "center",
   paddingTop: 20,
 }));
+
 export const CardStyle = styled(Card)(({ theme }) => ({
   borderColor: theme.colors.mainColor,
   boxShadow: `3px 3px 3px ${theme.colors.mainColor}`,
   color: theme.colors.mainColor,
   width: "288px",
   height: "625px",
-  // "& > :first-child": {
-  //   width: "285px",
-  //   height: "196px",
-  // },
 }));
 
 export const CardImgStyle = styled(Card.Img)(({ theme }) => ({
-  width: "285px",
+  width: "287px",
   height: "196px",
+  borderBottom: `solid 1px ${theme.colors.gray200}`,
 }));
+
 export const CardTitleStyle = styled(Card.Title)(({ theme }) => ({
   height: "66px",
   borderBottom: `solid 1px ${theme.colors.gray200}`,
 }));
+
 export const CardAvalaibleStyle = styled(Card.Text)(({ theme }) => ({
   fontSize: "12px",
 }));
@@ -80,11 +80,6 @@ export const ContainerBreadcumStyled = styled("div")(({ theme }) => ({
   },
 }));
 
-// const BreadcumItemStyled = styled(Breadcrumb.Item)(({ theme }) => ({
-//   color: theme.colors.mainColor,
-//   fontFamily: theme.fontFamily.mainFont,
-//   // fontSize: theme.fonts[4],
-// }));
 export const ContainerBadgeStyled = styled("div")(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
@@ -97,6 +92,7 @@ export const ContainerBadgeStyled = styled("div")(({ theme }) => ({
 export const Badgestyled = styled(Badge)(({ theme }) => ({
   color: "white",
 }));
+
 export const H4Styled = styled("h4")(({ theme }) => ({
   color: theme.colors.mainColor,
 }));
@@ -104,17 +100,16 @@ export const H4Styled = styled("h4")(({ theme }) => ({
 ///////////////////// ITEM LIST
 export const RowItemStyled = styled(Row)(({ theme }) => ({
   borderTop: "1px solid",
-  // borderColor: theme.colors.mainColor,
   borderColor: theme.colors.gray200,
 }));
+
 export const ContainerNumberItemsStyled = styled("div")(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   paddingTop: "40px",
-  // paddingLeft: "30px",
-  // paddingRight: "30px",
   color: theme.colors.mainColor,
 }));
+
 export const ContainerVisualizationStyled = styled("div")(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
@@ -136,7 +131,8 @@ export const MessageNavbarStyled = styled(Navbar)(({ theme }) => ({
     backgroundColor: "gray",
   },
 }));
-export const MessageBrandStyled = styled(Navbar.Brand)(({ theme }) => ({
+
+export const MessageBrandStyled = styled(Navbar.Brand)(() => ({
   color: "white",
 }));
 
@@ -149,25 +145,38 @@ export const PaginationStyled = styled(Pagination)(({ theme }) => ({
     color: theme.colors.mainColor,
     borderRadius: "5px",
   },
-  "& * *": {
-    color: theme.colors.mainColor,
+  "& .page-item.active .page-link": {
+    backgroundColor: theme.colors.mainColor,
+    color: "white",
   },
 }));
 
 //IconosStars
 
-export const IconStyled = styled(Navbar.Brand)(({ theme }) => ({
+export const IconStyled = styled(Navbar.Brand)(() => ({
   color: "#ECA206",
 }));
 
 //Alert
 
-export const AlertStyled = styled(Alert)(({ theme }) => ({
+export const AlertStyled = styled(Alert)(() => ({
   position: "fixed",
   top: "250px",
   left: "30%",
   width: "40%",
   zIndex: "9999",
+}));
+
+export const AlertWarningStyled = styled(Alert)(({ theme }) => ({
+  backgroundColor: theme.colors.mainColor,
+  height: "70px",
+  color: "white",
+  fontSize: theme.fonts[0],
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  margin: "20px",
 }));
 
 //productDetail
@@ -176,11 +185,11 @@ export const CardStoreStyle = styled(Card)(({ theme }) => ({
   backgroundColor: theme.colors.gray100,
   color: theme.colors.mainColor,
 }));
-export const CardStoreDescriptionStyle = styled("div")(({ theme }) => ({
+export const CardStoreDescriptionStyle = styled("div")(() => ({
   width: "400px",
 }));
 
-export const ButtonCountStyled = styled(Button)(({ theme }) => ({
+export const ButtonCountStyled = styled(Button)(() => ({
   height: "50%",
   backgroundColor: "white",
 }));
@@ -191,6 +200,14 @@ export const ColumnSheetStyle = styled("div")(({ theme }) => ({
   flexDirection: "column",
   gap: "50px",
 }));
+export const PrincipalImg = styled("img")(() => ({
+  height: "400px",
+  width: "400px",
+}));
+export const SecondaryImg = styled("img")(() => ({
+  height: "50px",
+  width: "50px",
+}));
 
 export const AccordionStyle = styled(Accordion)(({ theme }) => ({
   "& * ": {
@@ -198,7 +215,7 @@ export const AccordionStyle = styled(Accordion)(({ theme }) => ({
   },
 }));
 
-export const CardDescroptionStyle = styled(Card.Text)(({ theme }) => ({
+export const CardDescroptionStyle = styled(Card.Text)(() => ({
   height: "70px",
   overflow: "hidden",
   whiteSpace: "normal",

@@ -11,10 +11,10 @@ import {
 import { mockDataTestServices } from "../dataTest/dataMock";
 
 import { useFilter } from "../../hooks/useFilter";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { usePaginator } from "../../hooks/usePaginator";
 
 export function ServicesPage() {
-  //Estado para el listado de elementos que vienesn de BD API
   const [data, setData] = useState(mockDataTestServices);
 
   const {
@@ -27,50 +27,26 @@ export function ServicesPage() {
     dataFiltered,
   } = useFilter([], data);
 
-  //limito a 10 por pagina
   const ITEM_PER_PAGE = 5;
-  const [items, setItems] = useState([...data].splice(0, ITEM_PER_PAGE));
 
-  useEffect(() => {
-    // Aquí actualizamos 'items' con los nuevos datos filtrados
-    setItems([...dataFiltered].splice(0, ITEM_PER_PAGE));
-  }, [dataFiltered]);
-
-  //pagina actual
-  const [currentPage, setCurrentPage] = useState(0);
-  //totalPages
-  const totalPages = Math.ceil(dataFiltered.length / ITEM_PER_PAGE);
-
-  //Funciones para paginacion
-  const nextHandler = () => {
-    const nextPage = currentPage + 1;
-    const firstIndex = nextPage * ITEM_PER_PAGE;
-    if (firstIndex >= data.length) {
-      return;
-    }
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
-    setCurrentPage(nextPage);
-  };
-  const prevHandler = () => {
-    const prevPage = currentPage - 1;
-    if (prevPage < 0) return;
-
-    const firstIndex = prevPage * ITEM_PER_PAGE;
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
-    setCurrentPage(prevPage);
-  };
-
-  const specificHandler = (specificPage) => {
-    const firstIndex = (specificPage - 1) * ITEM_PER_PAGE;
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
-    setCurrentPage(specificPage - 1);
-    console.log(specificPage);
-  };
+  const {
+    totalPages,
+    nextHandler,
+    specificHandler,
+    prevHandler,
+    items,
+    currentPage,
+    setCurrentPage,
+  } = usePaginator(dataFiltered, ITEM_PER_PAGE, 0);
 
   return (
     <Container>
       <Row>
-        <Controls filters={selectedFilters} clean={clean} />
+        <Controls
+          filters={selectedFilters}
+          clean={clean}
+          setCurrentPage={setCurrentPage}
+        />
       </Row>
 
       <RowItemStyled className="">

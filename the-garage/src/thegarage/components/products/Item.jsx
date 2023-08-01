@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import {
   AlertStyled,
+  AlertWarningStyled,
   CardAvalaibleStyle,
   CardDescroptionStyle,
   CardImgStyle,
@@ -9,27 +10,31 @@ import {
   ContainerButtonStyled,
   ContainerStyled,
   IconStyled,
-} from './StyledsComponentsProducts';
-import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../components';
-import { Alert, Card } from 'react-bootstrap';
-import { useState } from 'react';
-
-const userTest = { userRole: 'cliente' };
+} from "./StyledsComponentsProducts";
+import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../../components";
+import { Card } from "react-bootstrap";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../../auth/context/AuthContext";
 
 export function Item({ item, isService }) {
   const [showAlert, setShowAlert] = useState(false);
+  const { user, addCarElement } = useContext(AuthContext);
+
   const navigate = useNavigate();
+
   function handleClick(id) {
-    if (isService) {
-      navigate(`/servicesDetail/${id}`);
-    } else {
-      navigate(`/productDetail/${id}`);
-    }
+    if (user) {
+      isService
+        ? navigate(`/servicesDetail/${id}`)
+        : navigate(`/productDetail/${id}`);
+    } else navigate("/login");
   }
 
-  function handleClickSuceess() {
-    // navigate("/shoppingCart");
-    setShowAlert(!showAlert);
+  function handleClickSuceess(item, cant) {
+    if (user) {
+      addCarElement(item, cant);
+      setShowAlert(!showAlert);
+    } else navigate("/login");
   }
 
   return (
@@ -40,7 +45,7 @@ export function Item({ item, isService }) {
           <CardTitleStyle>{item.title}</CardTitleStyle>
           <CardDescroptionStyle>{item.description}</CardDescroptionStyle>
           <Card.Text className="fs-4">
-            <strong>{item.price}</strong>
+            <strong>${item.price}</strong>
           </Card.Text>
           <CardAvalaibleStyle>
             {item.availability.despacho ? (
@@ -48,7 +53,7 @@ export function Item({ item, isService }) {
             ) : (
               <i className="bi bi-x"></i>
             )}
-            {isService ? 'Servicio a domicilio' : 'Disponible para despacho'}
+            {isService ? "Servicio a domicilio" : "Disponible para despacho"}
           </CardAvalaibleStyle>
           <CardAvalaibleStyle>
             {item.availability.retiro ? (
@@ -56,7 +61,7 @@ export function Item({ item, isService }) {
             ) : (
               <i className="bi bi-x"></i>
             )}
-            {isService ? 'Servicio en Taller' : 'Disponible para Retiro'}
+            {isService ? "Servicio en Taller" : "Disponible para Retiro"}
           </CardAvalaibleStyle>
           <Card.Text>
             {/* Creo array undefined con el numero de raiting */}
@@ -69,34 +74,29 @@ export function Item({ item, isService }) {
 
             <span> {item.rating} </span>
           </Card.Text>
-          {userTest.userRole === 'cliente' ? (
+          {!user || user.userClass === "client" ? (
             <ContainerButtonStyled>
-              <BtnSubmitStyled onClick={handleClickSuceess} variant="success">
-                {isService ? 'Solicitar Servicio' : 'Agregar al carrito'}
+              <BtnSubmitStyled
+                onClick={(event) => {
+                  handleClickSuceess(item, 1);
+                }}
+                variant="success"
+              >
+                {isService ? "Solicitar Servicio" : "Agregar al carrito"}
               </BtnSubmitStyled>
 
               {showAlert && (
                 <AlertStyled
                   variant="primary"
-                  onClose={handleClickSuceess}
+                  onClose={() => {
+                    setShowAlert(!showAlert);
+                  }}
                   dismissible
                 >
-                  {isService ? 'Servicio Solicitado' : 'Producto Agregado'}
+                  {isService ? "Servicio Solicitado" : "Producto Agregado"}
                 </AlertStyled>
               )}
 
-              {/* <BtnSubmitStyled onClick={handleClickSuceess} variant="success">
-                <i className="bi bi-cart-plus"></i> Agregar al Carrito
-              </BtnSubmitStyled> */}
-              {/* {showAlert && (
-                <Alert
-                  variant="success"
-                  onClose={() => setShowAlert(false)}
-                  dismissible
-                >
-                  Producto agregado al carrito.
-                </Alert>
-              )} */}
               <BtnDangerSubmitStyled
                 onClick={() => {
                   handleClick(item.id);
@@ -107,7 +107,15 @@ export function Item({ item, isService }) {
                 Ver Detalles
               </BtnDangerSubmitStyled>
             </ContainerButtonStyled>
-          ) : null}
+          ) : (
+            <div>
+              <AlertWarningStyled variant="warning">
+                <p>
+                  Este servicio o producto está disponible solo para clientes.{" "}
+                </p>
+              </AlertWarningStyled>
+            </div>
+          )}
         </Card.Body>
       </CardStyle>
     </ContainerStyled>

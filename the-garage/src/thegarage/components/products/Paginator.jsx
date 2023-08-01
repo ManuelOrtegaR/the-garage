@@ -30,22 +30,9 @@ export function Paginator({
   return (
     <ContainerStyledPaginator>
       <PaginationStyled>
-        {/* <Pagination.First /> */}
         <Pagination.Prev onClick={prevHandler}> Prev</Pagination.Prev>
         {generatePages()}
-
-        {/* <Pagination.Item>{1}</Pagination.Item>
-
-        <Pagination.Item>{2}</Pagination.Item>
-        <Pagination.Item>{3}</Pagination.Item>
-        <Pagination.Item active={false}>{totalPages}</Pagination.Item>
-        <Pagination.Item>{5}</Pagination.Item>
-        <Pagination.Item>{6}</Pagination.Item>
-
-        <Pagination.Ellipsis />
-        <Pagination.Item>{20}</Pagination.Item> */}
         <Pagination.Next onClick={nextHandler}> Next</Pagination.Next>
-        {/* <Pagination.Last /> */}
       </PaginationStyled>
     </ContainerStyledPaginator>
   );

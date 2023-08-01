@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import { FooterSection, NavbarStyled } from '../components';
+import { NavLink } from "react-router-dom";
+import { FooterSection, NavbarStyled } from "../components";
 
 export const FooterComponent = () => {
   return (

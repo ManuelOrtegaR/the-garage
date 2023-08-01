@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useCounter } from "../../../hooks/useCounter";
 
-export const CardProduct_store = () => {
-  const { counter, increment, decrement } = useCounter(2);
+export const CardProduct_store = ({ item }) => {
+  const { counter, increment, decrement } = useCounter(1);
   const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
   function handleReturn() {
@@ -29,13 +29,10 @@ export const CardProduct_store = () => {
         <Card.Body>
           <div className="d-flex flex-wrap justify-content-between">
             <CardStoreDescriptionStyle>
-              <Card.Title>Pastillas Frenos traseros</Card.Title>
+              <Card.Title>{item.title}</Card.Title>
 
               <Card.Text>
-                <div>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the cards content.
-                </div>
+                <div>{item.title}</div>
               </Card.Text>
             </CardStoreDescriptionStyle>
             <div>
@@ -46,14 +43,23 @@ export const CardProduct_store = () => {
                 >
                   <div>
                     <div>Precio por Unidad.</div>
-                    <div className="fs-4">$100,000</div>
+                    <div className="fs-4">{item.price}</div>
                     <div>
-                      <IconStyled className="bi bi-star-fill"></IconStyled>
-                      <IconStyled className="bi bi-star-fill"></IconStyled>
-                      <IconStyled className="bi bi-star-fill"></IconStyled>
-                      <IconStyled className="bi bi-star-fill"></IconStyled>
-                      <IconStyled className="bi bi-star"></IconStyled>
-                      <span> 4</span>
+                      {/* Creo array undefined con el numero de raiting */}
+                      {[...Array(item.rating)].map((_, index) => (
+                        <IconStyled
+                          key={index}
+                          className="bi bi-star-fill"
+                        ></IconStyled>
+                      ))}
+                      {[...Array(5 - item.rating)].map((_, index) => (
+                        <IconStyled
+                          key={index}
+                          className="bi bi-star"
+                        ></IconStyled>
+                      ))}
+
+                      <span> {item.rating} </span>
                     </div>
                   </div>
 

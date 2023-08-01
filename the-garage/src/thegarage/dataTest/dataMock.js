@@ -2,11 +2,11 @@ export const mockDataTest = [
   {
     id: 1,
     image:
-      "https://iecologics.files.wordpress.com/2013/12/escaladegrises_bossa_artesanal.jpg",
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena16/reductores_sinfin_corona_precision_lista_productos.jpg",
     title: "Aceite motor Moly sintetico 5X30",
     description:
       "Aceite sintético de alta calidad para motores de automóviles, con nivel de acetatos 3x2",
-    price: "$54,999",
+    price: 54.999,
     category: "Lubricantes",
     store: "AutoParts",
     brand: "ACME",
@@ -19,10 +19,11 @@ export const mockDataTest = [
   {
     id: 2,
     title: "Filtro de aire para automóvil H239848",
-    image: "https://via.placeholder.com/600/771796",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena14/cremalleras_pinones_precision_lista_productos.jpg",
     description:
       "Filtro de aire de alto rendimiento para automóviles, mejora la eficiencia y la calidad del aire",
-    price: "$2,499",
+    price: 2.499,
     category: "Filtros",
     store: "AutoRepuestos",
     brand: "XYZ",
@@ -34,11 +35,12 @@ export const mockDataTest = [
   },
   {
     id: 3,
-    image: "https://placehold.co/288x196",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena17/sistemas_para_maquina_herramienta_lista_productos.jpg",
     title: "Pastillas de freno delanteras",
     description:
       "Pastillas de freno de alto rendimiento para automóviles y motociletas",
-    price: "$1,999",
+    price: 10.999,
     category: "Frenos",
     store: "AutoServicio",
     brand: "123Brakes",
@@ -51,10 +53,11 @@ export const mockDataTest = [
   {
     id: 4,
     title: "Batería para automóvil de alto rendimiento",
-    image: "https://placehold.co/288x196",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena18/motorreductores_precision_lista_productos.jpg",
     description:
       "Batería de larga duración y alto rendimiento para automóviles, confiable y de calidad",
-    price: "$9,999",
+    price: 20.745,
     category: "Baterías",
     store: "Autopartes Express",
     brand: "PowerStart",
@@ -68,10 +71,11 @@ export const mockDataTest = [
   {
     id: 5,
     title: "Amortiguadores traseros",
-    image: "https://placehold.co/288x196",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena21/husillos_guias_perfiles_lista_productos.jpg",
     description:
       "Amortiguadores de alta calidad para el sistema de suspensión de automóviles",
-    price: "$6,499",
+    price: 100.124,
     category: "Suspensión",
     store: "AutoRepuestos",
     brand: "RideWell",
@@ -84,10 +88,11 @@ export const mockDataTest = [
   {
     id: 6,
     title: "Líquido refrigerante para automóvil",
-    image: "https://placehold.co/288x196",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena23/servomotores_drivers_lista_productos.jpg",
     description:
       "Líquido refrigerante de larga duración para automóviles, protege el sistema genral",
-    price: "$999",
+    price: 200.445,
     category: "Lubricantes",
     store: "AutoParts",
     brand: "CoolMax",
@@ -95,14 +100,15 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 5,
   },
   {
     id: 7,
     title: "Filtro de combustible para automóvil",
-    image: "https://placehold.co/288x196",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena24/servomotores_drivers_dc_lista_productos.jpg",
     description: "Filtro de combustible de alto rendimiento para automóviles.",
-    price: "$1,199",
+    price: 200.445,
     category: "Filtros",
     store: "Repuestos Vehiculares",
     brand: "FuelGuard",
@@ -115,9 +121,10 @@ export const mockDataTest = [
   {
     id: 8,
     title: "Llantas deportivas",
-    image: "https://placehold.co/288x196",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena25/sistemas_paso_a_paso_lista_productos.jpg",
     description: "Llantas deportivas de alto rendimiento para automóviles.",
-    price: "$12,999",
+    price: 200.445,
     category: "Llantas",
     store: "Neumáticos Plus",
     brand: "SpeedMaster",
@@ -125,14 +132,15 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 5,
   },
   {
     id: 9,
     title: "Kit de embrague para automóvil",
-    image: "https://placehold.co/288x196",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena26/motores_ac_lista_producto.jpg",
     description: "Kit de embrague completo para automóviles .",
-    price: "$8,599",
+    price: 100.445,
     category: "Transmisión",
     store: "Autopartes Express",
     brand: "ClutchPro",
@@ -140,15 +148,16 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 5,
   },
   {
     id: 10,
-    title: "Filtro de aceite para automóvil",
-    image: "https://placehold.co/288x196",
+    title: "Gestor de gas",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena26/motores_ac_lista_producto.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 100.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -160,11 +169,12 @@ export const mockDataTest = [
   },
   {
     id: 11,
-    title: "Filtro de aceite para automóvil",
-    image: "https://placehold.co/288x196",
+    title: "Cilindro Gas",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena14/cremalleras_pinones_precision_lista_productos.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 80.0,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -172,15 +182,16 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 2,
   },
   {
     id: 12,
-    title: "Filtro de aceite para automóvil",
-    image: "https://placehold.co/288x196",
+    title: "Kit de empaques Caja",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena15/reductores_planetarios_de_precision_lista_productos.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 100.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -188,15 +199,16 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 1,
   },
   {
     id: 13,
-    title: "Filtro de aceite para automóvil",
-    image: "https://placehold.co/288x196",
+    title: "Empaque de cigueñal",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena16/reductores_sinfin_corona_precision_lista_productos.jpg6",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 80.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -204,15 +216,16 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 1,
   },
   {
     id: 14,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Caja de direccion",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena22/motorreductores_convencionales_lista_productos.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 80.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -220,15 +233,16 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 1,
   },
   {
     id: 15,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Tapetes de vehiculo",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena19/componentes_transmision_mecanica_lista_produccion.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 80.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -236,15 +250,16 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 1,
   },
   {
     id: 16,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Discos xxx",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena20/actuadores_lineales_lista_productos.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 20.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -256,11 +271,12 @@ export const mockDataTest = [
   },
   {
     id: 17,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Cuerpo de valvulas",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena15/reductores_planetarios_de_precision_lista_productos.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 20.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -268,15 +284,16 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 4,
   },
   {
     id: 18,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Aceite de valvulas",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena27/sistemas_lista_producto.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 20.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -284,15 +301,16 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 4,
   },
   {
     id: 19,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Bujias 4x5",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena26/motores_ac_lista_producto.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 90.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -300,15 +318,16 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 5,
   },
   {
     id: 20,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Arranque Mazda 2",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena25/sistemas_paso_a_paso_lista_productos.jpg6",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 50.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -320,11 +339,12 @@ export const mockDataTest = [
   },
   {
     id: 21,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Cilindro 200",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena24/servomotores_drivers_dc_lista_productos.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 30.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -336,11 +356,12 @@ export const mockDataTest = [
   },
   {
     id: 22,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Piston automatico",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena23/servomotores_drivers_lista_productos.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 30.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -352,11 +373,12 @@ export const mockDataTest = [
   },
   {
     id: 23,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Puerta de seguridad",
+    image:
+      "https://www.brotomatic.es/datos/sub_familia/imagen_pequena23/servomotores_drivers_lista_productos.jpg",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 30.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -364,15 +386,15 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 1,
   },
   {
     id: 24,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Vidrio frontal",
+    image: "https://www.brotomatic.es/datos/marca/imagen12/axor-grander.png",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
+    price: 30.445,
     category: "Filtros",
     store: "AutoServicio",
     brand: "PureFlow",
@@ -380,18 +402,19 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 2,
   },
   {
     id: 25,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
+    title: "Aceite de caja de cambios",
+    image:
+      "https://www.brotomatic.es/datos/marca/imagen14/kollmorgen-grande.png",
     description:
       "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
-    category: "Filtros",
+    price: 756.445,
+    category: "Aceite",
     store: "AutoServicio",
-    brand: "PureFlow",
+    brand: "PartesBogota",
     availability: {
       despacho: true,
       retiro: true,
@@ -400,32 +423,31 @@ export const mockDataTest = [
   },
   {
     id: 26,
-    title: "Filtro de aceite para automóvil2",
-    image: "https://placehold.co/288x196",
-    description:
-      "Filtro de aceite de alta calidad para automóviles, protege el motor.",
-    price: "$799",
-    category: "Lubricantes",
+    title: "Caja Automatica",
+    image: "https://www.brotomatic.es/datos/marca/imagen12/axor-grander.png",
+    description: "Caja completa con modulo TCM.",
+    price: 30756.445,
+    category: "Transmision",
     store: "AutoServicio",
     brand: "PureFlow",
     availability: {
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 5,
   },
 ];
 
 export const detail1_MockTest = {
-  id: 1,
-  title: "Aceite motor Moly sintetico 5X30",
-  image: "https://placehold.co/288x196",
+  id: 25,
+  title: "Aceite de caja de cambios",
+  image: "https://www.brotomatic.es/datos/marca/imagen14/kollmorgen-grande.png",
   description:
-    "Aceite sintético de alta calidad para motores de automóviles, con nivel de acetatos 3x2",
-  price: "$54,999",
-  category: "Lubricantes",
-  store: "AutoParts",
-  brand: "ACME",
+    "Filtro de aceite de alta calidad para automóviles, protege el motor.",
+  price: 111.222,
+  category: "Aceite",
+  store: "AutoServicio",
+  brand: "PartesBogota",
   availability: {
     despacho: true,
     retiro: true,
@@ -434,20 +456,19 @@ export const detail1_MockTest = {
 };
 
 export const detail2_MockTest = {
-  id: 2,
-  image: "https://placehold.co/288x196",
-  title: "Aceite motor Moly sintetico 5X30",
-  description:
-    "Aceite sintético de alta calidad para motores de automóviles, con nivel de acetatos 3x2",
-  price: "$54,999",
-  category: "Lubricantes",
-  store: "AutoParts",
-  brand: "ACME",
+  id: 26,
+  title: "Caja Automatica",
+  image: "https://www.brotomatic.es/datos/marca/imagen12/axor-grander.png",
+  description: "Caja completa con modulo TCM.",
+  price: 145.765,
+  category: "Transmision",
+  store: "AutoServicio",
+  brand: "PureFlow",
   availability: {
     despacho: true,
     retiro: true,
   },
-  rating: 3,
+  rating: 5,
 };
 
 export const mockDataTestServices = [
