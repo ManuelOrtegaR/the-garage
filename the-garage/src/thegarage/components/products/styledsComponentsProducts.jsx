@@ -56,7 +56,7 @@ export const CardStyle = styled(Card)(({ theme }) => ({
 }));
 
 export const CardImgStyle = styled(Card.Img)(({ theme }) => ({
-  width: "287px",
+  width: "286px",
   height: "196px",
   borderBottom: `solid 1px ${theme.colors.gray200}`,
 }));
