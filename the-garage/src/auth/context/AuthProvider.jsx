@@ -13,8 +13,9 @@ const init = () => {
 
 export const AuthProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authReducer, {}, init);
-  const login = (name = '', userClass) => {
-    const user = { id: 'abc', name, userClass };
+  const login = (name = '', userClass, profileData = '') => {
+    const data = JSON.parse(profileData);
+    const user = { id: 'abc', name, userClass, data };
     const action = {
       type: types.login,
       payload: user,

@@ -14,6 +14,7 @@ import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { z } from 'zod';
 import { AuthContext } from '../context/AuthContext';
+import data from '../../data/profileData.json';
 
 const emailRqd = z.string({
   required_error: 'El correo es requerido',
@@ -45,7 +46,9 @@ export function Login() {
     const { email } = formData;
     const [name, domain] = email.split('@');
     const [type] = domain.split('.');
-    login(name, type);
+    const profileData = JSON.stringify(data[type]);
+    console.log(profileData);
+    login(name, type, profileData);
     navigate('/home', {
       replace: true,
     });

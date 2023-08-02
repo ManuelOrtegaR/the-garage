@@ -1,4 +1,5 @@
 export * from './ProfilesRoutes';
+export * from './Modals';
 export * from './NavProfiles';
 export * from './TestProfiles';
 export * from './PasswordUpdate';
@@ -12,3 +13,4 @@ export * from './Details';
 export * from './Requests';
 export * from './Accounts';
 export * from './StylesComponentsProfiles';
+export * from './PaginationProfiles';
