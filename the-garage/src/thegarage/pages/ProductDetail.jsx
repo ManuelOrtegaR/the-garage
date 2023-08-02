@@ -13,7 +13,6 @@ import {
   mockDataTest,
 } from "../dataTest/dataMock";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 
 export function ProductDetail() {
   const { id } = useParams();
