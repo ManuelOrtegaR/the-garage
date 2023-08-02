@@ -5,7 +5,6 @@ import { TheGarageRoutes } from "../thegarage";
 import { SingUpClientPg } from "../auth/pages/SingUpClientPg";
 import { SingUpCompanyPg } from "../auth/pages/SingUpCompanyPg";
 import { RecoveryPasswordPg } from "../auth/pages/RecoveryPasswordPg";
-import { ProductsForm } from "../../../the-garage/src/thegarage/components/products/ProductsForm";
 
 export const AppRouter = () => {
   //<Route path="/Singupclient" element={<SingUpClientPg />}></Route>
@@ -15,7 +14,7 @@ export const AppRouter = () => {
         <Route path="/*" element={<TheGarageRoutes />}></Route>
         <Route path="login" element={<Login />}></Route>
 
-        <Route path="/Singupclient" element={<ProductsForm />}></Route>
+        <Route path="/Singupclient" element={<SingUpClientPg />}></Route>
         <Route path="/Singupcompany" element={<SingUpCompanyPg />}></Route>
         <Route
           path="/Recoverypassword"
