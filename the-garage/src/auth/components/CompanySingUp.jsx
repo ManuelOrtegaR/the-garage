@@ -62,35 +62,37 @@ const companySignUpSchema = z
       .lt(9999999999, "El número de contacto debe tener 10 dígitos"),
 
     website: webRqd,
-    ccomerce: ccomerceRqd.refine((value) => !!value, {
-      message: "Debe seleccionar un archivo",
-      path: ["ccomerce"],
-    }),
-    // .refine(
-    //   (value) => {
-    //     const acceptedExtensions = ["pdf"]; // Extensiones permitidas
-    //     const fileExtension = value
-    //       .substring(value.lastIndexOf(".") + 1)
-    //       .toLowerCase();
-    //     return acceptedExtensions.includes(fileExtension);
-    //   },
-    //   { message: "Formato de archivo no válido", path: ["ccomerce"] }
-    // ),
+    ccomerce: ccomerceRqd
+      .refine((value) => !!value, {
+        message: "Debe seleccionar un archivo",
+        path: ["ccomerce"],
+      })
+      .refine(
+        (value) => {
+          const acceptedExtensions = ["pdf"]; // Extensiones permitidas
+          const fileExtension = value
+            .substring(value.lastIndexOf(".") + 1)
+            .toLowerCase();
+          return acceptedExtensions.includes(fileExtension);
+        },
+        { message: "Formato de archivo no válido", path: ["ccomerce"] }
+      ),
 
-    image: imgRqd.refine((value) => !!value, {
-      message: "Debe seleccionar un archivo",
-      path: ["image"],
-    }),
-    // .refine(
-    //   (value) => {
-    //     const acceptedExtensions = ["jpg", "jpeg", "png"]; // Extensiones permitidas
-    //     const fileExtension = value
-    //       .substring(value.lastIndexOf(".") + 1)
-    //       .toLowerCase();
-    //     return acceptedExtensions.includes(fileExtension);
-    //   },
-    //   { message: "Formato de archivo no válido", path: ["image"] }
-    // ),
+    image: imgRqd
+      .refine((value) => !!value, {
+        message: "Debe seleccionar un archivo",
+        path: ["image"],
+      })
+      .refine(
+        (value) => {
+          const acceptedExtensions = ["jpg", "jpeg", "png"]; // Extensiones permitidas
+          const fileExtension = value
+            .substring(value.lastIndexOf(".") + 1)
+            .toLowerCase();
+          return acceptedExtensions.includes(fileExtension);
+        },
+        { message: "Formato de archivo no válido", path: ["image"] }
+      ),
 
     email: emailRqd.email("Dirección de correo incorrecto"),
 
@@ -283,7 +285,9 @@ function CompanySingUp() {
                     name="ccomerce"
                     component="div"
                     className="invalid-feedback"
-                  />
+                  >
+                    <span>children={errors.ccomerce}</span>
+                  </ErrorMessage>
                 </Form.Group>
               </Col>
               <Col>
@@ -305,7 +309,9 @@ function CompanySingUp() {
                     name="image"
                     component="div"
                     className="invalid-feedback"
-                  />
+                  >
+                    <span>children={errors.image}</span>
+                  </ErrorMessage>
                 </Form.Group>
               </Col>
             </Row>
