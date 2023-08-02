@@ -2,26 +2,16 @@ import Image from 'react-bootstrap/Image';
 import {
   ItemStyle,
   ListGroupStyle,
+  PagEllipsisStyle,
+  PagItemStyle,
+  PagNextStyle,
+  PagPrevStyle,
+  PaginationStyle,
   ShowOrder,
   StatusStyle,
 } from './StylesComponentsProfiles';
-import { useState } from 'react';
-import { mockDataTest } from '../../dataTest/dataMock';
-import { PaginationProfiles } from './PaginationProfiles';
-import { useNavigate } from 'react-router-dom';
 
 export const Orders = () => {
-  const [data, setData] = useState(mockDataTest);
-  const [orders, setOrders] = useState([...data]);
-  const [productsBypage, setproductsByPage] = useState(5);
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalOrders = orders.length;
-
-  const lastIndex = currentPage * productsBypage;
-  const firstIndex = lastIndex - productsBypage;
-
-  const viewOrder = useNavigate();
-
   return (
     <>
       <div className="m-auto w-100 p-4 ">
@@ -38,35 +28,98 @@ export const Orders = () => {
           </div>
         </div>
         <ListGroupStyle>
-          {orders
-            .map((order) => (
-              <>
-                <ItemStyle key={order.id} className="border-bottom">
-                  <Image src={order.image} style={{ height: 65, width: 65 }} />
-                  <span className="col-2">{order.store}</span>
-                  <span className="col-1">Articulos: 5</span>
-                  <span className="col-2 fw-bold fs-5 ">$250.000</span>
-                  <div className="col-2">
-                    {/* Estados: delivered, processing, onTheWay, cancelled*/}
-                    <StatusStyle className="delivered">Entregado</StatusStyle>
-                  </div>
-                  <ShowOrder onClick={() => viewOrder(`${order.id}`)}>
-                    <i
-                      className="bi bi-eye-fill"
-                      style={{ width: '20px', height: '20px' }}
-                    />
-                  </ShowOrder>
-                </ItemStyle>
-              </>
-            ))
-            .slice(firstIndex, lastIndex)}
+          <ItemStyle>
+            <Image
+              src="https://placehold.co/600x400"
+              style={{ height: 65, width: 65 }}
+            />
+            <span>Nombre de la empresa 1</span>
+            <span>Articulos: 5</span>
+            <span className="fw-bold fs-5 ">$250.000</span>
+            <div className="col-2">
+              <StatusStyle className="delivered">Entregado</StatusStyle>
+            </div>
+            <ShowOrder>
+              <i
+                className="bi bi-eye-fill"
+                style={{ width: '20px', height: '20px' }}
+              />
+            </ShowOrder>
+          </ItemStyle>
+          <ItemStyle>
+            <Image
+              src="https://placehold.co/600x400"
+              style={{ height: 65, width: 65 }}
+            />
+            <span>Nombre de la empresa 2</span>
+            <span>Articulos: 5</span>
+            <span className="fw-bold fs-5 ">$250.000</span>
+            <div className="col-2">
+              <StatusStyle className="processing">Procesando</StatusStyle>
+            </div>
+            <ShowOrder>
+              <i
+                className="bi bi-eye-fill"
+                style={{ width: '20px', height: '20px' }}
+              />
+            </ShowOrder>
+          </ItemStyle>
+          <ItemStyle>
+            <Image
+              src="https://placehold.co/600x400"
+              style={{ height: 65, width: 65 }}
+            />
+            <span>Nombre de la empresa 3</span>
+            <span>Articulos: 5</span>
+            <span className="fw-bold fs-5 ">$250.000</span>
+            <div className="col-2">
+              <StatusStyle className="onTheWay">En Camino</StatusStyle>
+            </div>
+            <ShowOrder>
+              <i
+                className="bi bi-eye-fill"
+                style={{ width: '20px', height: '20px' }}
+              />
+            </ShowOrder>
+          </ItemStyle>
+          <ItemStyle>
+            <Image
+              src="https://placehold.co/600x400"
+              style={{ height: 65, width: 65 }}
+            />
+            <span>Nombre de la empresa 4</span>
+            <span>Articulos: 5</span>
+            <span className="fw-bold fs-5 ">$250.000</span>
+            <div className="col-2">
+              <StatusStyle className="cancelled">Cancelado</StatusStyle>
+            </div>
+            <ShowOrder>
+              <i
+                className="bi bi-eye-fill"
+                style={{ width: '20px', height: '20px' }}
+              />
+            </ShowOrder>
+          </ItemStyle>
         </ListGroupStyle>
-        <PaginationProfiles
-          productsBypage={productsBypage}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          totalOrders={totalOrders}
-        />
+        <PaginationStyle className="justify-content-center">
+          <PagPrevStyle>
+            <i className="bi bi-arrow-left p-1"></i>
+            Prev
+          </PagPrevStyle>
+          <PagItemStyle>{1}</PagItemStyle>
+          <PagItemStyle>{2}</PagItemStyle>
+          <PagItemStyle active>{3}</PagItemStyle>
+          <PagItemStyle>{4}</PagItemStyle>
+          <PagItemStyle>{5}</PagItemStyle>
+          <PagItemStyle>{6}</PagItemStyle>
+          <PagItemStyle>{7}</PagItemStyle>
+          <PagEllipsisStyle />
+          <PagItemStyle>{20}</PagItemStyle>
+          <PagNextStyle>
+            Next
+            <i className="bi bi-arrow-right p-1"></i>
+          </PagNextStyle>
+        </PaginationStyle>
       </div>
     </>
   );

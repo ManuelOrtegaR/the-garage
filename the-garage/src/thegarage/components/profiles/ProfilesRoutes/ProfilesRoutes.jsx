@@ -20,14 +20,14 @@ export const ProfilesRoutes = () => {
       <Routes>
         <Route path="change-pws" element={<PasswordUpdate />} />
         <Route path="messages" element={<Messages />} />
-        <Route path="messages/:id" element={<MessagesId />} />
+        <Route path="messages/id" element={<MessagesId />} />
         <Route path="orders" element={<Orders />} />
-        <Route path="orders/:id" element={<OrderId />} />
+        <Route path="orders/id" element={<OrderId />} />
         <Route path="details" element={<Details />} />
         <Route path="products" element={<Products />} />
-        <Route path="products/:id" element={<ProductsForm />} />
+        <Route path="products/id" element={<ProductsForm />} />
         <Route path="services" element={<Services />} />
-        <Route path="services/:id" element={<ServicesForm />} />
+        <Route path="services/id" element={<ServicesForm />} />
         <Route path="requests" element={<Requests />} />
         <Route path="accounts" element={<Accounts />} />
         <Route
