@@ -10,9 +10,10 @@ import { ContainerBadgeStyled } from "./StyledsComponentsProducts";
 import { BreadCrumbRoute } from "./BreadCrumbRoute";
 import { BtnSubmitStyled } from "../../../components";
 
-export function Controls({ filters, clean }) {
+export function Controls({ filters, clean, setCurrentPage }) {
   const cleanAll = () => {
     clean();
+    setCurrentPage(0);
   };
   return (
     <>
@@ -27,21 +28,6 @@ export function Controls({ filters, clean }) {
               <CloseButton />
             </Badge>
           ))}
-          {/* <Badge bg="secondary">
-            Calificacion <CloseButton />
-          </Badge>
-
-          <Badge bg="secondary">
-            Categoria <CloseButton />
-          </Badge>
-
-          <Badge bg="secondary">
-            Almacen <CloseButton />
-          </Badge>
-
-          <Badge bg="secondary">
-            Precio <CloseButton />
-          </Badge> */}
         </ContainerBadgeStyled>
 
         {/* aqui van controles de filtros por ordenamiento o el avance que lleva */}
@@ -51,18 +37,7 @@ export function Controls({ filters, clean }) {
           <BtnSubmitStyled variant="success" onClick={cleanAll}>
             Limpiar
           </BtnSubmitStyled>
-          {/* <DropdownButton
-            id="dropdown-basic-button"
-            title="Ordenar por"
-            variant="bg-lisght"
-            size="sm"
-          >
-            <Dropdown.Item href="#/action-1">Menor Precio</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Mayor precio</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Calificacion</Dropdown.Item>
-          </DropdownButton> */}
         </div>
-        {/* aqui van controles de filtros por ordenamiento o el avance que lleva */}
       </Col>
     </>
   );

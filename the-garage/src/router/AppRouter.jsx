@@ -7,6 +7,7 @@ import { SingUpCompanyPg } from "../auth/pages/SingUpCompanyPg";
 import { RecoveryPasswordPg } from "../auth/pages/RecoveryPasswordPg";
 
 export const AppRouter = () => {
+  //<Route path="/Singupclient" element={<SingUpClientPg />}></Route>
   return (
     <>
       <Routes>

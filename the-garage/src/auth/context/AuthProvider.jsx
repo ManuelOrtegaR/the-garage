@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { authReducer } from './authReducer';
 import { types } from '../types/types';
@@ -12,6 +12,11 @@ const init = () => {
 };
 
 export const AuthProvider = ({ children }) => {
+  const [carElements, setCarElements] = useState([]);
+  const addCarElement = (item, cant) => {
+    setCarElements([item, ...carElements]);
+  };
+
   const [authState, dispatch] = useReducer(authReducer, {}, init);
   const login = (name = '', userClass, profileData = '') => {
     const data = JSON.parse(profileData);
@@ -32,7 +37,13 @@ export const AuthProvider = ({ children }) => {
   };
   return (
     <AuthContext.Provider
-      value={{ ...authState, login: login, logout: logout }}
+      value={{
+        ...authState,
+        login: login,
+        logout: logout,
+        carElements,
+        addCarElement,
+      }}
     >
       {children}
     </AuthContext.Provider>

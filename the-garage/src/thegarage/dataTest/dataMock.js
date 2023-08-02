@@ -1,7 +1,8 @@
 export const mockDataTest = [
   {
     id: 1,
-    image: 'https://placehold.co/288x196',
+    image:
+      'https://www.brotomatic.es/datos/sub_familia/imagen_pequena16/reductores_sinfin_corona_precision_lista_productos.jpg',
     title: 'Aceite motor Moly sintetico 5X30',
     description:
       'Aceite sintético de alta calidad para motores de automóviles, con nivel de acetatos 3x2',
@@ -94,7 +95,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 5,
   },
   {
     id: 7,
@@ -124,7 +125,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 5,
   },
   {
     id: 9,
@@ -139,7 +140,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 5,
   },
   {
     id: 10,
@@ -171,7 +172,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 2,
   },
   {
     id: 12,
@@ -187,7 +188,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 1,
   },
   {
     id: 13,
@@ -203,7 +204,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 1,
   },
   {
     id: 14,
@@ -219,7 +220,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 1,
   },
   {
     id: 15,
@@ -235,7 +236,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 1,
   },
   {
     id: 16,
@@ -267,7 +268,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 4,
   },
   {
     id: 18,
@@ -283,7 +284,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 4,
   },
   {
     id: 19,
@@ -299,7 +300,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 5,
   },
   {
     id: 20,
@@ -363,7 +364,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 1,
   },
   {
     id: 24,
@@ -379,7 +380,7 @@ export const mockDataTest = [
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 2,
   },
   {
     id: 25,
@@ -405,13 +406,13 @@ export const mockDataTest = [
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
     price: 799,
     category: 'Lubricantes',
-    store: 'Prueba del ultimo elemento',
+    store: 'AutoServicio',
     brand: 'PureFlow',
     availability: {
       despacho: true,
       retiro: true,
     },
-    rating: 3,
+    rating: 5,
   },
 ];
 
@@ -446,7 +447,7 @@ export const detail2_MockTest = {
     despacho: true,
     retiro: true,
   },
-  rating: 3,
+  rating: 5,
 };
 
 export const mockDataTestServices = [
@@ -473,7 +474,7 @@ export const mockDataTestServices = [
     title: 'Servicio de Mecania General',
     description:
       'Ajustes finos para asegurar que la sincronización sea estable y confiable',
-    price: '2,499 - 80.000',
+    price: '2499- 80.000',
     category: 'Filtros',
     store: 'AutoRepuestos',
     brand: 'XYZ',
@@ -489,7 +490,7 @@ export const mockDataTestServices = [
     title: 'Servicio de pulida y pintura',
     description:
       'Pastillas de freno de alto rendimiento para automóviles y motociletas',
-    price: '1,999 - 80.000',
+    price: '1999- 80.000',
     category: 'Frenos',
     store: 'AutoServicio',
     brand: '123Brakes',
@@ -505,7 +506,7 @@ export const mockDataTestServices = [
     title: 'Batería para automóvil de alto rendimiento',
     description:
       'Batería de larga duración y alto rendimiento para automóviles, confiable y de calidad',
-    price: '9,999 - 80.000',
+    price: '9999 - 80.000',
     category: 'Baterías',
     store: 'Autopartes Express',
     brand: 'PowerStart',
@@ -599,7 +600,7 @@ export const mockDataTestServices = [
     title: 'Filtro de aceite para automóvil',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
-    price: '80.000',
+    price: '799 - 80.000',
     category: 'Filtros',
     store: 'AutoServicio',
     brand: 'PureFlow',
@@ -631,7 +632,7 @@ export const mockDataTestServices = [
     title: 'Filtro de aceite para automóvil',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
-    price: ' 80 .000',
+    price: '799 - 80.000',
     category: 'Filtros',
     store: 'AutoServicio',
     brand: 'PureFlow',
@@ -647,7 +648,7 @@ export const mockDataTestServices = [
     title: 'Filtro de aceite para automóvil',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
-    price: ' 80 .000',
+    price: '799 - 80.000',
     category: 'Filtros',
     store: 'AutoServicio',
     brand: 'PureFlow',

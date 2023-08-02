@@ -3,7 +3,7 @@ import { BtnSubmitStyled } from "../../../components";
 import { CardStoreStyle } from "./StyledsComponentsProducts";
 import { useNavigate } from "react-router-dom";
 
-export const CardStore = () => {
+export const CardStore = ({ item }) => {
   const navigate = useNavigate();
   function handleClick() {
     navigate("/productos");
@@ -13,7 +13,7 @@ export const CardStore = () => {
       <CardStoreStyle>
         {/* <Card.Header>AutoParts</Card.Header> */}
         <Card.Body>
-          <Card.Title>AutoParts</Card.Title>
+          <Card.Title>{item.store}</Card.Title>
           <Card.Text>
             En nuestro almacén, contamos con un extenso catálogo de repuestos
             que abarca desde piezas de automóviles, como frenos, filtros,

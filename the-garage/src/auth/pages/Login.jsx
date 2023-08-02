@@ -47,7 +47,6 @@ export function Login() {
     const [name, domain] = email.split('@');
     const [type] = domain.split('.');
     const profileData = JSON.stringify(data[type]);
-    console.log(profileData);
     login(name, type, profileData);
     navigate('/home', {
       replace: true,

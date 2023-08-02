@@ -1,4 +1,4 @@
-import { NavLinkStyled } from './ComponentsStyles';
+import { NavLinkStyled } from "./ComponentsStyles";
 
 export const FooterSection = () => {
   return (

@@ -12,51 +12,41 @@ import { mockDataTestServices } from "../dataTest/dataMock";
 
 import { useFilter } from "../../hooks/useFilter";
 import { useState } from "react";
+import { usePaginator } from "../../hooks/usePaginator";
 
 export function ServicesPage() {
-  const { selectedFilters, addFilter, deleteFilter, clean } = useFilter();
-
-  //Estado para el listado de elementos que vienesn de BD API
   const [data, setData] = useState(mockDataTestServices);
-  //limito a 10 por pagina
+
+  const {
+    selectedFilters,
+    addFilter,
+    deleteFilter,
+    clean,
+    checkFilter,
+    setCheckFilter,
+    dataFiltered,
+  } = useFilter([], data);
+
   const ITEM_PER_PAGE = 5;
-  const [items, setItems] = useState([...data].splice(0, ITEM_PER_PAGE));
 
-  //pagina actual
-  const [currentPage, setCurrentPage] = useState(0);
-  //totalPages
-  const totalPages = Math.ceil(data.length / ITEM_PER_PAGE);
-
-  //Funciones para paginacion
-  const nextHandler = () => {
-    const nextPage = currentPage + 1;
-    const firstIndex = nextPage * ITEM_PER_PAGE;
-    if (firstIndex >= data.length) {
-      return;
-    }
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
-    setCurrentPage(nextPage);
-  };
-  const prevHandler = () => {
-    const prevPage = currentPage - 1;
-    if (prevPage < 0) return;
-
-    const firstIndex = prevPage * ITEM_PER_PAGE;
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
-    setCurrentPage(prevPage);
-  };
-
-  const specificHandler = (specificPage) => {
-    const firstIndex = (specificPage - 1) * ITEM_PER_PAGE;
-    setItems([...data].splice(firstIndex, ITEM_PER_PAGE));
-    setCurrentPage(specificPage - 1);
-    console.log(specificPage);
-  };
+  const {
+    totalPages,
+    nextHandler,
+    specificHandler,
+    prevHandler,
+    items,
+    currentPage,
+    setCurrentPage,
+  } = usePaginator(dataFiltered, ITEM_PER_PAGE, 0);
 
   return (
     <Container>
       <Row>
-        <Controls filters={selectedFilters} clean={clean} />
+        <Controls
+          filters={selectedFilters}
+          clean={clean}
+          setCurrentPage={setCurrentPage}
+        />
       </Row>
 
       <RowItemStyled className="">
@@ -65,12 +55,14 @@ export function ServicesPage() {
             data={data}
             addFilter={addFilter}
             deleteFilter={deleteFilter}
+            setCheckFilter={setCheckFilter}
+            checkFilter={checkFilter}
           />
         </Col>
         <Col md={9}>
           <ContainerNumberItemsStyled>
             <strong>
-              <span> {data.length} Servicios Encontrados</span>
+              <span> {dataFiltered.length} Servicios Encontrados</span>
             </strong>
             <div>
               <span>Visualizacion: </span>
