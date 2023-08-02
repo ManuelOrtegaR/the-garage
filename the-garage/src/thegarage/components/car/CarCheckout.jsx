@@ -1,9 +1,21 @@
-import { Card, Col, Form, Row } from "react-bootstrap";
-import { ButtonStyledSuccess } from "../products";
-import { BtnSubmitStyled } from "../../../components";
-import { CardChekoutStyle } from "./StylesComponentsCar";
+import { Card, Col, Form, Row } from 'react-bootstrap';
+import { ButtonStyledSuccess } from '../products';
+import { BtnSubmitStyled } from '../../../components';
+import { CardChekoutStyle } from './StylesComponentsCar';
+import { useContext } from 'react';
+import { AuthContext } from '../../../auth/context/AuthContext';
 
 const CarCheckout = () => {
+  const { carElements } = useContext(AuthContext);
+  const subtotal = () => {
+    let subtotal = 0;
+    for (let i = 0; i < carElements.length; i++) {
+      subtotal += carElements[i].price;
+    }
+    return subtotal;
+  };
+  const domicilio = 5000;
+  const total = subtotal() + domicilio;
   return (
     <CardChekoutStyle>
       <Card.Body>
@@ -12,7 +24,7 @@ const CarCheckout = () => {
           <img
             src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
             className="img-fluid rounded-3"
-            style={{ width: "45px" }}
+            style={{ width: '45px' }}
             alt="Avatar"
           />
         </div>
@@ -72,15 +84,15 @@ const CarCheckout = () => {
         <hr className="my-4" />
         <div className="d-flex justify-content-between">
           <p className="mb-2">Subtotal</p>
-          <p className="mb-2">$4798.00</p>
+          <p className="mb-2">{subtotal()}</p>
         </div>
         <div className="d-flex justify-content-between">
           <p className="mb-2">Domicilio</p>
-          <p className="mb-2">$20.00</p>
+          <p className="mb-2">{domicilio}</p>
         </div>
         <div className="d-flex justify-content-between mb-4">
           <p className="mb-2">Total(Incl. impuestos)</p>
-          <p className="mb-2">$4818.00</p>
+          <p className="mb-2">{total}</p>
         </div>
         <BtnSubmitStyled variant="light" width="100%">
           <div className="d-flex justify-content-around">

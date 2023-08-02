@@ -1,4 +1,3 @@
-import { BtnDangerLinkStyled } from '../../components/StyledButtons';
 import {
   AboutUs,
   CarrouselComponent,

@@ -1,23 +1,23 @@
 import {
   SubTitleStyled,
   TextStyled,
-} from "../components/home/ComponentsStyles";
-import Form from "react-bootstrap/Form";
-import { BtnSubmitStyled } from "../../components/StyledButtons";
-import { Formik, ErrorMessage } from "formik";
-import { toFormikValidationSchema } from "zod-formik-adapter";
-import { z } from "zod";
+} from '../components/home/ComponentsStyles';
+import Form from 'react-bootstrap/Form';
+import { BtnSubmitStyled } from '../../components/StyledButtons';
+import { Formik, ErrorMessage } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { z } from 'zod';
 
 const nameRqd = z.string({
-  required_error: "El nombre es requerido",
+  required_error: 'El nombre es requerido',
 });
 
 const emailRqd = z.string({
-  required_error: "El email es requerido",
+  required_error: 'El email es requerido',
 });
 
 const questionRqd = z.string({
-  required_error: "La pregunta o tema a consultar es requerida",
+  required_error: 'La pregunta o tema a consultar es requerida',
 });
 
 const pqrSchema = z.object({
@@ -28,9 +28,9 @@ const pqrSchema = z.object({
 
 export const Contact = () => {
   const initialValues = {
-    name: "",
-    email: "",
-    question: "",
+    name: '',
+    email: '',
+    question: '',
   };
 
   return (
@@ -68,7 +68,7 @@ export const Contact = () => {
                       onBlur={handleBlur}
                       value={values.name}
                       className={
-                        touched.name && errors.name ? "is-invalid" : ""
+                        touched.name && errors.name ? 'is-invalid' : ''
                       }
                     />
                     <ErrorMessage
@@ -86,7 +86,7 @@ export const Contact = () => {
                       onBlur={handleBlur}
                       value={values.email}
                       className={
-                        touched.email && errors.email ? "is-invalid" : ""
+                        touched.email && errors.email ? 'is-invalid' : ''
                       }
                     />
                     <ErrorMessage
@@ -105,7 +105,7 @@ export const Contact = () => {
                       onBlur={handleBlur}
                       value={values.name}
                       className={
-                        touched.question && errors.question ? "is-invalid" : ""
+                        touched.question && errors.question ? 'is-invalid' : ''
                       }
                     />
                     <ErrorMessage
@@ -123,26 +123,25 @@ export const Contact = () => {
                   </BtnSubmitStyled>
                 </Form>
               </div>
-            </div>
-
-            <div className="col-6 d-flex flex-column">
-              <TextStyled>Encuentranos</TextStyled>
-              <div className="row align-items-center">
-                <div className="col-6">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18913.802088584853!2d-74.0955343109588!3d4.746218924708735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d635520a33914!2zQm9nb3TDoQ!5e0!3m2!1ses-419!2sco!4v1687744931965!5m2!1ses-419!2sco"
-                    width="300"
-                    height="200"
-                    style={{ border: 0 }}
-                    loading="lazy"
-                  ></iframe>
-                </div>
-                <div className="col-6">
-                  <p>Dirección: Cll 16 #21-54</p>
-                  <p>Ciudad: Bogotá, Colombia</p>
-                  <p>Correo: info@thegarage.com</p>
-                  <p>Celular: + 57 310 655 8974</p>
-                  <p>Whatsapp: + 57 310 655 8974</p>
+              <div className="col-6 d-flex flex-column">
+                <TextStyled>Encuentranos</TextStyled>
+                <div className="row align-items-center">
+                  <div className="col-6">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18913.802088584853!2d-74.0955343109588!3d4.746218924708735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d635520a33914!2zQm9nb3TDoQ!5e0!3m2!1ses-419!2sco!4v1687744931965!5m2!1ses-419!2sco"
+                      width="300"
+                      height="200"
+                      style={{ border: 0 }}
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  <div className="col-6">
+                    <p>Dirección: Cll 16 #21-54</p>
+                    <p>Ciudad: Bogotá, Colombia</p>
+                    <p>Correo: info@thegarage.com</p>
+                    <p>Celular: + 57 310 655 8974</p>
+                    <p>Whatsapp: + 57 310 655 8974</p>
+                  </div>
                 </div>
               </div>
             </div>

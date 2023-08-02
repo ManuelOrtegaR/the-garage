@@ -6,9 +6,9 @@ const navItems = [
   { name: 'Inicio', url: '/home' },
   { name: 'Productos', url: '/productos' },
   { name: 'Servicios', url: '/servicios' },
-  { name: 'Empresas', url: '/empresas' },
-  { name: '¿Quiénes somos?', url: '/acercade' },
-  { name: 'PQR', url: '/pqr' },
+  { name: 'Empresas', url: '/home' },
+  { name: '¿Quiénes somos?', url: '/home' },
+  { name: 'PQR', url: '/contacto' },
   { name: 'Contacto', url: '/contacto' },
 ];
 

@@ -13,7 +13,7 @@ import { IconContainer } from '../../../ui/components/ComponentsStyles';
 export const OurCompanys = () => {
   return (
     <>
-      <SubTitleStyled>Empresas</SubTitleStyled>
+      <SubTitleStyled id="empresas">Empresas</SubTitleStyled>
       <TextStyled>
         Estas son algunas de las empresas que encontrarás en THE GARAGE
       </TextStyled>
