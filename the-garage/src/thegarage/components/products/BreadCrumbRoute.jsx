@@ -1,24 +1,43 @@
+import { useReducer, useEffect } from "react";
 import { Breadcrumb } from "react-bootstrap";
 import { ContainerBreadcumStyled } from "./StyledsComponentsProducts";
-
-// import { useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { historyReducer } from "./reducers/BreadCrumbReducer";
+import { types } from "./reducers/types";
 
 export const BreadCrumbRoute = () => {
-  // const location = useLocation();
-  // const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [history, dispatch] = useReducer(historyReducer, [
+    { routeName: "Inicio", path: "/" },
+  ]);
 
-  // // const currentPath = history.location.pathname;
-  // console.log(location);
+  useEffect(() => {
+    dispatch({
+      type: types.add,
+      payload: {
+        routeName: location.pathname.substring(1).replace(/\//g, "-"),
+        path: location.pathname,
+      },
+    });
+  }, [location.pathname]);
+
+  const handleClickBradcrumb = (path) => {
+    navigate(path);
+  };
+
   return (
     <div>
       <ContainerBreadcumStyled>
         <Breadcrumb>
-          <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-          <Breadcrumb.Item href="#">Productos</Breadcrumb.Item>
-          <Breadcrumb.Item href="#">Carros</Breadcrumb.Item>
-          <Breadcrumb.Item href="#">Repuestos</Breadcrumb.Item>
-          <Breadcrumb.Item href="#">Llantas</Breadcrumb.Item>
-          {/* <Breadcrumb.Item active>Data</Breadcrumb.Item> */}
+          {history.map((item, index) => (
+            <Breadcrumb.Item
+              key={index}
+              onClick={() => handleClickBradcrumb(item.path)}
+            >
+              {item.routeName}
+            </Breadcrumb.Item>
+          ))}
         </Breadcrumb>
       </ContainerBreadcumStyled>
     </div>
