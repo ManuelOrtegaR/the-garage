@@ -63,11 +63,11 @@ export const BtnDangerSubmitStyled = styled('button')(
     color: variant === 'light' ? 'red' : 'white',
     fontSize: theme.fonts[fontSize],
     backgroundColor: variant === 'light' ? theme.colors.gray100 : 'red',
-    border: '2px solid red',
+    border: '2px none red',
     borderRadius: 5,
     '&:hover': {
       backgroundColor: variant === 'light' ? theme.colors.gray200 : 'darkred',
-      border: '2px solid darkred',
+      border: '2px none darkred',
       color: 'white',
     },
   }),

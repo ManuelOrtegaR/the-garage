@@ -1,15 +1,17 @@
+import { useContext } from 'react';
 import { BtnSubmitStyled } from '../../../components/StyledButtons';
 import { NavLinkEdit } from './StylesComponentsProfiles';
-import { users } from './TestProfiles';
+import { AuthContext } from '../../../auth/context/AuthContext';
 
 export const Details = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="m-auto" style={{ width: '400px' }}>
       <span className="fw-bold fs-5 mx-auto">Informacion de empresa</span>
       <div className="mt-4 text-nowrap">
         <div className="d-flex py-1">
           <span className="w-50">NIT</span>
-          <span className="w-50">{users[0].document}</span>
+          <span className="w-50">{user.data.document}</span>
           <NavLinkEdit className={'ms-2'}>
             <i className="bi bi-pencil-fill px-2"></i>
           </NavLinkEdit>

@@ -1,5 +1,4 @@
 import Nav from 'react-bootstrap/Nav';
-import { users } from './TestProfiles';
 import { NavLinkStyled } from './StylesComponentsProfiles';
 import { useContext } from 'react';
 import { AuthContext } from '../../../auth/context/AuthContext';
@@ -63,22 +62,22 @@ export const itemsProfiles = [
 ];
 
 export const NavProfiles = () => {
-  const { logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const onLogout = () => {
     logout();
   };
 
   return (
     <Nav variant="pills" defaultActiveKey="/home" className="flex-column">
-      {itemsProfiles.map(({ name, url, icon, by }) => {
+      {itemsProfiles.map((navItem) => {
         {
-          if (by.includes(users[0].type)) {
+          if (navItem.by.includes(user.userClass)) {
             return (
               <>
                 <Nav.Item>
-                  <NavLinkStyled to={url} className={'inactive'}>
-                    {icon}
-                    {name}
+                  <NavLinkStyled to={navItem.url} className={'inactive'}>
+                    {navItem.icon}
+                    {navItem.name}
                   </NavLinkStyled>
                 </Nav.Item>
               </>
