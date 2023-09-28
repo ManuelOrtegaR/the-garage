@@ -1,9 +1,9 @@
-import Form from "react-bootstrap/Form";
-import { TitlePg } from "../components/StyledsComponents";
-import { useState } from "react";
-import { BtnSubmitStyled } from "../../components/StyledButtons";
+import Form from 'react-bootstrap/Form';
+import { TitlePg } from '../components/StyledsComponents';
+import { useState } from 'react';
+import { BtnSubmitStyled } from '../../components/StyledButtons';
 //import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import Modal from 'react-bootstrap/Modal';
 
 function VerifyAccountModal() {
   const [show, setShow] = useState(true);

@@ -2,6 +2,7 @@ import { useEffect, useReducer, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { authReducer } from './authReducer';
 import { types } from '../types/types';
+import { clearSession, setSession } from '../../api/session';
 
 const init = () => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -18,21 +19,20 @@ export const AuthProvider = ({ children }) => {
   };
 
   const [authState, dispatch] = useReducer(authReducer, {}, init);
-  const login = (name = '', userClass, profileData = '') => {
-    const data = JSON.parse(profileData);
-    const user = { id: 'abc', name, userClass, data };
+  const login = (name = '', userClass, token, profileData = '') => {
+    const user = { name, userClass, profileData };
     const action = {
       type: types.login,
-      payload: user,
+      payload: { user, token },
     };
-    localStorage.setItem('user', JSON.stringify(user));
+    setSession(token);
     dispatch(action);
   };
   const logout = () => {
     const action = {
       type: types.logout,
     };
-    localStorage.removeItem('user');
+    clearSession();
     dispatch(action);
   };
   return (

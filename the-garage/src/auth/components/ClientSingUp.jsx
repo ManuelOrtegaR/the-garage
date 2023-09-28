@@ -1,76 +1,102 @@
-import Form from "react-bootstrap/Form";
+import Form from 'react-bootstrap/Form';
 //import Button from "react-bootstrap/Button";
-import VerifyAccountModal from "../components/VerifyAccountModal";
-import { useState } from "react";
-import { Formik, ErrorMessage } from "formik";
-import { toFormikValidationSchema } from "zod-formik-adapter";
-import { z } from "zod";
+import VerifyAccountModal from '../components/VerifyAccountModal';
+import { useState } from 'react';
+import { Formik, ErrorMessage } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { z } from 'zod';
 
-import { BtnSubmitStyled } from "../../components/StyledButtons";
-
-const nameRqd = z.string({
-  required_error: "El nombre es requerido",
-});
-
-const usernameRqd = z.string({
-  required_error: "El nombre de usuario es requerido",
-});
-
-const emailRqd = z.string({
-  required_error: "El correo es requerido",
-});
-
-const passwordRqd = z.string({
-  required_error: "La contraseña es requerida",
-});
-
-const cpasswordRqd = z.string({
-  required_error: "La confirmación de contraseña es requerida",
-});
+import { BtnSubmitStyled } from '../../components/StyledButtons';
+import { signUp } from '../../api/auth';
+import { getDepartments, getCity } from '../../api/localization';
 
 const clientSignUpSchema = z
   .object({
-    name: nameRqd,
-    username: usernameRqd,
-    email: emailRqd.email("Dirección de correo incorrecto"),
-    password: passwordRqd
-      .min(6, "La contraseña debe tener mínimo 6 caracteres")
-      .max(16, "La contraseña debe tener máximo 16 caracteres"),
-    cpassword: cpasswordRqd
-      .min(6, "La contraseña debe tener mínimo 6 caracteres")
-      .max(16, "La contraseña debe tener máximo 16 caracteres"),
+    email: z
+      .string({
+        required_error: 'El correo es requerido',
+      })
+      .email('Dirección de correo incorrecto'),
+    department: z.string(),
+    city: z.string(),
+    address: z.string({
+      required_error: 'La dirección es requerida',
+    }),
+    password: z
+      .string({
+        required_error: 'La contraseña es requerida',
+      })
+      .min(6, 'La contraseña debe tener mínimo 6 caracteres')
+      .max(16, 'La contraseña debe tener máximo 16 caracteres'),
+    cpassword: z
+      .string({
+        required_error: 'La confirmación de contraseña es requerida',
+      })
+      .min(6, 'La contraseña debe tener mínimo 6 caracteres')
+      .max(16, 'La contraseña debe tener máximo 16 caracteres'),
+    name: z.string({
+      required_error: 'El nombre es requerido',
+    }),
+    document_type: z.string(),
+    document_number: z.string(),
+    phone_number: z
+      .string()
+      .min(10, 'El teléfono debe tener mínimo 10 digitos')
+      .max(15, 'El teléfono debe tener máximo 15 digitos'),
   })
   .refine((data) => data.password === data.cpassword, {
-    message: "Las contraseñas no coinciden",
-    path: ["cpassword"], // path of error
+    message: 'Las contraseñas no coinciden',
+    path: ['cpassword'], // path of error
   });
 
-// .refine(
-//   (data) => data.cpassword === data.password,
-//   (data) => ({ message: `No paila, ${data.password}, ${data.cpassword}` })
-// );
+const departments = await getDepartments();
 
 function ClientSingUp() {
+  const [city, setCity] = useState([]);
+
+  const documentTypes = [
+    'Cédula de Ciudadanía',
+    'Cédula de Extranjería',
+    'Pasaporte',
+  ];
+
+  const handleChangeDepartment = async (event) => {
+    const value = event.target.value;
+    const result = await getCity(value);
+    setCity(result);
+  };
   const [verifyAccount, setVerifyAccount] = useState(false);
   const handleShowVerifyModal = () => setVerifyAccount(true);
 
   const initialValues = {
-    name: "",
-    username: "",
-    email: "",
-    password: "",
-    cpassword: "",
+    name: '',
+    email: '',
+    document_type: '',
+    document_number: '',
+    phone_number: '',
+    department: '',
+    city: '',
+    address: '',
+    password: '',
+    cpassword: '',
+  };
+
+  const onClientSignUp = async (formData) => {
+    const { cpassword, ...data } = formData;
+    const response = await signUp(data, 'cliente');
+    // TODO: If success navigate to signin, if error show error
+  };
+
+  const onSubmit = (values, { setSubmitting }) => {
+    onClientSignUp(values);
+    setSubmitting(false);
   };
 
   return (
     <>
-   
       <Formik
         initialValues={initialValues}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }}
+        onSubmit={onSubmit}
         validationSchema={toFormikValidationSchema(clientSignUpSchema)}
       >
         {({
@@ -81,6 +107,7 @@ function ClientSingUp() {
           handleBlur,
           handleSubmit,
           isSubmitting,
+          setFieldValue,
         }) => (
           <Form className="Form_client m-5" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicName">
@@ -92,7 +119,7 @@ function ClientSingUp() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.name}
-                className={touched.name && errors.name ? "is-invalid" : ""}
+                className={touched.name && errors.name ? 'is-invalid' : ''}
               />
               <ErrorMessage
                 name="name"
@@ -100,21 +127,153 @@ function ClientSingUp() {
                 className="invalid-feedback"
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicUserName">
-              <Form.Label>Nombre de Usuario</Form.Label>
-              <Form.Control
-                type="texto"
-                placeholder="Ingrese su nombre de Usuario"
-                name="username"
+
+            <Form.Group className="mb-3" controlId="formBasicDepartment">
+              <Form.Label>Departamento</Form.Label>
+              <Form.Select
+                name="department"
+                onChange={(e) => {
+                  handleChange(e), handleChangeDepartment(e);
+                }}
+                onBlur={handleBlur}
+                value={values.department}
+              >
+                <option value="0">Selecciona tu departamento</option>
+                {departments.map(({ departamento }) => {
+                  return (
+                    <option key={departamento} value={departamento}>
+                      {departamento}
+                    </option>
+                  );
+                })}
+              </Form.Select>
+              <ErrorMessage
+                name="department"
+                component="div"
+                className="invalid-feedback"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicDepartment">
+              <Form.Label>Ciudad</Form.Label>
+              <Form.Select
+                name="city"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.username}
+                value={values.city}
+                disabled={city.length === 0}
+              >
+                <option value="0">Selecciona tu ciudad</option>
+                {city.map((ciudad) => {
+                  return (
+                    <option key={ciudad.municipio} value={ciudad.municipio}>
+                      {ciudad.municipio}
+                    </option>
+                  );
+                })}
+              </Form.Select>
+              <ErrorMessage
+                name="city"
+                component="div"
+                className="invalid-feedback"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicAddress">
+              <Form.Label>Dirección</Form.Label>
+              <Form.Control
+                type="texto"
+                placeholder="Ingrese su dirección"
+                name="address"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.address}
                 className={
-                  touched.username && errors.username ? "is-invalid" : ""
+                  touched.address && errors.address ? 'is-invalid' : ''
                 }
               />
               <ErrorMessage
-                name="username"
+                name="address"
+                component="div"
+                className="invalid-feedback"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPhoto">
+              <Form.Label>Foto de perfil</Form.Label>
+              <Form.Control
+                type="file"
+                name="profile_photo"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  setFieldValue('profile_photo', file);
+                }}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicDocumentType">
+              <Form.Label>Tipo de documento</Form.Label>
+              <Form.Select
+                name="document_type"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.document_type}
+              >
+                <option value="0">Selecciona tu tipo de documento</option>
+                {documentTypes.map((documento) => {
+                  return (
+                    <option key={documento} value={documento}>
+                      {documento}
+                    </option>
+                  );
+                })}
+              </Form.Select>
+              <ErrorMessage
+                name="document_type"
+                component="div"
+                className="invalid-feedback"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicDocumentNumber">
+              <Form.Label>Número de documento</Form.Label>
+              <Form.Control
+                type="texto"
+                placeholder="Ingrese su número de documento"
+                name="document_number"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.document_number}
+                className={
+                  touched.document_number && errors.document_number
+                    ? 'is-invalid'
+                    : ''
+                }
+              />
+              <ErrorMessage
+                name="document_number"
+                component="div"
+                className="invalid-feedback"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPhone">
+              <Form.Label>Ingrese su telefono</Form.Label>
+              <Form.Control
+                type="texto"
+                placeholder="Ingrese su número de teléfono"
+                name="phone_number"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.phone_number}
+                className={
+                  touched.phone_number && errors.phone_number
+                    ? 'is-invalid'
+                    : ''
+                }
+              />
+              <ErrorMessage
+                name="phone_number"
                 component="div"
                 className="invalid-feedback"
               />
@@ -129,7 +288,7 @@ function ClientSingUp() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
-                className={touched.email && errors.email ? "is-invalid" : ""}
+                className={touched.email && errors.email ? 'is-invalid' : ''}
               />
               <ErrorMessage
                 name="email"
@@ -147,7 +306,7 @@ function ClientSingUp() {
                 onBlur={handleBlur}
                 value={values.password}
                 className={
-                  touched.password && errors.password ? "is-invalid" : ""
+                  touched.password && errors.password ? 'is-invalid' : ''
                 }
               />
               <ErrorMessage
@@ -166,7 +325,7 @@ function ClientSingUp() {
                 onBlur={handleBlur}
                 value={values.cpassword}
                 className={
-                  touched.cpassword && errors.cpassword ? "is-invalid" : ""
+                  touched.cpassword && errors.cpassword ? 'is-invalid' : ''
                 }
               />
               <ErrorMessage
@@ -178,8 +337,9 @@ function ClientSingUp() {
 
             <div className="d-flex justify-content-center">
               <BtnSubmitStyled
-                type="button"
-                onClick={handleShowVerifyModal}
+                type="submit"
+                // type="button"
+                // onClick={handleShowVerifyModal}
                 disabled={isSubmitting}
               >
                 Guardar
@@ -188,7 +348,7 @@ function ClientSingUp() {
           </Form>
         )}
       </Formik>
-      {verifyAccount && <VerifyAccountModal />}
+      {/* {verifyAccount && <VerifyAccountModal />} */}
     </>
   );
 }

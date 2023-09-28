@@ -5,14 +5,15 @@ import { useContext } from 'react';
 
 export const TestProfiles = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <div className="d-flex align-items-center justify-content-around">
-      {user.userClass !== 'admin' ? (
+      {user.userClass !== 'Administrador' ? (
         <>
           <div className="d-flex flex-column text-center ">
             <div className="position-relative mb-4">
               <Image
-                src={user.data.profile}
+                src={user.profileData.url_foto}
                 style={{ height: 100, width: 100 }}
                 roundedCircle
               />
@@ -24,28 +25,26 @@ export const TestProfiles = () => {
               </NavLinkProfile>
             </div>
             <span className="lh-1">{user.name}</span>
-            {user.userClass !== 'company' ? (
-              <span>{user.data.lastName}</span>
-            ) : null}
+            {user.userClass !== 'Empresa' ? <span>{user.name}</span> : null}
           </div>
           <div>
             <div className="d-flex py-1">
               <span className="w-50">Usuario:</span>
-              <span className="w-50">{user.data.user}</span>
+              <span className="w-50">{user.name}</span>
               <NavLinkEdit className={'ms-2'}>
                 <i className="bi bi-pencil-fill px-2"></i>
               </NavLinkEdit>
             </div>
             <div className="d-flex py-1">
               <span className="w-50">Tipo de documento:</span>
-              <span className="w-50">{user.data.documentType}</span>
+              <span className="w-50">{user.profileData.numero_documento}</span>
               <NavLinkEdit className={'ms-2'}>
                 <i className="bi bi-pencil-fill px-2"></i>
               </NavLinkEdit>
             </div>
             <div className="d-flex py-1">
               <span className="w-50">No. Documento:</span>
-              <span className="w-50">{user.data.document}</span>
+              <span className="w-50">{user.profileData.numero_documento}</span>
               <NavLinkEdit className={'ms-2'}>
                 <i className="bi bi-pencil-fill px-2"></i>
               </NavLinkEdit>
@@ -55,21 +54,21 @@ export const TestProfiles = () => {
           <div>
             <div className="d-flex py-1">
               <span className="w-25">Telefono:</span>
-              <span className="w-75">{user.data.phone}</span>
+              <span className="w-75">{user.profileData.telefono}</span>
               <NavLinkEdit>
                 <i className="bi bi-pencil-fill px-2"></i>
               </NavLinkEdit>
             </div>
             <div className="d-flex py-1">
               <span className="w-25">Direccion:</span>
-              <span className="w-75">{user.data.address}</span>
+              <span className="w-75">{user.profileData.direccion}</span>
               <NavLinkEdit>
                 <i className="bi bi-pencil-fill px-2"></i>
               </NavLinkEdit>
             </div>
             <div className="d-flex py-1">
               <span className="w-25">Correo:</span>
-              <span className="w-75">{user.data.email}</span>{' '}
+              <span className="w-75">{user.profileData.correo}</span>{' '}
               <NavLinkEdit>
                 <i className="bi bi-pencil-fill px-2"></i>
               </NavLinkEdit>
@@ -79,7 +78,9 @@ export const TestProfiles = () => {
       ) : (
         <>
           <span className="py-4">Usuario: {user.name}</span>
-          <span className="py-4">Correo: {user.data.email}</span>
+          <span className="py-4">
+            Correo: {user.profileData.numero_documento}
+          </span>
         </>
       )}
     </div>
