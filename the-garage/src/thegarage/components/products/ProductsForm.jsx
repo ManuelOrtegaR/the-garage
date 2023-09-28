@@ -2,10 +2,14 @@ import Form from "react-bootstrap/Form";
 //import Button from "react-bootstrap/Button";
 import { ButtonStyled } from "../../../auth/components/StyledsComponents";
 import { FinishBtnStyle } from "../profiles/StylesComponentsProfiles";
-import { Col, Row } from "react-bootstrap";
+import { Alert, Col, Row } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { z } from "zod";
+import { createProduct } from "../../../api/products";
+import { formatError } from "./utils";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const refRqd = z.string({
   required_error: "La referencia es requerida",
@@ -40,48 +44,92 @@ const unidadesRqd = z
   })
   .int({ message: "Las unidades diponibles deben ser un valor entero" });
 
-const imageRqd = z.string({
+const imageRqd = z.any({
   required_error: "La imagen del producto es requerida",
+});
+const marcarqd = z.string({
+  required_error: "La marca del producto es requerida.",
+});
+
+const tipo_entregaRqd = z.string({
+  required_error: "El tipo de Entrega es requerido",
 });
 
 const productSchema = z.object({
-  ref: refRqd,
-  productName: productNameRqd,
+  nombre_categoria: refRqd,
+  nombre: productNameRqd,
   descripcion: descripcionRqd,
-  dataSheet: dataSheetRqd,
+  ficha_tecnica: dataSheetRqd,
   iva: ivaRqd,
-  price: priceRqd,
-  units: unidadesRqd,
-  image: imageRqd.refine((value) => !!value, {
-    message: "Debe seleccionar un archivo",
-    path: ["image"],
-  }),
+  precio: priceRqd,
+  cantidad_disponible: unidadesRqd,
+  images: imageRqd,
+  marca: marcarqd,
+  tipo_entrega: tipo_entregaRqd,
 });
 
 export const ProductsForm = () => {
   const initialValues = {
-    ref: "",
-    productName: "",
+    nombre_categoria: "",
+    nombre: "",
     descripcion: "",
-    dataSheet: "",
+    ficha_tecnica: "",
     iva: "",
-    price: "",
-    units: "",
-    image: "",
+    precio: "",
+    cantidad_disponible: "",
+    images: [],
+    marca: "",
+    tipo_entrega: "",
   };
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div className="singup w-100 m-auto ">
       <div className="singup__contenedor p-4 m-1 rounded-5 p-3 mb-2 bg-white text-dark">
         <div className="d-flex justify-content-between align-items-center">
           <span className="fs-6 fw-bold">Nuevo Producto </span>
+          {error && <Alert variant="danger">{error}</Alert>}
           <FinishBtnStyle>Volver</FinishBtnStyle>
         </div>
         <Formik
           initialValues={initialValues}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(JSON.stringify(values, null, 2));
-            setSubmitting(false);
+          onSubmit={async (values, { setSubmitting }) => {
+            try {
+              const formData = new FormData();
+
+              formData.append("nombre_categoria", values.nombre_categoria);
+              formData.append("nombre", values.nombre);
+              formData.append("descripcion", values.descripcion);
+              formData.append("ficha_tecnica", values.ficha_tecnica);
+              formData.append("impuestos", values.iva);
+              formData.append("precio", values.precio);
+              formData.append(
+                "cantidad_disponible",
+                values.cantidad_disponible
+              );
+              formData.append("images", values.images);
+              formData.append(
+                "id_empresa",
+                "40b0ea74-25e6-4566-8017-49a591c5b843"
+              );
+              formData.append("tipo_entrega", values.tipo_entrega);
+              formData.append("marca", values.marca);
+              formData.append("estatus", "true");
+
+              values.images.forEach((file, index) => {
+                formData.append(`images`, file);
+              });
+
+              const { data } = await createProduct(formData);
+
+              // setUser(data);
+              setSubmitting(false);
+              navigate(`/productDetail/${data.id}`);
+            } catch (e) {
+              const message = formatError(e);
+              setError(message);
+            }
           }}
           validationSchema={toFormikValidationSchema(productSchema)}
         >
@@ -93,8 +141,9 @@ export const ProductsForm = () => {
             handleBlur,
             handleSubmit,
             isSubmitting,
+            setFieldValue,
           }) => (
-            <Form className="product_Form mt-4">
+            <Form className="product_Form mt-4" onSubmit={handleSubmit}>
               <div className="d-flex justify-content-between align-items-center">
                 <Form.Group
                   as={Row}
@@ -102,20 +151,24 @@ export const ProductsForm = () => {
                   controlId="formBasicProdRef"
                 >
                   <Form.Label column sm="2">
-                    Referencia
+                    Nombre de Categoria
                   </Form.Label>
                   <Col>
                     <Form.Control
                       type="text"
                       placeholder="Ingrese el código o Referencia del producto"
-                      name="ref"
+                      name="nombre_categoria"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
-                      className={touched.ref && errors.ref ? "is-invalid" : ""}
+                      value={values.nombre_categoria}
+                      className={
+                        touched.nombre_categoria && errors.nombre_categoria
+                          ? "is-invalid"
+                          : ""
+                      }
                     />
                     <ErrorMessage
-                      name="ref"
+                      name="nombre_categoria"
                       component="div"
                       className="invalid-feedback"
                     />
@@ -133,18 +186,16 @@ export const ProductsForm = () => {
                     <Form.Control
                       type="text"
                       placeholder="Ingrese el nombre del producto"
-                      name="productName"
+                      name="nombre"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.nombre}
                       className={
-                        touched.productName && errors.productName
-                          ? "is-invalid"
-                          : ""
+                        touched.nombre && errors.nombre ? "is-invalid" : ""
                       }
                     />
                     <ErrorMessage
-                      name="productName"
+                      name="nombre"
                       component="div"
                       className="invalid-feedback"
                     />
@@ -168,7 +219,7 @@ export const ProductsForm = () => {
                     name="descripcion"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.name}
+                    value={values.descripcion}
                     className={
                       touched.descripcion && errors.descripcion
                         ? "is-invalid"
@@ -178,6 +229,67 @@ export const ProductsForm = () => {
 
                   <ErrorMessage
                     name="descripcion"
+                    component="div"
+                    className="invalid-feedback"
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formBasicProdMarca"
+              >
+                <Form.Label column sm="1">
+                  Marca
+                </Form.Label>
+                <Col>
+                  <Form.Control
+                    type="text"
+                    rows={2}
+                    placeholder="Ingrese la Marca del producto"
+                    name="marca"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.marca}
+                    className={
+                      touched.marca && errors.marca ? "is-invalid" : ""
+                    }
+                  />
+
+                  <ErrorMessage
+                    name="marca"
+                    component="div"
+                    className="invalid-feedback"
+                  />
+                </Col>
+              </Form.Group>
+
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formBasicProdEntrega"
+              >
+                <Form.Label column sm="1">
+                  Tipo de Entrega
+                </Form.Label>
+                <Col>
+                  <Form.Control
+                    type="text"
+                    rows={2}
+                    placeholder="Ingrese el tipo de Entrega del producto"
+                    name="tipo_entrega"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.tipo_entrega}
+                    className={
+                      touched.tipo_entrega && errors.tipo_entrega
+                        ? "is-invalid"
+                        : ""
+                    }
+                  />
+
+                  <ErrorMessage
+                    name="tipo_entrega"
                     component="div"
                     className="invalid-feedback"
                   />
@@ -197,16 +309,18 @@ export const ProductsForm = () => {
                     as="textarea"
                     rows={2}
                     placeholder="Ingrese la dicha tecnica del producto"
-                    name="dataSheet"
+                    name="ficha_tecnica"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.name}
+                    value={values.ficha_tecnica}
                     className={
-                      touched.dataSheet && errors.dataSheet ? "is-invalid" : ""
+                      touched.ficha_tecnica && errors.ficha_tecnica
+                        ? "is-invalid"
+                        : ""
                     }
                   />
                   <ErrorMessage
-                    name="dataSheet"
+                    name="ficha_tecnica"
                     component="div"
                     className="invalid-feedback"
                   />
@@ -226,16 +340,16 @@ export const ProductsForm = () => {
                     <Form.Control
                       type="number"
                       placeholder="Ingrese el precio del producto sin IVA"
-                      name="price"
+                      name="precio"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.precio}
                       className={
-                        touched.price && errors.price ? "is-invalid" : ""
+                        touched.precio && errors.precio ? "is-invalid" : ""
                       }
                     />
                     <ErrorMessage
-                      name="price"
+                      name="precio"
                       component="div"
                       className="invalid-feedback"
                     />
@@ -256,7 +370,7 @@ export const ProductsForm = () => {
                       name="iva"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.iva}
                       className={touched.iva && errors.iva ? "is-invalid" : ""}
                     />
                     <ErrorMessage
@@ -278,16 +392,19 @@ export const ProductsForm = () => {
                     <Form.Control
                       type="number"
                       placeholder="Ingrese las unidades disponibles"
-                      name="units"
+                      name="cantidad_disponible"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.cantidad_disponible}
                       className={
-                        touched.units && errors.units ? "is-invalid" : ""
+                        touched.cantidad_disponible &&
+                        errors.cantidad_disponible
+                          ? "is-invalid"
+                          : ""
                       }
                     />
                     <ErrorMessage
-                      name="units"
+                      name="cantidad_disponible"
                       component="div"
                       className="invalid-feedback"
                     />
@@ -295,7 +412,7 @@ export const ProductsForm = () => {
                 </Form.Group>
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                <Form.Group
+                {/* <Form.Group
                   as={Row}
                   className="align-items-center"
                   controlId="formBasicProdAvailability"
@@ -318,7 +435,7 @@ export const ProductsForm = () => {
                       />
                     </div>
                   </Col>
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group
                   as={Row}
                   className="align-items-center"
@@ -330,17 +447,22 @@ export const ProductsForm = () => {
                   <Col>
                     <Form.Control
                       type="file"
+                      multiple
                       size="sm"
-                      name="image"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.name}
+                      name="images"
+                      onChange={(e) => {
+                        // const file = e.currentTarget.files[0];
+                        const file = Array.from(e.currentTarget.files);
+                        setFieldValue("images", file);
+                      }}
+                      //onBlur={handleBlur}
+                      // value={values.name}
                       className={
-                        touched.image && errors.image ? "is-invalid" : ""
+                        touched.images && errors.images ? "is-invalid" : ""
                       }
                     />
                     <ErrorMessage
-                      name="image"
+                      name="images"
                       component="div"
                       className="invalid-feedback"
                     />

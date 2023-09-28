@@ -13,7 +13,7 @@ export const CardStore = ({ item }) => {
       <CardStoreStyle>
         {/* <Card.Header>AutoParts</Card.Header> */}
         <Card.Body>
-          <Card.Title>{item.store}</Card.Title>
+          <Card.Title>{item.empresa.razon_social}</Card.Title>
           <Card.Text>
             En nuestro almacén, contamos con un extenso catálogo de repuestos
             que abarca desde piezas de automóviles, como frenos, filtros,
@@ -21,7 +21,8 @@ export const CardStore = ({ item }) => {
             motores, transmisiones, componentes hidráulicos y eléctricos.
             Trabajamos con los principales fabricantes y proveedores de
             repuestos reconocidos en el mercado, lo que nos permite ofrecer
-            productos de confianza y duraderos.
+            productos de confianza y duraderos. Aqui debo Modificar la Base de
+            datos para que admita una descripcion del producto
           </Card.Text>
           <div className="d-flex justify-content-end">
             <BtnSubmitStyled onClick={handleClick} width="40%">

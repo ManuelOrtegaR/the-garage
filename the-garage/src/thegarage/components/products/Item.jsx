@@ -15,6 +15,7 @@ import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../../components";
 import { Card } from "react-bootstrap";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../../auth/context/AuthContext";
+import { promedioValoraciones } from "./utils";
 
 export function Item({ item, isService }) {
   const [showAlert, setShowAlert] = useState(false);
@@ -40,15 +41,22 @@ export function Item({ item, isService }) {
   return (
     <ContainerStyled>
       <CardStyle>
-        <CardImgStyle variant="top" src={item.image} />
+        <CardImgStyle
+          variant="top"
+          src={
+            item.fotos.length > 0
+              ? item.fotos[0].url_foto
+              : "https://placehold.co/600x400"
+          }
+        />
         <Card.Body>
-          <CardTitleStyle>{item.title}</CardTitleStyle>
-          <CardDescroptionStyle>{item.description}</CardDescroptionStyle>
+          <CardTitleStyle>{item.nombre}</CardTitleStyle>
+          <CardDescroptionStyle>{item.descripcion}</CardDescroptionStyle>
           <Card.Text className="fs-4">
-            <strong>${item.price.toLocaleString("es-CO")}</strong>
+            <strong>${item.precio.toLocaleString("es-CO")}</strong>
           </Card.Text>
           <CardAvalaibleStyle>
-            {item.availability.despacho ? (
+            {item.tipo_entrega.toLowerCase().includes("domi") ? (
               <i className="bi bi-check"></i>
             ) : (
               <i className="bi bi-x"></i>
@@ -56,7 +64,7 @@ export function Item({ item, isService }) {
             {isService ? "Servicio a domicilio" : "Disponible para despacho"}
           </CardAvalaibleStyle>
           <CardAvalaibleStyle>
-            {item.availability.retiro ? (
+            {item.tipo_entrega.toLowerCase().includes("retiro") ? (
               <i className="bi bi-check"></i>
             ) : (
               <i className="bi bi-x"></i>
@@ -64,17 +72,23 @@ export function Item({ item, isService }) {
             {isService ? "Servicio en Taller" : "Disponible para Retiro"}
           </CardAvalaibleStyle>
           <Card.Text>
-            {/* Creo array undefined con el numero de raiting */}
-            {[...Array(item.rating)].map((_, index) => (
-              <IconStyled key={index} className="bi bi-star-fill"></IconStyled>
-            ))}
-            {[...Array(5 - item.rating)].map((_, index) => (
-              <IconStyled key={index} className="bi bi-star"></IconStyled>
-            ))}
+            {[...Array(promedioValoraciones(item.valoraciones))].map(
+              (_, index) => (
+                <IconStyled
+                  key={index}
+                  className="bi bi-star-fill"
+                ></IconStyled>
+              )
+            )}
+            {[...Array(5 - promedioValoraciones(item.valoraciones))].map(
+              (_, index) => (
+                <IconStyled key={index} className="bi bi-star"></IconStyled>
+              )
+            )}
 
-            <span> {item.rating} </span>
+            <span> {promedioValoraciones(item.valoraciones)} </span>
           </Card.Text>
-          {!user || user.userClass === "client" ? (
+          {!user || user.userClass === "Cliente" ? (
             <ContainerButtonStyled>
               <BtnSubmitStyled
                 onClick={(event) => {

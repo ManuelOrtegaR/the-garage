@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useCounter } from "../../../hooks/useCounter";
+import { promedioValoraciones } from "./utils";
 
 export const CardProduct_store = ({ item }) => {
   const { counter, increment, decrement } = useCounter(1);
@@ -29,10 +30,10 @@ export const CardProduct_store = ({ item }) => {
         <Card.Body>
           <div className="d-flex flex-wrap justify-content-between">
             <CardStoreDescriptionStyle>
-              <Card.Title>{item.title}</Card.Title>
+              <Card.Title>{item.nombre}</Card.Title>
 
               <Card.Text>
-                <div>{item.title}</div>
+                <div>{item.descripcion}</div>
               </Card.Text>
             </CardStoreDescriptionStyle>
             <div>
@@ -43,23 +44,28 @@ export const CardProduct_store = ({ item }) => {
                 >
                   <div>
                     <div>Precio por Unidad.</div>
-                    <div className="fs-4">{item.price}</div>
+                    <div className="fs-4">
+                      ${item.precio.toLocaleString("es-CO")}
+                    </div>
                     <div>
-                      {/* Creo array undefined con el numero de raiting */}
-                      {[...Array(item.rating)].map((_, index) => (
-                        <IconStyled
-                          key={index}
-                          className="bi bi-star-fill"
-                        ></IconStyled>
-                      ))}
-                      {[...Array(5 - item.rating)].map((_, index) => (
+                      {[...Array(promedioValoraciones(item.valoraciones))].map(
+                        (_, index) => (
+                          <IconStyled
+                            key={index}
+                            className="bi bi-star-fill"
+                          ></IconStyled>
+                        )
+                      )}
+                      {[
+                        ...Array(5 - promedioValoraciones(item.valoraciones)),
+                      ].map((_, index) => (
                         <IconStyled
                           key={index}
                           className="bi bi-star"
                         ></IconStyled>
                       ))}
 
-                      <span> {item.rating} </span>
+                      <span> {promedioValoraciones(item.valoraciones)} </span>
                     </div>
                   </div>
 

@@ -9,11 +9,18 @@ import {
 import { ContainerBadgeStyled } from "./StyledsComponentsProducts";
 import { BreadCrumbRoute } from "./BreadCrumbRoute";
 import { BtnSubmitStyled } from "../../../components";
+import { set } from "zod";
 
-export function Controls({ filters, clean, setCurrentPage }) {
+export function Controls({
+  filters,
+  clean,
+  setCurrentPage,
+  setFiltrosSeleccionadosAgrupados,
+}) {
   const cleanAll = () => {
     clean();
     setCurrentPage(0);
+    setFiltrosSeleccionadosAgrupados({});
   };
   return (
     <>

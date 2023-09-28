@@ -4,6 +4,8 @@ import {
   Badgestyled,
   H4Styled,
 } from "./StyledsComponentsProducts";
+import { generarQueryFiltros, promedioValoraciones } from "./utils";
+import { useNavigate } from "react-router-dom";
 
 export function Filter({
   data,
@@ -11,10 +13,11 @@ export function Filter({
   deleteFilter,
   checkFilter,
   setCheckFilter,
-  // selectedFiltersCategory,
-  // setSelectedFiltersCategory,
+  filtrosSeleccionadosAgrupados,
+  setFiltrosSeleccionadosAgrupados,
 }) {
-  const handlerChange = (event) => {
+  const navigate = useNavigate();
+  const handlerChange = (event, type) => {
     let label = event.target.labels[0].innerText;
     if (label.startsWith("$")) {
       label = label.replace(/[$.]/g, "");
@@ -22,12 +25,30 @@ export function Filter({
 
     if (event.target.checked) {
       addFilter(label);
+      setFiltrosSeleccionadosAgrupados({
+        ...filtrosSeleccionadosAgrupados,
+        [type]:
+          label +
+          (filtrosSeleccionadosAgrupados[type]
+            ? "-" + filtrosSeleccionadosAgrupados[type]
+            : ""),
+      });
     } else {
       deleteFilter(label);
+      let filtrosSeleccionadosAgrupadosAux = filtrosSeleccionadosAgrupados;
+      let filtrosSeleccionadosAgrupadosAux2 =
+        filtrosSeleccionadosAgrupadosAux[type].split("-");
+      filtrosSeleccionadosAgrupadosAux2 =
+        filtrosSeleccionadosAgrupadosAux2.filter((filt) => filt !== label);
+      filtrosSeleccionadosAgrupadosAux[type] =
+        filtrosSeleccionadosAgrupadosAux2.join("-");
+      setFiltrosSeleccionadosAgrupados(filtrosSeleccionadosAgrupadosAux);
     }
+    // const query = generarQueryFiltros(filtrosSeleccionadosAgrupados);
+
+    // navigate(`/productos?${query}`);
 
     setCheckFilter({ ...checkFilter, [label]: !checkFilter[label] });
-    // setSelectedFiltersCategory([...selectedFiltersCategory, "Lubricantes"]);
   };
 
   const generateFilter = (dataFilter, type) => {
@@ -35,15 +56,15 @@ export function Filter({
     let uniqueElements = [];
     elements = dataFilter.map((element) => {
       return type === "category"
-        ? element.category
+        ? element.categoria.nombre_categoria
         : type === "price"
-        ? element.price
+        ? element.precio
         : type === "brand"
-        ? element.brand
+        ? element.marca
         : type === "rating"
-        ? element.rating
+        ? promedioValoraciones(element.valoraciones)
         : type === "store"
-        ? element.store
+        ? element.empresa.razon_social
         : null;
     });
 
@@ -67,7 +88,9 @@ export function Filter({
           type="checkbox"
           id={`flexCheckChecked${filt}`}
           label={type === "price" ? "$" + filt.toLocaleString("es-CO") : filt}
-          onChange={handlerChange}
+          onChange={() => {
+            handlerChange(event, type);
+          }}
           checked={checkFilter[filt] || false}
         />
         {type === "rating"

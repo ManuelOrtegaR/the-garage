@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { getSession, clearSession } from './session';
+import axios from "axios";
+import { getSession, clearSession } from "./session";
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -20,7 +20,7 @@ instance.interceptors.request.use(
   function (error) {
     // Do something with request error
     return Promise.reject(error);
-  },
+  }
 );
 
 // Add a response interceptor
@@ -36,7 +36,7 @@ instance.interceptors.response.use(
 
     if (error.response?.status === 401) {
       clearSession();
-      window.location = '/login';
+      window.location = "/login";
     }
 
     // Procesar los errores de todas las respuestas del backend
@@ -47,7 +47,7 @@ instance.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  },
+  }
 );
 
 // export async function get(url) {

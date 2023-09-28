@@ -13,6 +13,7 @@ export const SearchInput = () => {
       event.preventDefault();
       navigate(`/productos/${searchValue}`);
       setSearchValue("");
+      window.location.reload();
     }
   };
   const handleInputChange = (event) => {

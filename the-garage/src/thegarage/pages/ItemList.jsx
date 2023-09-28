@@ -1,4 +1,5 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
+
 import {
   Item,
   Controls,
@@ -8,15 +9,31 @@ import {
   ContainerNumberItemsStyled,
   ContainerVisualizationStyled,
 } from "../components";
-import { mockDataTest } from "../dataTest/dataMock";
 import { useFilter } from "../../hooks/useFilter";
 import { usePaginator } from "../../hooks/usePaginator";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+
+import { useSearchParams } from "react-router-dom";
+import { useProductos } from "../../domain/useProductos";
 
 export function ItemList() {
   const { searchValue } = useParams();
-  const [data, setData] = useState(mockDataTest);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(searchParams.get("offset") || 0);
+  const [filtrosSeleccionadosAgrupados, setFiltrosSeleccionadosAgrupados] =
+    useState({});
+  const navigate = useNavigate();
+
+  function cambiarPagina(newPage) {
+    setPage(newPage);
+  }
+
+  const { data, dataMeta, loading, error, datosParaFiltros } = useProductos(
+    page,
+    searchValue,
+    filtrosSeleccionadosAgrupados
+  );
 
   const {
     selectedFilters,
@@ -27,25 +44,29 @@ export function ItemList() {
     setCheckFilter,
     dataFiltered,
     dataSearch,
-    dataSearch2,
   } = useFilter([], data, searchValue);
 
-  const ITEM_PER_PAGE = 5;
+  const ITEM_PER_PAGE = 10;
 
   const {
     totalPages,
     nextHandler,
     specificHandler,
     prevHandler,
-    items,
     currentPage,
     setCurrentPage,
-  } = usePaginator(searchValue ? dataSearch : dataFiltered, ITEM_PER_PAGE, 0);
+  } = usePaginator(
+    selectedFilters > 0 ? data : dataMeta.total,
+    ITEM_PER_PAGE,
+    page / 10,
+    page
+  );
 
   return (
     <Container className="">
       <Row>
         <Controls
+          setFiltrosSeleccionadosAgrupados={setFiltrosSeleccionadosAgrupados}
           filters={selectedFilters}
           clean={clean}
           setCurrentPage={setCurrentPage}
@@ -55,11 +76,15 @@ export function ItemList() {
       <RowItemStyled className="">
         <Col md={3}>
           <Filter
-            data={searchValue ? dataSearch2 : data}
+            data={
+              selectedFilters.length > 0 ? datosParaFiltros : datosParaFiltros
+            }
             addFilter={addFilter}
             deleteFilter={deleteFilter}
             setCheckFilter={setCheckFilter}
             checkFilter={checkFilter}
+            filtrosSeleccionadosAgrupados={filtrosSeleccionadosAgrupados}
+            setFiltrosSeleccionadosAgrupados={setFiltrosSeleccionadosAgrupados}
           />
         </Col>
         <Col md={9}>
@@ -67,7 +92,7 @@ export function ItemList() {
             <strong>
               <span>
                 {" "}
-                {searchValue ? dataSearch.length : dataFiltered.length}{" "}
+                {/* {searchValue ? dataSearch.length : dataFiltered.length}{" "} */}
                 Productos Encontrados
               </span>
             </strong>
@@ -78,11 +103,13 @@ export function ItemList() {
             </div>
           </ContainerNumberItemsStyled>
           <ContainerVisualizationStyled>
+            {loading && <Spinner animation="border" variant="primary" />}
+            {error && <Alert variant="danger">{error}</Alert>}
             {searchValue
               ? dataSearch.map((element) => (
                   <Item key={element.id} item={element} />
                 ))
-              : items.map((element) => (
+              : dataFiltered.map((element) => (
                   <Item key={element.id} item={element} />
                 ))}
           </ContainerVisualizationStyled>
@@ -92,6 +119,7 @@ export function ItemList() {
             nextHandler={nextHandler}
             prevHandler={prevHandler}
             specificHandler={specificHandler}
+            cambiarPagina={cambiarPagina}
           />
         </Col>
       </RowItemStyled>

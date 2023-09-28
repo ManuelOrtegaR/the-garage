@@ -3,6 +3,7 @@ import {
   ContainerStyledPaginator,
   PaginationStyled,
 } from "./StyledsComponentsProducts";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function Paginator({
   nextHandler,
@@ -10,10 +11,36 @@ export function Paginator({
   currentPage,
   totalPages,
   specificHandler,
+  cambiarPagina,
 }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
   const specificPage = (page) => {
+    const rutaActual = location.pathname;
+    console.log(rutaActual);
+
     specificHandler(page);
+
+    navigate(`${rutaActual}?offset=${(page - 1) * 10}`);
+    cambiarPagina((page - 1) * 10);
   };
+
+  const irAsiguientePagina = () => {
+    if (currentPage + 1 < totalPages) {
+      specificPage(currentPage + 2);
+      nextHandler();
+    }
+  };
+
+  const irAPaginaAnterior = () => {
+    if (currentPage > 0) {
+      specificPage(currentPage);
+      prevHandler();
+    }
+  };
+
   const generatePages = () => {
     const pages = Array.from({ length: totalPages }, (_, index) => (
       <Pagination.Item
@@ -30,9 +57,9 @@ export function Paginator({
   return (
     <ContainerStyledPaginator>
       <PaginationStyled>
-        <Pagination.Prev onClick={prevHandler}> Prev</Pagination.Prev>
+        <Pagination.Prev onClick={irAPaginaAnterior}> Prev</Pagination.Prev>
         {generatePages()}
-        <Pagination.Next onClick={nextHandler}> Next</Pagination.Next>
+        <Pagination.Next onClick={irAsiguientePagina}> Next</Pagination.Next>
       </PaginationStyled>
     </ContainerStyledPaginator>
   );

@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
 
 import {
   Item,
@@ -7,21 +7,13 @@ import {
   ProductSheet,
 } from "../components";
 import { BreadCrumbRoute } from "../components/products/BreadCrumbRoute";
-import {
-  detail1_MockTest,
-  detail2_MockTest,
-  mockDataTest,
-} from "../dataTest/dataMock";
 import { useParams } from "react-router-dom";
+import { useProducto } from "../../domain/useProducto";
 
 export function ProductDetail() {
   const { id } = useParams();
 
-  const findItem = () => {
-    return mockDataTest[id - 1];
-  };
-
-  const item = findItem();
+  const { data, loading, error } = useProducto({ id });
 
   return (
     <Container>
@@ -29,22 +21,28 @@ export function ProductDetail() {
         <BreadCrumbRoute />
       </Row>
       <div className="pb-5">
-        <Row className="mt-5">
-          <Col className="" md={4}>
-            <ProductSheet item={item} />
-          </Col>
-          <Col md={8}>
-            <CardProduct_store item={item} />
-            <CardStore item={item} />
-            <div className="pt-5">PRODUCTOS RECOMENDADOS</div>
+        {loading && <Spinner animation="border" variant="primary" />}
+        {error && <Alert variant="danger">{error}</Alert>}
 
-            <div className="d-flex gap-1 ">
-              <Item key={1} item={detail1_MockTest} />
-              <Item key={2} item={detail2_MockTest} />
-              <Item key={3} item={detail2_MockTest} />
-            </div>
-          </Col>
-        </Row>
+        {data && (
+          <Row className="mt-5">
+            <Col className="" md={4}>
+              <ProductSheet item={data} />
+            </Col>
+            <Col md={8}>
+              <CardProduct_store item={data} />
+              <CardStore item={data} />
+              <div className="pt-5">PRODUCTOS RECOMENDADOS</div>
+
+              <div className="d-flex gap-1 ">
+                <Item key={1} item={data} />
+                <Item key={2} item={data} />
+                <Item key={3} item={data} />
+              </div>
+              <div className="pt-5">VALORACIONES</div>
+            </Col>
+          </Row>
+        )}
       </div>
     </Container>
   );
