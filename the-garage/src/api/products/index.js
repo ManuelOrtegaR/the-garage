@@ -23,6 +23,25 @@ export async function getProducts(limit = 10, offset = 0) {
 }
 
 /**
+ * Esta funcion se encargar de traer los productos de una empresa en especifico,
+ */
+
+export async function getProductsCompany(limit, offset) {
+  try {
+    const { data: response } = await http.get(
+      `/productos/misProductos?limit=${limit}&offset=${offset}`
+    );
+    const data = await Promise.all(
+      response.data.map((elemento) => decodeProductOutput(elemento))
+    );
+
+    return { data, meta: response.meta };
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+}
+
+/**
  * Esta funcion, se encarga de traer los productos que corrresponden con el parametro de busqueda
  */
 
@@ -89,6 +108,20 @@ export async function getProduct({ id }) {
 export async function createProduct(payload) {
   try {
     const { data: response } = await http.post(`/productos/`, payload);
+    const data = response.data;
+    return { data, meta: response.meta };
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+}
+
+/**
+ * Esta funcion asincrónica, 'updateProduct', se encarga de actualizar un producto en la API de The Garage.
+ */
+
+export async function updateProduct(payload, id) {
+  try {
+    const { data: response } = await http.put(`/productos/${id}`, payload);
     const data = response.data;
     return { data, meta: response.meta };
   } catch (error) {

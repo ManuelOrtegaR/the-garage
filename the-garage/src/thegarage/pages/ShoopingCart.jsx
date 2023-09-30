@@ -15,16 +15,6 @@ import CarCheckout from "../components/car/CarCheckout";
 export const ShoppingCart = () => {
   const type = "products";
 
-  const products = [
-    {
-      id: 1,
-      img: "https://placehold.co/65x65",
-      title: "Prueba",
-      cantidad: 1,
-      precio: 274.0,
-    },
-  ];
-
   return (
     <section>
       <Container className="pt-5 mb-5">
@@ -39,7 +29,7 @@ export const ShoppingCart = () => {
                     <Divisor />
                     {type === "products" ? (
                       <>
-                        <Description products={products} />
+                        <Description />
                         <CardElements />
                       </>
                     ) : (

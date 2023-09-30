@@ -11,8 +11,10 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useCounter } from "../../../hooks/useCounter";
 import { promedioValoraciones } from "./utils";
+import { useCart } from "../../store";
 
 export const CardProduct_store = ({ item }) => {
+  const { dispatch } = useCart();
   const { counter, increment, decrement } = useCounter(1);
   const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
@@ -21,6 +23,7 @@ export const CardProduct_store = ({ item }) => {
   }
 
   function handleClickSuceess() {
+    dispatch({ type: "ADD_TO_CART", payload: { item, cant: counter } });
     setShowAlert(!showAlert);
   }
 
@@ -100,7 +103,9 @@ export const CardProduct_store = ({ item }) => {
                 {showAlert && (
                   <AlertStyled
                     variant="primary"
-                    onClose={handleClickSuceess}
+                    onClose={() => {
+                      setShowAlert(!showAlert);
+                    }}
                     dismissible
                   >
                     Producto agregado

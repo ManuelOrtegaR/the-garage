@@ -16,10 +16,12 @@ import { Card } from "react-bootstrap";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../../auth/context/AuthContext";
 import { promedioValoraciones } from "./utils";
+import { useCart } from "../../store";
 
 export function Item({ item, isService }) {
   const [showAlert, setShowAlert] = useState(false);
-  const { user, addCarElement } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const { dispatch } = useCart();
 
   const navigate = useNavigate();
 
@@ -33,7 +35,7 @@ export function Item({ item, isService }) {
 
   function handleClickSuceess(item, cant) {
     if (user) {
-      addCarElement(item, cant);
+      dispatch({ type: "ADD_TO_CART", payload: { item, cant: 1 } });
       setShowAlert(!showAlert);
     } else navigate("/login");
   }

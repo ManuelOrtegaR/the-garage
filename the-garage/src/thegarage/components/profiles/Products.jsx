@@ -1,35 +1,62 @@
-import { Form } from 'react-bootstrap';
-import { PaginationProfiles } from './PaginationProfiles';
+import { Alert, Form, Spinner } from "react-bootstrap";
+import { PaginationProfiles } from "./PaginationProfiles";
+
 import {
   ItemStyle,
   ListGroupStyle,
   ShowOrder,
-} from './StylesComponentsProfiles';
-import Image from 'react-bootstrap/Image';
-import { BtnSubmitStyled } from '../../../components/StyledButtons';
-import { mockDataTest } from '../../dataTest/dataMock';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+} from "./StylesComponentsProfiles";
+import Image from "react-bootstrap/Image";
+import { BtnSubmitStyled } from "../../../components/StyledButtons";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useProductsCompany } from "../../../domain/useProductsCompany";
 
 export const Products = () => {
-  //React-router: Obtenemos el id de la url.
-  const viewProduct = useNavigate();
-  const addProduct = useNavigate();
+  const viewProduct = (product) => {
+    navigate(`/profile/products/${product.id}`, { state: { product } });
+  };
 
-  const [data, setData] = useState(mockDataTest);
-  const [products, setProducts] = useState([...data]);
+  const navigate = useNavigate();
+  const { data, loading, error } = useProductsCompany();
+
   const [productsBypage, setProducstsByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalProducst = products.length;
+  const totalProducst = data.length;
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   const lastIndex = currentPage * productsBypage;
   const firstIndex = lastIndex - productsBypage;
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    navigate("/profile/products/add");
+  };
+
+  const onSearch = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setFilteredProducts(
+        data.filter((product) => {
+          return product.nombre
+            .toLowerCase()
+            .includes(searchValue.toLowerCase());
+        })
+      );
+    }
+  };
+
+  const handleInputChange = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   return (
     <div className="w-100">
       <div className="d-flex justify-content-between align-items-center my-4 mx-3">
         <span className="fw-bold">Mis Productos</span>
-        <BtnSubmitStyled onClick={() => addProduct(`add`)}>
+
+        <BtnSubmitStyled onClick={onSubmit}>
           Agregar Nuevo Producto
         </BtnSubmitStyled>
       </div>
@@ -39,6 +66,8 @@ export const Products = () => {
           placeholder="Buscar Por Nombre"
           className="me-2 w-50"
           aria-label="Search"
+          onChange={handleInputChange}
+          onKeyDown={onSearch}
         />
         <div className="d-flex text-nowrap align-items-center">
           <span>Ordenar por: </span>
@@ -51,27 +80,56 @@ export const Products = () => {
         </div>
       </div>
       <ListGroupStyle className="m-3">
-        {products
-          .map((product) => (
-            <>
-              <ItemStyle>
-                <Image
-                  src={product.image}
-                  style={{ width: '65px', height: '65px' }}
-                ></Image>
-                <span className="col-3">{product.title}</span>
-                <span>Stock: {product.stock}</span>
-                <span className="fw-bold col-2">${product.price}</span>
-                <ShowOrder onClick={() => viewProduct(`${product.id}`)}>
-                  <i className="bi bi-eye-fill" />
-                </ShowOrder>
-                <ShowOrder>
-                  <i className="bi bi-trash-fill" />
-                </ShowOrder>
-              </ItemStyle>
-            </>
-          ))
-          .slice(firstIndex, lastIndex)}
+        {loading && <Spinner animation="border" variant="primary" />}
+        {error && <Alert variant="danger">{error}</Alert>}
+
+        {filteredProducts.length > 0
+          ? filteredProducts
+              .map((product) => (
+                <>
+                  <ItemStyle>
+                    <Image
+                      src={product.fotos[0].url_foto}
+                      style={{ width: "65px", height: "65px" }}
+                    ></Image>
+                    <span className="col-3">{product.nombre}</span>
+                    <span>Stock: {product.cantidad_disponible}</span>
+                    <span className="fw-bold col-2">
+                      ${product.precio.toLocaleString("es-CO")}
+                    </span>
+                    <ShowOrder onClick={() => viewProduct(product)}>
+                      <i className="bi bi-eye-fill" />
+                    </ShowOrder>
+                    <ShowOrder>
+                      <i className="bi bi-trash-fill" />
+                    </ShowOrder>
+                  </ItemStyle>
+                </>
+              ))
+              .slice(firstIndex, lastIndex)
+          : data
+              .map((product) => (
+                <>
+                  <ItemStyle>
+                    <Image
+                      src={product.fotos[0].url_foto}
+                      style={{ width: "65px", height: "65px" }}
+                    ></Image>
+                    <span className="col-3">{product.nombre}</span>
+                    <span>Stock: {product.cantidad_disponible}</span>
+                    <span className="fw-bold col-2">
+                      ${product.precio.toLocaleString("es-CO")}
+                    </span>
+                    <ShowOrder onClick={() => viewProduct(product)}>
+                      <i className="bi bi-eye-fill" />
+                    </ShowOrder>
+                    <ShowOrder>
+                      <i className="bi bi-trash-fill" />
+                    </ShowOrder>
+                  </ItemStyle>
+                </>
+              ))
+              .slice(firstIndex, lastIndex)}
       </ListGroupStyle>
       <PaginationProfiles
         byPage={productsBypage}

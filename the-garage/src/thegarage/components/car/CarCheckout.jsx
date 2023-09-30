@@ -1,21 +1,16 @@
-import { Card, Col, Form, Row } from 'react-bootstrap';
-import { ButtonStyledSuccess } from '../products';
-import { BtnSubmitStyled } from '../../../components';
-import { CardChekoutStyle } from './StylesComponentsCar';
-import { useContext } from 'react';
-import { AuthContext } from '../../../auth/context/AuthContext';
+import { Card, Col, Form, Row } from "react-bootstrap";
+import { ButtonStyledSuccess } from "../products";
+import { BtnSubmitStyled } from "../../../components";
+import { CardChekoutStyle } from "./StylesComponentsCar";
+import { useContext } from "react";
+import { AuthContext } from "../../../auth/context/AuthContext";
+import { useCart } from "../../store";
 
 const CarCheckout = () => {
-  const { carElements } = useContext(AuthContext);
-  const subtotal = () => {
-    let subtotal = 0;
-    for (let i = 0; i < carElements.length; i++) {
-      subtotal += carElements[i].price;
-    }
-    return subtotal;
-  };
+  const { state } = useCart();
+
   const domicilio = 5000;
-  const total = subtotal() + domicilio;
+  const total = state.total + domicilio;
   return (
     <CardChekoutStyle>
       <Card.Body>
@@ -24,7 +19,7 @@ const CarCheckout = () => {
           <img
             src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
             className="img-fluid rounded-3"
-            style={{ width: '45px' }}
+            style={{ width: "45px" }}
             alt="Avatar"
           />
         </div>
@@ -84,15 +79,15 @@ const CarCheckout = () => {
         <hr className="my-4" />
         <div className="d-flex justify-content-between">
           <p className="mb-2">Subtotal</p>
-          <p className="mb-2">{subtotal()}</p>
+          <p className="mb-2">${state.total.toLocaleString("es-CO")}</p>
         </div>
         <div className="d-flex justify-content-between">
           <p className="mb-2">Domicilio</p>
-          <p className="mb-2">{domicilio}</p>
+          <p className="mb-2">${domicilio.toLocaleString("es-CO")}</p>
         </div>
         <div className="d-flex justify-content-between mb-4">
           <p className="mb-2">Total(Incl. impuestos)</p>
-          <p className="mb-2">{total}</p>
+          <p className="mb-2">${total.toLocaleString("es-CO")}</p>
         </div>
         <BtnSubmitStyled variant="light" width="100%">
           <div className="d-flex justify-content-around">

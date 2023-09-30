@@ -1,11 +1,14 @@
-import { AuthProvider } from './auth';
-import { AppRouter } from './router/AppRouter';
-import './styles.css';
+import { AuthProvider } from "./auth";
+import { AppRouter } from "./router/AppRouter";
+import "./styles.css";
+import { CartProvider } from "./thegarage/store";
 
 function TheGarageApp() {
   return (
     <AuthProvider>
-      <AppRouter />
+      <CartProvider>
+        <AppRouter />
+      </CartProvider>
     </AuthProvider>
   );
 }
