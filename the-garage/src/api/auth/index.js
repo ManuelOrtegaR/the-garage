@@ -1,4 +1,4 @@
-import { instance as http } from "../http";
+import { instance as http } from '../http';
 
 export const signIn = async (payload) => {
   try {
@@ -8,12 +8,12 @@ export const signIn = async (payload) => {
     };
     const { data: responseData } = await http.post(
       `${import.meta.env.VITE_API_URL}/auth/signin`,
-      body
+      body,
     );
     const { data, meta } = responseData;
     const { user, typeData } = data;
     return {
-      name: typeData.nombre_completo,
+      name: typeData.nombre_completo || typeData.razon_social,
       type: user.tipo_usuario,
       token: meta.token,
       user,
@@ -26,13 +26,13 @@ export const signIn = async (payload) => {
 
 export const signUp = async (payload, role) => {
   const bodyData = (payload, role) => {
-    if (role === "cliente") {
+    if (role === 'cliente') {
       return {
         userData: {
           correo: payload.email,
           contrasena: payload.password,
-          tipo_usuario: "Cliente",
-          url_foto: "https://fotocliente.png",
+          tipo_usuario: 'Cliente',
+          url_foto: 'https://fotocliente.png',
           departamento: payload.department,
           ciudad: payload.city,
           direccion: payload.address,
@@ -49,14 +49,14 @@ export const signUp = async (payload, role) => {
         userData: {
           correo: payload.email,
           contrasena: payload.password,
-          tipo_usuario: "Empresa",
+          tipo_usuario: 'Empresa',
           departamento: payload.department,
           ciudad: payload.city,
           direccion: payload.address,
         },
         userTypeData: {
           razon_social: payload.name,
-          tipo_documento_empresa: "NIT",
+          tipo_documento_empresa: 'NIT',
           numero_documento_empresa: payload.nit,
           telefono: payload.phone,
           sitio_web: payload.website,
@@ -79,13 +79,13 @@ export const signUp = async (payload, role) => {
     const body = bodyData(payload, role);
 
     const form = new FormData();
-    form.append("data", JSON.stringify(body));
-    profilePhoto && form.append("images", profilePhoto);
-    cCommerceDocument && form.append("images", cCommerceDocument);
+    form.append('data', JSON.stringify(body));
+    profilePhoto && form.append('images', profilePhoto);
+    cCommerceDocument && form.append('images', cCommerceDocument);
 
     const { data: responseData } = await http.post(
       `${import.meta.env.VITE_API_URL}/auth/${role}/signup`,
-      form
+      form,
     );
     return responseData;
   } catch (error) {

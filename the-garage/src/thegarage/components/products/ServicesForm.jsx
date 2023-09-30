@@ -1,43 +1,44 @@
-import Form from "react-bootstrap/Form";
+import Form from 'react-bootstrap/Form';
 //import Button from "react-bootstrap/Button";
-import { ButtonStyled } from "../../../auth/components/StyledsComponents";
-import { FinishBtnStyle } from "../profiles/StylesComponentsProfiles";
-import { Col, Row } from "react-bootstrap";
+import { ButtonStyled } from '../../../auth/components/StyledsComponents';
+import { FinishBtnStyle } from '../profiles/StylesComponentsProfiles';
+import { Col, Row } from 'react-bootstrap';
 
-import { Formik, ErrorMessage } from "formik";
-import { toFormikValidationSchema } from "zod-formik-adapter";
-import { z } from "zod";
+import { Formik, ErrorMessage } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { z } from 'zod';
+import { useNavigate } from 'react-router-dom';
 
 const refRqd = z.string({
-  required_error: "La referencia es requerido",
+  required_error: 'La referencia es requerido',
 });
 
 const serviceNameRqd = z.string({
-  required_error: "El nombre del servicio es requerido",
+  required_error: 'El nombre del servicio es requerido',
 });
 
 const descripcionRqd = z.string({
-  required_error: "La descripción del servicio es requerida",
+  required_error: 'La descripción del servicio es requerida',
 });
 
 const dataSheetRqd = z.string({
-  required_error: "La Ficha técnica del servicio es requerida",
+  required_error: 'La Ficha técnica del servicio es requerida',
 });
 
 const priceRqd = z
   .number({
-    required_error: "El precio es requerido",
+    required_error: 'El precio es requerido',
   })
-  .int({ message: "El precio debe ser un valor Entero" });
+  .int({ message: 'El precio debe ser un valor Entero' });
 
 const ivaRqd = z
   .number({
-    required_error: "El porcentaje de IVA es requerido",
+    required_error: 'El porcentaje de IVA es requerido',
   })
-  .int({ message: "El porcentaje de IVA debe ser un valor Entero" });
+  .int({ message: 'El porcentaje de IVA debe ser un valor Entero' });
 
 const imageRqd = z.string({
-  required_error: "La imagen del servicio es requerida",
+  required_error: 'La imagen del servicio es requerida',
 });
 /*
 const checkFormat = (value) => {
@@ -56,8 +57,8 @@ const serviceSchema = z.object({
   iva: ivaRqd,
   price: priceRqd,
   image: imageRqd.refine((value) => !!value, {
-    message: "Debe seleccionar un archivo",
-    path: ["image"],
+    message: 'Debe seleccionar un archivo',
+    path: ['image'],
   }),
   /*  .refine((value) => !!checkFormat(value), {
       message: "Formato de archivo no válido",
@@ -66,14 +67,16 @@ const serviceSchema = z.object({
 });
 
 export const ServicesForm = () => {
+  const back = useNavigate();
+
   const initialValues = {
-    ref: "",
-    serviceName: "",
-    descripcion: "",
-    dataSheet: "",
-    iva: "",
-    price: "",
-    image: "",
+    ref: '',
+    serviceName: '',
+    descripcion: '',
+    dataSheet: '',
+    iva: '',
+    price: '',
+    image: '',
   };
 
   return (
@@ -81,7 +84,9 @@ export const ServicesForm = () => {
       <div className="singup__contenedor p-4 m-1 rounded-5 p-3 mb-2 bg-white text-dark">
         <div className="d-flex justify-content-between align-items-center">
           <span className="fs-6 fw-bold">Nuevo Servicio </span>
-          <FinishBtnStyle>Volver</FinishBtnStyle>
+          <FinishBtnStyle onClick={() => back('../services')}>
+            Volver
+          </FinishBtnStyle>
         </div>
         <Formik
           initialValues={initialValues}
@@ -118,7 +123,7 @@ export const ServicesForm = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.name}
-                      className={touched.ref && errors.ref ? "is-invalid" : ""}
+                      className={touched.ref && errors.ref ? 'is-invalid' : ''}
                     />
                     <ErrorMessage
                       name="ref"
@@ -145,8 +150,8 @@ export const ServicesForm = () => {
                       value={values.name}
                       className={
                         touched.serviceName && errors.serviceName
-                          ? "is-invalid"
-                          : ""
+                          ? 'is-invalid'
+                          : ''
                       }
                     />
                     <ErrorMessage
@@ -177,8 +182,8 @@ export const ServicesForm = () => {
                     value={values.name}
                     className={
                       touched.descripcion && errors.descripcion
-                        ? "is-invalid"
-                        : ""
+                        ? 'is-invalid'
+                        : ''
                     }
                   />
 
@@ -208,7 +213,7 @@ export const ServicesForm = () => {
                     onBlur={handleBlur}
                     value={values.name}
                     className={
-                      touched.dataSheet && errors.dataSheet ? "is-invalid" : ""
+                      touched.dataSheet && errors.dataSheet ? 'is-invalid' : ''
                     }
                   />
                   <ErrorMessage
@@ -233,7 +238,7 @@ export const ServicesForm = () => {
                       onBlur={handleBlur}
                       value={values.name}
                       className={
-                        touched.price && errors.price ? "is-invalid" : ""
+                        touched.price && errors.price ? 'is-invalid' : ''
                       }
                     />
                     <ErrorMessage
@@ -245,7 +250,7 @@ export const ServicesForm = () => {
                 </Form.Group>
                 <Form.Group as={Row} controlId="formBasicTax">
                   <Form.Label column sm="3">
-                    IVA %{" "}
+                    IVA %{' '}
                   </Form.Label>
                   <Col>
                     <Form.Control
@@ -255,7 +260,7 @@ export const ServicesForm = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.name}
-                      className={touched.iva && errors.iva ? "is-invalid" : ""}
+                      className={touched.iva && errors.iva ? 'is-invalid' : ''}
                     />
                     <ErrorMessage
                       name="iva"
@@ -312,7 +317,7 @@ export const ServicesForm = () => {
                       onBlur={handleBlur}
                       value={values.name}
                       className={
-                        touched.image && errors.image ? "is-invalid" : ""
+                        touched.image && errors.image ? 'is-invalid' : ''
                       }
                     />
                     <ErrorMessage

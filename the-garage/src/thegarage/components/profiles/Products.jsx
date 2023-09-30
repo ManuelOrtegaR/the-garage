@@ -1,23 +1,37 @@
 import { Form } from 'react-bootstrap';
+import { PaginationProfiles } from './PaginationProfiles';
 import {
   ItemStyle,
   ListGroupStyle,
   ShowOrder,
-  PaginationStyle,
-  PagEllipsisStyle,
-  PagItemStyle,
-  PagNextStyle,
-  PagPrevStyle,
 } from './StylesComponentsProfiles';
 import Image from 'react-bootstrap/Image';
 import { BtnSubmitStyled } from '../../../components/StyledButtons';
+import { mockDataTest } from '../../dataTest/dataMock';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export const Products = () => {
+  //React-router: Obtenemos el id de la url.
+  const viewProduct = useNavigate();
+  const addProduct = useNavigate();
+
+  const [data, setData] = useState(mockDataTest);
+  const [products, setProducts] = useState([...data]);
+  const [productsBypage, setProducstsByPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalProducst = products.length;
+
+  const lastIndex = currentPage * productsBypage;
+  const firstIndex = lastIndex - productsBypage;
+
   return (
     <div className="w-100">
       <div className="d-flex justify-content-between align-items-center my-4 mx-3">
         <span className="fw-bold">Mis Productos</span>
-        <BtnSubmitStyled>Agregar Nuevo Producto</BtnSubmitStyled>
+        <BtnSubmitStyled onClick={() => addProduct(`add`)}>
+          Agregar Nuevo Producto
+        </BtnSubmitStyled>
       </div>
       <div className="d-flex justify-content-between m-3">
         <Form.Control
@@ -37,74 +51,34 @@ export const Products = () => {
         </div>
       </div>
       <ListGroupStyle className="m-3">
-        <ItemStyle>
-          <Image src="https://placehold.co/65x65"></Image>
-          <span>Titulo del producto</span>
-          <span>Stock: 12</span>
-          <span className="fw-bold">$12.500</span>
-          <ShowOrder>
-            <i className="bi bi-eye-fill" />
-          </ShowOrder>
-          <ShowOrder>
-            <i className="bi bi-trash-fill" />
-          </ShowOrder>
-        </ItemStyle>
-        <ItemStyle>
-          <Image src="https://placehold.co/65x65"></Image>
-          <span>Titulo del producto</span>
-          <span>Stock: 12</span>
-          <span className="fw-bold">$12.500</span>
-          <ShowOrder>
-            <i className="bi bi-eye-fill" />
-          </ShowOrder>
-          <ShowOrder>
-            <i className="bi bi-trash-fill" />
-          </ShowOrder>
-        </ItemStyle>
-        <ItemStyle>
-          <Image src="https://placehold.co/65x65"></Image>
-          <span>Titulo del producto</span>
-          <span>Stock: 12</span>
-          <span className="fw-bold">$12.500</span>
-          <ShowOrder>
-            <i className="bi bi-eye-fill" />
-          </ShowOrder>
-          <ShowOrder>
-            <i className="bi bi-trash-fill" />
-          </ShowOrder>
-        </ItemStyle>
-        <ItemStyle>
-          <Image src="https://placehold.co/65x65"></Image>
-          <span>Titulo del producto</span>
-          <span>Stock: 12</span>
-          <span className="fw-bold">$12.500</span>
-          <ShowOrder>
-            <i className="bi bi-eye-fill" />
-          </ShowOrder>
-          <ShowOrder>
-            <i className="bi bi-trash-fill" />
-          </ShowOrder>
-        </ItemStyle>
+        {products
+          .map((product) => (
+            <>
+              <ItemStyle>
+                <Image
+                  src={product.image}
+                  style={{ width: '65px', height: '65px' }}
+                ></Image>
+                <span className="col-3">{product.title}</span>
+                <span>Stock: {product.stock}</span>
+                <span className="fw-bold col-2">${product.price}</span>
+                <ShowOrder onClick={() => viewProduct(`${product.id}`)}>
+                  <i className="bi bi-eye-fill" />
+                </ShowOrder>
+                <ShowOrder>
+                  <i className="bi bi-trash-fill" />
+                </ShowOrder>
+              </ItemStyle>
+            </>
+          ))
+          .slice(firstIndex, lastIndex)}
       </ListGroupStyle>
-      <PaginationStyle className="justify-content-center">
-        <PagPrevStyle>
-          <i className="bi bi-arrow-left p-1"></i>
-          Prev
-        </PagPrevStyle>
-        <PagItemStyle>{1}</PagItemStyle>
-        <PagItemStyle>{2}</PagItemStyle>
-        <PagItemStyle active>{3}</PagItemStyle>
-        <PagItemStyle>{4}</PagItemStyle>
-        <PagItemStyle>{5}</PagItemStyle>
-        <PagItemStyle>{6}</PagItemStyle>
-        <PagItemStyle>{7}</PagItemStyle>
-        <PagEllipsisStyle />
-        <PagItemStyle>{20}</PagItemStyle>
-        <PagNextStyle>
-          Next
-          <i className="bi bi-arrow-right p-1"></i>
-        </PagNextStyle>
-      </PaginationStyle>
+      <PaginationProfiles
+        byPage={productsBypage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        total={totalProducst}
+      />
     </div>
   );
 };

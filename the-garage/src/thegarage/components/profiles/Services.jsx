@@ -1,23 +1,37 @@
 import { Form } from 'react-bootstrap';
+import { PaginationProfiles } from './PaginationProfiles';
 import {
   ItemStyle,
   ListGroupStyle,
   ShowOrder,
-  PaginationStyle,
-  PagEllipsisStyle,
-  PagItemStyle,
-  PagNextStyle,
-  PagPrevStyle,
 } from './StylesComponentsProfiles';
 import Image from 'react-bootstrap/Image';
 import { BtnSubmitStyled } from '../../../components/StyledButtons';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { mockDataTestServices } from '../../dataTest/dataMock';
 
 export const Services = () => {
+  //React-router: Obtenemos el id de la url.
+  const viewService = useNavigate();
+  const addService = useNavigate();
+
+  const [data, setData] = useState(mockDataTestServices);
+  const [services, setService] = useState([...data]);
+  const [serviceBypage, setServicesByPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalService = services.length;
+
+  const lastIndex = currentPage * serviceBypage;
+  const firstIndex = lastIndex - serviceBypage;
+
   return (
     <div className="w-100">
       <div className="d-flex justify-content-between align-items-center my-4 mx-3">
         <span className="fw-bold">Mis Servicios</span>
-        <BtnSubmitStyled>Agregar Nuevo Servicio</BtnSubmitStyled>
+        <BtnSubmitStyled onClick={() => addService('add')}>
+          Agregar Nuevo Servicio
+        </BtnSubmitStyled>
       </div>
       <div className="d-flex justify-content-between m-3">
         <Form.Control
@@ -36,75 +50,35 @@ export const Services = () => {
           </select>
         </div>
       </div>
-      <ListGroupStyle className="m-3">
-        <ItemStyle>
-          <Image src="https://placehold.co/65x65"></Image>
-          <span>Titulo del producto</span>
-          <span>Stock: 12</span>
-          <span className="fw-bold">$12.500 - $50.000</span>
-          <ShowOrder>
-            <i className="bi bi-eye-fill" />
-          </ShowOrder>
-          <ShowOrder>
-            <i className="bi bi-trash-fill" />
-          </ShowOrder>
-        </ItemStyle>
-        <ItemStyle>
-          <Image src="https://placehold.co/65x65"></Image>
-          <span>Titulo del producto</span>
-          <span>Stock: 12</span>
-          <span className="fw-bold">$12.500 - $50.000</span>
-          <ShowOrder>
-            <i className="bi bi-eye-fill" />
-          </ShowOrder>
-          <ShowOrder>
-            <i className="bi bi-trash-fill" />
-          </ShowOrder>
-        </ItemStyle>
-        <ItemStyle>
-          <Image src="https://placehold.co/65x65"></Image>
-          <span>Titulo del producto</span>
-          <span>Stock: 12</span>
-          <span className="fw-bold">$12.500 - $50.000</span>
-          <ShowOrder>
-            <i className="bi bi-eye-fill" />
-          </ShowOrder>
-          <ShowOrder>
-            <i className="bi bi-trash-fill" />
-          </ShowOrder>
-        </ItemStyle>
-        <ItemStyle>
-          <Image src="https://placehold.co/65x65"></Image>
-          <span>Titulo del producto</span>
-          <span>Stock: 12</span>
-          <span className="fw-bold">$12.500 - $50.000</span>
-          <ShowOrder>
-            <i className="bi bi-eye-fill" />
-          </ShowOrder>
-          <ShowOrder>
-            <i className="bi bi-trash-fill" />
-          </ShowOrder>
-        </ItemStyle>
+      <ListGroupStyle className="m-3 text-align-center">
+        {services
+          .map((service) => (
+            <>
+              <ItemStyle>
+                <Image
+                  src={service.image}
+                  style={{ width: '65px', height: '65px' }}
+                ></Image>
+                <span className="col-3">{service.title}</span>
+                <span>Stock: {service.stock}</span>
+                <span className="fw-bold col-2">{service.price}</span>
+                <ShowOrder onClick={() => viewService(`${service.id}`)}>
+                  <i className="bi bi-eye-fill" />
+                </ShowOrder>
+                <ShowOrder>
+                  <i className="bi bi-trash-fill" />
+                </ShowOrder>
+              </ItemStyle>
+            </>
+          ))
+          .slice(firstIndex, lastIndex)}
       </ListGroupStyle>
-      <PaginationStyle className="justify-content-center">
-        <PagPrevStyle>
-          <i className="bi bi-arrow-left p-1"></i>
-          Prev
-        </PagPrevStyle>
-        <PagItemStyle>{1}</PagItemStyle>
-        <PagItemStyle>{2}</PagItemStyle>
-        <PagItemStyle active>{3}</PagItemStyle>
-        <PagItemStyle>{4}</PagItemStyle>
-        <PagItemStyle>{5}</PagItemStyle>
-        <PagItemStyle>{6}</PagItemStyle>
-        <PagItemStyle>{7}</PagItemStyle>
-        <PagEllipsisStyle />
-        <PagItemStyle>{20}</PagItemStyle>
-        <PagNextStyle>
-          Next
-          <i className="bi bi-arrow-right p-1"></i>
-        </PagNextStyle>
-      </PaginationStyle>
+      <PaginationProfiles
+        byPage={serviceBypage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        total={totalService}
+      />
     </div>
   );
 };

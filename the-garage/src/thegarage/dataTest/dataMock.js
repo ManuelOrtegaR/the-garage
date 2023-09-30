@@ -6,6 +6,7 @@ export const mockDataTest = [
     title: 'Aceite motor Moly sintetico 5X30',
     description:
       'Aceite sintético de alta calidad para motores de automóviles, con nivel de acetatos 3x2',
+    stock: 3,
     price: 54999,
     category: 'Lubricantes',
     store: 'AutoParts',
@@ -23,6 +24,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena14/cremalleras_pinones_precision_lista_productos.jpg',
     description:
       'Filtro de aire de alto rendimiento para automóviles, mejora la eficiencia y la calidad del aire',
+    stock: 3,
     price: 2550700,
     category: 'Filtros',
     store: 'AutoRepuestos',
@@ -40,6 +42,7 @@ export const mockDataTest = [
     title: 'Pastillas de freno delanteras',
     description:
       'Pastillas de freno de alto rendimiento para automóviles y motociletas',
+    stock: 3,
     price: 10999,
     category: 'Frenos',
     store: 'AutoServicio',
@@ -57,6 +60,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena18/motorreductores_precision_lista_productos.jpg',
     description:
       'Batería de larga duración y alto rendimiento para automóviles, confiable y de calidad',
+    stock: 3,
     price: 20745,
     category: 'Baterías',
     store: 'Autopartes Express',
@@ -75,6 +79,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena21/husillos_guias_perfiles_lista_productos.jpg',
     description:
       'Amortiguadores de alta calidad para el sistema de suspensión de automóviles',
+    stock: 3,
     price: 100124,
     category: 'Suspensión',
     store: 'AutoRepuestos',
@@ -92,6 +97,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena23/servomotores_drivers_lista_productos.jpg',
     description:
       'Líquido refrigerante de larga duración para automóviles, protege el sistema genral',
+    stock: 3,
     price: 200445,
     category: 'Lubricantes',
     store: 'AutoParts',
@@ -108,6 +114,7 @@ export const mockDataTest = [
     image:
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena24/servomotores_drivers_dc_lista_productos.jpg',
     description: 'Filtro de combustible de alto rendimiento para automóviles.',
+    stock: 3,
     price: 200045,
     category: 'Filtros',
     store: 'Repuestos Vehiculares',
@@ -124,6 +131,7 @@ export const mockDataTest = [
     image:
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena25/sistemas_paso_a_paso_lista_productos.jpg',
     description: 'Llantas deportivas de alto rendimiento para automóviles.',
+    stock: 3,
     price: 200445,
     category: 'Llantas',
     store: 'Neumáticos Plus',
@@ -140,6 +148,7 @@ export const mockDataTest = [
     image:
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena26/motores_ac_lista_producto.jpg',
     description: 'Kit de embrague completo para automóviles .',
+    stock: 3,
     price: 100445,
     category: 'Transmisión',
     store: 'Autopartes Express',
@@ -157,6 +166,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena26/motores_ac_lista_producto.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 100445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -174,6 +184,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena14/cremalleras_pinones_precision_lista_productos.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 800000,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -191,6 +202,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena15/reductores_planetarios_de_precision_lista_productos.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 100445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -208,6 +220,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena16/reductores_sinfin_corona_precision_lista_productos.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 80445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -225,6 +238,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena22/motorreductores_convencionales_lista_productos.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 80445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -242,6 +256,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena19/componentes_transmision_mecanica_lista_produccion.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 80445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -259,6 +274,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena20/actuadores_lineales_lista_productos.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 20445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -276,6 +292,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena15/reductores_planetarios_de_precision_lista_productos.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 20445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -293,6 +310,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena27/sistemas_lista_producto.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 20445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -310,6 +328,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena26/motores_ac_lista_producto.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 90445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -327,6 +346,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena25/sistemas_paso_a_paso_lista_productos.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 50.445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -344,6 +364,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena24/servomotores_drivers_dc_lista_productos.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 30.445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -361,6 +382,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena23/servomotores_drivers_lista_productos.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 30445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -378,6 +400,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/sub_familia/imagen_pequena23/servomotores_drivers_lista_productos.jpg',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 30445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -394,6 +417,7 @@ export const mockDataTest = [
     image: 'https://www.brotomatic.es/datos/marca/imagen12/axor-grander.png',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 30445,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -411,6 +435,7 @@ export const mockDataTest = [
       'https://www.brotomatic.es/datos/marca/imagen14/kollmorgen-grande.png',
     description:
       'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 756445,
     category: 'Aceite',
     store: 'AutoServicio',
@@ -426,6 +451,7 @@ export const mockDataTest = [
     title: 'Caja Automatica',
     image: 'https://www.brotomatic.es/datos/marca/imagen12/axor-grander.png',
     description: 'Caja completa con modulo TCM.',
+    stock: 3,
     price: 30756445,
     category: 'Transmision',
     store: 'AutoServicio',
@@ -444,6 +470,7 @@ export const detail1_MockTest = {
   image: 'https://www.brotomatic.es/datos/marca/imagen14/kollmorgen-grande.png',
   description:
     'Filtro de aceite de alta calidad para automóviles, protege el motor.',
+  stock: 3,
   price: 111222,
   category: 'Aceite',
   store: 'AutoServicio',
@@ -460,6 +487,7 @@ export const detail2_MockTest = {
   title: 'Caja Automatica',
   image: 'https://www.brotomatic.es/datos/marca/imagen12/axor-grander.png',
   description: 'Caja completa con modulo TCM.',
+  stock: 3,
   price: 145765,
   category: 'Transmision',
   store: 'AutoServicio',
@@ -480,6 +508,7 @@ export const mockDataTestServices = [
     title: 'Servicio de Colorimetria',
     description:
       'Nuestros expertos aplicarán técnicas precisas para lograr una coloración uniforme y duradera.',
+    stock: 3,
     price: 1400000,
     category: 'Lubricantes',
     store: 'AutoParts',
@@ -497,6 +526,7 @@ export const mockDataTestServices = [
     title: 'Servicio de Mecania General',
     description:
       'Ajustes finos para asegurar que la sincronización sea estable y confiable',
+    stock: 3,
     price: 750000,
     category: 'Filtros',
     store: 'AutoRepuestos',
@@ -514,6 +544,7 @@ export const mockDataTestServices = [
     title: 'Servicio de pulida y pintura',
     description:
       'Servicio de Pastillas de freno de alto rendimiento para automóviles y motociletas',
+    stock: 3,
     price: 150000,
     category: 'Frenos',
     store: 'AutoServicio',
@@ -531,6 +562,7 @@ export const mockDataTestServices = [
     title: ' Servicio de Batería para automóvil de alto rendimiento',
     description:
       'Batería de larga duración y alto rendimiento para automóviles, confiable y de calidad',
+    stock: 3,
     price: 1000000,
     category: 'Baterías',
     store: 'Autopartes Express',
@@ -549,6 +581,7 @@ export const mockDataTestServices = [
     title: 'Servicio deAmortiguadores traseros',
     description:
       'Amortiguadores de alta calidad para el sistema de suspensión de automóviles',
+    stock: 3,
     price: 2500000,
     category: 'Suspensión',
     store: 'AutoRepuestos',
@@ -566,6 +599,7 @@ export const mockDataTestServices = [
     title: 'Servicio de Líquido refrigerante para automóvil',
     description:
       'Líquido refrigerante de larga duración para automóviles, protege el sistema genral',
+    stock: 3,
     price: 1000000,
     category: 'Refrigeración',
     store: 'AutoParts',
@@ -582,6 +616,7 @@ export const mockDataTestServices = [
       'https://edit.org/photos/editor/json/2022/02/18/d/5/d53cd93ab4ad713ddf9c719459798f9b_edit.org.jpg-376.jpg',
     title: 'Servicio de Filtro de combustible para automóvil',
     description: 'Filtro de combustible de alto rendimiento para automóviles.',
+    stock: 3,
     price: 2500000,
     category: 'Filtros',
     store: 'Repuestos Vehiculares',
@@ -598,6 +633,7 @@ export const mockDataTestServices = [
       'https://edit.org/photos/editor/json/2022/02/18/c/3/c3f1b90ce335b68bd305fd3b4edca13e_edit.org.jpg-376.jpg',
     title: 'Servicio de Llantas deportivas',
     description: 'Llantas deportivas de alto rendimiento para automóviles.',
+    stock: 3,
     price: 1000000,
     category: 'Llantas',
     store: 'Neumáticos Plus',
@@ -614,6 +650,7 @@ export const mockDataTestServices = [
       'https://edit.org/photos/editor/json/2022/02/18/c/3/c3f1b90ce335b68bd305fd3b4edca13e_edit.org.jpg-376.jpg',
     title: 'Servicio de Kit de embrague para automóvil',
     description: 'Servicio de Kit de embrague completo para automóviles .',
+    stock: 3,
     price: 600000,
     category: 'Transmisión',
     store: 'Autopartes Express',
@@ -631,6 +668,7 @@ export const mockDataTestServices = [
     title: 'Servicio de Filtro de aceite para automóvil',
     description:
       'Servicio de Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 500000,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -648,6 +686,7 @@ export const mockDataTestServices = [
     title: 'Servicio de Filtro de aceite para automóvil',
     description:
       'Servicio de Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 100000,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -665,6 +704,7 @@ export const mockDataTestServices = [
     title: 'Servicio de Filtro de aceite para automóvil',
     description:
       'Servicio de Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 100000,
     category: 'Filtros',
     store: 'AutoServicio',
@@ -682,6 +722,7 @@ export const mockDataTestServices = [
     title: 'Servicio de Filtro de aceite para automóvil',
     description:
       ' Servicio de Filtro de aceite de alta calidad para automóviles, protege el motor.',
+    stock: 3,
     price: 200000,
     category: 'Filtros',
     store: 'AutoServicio',

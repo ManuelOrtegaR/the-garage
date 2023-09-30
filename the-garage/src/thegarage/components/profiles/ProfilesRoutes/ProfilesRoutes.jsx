@@ -27,8 +27,10 @@ export const ProfilesRoutes = () => {
         <Route path="orders/:id" element={<OrderId />} />
         <Route path="details" element={<Details />} />
         <Route path="products" element={<Products />} />
+        <Route path="products/add" element={<ProductsForm />} />
         <Route path="products/:id" element={<ProductsForm />} />
         <Route path="services" element={<Services />} />
+        <Route path="services/add" element={<ServicesForm />} />
         <Route path="services/:id" element={<ServicesForm />} />
         <Route path="requests" element={<Requests />} />
         <Route path="accounts" element={<Accounts />} />
@@ -37,9 +39,9 @@ export const ProfilesRoutes = () => {
           element={
             <Navigate
               to={
-                user.userClass === 'client'
+                user.userClass === 'Cliente'
                   ? 'change-pws'
-                  : user.userClass === 'company'
+                  : user.userClass === 'Empresa'
                   ? 'details'
                   : 'requests'
               }
