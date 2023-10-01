@@ -11,6 +11,8 @@ import {
   ServicesPage,
   ServicesDetail,
   Profiles,
+  SuccessPurchase,
+  FailurePurchase,
 } from "../pages";
 
 export const TheGarageRoutes = () => {
@@ -27,6 +29,9 @@ export const TheGarageRoutes = () => {
         <Route path="contacto" element={<Contact />} />
         <Route path="/profile/*" element={<Profiles />} />
         <Route path="servicesDetail/:id" element={<ServicesDetail />} />
+        <Route path="chat" element={<Chat />} />
+        <Route path="successPurchase" element={<SuccessPurchase />} />
+        <Route path="failurePurchase" element={<FailurePurchase />} />
         <Route path="chat" element={<Chat />} />
         <Route path="/" element={<Navigate to={"home"} />} />
       </Routes>
