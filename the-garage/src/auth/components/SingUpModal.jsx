@@ -1,11 +1,11 @@
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import { useState } from "react";
-import { BtnSubmitStyled } from "../../components/StyledButtons";
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import { useState } from 'react';
+import { BtnSubmitStyled } from '../../components/StyledButtons';
 //import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
+import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
 
 function SingUpModal() {
   const navigate = useNavigate();
@@ -15,11 +15,11 @@ function SingUpModal() {
 
   const handleShowCliente = () => {
     setShow(false);
-    navigate("/Singupclient");
+    navigate('/Singupclient');
   };
   const handleShowCompany = () => {
     setShow(false);
-    navigate("/Singupcompany");
+    navigate('/Singupcompany');
   };
 
   return (

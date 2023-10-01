@@ -9,6 +9,7 @@ import { BtnSubmitStyled } from '../../components/StyledButtons';
 import { useState } from 'react';
 import { getCity, getDepartments } from '../../api/localization';
 import { signUp } from '../../api/auth';
+import { useNavigate } from 'react-router-dom';
 
 const companySignUpSchema = z
   .object({
@@ -80,6 +81,8 @@ const departments = await getDepartments();
 function CompanySingUp() {
   const [city, setCity] = useState([]);
 
+  const navigate = useNavigate();
+
   const documentTypes = [
     'Cédula de Ciudadanía',
     'Cédula de Extranjería',
@@ -113,7 +116,7 @@ function CompanySingUp() {
   const onClientSignUp = async (formData) => {
     const { cpassword, ...data } = formData;
     const response = await signUp(data, 'empresa');
-    // TODO: If success navigate to signin, if error show error
+    navigate('/confirmacion', { state: response });
   };
 
   const onSubmit = (values, { setSubmitting }) => {

@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
       payload: { user, token },
     };
     setSession(token);
+    localStorage.setItem('user', JSON.stringify(user));
     dispatch(action);
   };
   const logout = () => {
@@ -34,6 +35,7 @@ export const AuthProvider = ({ children }) => {
     };
     clearSession();
     dispatch(action);
+    localStorage.removeItem('user');
   };
   return (
     <AuthContext.Provider

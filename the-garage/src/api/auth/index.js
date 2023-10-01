@@ -11,7 +11,7 @@ export const signIn = async (payload) => {
       body,
     );
     const { data, meta } = responseData;
-    const { user, typeData } = data;
+    const { user = {}, typeData = {} } = data;
     return {
       name: typeData.nombre_completo || typeData.razon_social,
       type: user.tipo_usuario,
@@ -89,6 +89,62 @@ export const signUp = async (payload, role) => {
     );
     return responseData;
   } catch (error) {
+    return error;
+  }
+};
+
+export const reSendEmail = async (payload) => {
+  try {
+    const body = {
+      correo: payload,
+    };
+    const { data: responseData } = await http.post(
+      `${import.meta.env.VITE_API_URL}/auth/reenviarcorreo`,
+      body,
+    );
+    return responseData;
+  } catch (error) {
     console.log(error);
+  }
+};
+
+export const activateAccount = async (token) => {
+  try {
+    const { data: responseData } = await http.post(
+      `${import.meta.env.VITE_API_URL}/auth/confirmacion/${token}`,
+    );
+    return responseData;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const passwordRecovery = async (payload) => {
+  try {
+    const body = {
+      correo: payload,
+    };
+    const { data: responseData } = await http.post(
+      `${import.meta.env.VITE_API_URL}/auth/recuperarcontrasena`,
+      body,
+    );
+    return responseData;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const passwordReset = async (payload, token) => {
+  try {
+    const body = {
+      contrasena: payload,
+    };
+    const { data: responseData } = await http.patch(
+      `${import.meta.env.VITE_API_URL}/auth/recuperarcontrasena/${token}`,
+      body,
+    );
+    return responseData;
+  } catch (error) {
+    return error;
   }
 };

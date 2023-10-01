@@ -1,6 +1,4 @@
 import Form from 'react-bootstrap/Form';
-//import Button from "react-bootstrap/Button";
-import VerifyAccountModal from '../components/VerifyAccountModal';
 import { useState } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
@@ -9,6 +7,7 @@ import { z } from 'zod';
 import { BtnSubmitStyled } from '../../components/StyledButtons';
 import { signUp } from '../../api/auth';
 import { getDepartments, getCity } from '../../api/localization';
+import { useNavigate } from 'react-router-dom';
 
 const clientSignUpSchema = z
   .object({
@@ -54,6 +53,8 @@ const departments = await getDepartments();
 function ClientSingUp() {
   const [city, setCity] = useState([]);
 
+  const navigate = useNavigate();
+
   const documentTypes = [
     'Cédula de Ciudadanía',
     'Cédula de Extranjería',
@@ -65,8 +66,6 @@ function ClientSingUp() {
     const result = await getCity(value);
     setCity(result);
   };
-  const [verifyAccount, setVerifyAccount] = useState(false);
-  const handleShowVerifyModal = () => setVerifyAccount(true);
 
   const initialValues = {
     name: '',
@@ -84,7 +83,7 @@ function ClientSingUp() {
   const onClientSignUp = async (formData) => {
     const { cpassword, ...data } = formData;
     const response = await signUp(data, 'cliente');
-    // TODO: If success navigate to signin, if error show error
+    navigate('/confirmacion', { state: response });
   };
 
   const onSubmit = (values, { setSubmitting }) => {
@@ -336,19 +335,13 @@ function ClientSingUp() {
             </Form.Group>
 
             <div className="d-flex justify-content-center">
-              <BtnSubmitStyled
-                type="submit"
-                // type="button"
-                // onClick={handleShowVerifyModal}
-                disabled={isSubmitting}
-              >
+              <BtnSubmitStyled type="submit" disabled={isSubmitting}>
                 Guardar
               </BtnSubmitStyled>
             </div>
           </Form>
         )}
       </Formik>
-      {/* {verifyAccount && <VerifyAccountModal />} */}
     </>
   );
 }
