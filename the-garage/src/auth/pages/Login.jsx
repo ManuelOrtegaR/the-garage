@@ -44,6 +44,7 @@ export function Login() {
 
   const onLogin = async (formData) => {
     const response = await signIn(formData);
+    console.log(response);
     const { name, type, token, user, typeData } = response;
     const profileData = {
       ...user,

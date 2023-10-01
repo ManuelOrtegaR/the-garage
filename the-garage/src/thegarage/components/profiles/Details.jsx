@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { BtnSubmitStyled } from '../../../components/StyledButtons';
-import { BtnStateStyle, NavLinkEdit } from './StylesComponentsProfiles';
 import { AuthContext } from '../../../auth/context/AuthContext';
 import { Button, Form, NavLink } from 'react-bootstrap';
 
@@ -26,11 +25,19 @@ export const Details = () => {
           <span className="w-50">NIT</span>
           <span className="w-50">
             {!onEdit ? (
-              user.profileData.numero_documento
+              user.className == 'Cliente' ? (
+                user.profileData.numero_documento
+              ) : (
+                user.profileData.numero_documento_empresa
+              )
             ) : (
               <Form.Control
                 type="text"
-                placeholder={user.profileData.numero_documento}
+                placeholder={
+                  user.className == 'Cliente'
+                    ? user.profileData.numero_documento
+                    : user.profileData.numero_documento_empresa
+                }
               />
             )}
           </span>
@@ -41,7 +48,10 @@ export const Details = () => {
             {!onEdit ? (
               user.profileData.sitio_web || 'No tiene'
             ) : (
-              <Form.Control type="text" placeholder="companyWeb.com.co" />
+              <Form.Control
+                type="text"
+                placeholder={user.profileData.sitio_web || 'No tiene'}
+              />
             )}
           </span>
         </div>
@@ -54,6 +64,22 @@ export const Details = () => {
               </NavLink>
             ) : (
               <Form.Control type="file" size="sm" />
+            )}
+          </span>
+        </div>
+        <div className="d-flex flex-column py-1">
+          <span className="text-decoration-underline fw-bold mt-1">
+            Descripción:
+          </span>
+          <span className="mt-2">
+            {!onEdit ? (
+              user.profileData.descripcion || 'No tiene'
+            ) : (
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder={user.profileData.descripcion}
+              />
             )}
           </span>
         </div>
