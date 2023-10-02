@@ -1,16 +1,16 @@
-import { Alert, Form, Spinner } from "react-bootstrap";
-import { PaginationProfiles } from "./PaginationProfiles";
+import { Alert, Form, Spinner } from 'react-bootstrap';
+import { PaginationProfiles } from './PaginationProfiles';
 
 import {
   ItemStyle,
   ListGroupStyle,
   ShowOrder,
-} from "./StylesComponentsProfiles";
-import Image from "react-bootstrap/Image";
-import { BtnSubmitStyled } from "../../../components/StyledButtons";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useProductsCompany } from "../../../domain/useProductsCompany";
+} from './StylesComponentsProfiles';
+import Image from 'react-bootstrap/Image';
+import { BtnSubmitStyled } from '../../../components/StyledButtons';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useProductsCompany } from '../../../domain/useProductsCompany';
 
 export const Products = () => {
   const viewProduct = (product) => {
@@ -23,7 +23,7 @@ export const Products = () => {
   const [productsBypage, setProducstsByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const totalProducst = data.length;
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   const lastIndex = currentPage * productsBypage;
@@ -31,18 +31,18 @@ export const Products = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    navigate("/profile/products/add");
+    navigate('/profile/products/add');
   };
 
   const onSearch = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.preventDefault();
       setFilteredProducts(
         data.filter((product) => {
           return product.nombre
             .toLowerCase()
             .includes(searchValue.toLowerCase());
-        })
+        }),
       );
     }
   };
@@ -56,7 +56,7 @@ export const Products = () => {
       <div className="d-flex justify-content-between align-items-center my-4 mx-3">
         <span className="fw-bold">Mis Productos</span>
 
-        <BtnSubmitStyled onClick={onSubmit}>
+        <BtnSubmitStyled onClick={onSubmit} data-cy="add-product">
           Agregar Nuevo Producto
         </BtnSubmitStyled>
       </div>
@@ -90,12 +90,12 @@ export const Products = () => {
                   <ItemStyle>
                     <Image
                       src={product.fotos[0].url_foto}
-                      style={{ width: "65px", height: "65px" }}
+                      style={{ width: '65px', height: '65px' }}
                     ></Image>
                     <span className="col-3">{product.nombre}</span>
                     <span>Stock: {product.cantidad_disponible}</span>
                     <span className="fw-bold col-2">
-                      ${product.precio.toLocaleString("es-CO")}
+                      ${product.precio.toLocaleString('es-CO')}
                     </span>
                     <ShowOrder onClick={() => viewProduct(product)}>
                       <i className="bi bi-eye-fill" />
@@ -113,12 +113,12 @@ export const Products = () => {
                   <ItemStyle>
                     <Image
                       src={product.fotos[0].url_foto}
-                      style={{ width: "65px", height: "65px" }}
+                      style={{ width: '65px', height: '65px' }}
                     ></Image>
                     <span className="col-3">{product.nombre}</span>
                     <span>Stock: {product.cantidad_disponible}</span>
                     <span className="fw-bold col-2">
-                      ${product.precio.toLocaleString("es-CO")}
+                      ${product.precio.toLocaleString('es-CO')}
                     </span>
                     <ShowOrder onClick={() => viewProduct(product)}>
                       <i className="bi bi-eye-fill" />

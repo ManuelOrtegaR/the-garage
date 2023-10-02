@@ -37,13 +37,20 @@ function SingUpModal() {
             <p>Seleccione el tipo de registro que desea realizar</p>
             <Row>
               <Col className="d-flex justify-content-center">
-                <BtnSubmitStyled width="100px" onClick={handleShowCliente}>
+                <BtnSubmitStyled
+                  width="100px"
+                  onClick={handleShowCliente}
+                  name="signup_client"
+                >
                   Cliente
                 </BtnSubmitStyled>
               </Col>
 
               <Col className="d-flex justify-content-center">
-                <BtnSubmitStyled onClick={handleShowCompany}>
+                <BtnSubmitStyled
+                  onClick={handleShowCompany}
+                  name="signup_company"
+                >
                   Empresa
                 </BtnSubmitStyled>
               </Col>

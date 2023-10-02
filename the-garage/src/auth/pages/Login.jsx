@@ -44,7 +44,6 @@ export function Login() {
 
   const onLogin = async (formData) => {
     const response = await signIn(formData);
-    console.log(response);
     const { name, type, token, user, typeData } = response;
     const profileData = {
       ...user,
@@ -140,14 +139,19 @@ export function Login() {
                     className="w-100"
                     disabled={isSubmitting}
                   >
-                    <NavLink style={{ textDecoration: 'none', color: 'white' }}>
+                    <NavLink
+                      style={{ textDecoration: 'none', color: 'white' }}
+                      data-cy="login-button"
+                    >
                       Ingresar
                     </NavLink>
                   </ButtonStyled>
                 </div>
                 <div className="d-flex gap-1 mt-2 justify-content-center">
                   <label>¿No tienes un usuario?</label>
-                  <NavLink onClick={handleShow}>Registrate</NavLink>
+                  <NavLink onClick={handleShow} data-cy="signup">
+                    Registrate
+                  </NavLink>
                 </div>
               </Form>
             )}

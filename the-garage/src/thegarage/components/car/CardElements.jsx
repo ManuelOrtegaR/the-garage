@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { Button, Card } from "react-bootstrap";
-import { CardElementStyle } from "./StylesComponentsCar";
-import { AuthContext } from "../../../auth/context/AuthContext";
-import { useCart } from "../../store";
-import { ButtonStyledSuccess } from "../products";
+import React, { useContext } from 'react';
+import { Button, Card } from 'react-bootstrap';
+import { CardElementStyle } from './StylesComponentsCar';
+import { AuthContext } from '../../../auth/context/AuthContext';
+import { useCart } from '../../store';
+import { ButtonStyledSuccess } from '../products';
 
 const CardElements = () => {
   // const { carElements } = useContext(AuthContext);
@@ -12,11 +12,11 @@ const CardElements = () => {
 
   const deleteElement = (cardElement) => {
     console.log(cardElement);
-    dispatch({ type: "REMOVE_FROM_CART", payload: cardElement });
+    dispatch({ type: 'REMOVE_FROM_CART', payload: cardElement });
   };
 
   return (
-    <CardElementStyle className="mb-3">
+    <CardElementStyle className="mb-3 element-list">
       <Card.Body>
         {state.cart.map((carElement) => (
           <div
@@ -39,7 +39,7 @@ const CardElements = () => {
             <div className="d-flex align-items-center gap-5 justify-content-between">
               <div>cantidad: {carElement.cant}</div>
               <div>
-                <strong>${carElement.precio.toLocaleString("es-CO")}</strong>
+                <strong>${carElement.precio.toLocaleString('es-CO')}</strong>
               </div>
 
               <ButtonStyledSuccess

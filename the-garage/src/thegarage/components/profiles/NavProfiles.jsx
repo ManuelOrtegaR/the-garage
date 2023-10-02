@@ -75,7 +75,11 @@ export const NavProfiles = () => {
             return (
               <>
                 <Nav.Item>
-                  <NavLinkStyled to={navItem.url} className={'inactive'}>
+                  <NavLinkStyled
+                    to={navItem.url}
+                    className={'inactive'}
+                    data-cy={navItem.url}
+                  >
                     {navItem.icon}
                     {navItem.name}
                   </NavLinkStyled>
@@ -88,7 +92,12 @@ export const NavProfiles = () => {
         }
       })}
       <Nav.Item>
-        <NavLinkStyled to={'/home'} onClick={onLogout} className={'inactive'}>
+        <NavLinkStyled
+          to={'/home'}
+          onClick={onLogout}
+          className={'inactive'}
+          aria-label="logout"
+        >
           <i className="bi bi-box-arrow-right me-2" />
           Cerrar sesión
         </NavLinkStyled>
