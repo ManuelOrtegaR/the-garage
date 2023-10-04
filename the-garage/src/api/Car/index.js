@@ -14,22 +14,19 @@ export const createOrdenProducts = async (state) => {
   });
   const ordenProductos = {
     total: total,
-    estado: "creado",
-    subtotal: 0.0,
+    id_empresa: cart[0].id_empresa,
   };
   const body = {
     ordenProductos,
     detallesOrdenProductos,
   };
   try {
-    console.log("La variable de entorno", import.meta.env.VITE_API_URL);
     const response = await http.post(
       `${import.meta.env.VITE_API_URL}/orden_productos`,
       body
     );
     const { data } = response;
     const { paymentUrl } = data;
-    console.log("paymentUrl en la funcion ", paymentUrl);
     return paymentUrl;
   } catch (error) {
     console.log(error);
