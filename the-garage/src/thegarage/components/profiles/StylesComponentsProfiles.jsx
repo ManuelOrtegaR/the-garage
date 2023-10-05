@@ -1,5 +1,12 @@
 import styled from '@emotion/styled';
-import { Button, Form, ListGroup, Pagination, Table } from 'react-bootstrap';
+import {
+  Button,
+  DropdownButton,
+  Form,
+  ListGroup,
+  Pagination,
+  Table,
+} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 export const NavLinkStyled = styled(NavLink)(({ theme }) => ({
@@ -151,16 +158,16 @@ export const StatusStyle = styled.span(() => ({
   borderRadius: '10px',
   color: 'white',
   fontWeight: 'bold',
-  '&.delivered': {
+  '&.Entregada': {
     background: '#39e600',
   },
-  '&.processing': {
+  '&.Pagada': {
     background: '#E5EA00',
   },
-  '&.onTheWay': {
+  '&.Enviada': {
     background: '#EB7F00',
   },
-  '&.cancelled': {
+  '&.Cancelada': {
     background: '#FF0000',
   },
 }));
@@ -183,30 +190,41 @@ export const ProcessingStyle = styled.span(() => ({
   position: 'absolute',
   top: 0,
   left: 0,
-  background: '#E5EA00',
+  background: '#c2c2c3',
   color: 'white',
   borderRadius: 25,
   padding: '2px 4px',
+  '&.Pagada': {
+    background: '#E5EA00',
+  },
 }));
 
-export const OnTheWayStyle = styled.span(() => ({
+export const OnTheWayStyle = styled(DropdownButton)(() => ({
   position: 'absolute',
   top: 0,
   left: '50%',
-  background: '#EB7F00',
+  background: '#c2c2c3',
   color: 'white',
   borderRadius: 25,
-  padding: '2px 4px',
+  '&.Enviada': {
+    background: '#EB7F00',
+  },
+  '&.Cancelada': {
+    background: '#eb0000',
+  },
 }));
 
 export const DeliveredStyle = styled.span(() => ({
   position: 'absolute',
   top: 0,
   left: '100%',
-  background: '#39e600',
+  background: '#c2c2c3',
   color: 'white',
   borderRadius: 25,
   padding: '2px 4px',
+  '&.Entregada': {
+    background: '#39e600',
+  },
 }));
 
 export const DateStyle = styled.span(() => ({

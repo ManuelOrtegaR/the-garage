@@ -1,13 +1,11 @@
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { z } from 'zod';
-
 import { BtnSubmitStyled } from '../../components/StyledButtons';
 import { signUp } from '../../api/auth';
-import { getDepartments, getCity } from '../../api/localization';
 import { useNavigate } from 'react-router-dom';
+import { useAdressLocation } from '../../domain/useAddressLocation';
 
 const clientSignUpSchema = z
   .object({
@@ -48,10 +46,8 @@ const clientSignUpSchema = z
     path: ['cpassword'], // path of error
   });
 
-const departments = await getDepartments();
-
 function ClientSingUp() {
-  const [city, setCity] = useState([]);
+  const { departments, city, cargarCiudades } = useAdressLocation();
 
   const navigate = useNavigate();
 
@@ -63,8 +59,7 @@ function ClientSingUp() {
 
   const handleChangeDepartment = async (event) => {
     const value = event.target.value;
-    const result = await getCity(value);
-    setCity(result);
+    cargarCiudades(value);
   };
 
   const initialValues = {

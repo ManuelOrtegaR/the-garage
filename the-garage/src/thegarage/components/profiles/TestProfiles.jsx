@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { instance as http } from '../../../api/http';
 import { Image, Form } from 'react-bootstrap';
 import { AuthContext } from '../../../auth/context/AuthContext';
@@ -96,7 +96,7 @@ export const TestProfiles = () => {
             <span className="col-5">Tipo de documento:</span>
             <span>
               {!active ? (
-                user.className == 'Cliente' ? (
+                user.userClass == 'Cliente' ? (
                   user.profileData.tipo_documento
                 ) : (
                   user.profileData.tipo_documento_empresa
@@ -106,7 +106,7 @@ export const TestProfiles = () => {
                   disabled
                   type="text"
                   placeholder={
-                    user.className == 'Cliente'
+                    user.userClass == 'Cliente'
                       ? user.profileData.tipo_documento
                       : user.profileData.tipo_documento_empresa
                   }
@@ -118,7 +118,7 @@ export const TestProfiles = () => {
             <span className="col-5">No. Documento:</span>
             <span>
               {!active ? (
-                user.className == 'Cliente' ? (
+                user.userClass == 'Cliente' ? (
                   user.profileData.numero_documento
                 ) : (
                   user.profileData.numero_documento_empresa
@@ -128,7 +128,7 @@ export const TestProfiles = () => {
                   disabled
                   type="text"
                   placeholder={
-                    user.className == 'Cliente'
+                    user.userClass == 'Cliente'
                       ? user.profileData.numero_documento
                       : user.profileData.numero_documento_empresa
                   }

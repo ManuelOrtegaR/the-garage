@@ -148,3 +148,13 @@ export const passwordReset = async (payload, token) => {
     return error;
   }
 };
+
+export const getSessionData = async () => {
+  try {
+    const response = await http.get(`${import.meta.env.VITE_API_URL}/perfil`);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};

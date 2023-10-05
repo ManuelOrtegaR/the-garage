@@ -2,28 +2,27 @@ import Image from 'react-bootstrap/Image';
 import { TableStyled } from './StylesComponentsProfiles';
 import { BtnSubmitStyled } from '../../../components';
 import { ModalMessages, ModalScore, ShippingStatus } from '..';
-import { useParams } from 'react-router-dom';
-import { mockDataTest } from '../../dataTest/dataMock';
+import { useLocation, useParams } from 'react-router-dom';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../auth/context/AuthContext';
 
 export const OrderId = () => {
   const { user } = useContext(AuthContext);
-
+  const { state } = useLocation();
   const { id } = useParams();
-  const [data, setData] = useState(mockDataTest);
-  const [items, setItems] = useState([...data]);
+  const [data, setData] = useState(state);
+  const [items, setItems] = useState(data.detalle_orden_productos);
   const [modalRating, setModalRating] = React.useState(false);
   const [modalMessages, setModalMessages] = React.useState(false);
-
   //Implementar DB ordenes
-  const cantidad = 4;
   let total = 0;
-  items.map((item) => (total += item.price * cantidad)).slice(0, 4);
+  items
+    .map((item) => (total += item.precio_unitario * item.cantidad))
+    .slice(0, 4);
 
   return (
     <div className="py-4 px-5">
-      <span className="fw-bold py-3">Pedido #12345</span>
+      <span className="fw-bold py-3">Pedido {id}</span>
       <div className="overflow-auto" style={{ maxHeight: '300px' }}>
         <TableStyled>
           <tr>
@@ -40,24 +39,27 @@ export const OrderId = () => {
                   <td className="text-start w-50">
                     <div className="d-flex">
                       <Image
-                        src={item.image}
+                        src={item.fotos[0].url_foto}
                         rounded
                         style={{ width: '70px', height: '70px' }}
                       />
                       <div className="ps-2">
-                        <span className="fw-bold ">{item.title}</span>
-                        <p className="lh-1">{item.description}</p>
+                        <span className="fw-bold ">{item.nombre}</span>
+                        <p className="lh-1">{item.descripcion}</p>
                       </div>
                     </div>
                   </td>
-                  <td>{cantidad}</td>
+                  <td>{item.cantidad}</td>
                   <td className="fw-bold">
-                    {'$' + new Intl.NumberFormat().format(item.price)}
+                    {'$' +
+                      new Intl.NumberFormat('es-Co').format(
+                        item.precio_unitario,
+                      )}
                   </td>
                   <td className="fw-bold">
                     {'$' +
                       new Intl.NumberFormat('es-Co').format(
-                        cantidad * item.price,
+                        item.cantidad * item.precio_unitario,
                       )}
                   </td>
                 </tr>
@@ -67,7 +69,7 @@ export const OrderId = () => {
         </TableStyled>
       </div>
       <div className="fw-bold text-end me-5 pe-2">
-        <span>Total: ${Intl.NumberFormat().format(total)}</span>
+        <span>Total: ${Intl.NumberFormat('es-Co').format(total)}</span>
         <div
           className={
             user.userClass !== 'admin'
@@ -81,7 +83,11 @@ export const OrderId = () => {
             Estado
           </span>
 
-          <ShippingStatus />
+          <ShippingStatus
+            estados={data.estados}
+            id={id}
+            userClass={user.userClass}
+          />
 
           {user.userClass !== 'admin' ? (
             <>

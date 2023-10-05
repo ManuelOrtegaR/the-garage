@@ -6,10 +6,9 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { BtnSubmitStyled } from '../../components/StyledButtons';
-import { useState } from 'react';
-import { getCity, getDepartments } from '../../api/localization';
 import { signUp } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
+import { useAdressLocation } from '../../domain/useAddressLocation';
 
 const companySignUpSchema = z
   .object({
@@ -76,10 +75,8 @@ const companySignUpSchema = z
     path: ['cpassword'], // path of error
   });
 
-const departments = await getDepartments();
-
 function CompanySingUp() {
-  const [city, setCity] = useState([]);
+  const { departments, city, cargarCiudades } = useAdressLocation();
 
   const navigate = useNavigate();
 
@@ -91,8 +88,7 @@ function CompanySingUp() {
 
   const handleChangeDepartment = async (event) => {
     const value = event.target.value;
-    const result = await getCity(value);
-    setCity(result);
+    cargarCiudades(value);
   };
 
   const initialValues = {

@@ -6,22 +6,23 @@ import {
   StatusStyle,
 } from './StylesComponentsProfiles';
 import { useState } from 'react';
-import { mockDataTest } from '../../dataTest/dataMock';
 import { PaginationProfiles } from './PaginationProfiles';
 import { useNavigate } from 'react-router-dom';
+import { useOrders } from '../../../domain/useOrders';
 
 export const Orders = () => {
-  const [data, setData] = useState(mockDataTest);
-  const [orders, setOrders] = useState([...data]);
+  const navigate = useNavigate();
+  const { data, loading, error } = useOrders();
   const [productsBypage, setproductsByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalOrders = orders.length;
+  const totalOrders = data.length;
 
   const lastIndex = currentPage * productsBypage;
   const firstIndex = lastIndex - productsBypage;
 
-  //React-router: Obtenemos el id de la url
-  const viewOrder = useNavigate();
+  const orderDetails = (order, index) => {
+    navigate(`${order.id}`, { state: data[index] });
+  };
 
   return (
     <>
@@ -39,19 +40,31 @@ export const Orders = () => {
           </div>
         </div>
         <ListGroupStyle>
-          {orders
-            .map((order) => (
+          {data
+            .map((order, index) => (
               <>
                 <ItemStyle key={order.id} className="border-bottom">
-                  <Image src={order.image} style={{ height: 65, width: 65 }} />
-                  <span className="col-2">{order.store}</span>
-                  <span className="col-1">Articulos: 5</span>
-                  <span className="col-2 fw-bold fs-5 ">$250.000</span>
+                  <Image
+                    src={order.foto_cliente}
+                    style={{ height: 65, width: 65 }}
+                  />
+                  <span className="col-2">
+                    {order.detalle_orden_productos[0].nombre}
+                  </span>
+                  <span className="col-1">
+                    Articulos: {order.detalle_orden_productos.length}
+                  </span>
+                  <span className="col-2 fw-bold fs-5 ">
+                    {'$' + new Intl.NumberFormat('es-Co').format(order.total)}
+                  </span>
                   <div className="col-2">
-                    {/* Estados: delivered, processing, onTheWay, cancelled*/}
-                    <StatusStyle className="delivered">Entregado</StatusStyle>
+                    <StatusStyle
+                      className={order.estados[order.estados.length - 1].estado}
+                    >
+                      {order.estados[order.estados.length - 1].estado}
+                    </StatusStyle>
                   </div>
-                  <ShowOrder onClick={() => viewOrder(`${order.id}`)}>
+                  <ShowOrder onClick={() => orderDetails(order, index)}>
                     <i
                       className="bi bi-eye-fill"
                       style={{ width: '20px', height: '20px' }}
