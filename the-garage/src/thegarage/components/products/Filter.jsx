@@ -4,7 +4,12 @@ import {
   Badgestyled,
   H4Styled,
 } from "./StyledsComponentsProducts";
-import { generarQueryFiltros, promedioValoraciones } from "./utils";
+import {
+  generarQueryFiltros,
+  generarRangos,
+  medianaValoraciones,
+  promedioValoraciones,
+} from "./utils";
 import { useNavigate } from "react-router-dom";
 
 export function Filter({
@@ -62,7 +67,7 @@ export function Filter({
         : type === "brand"
         ? element.marca
         : type === "rating"
-        ? promedioValoraciones(element.valoraciones)
+        ? medianaValoraciones(element.valoraciones)
         : type === "store"
         ? element.empresa.razon_social
         : null;
@@ -71,11 +76,33 @@ export function Filter({
     uniqueElements = elements.filter(
       (element, i) => elements.indexOf(element) === i
     );
+    uniqueElements.sort((a, b) => a - b);
+
+    // Para quitar del filtro lo que no tenga valoraciones
+    if (type === "rating") {
+      uniqueElements = uniqueElements.filter((element) => element !== 0);
+    }
+
+    if (type === "price") {
+      uniqueElements = generarRangos(uniqueElements);
+    }
 
     const countFilter = (filt) => {
       let count = 0;
       elements.map((element) => {
         if (element === filt) {
+          count++;
+        }
+      });
+      return count;
+    };
+
+    // contador de cuantas veces esta ese dato dentro de un vector con un rango inicial y final
+
+    const countFilterPrice = (filt) => {
+      let count = 0;
+      elements.map((element) => {
+        if (element >= filt[0] && element <= filt[1]) {
           count++;
         }
       });
@@ -105,7 +132,7 @@ export function Filter({
           : null}
 
         <Badgestyled bg="secondary" pill>
-          {countFilter(filt)}
+          {type === "price" ? countFilterPrice(filt) : countFilter(filt)}
         </Badgestyled>
       </div>
     ));

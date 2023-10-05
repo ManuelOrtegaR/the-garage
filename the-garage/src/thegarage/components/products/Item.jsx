@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import {
   AlertStyled,
   AlertWarningStyled,
@@ -10,13 +10,13 @@ import {
   ContainerButtonStyled,
   ContainerStyled,
   IconStyled,
-} from './StyledsComponentsProducts';
-import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../components';
-import { Card } from 'react-bootstrap';
-import { useState, useContext } from 'react';
-import { AuthContext } from '../../../auth/context/AuthContext';
-import { promedioValoraciones } from './utils';
-import { useCart } from '../../store';
+} from "./StyledsComponentsProducts";
+import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../../components";
+import { Card } from "react-bootstrap";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../../auth/context/AuthContext";
+import { medianaValoraciones, promedioValoraciones } from "./utils";
+import { useCart } from "../../store";
 
 export function Item({ item, isService }) {
   const [showAlert, setShowAlert] = useState(false);
@@ -30,14 +30,14 @@ export function Item({ item, isService }) {
       isService
         ? navigate(`/servicesDetail/${id}`)
         : navigate(`/productDetail/${id}`);
-    } else navigate('/login');
+    } else navigate("/login");
   }
 
   function handleClickSuceess(item, cant) {
     if (user) {
-      dispatch({ type: 'ADD_TO_CART', payload: { item, cant: 1 } });
+      dispatch({ type: "ADD_TO_CART", payload: { item, cant: 1 } });
       setShowAlert(!showAlert);
-    } else navigate('/login');
+    } else navigate("/login");
   }
 
   return (
@@ -48,49 +48,49 @@ export function Item({ item, isService }) {
           src={
             item.fotos.length > 0
               ? item.fotos[0].url_foto
-              : 'https://placehold.co/600x400'
+              : "https://placehold.co/600x400"
           }
         />
         <Card.Body>
           <CardTitleStyle>{item.nombre}</CardTitleStyle>
           <CardDescroptionStyle>{item.descripcion}</CardDescroptionStyle>
           <Card.Text className="fs-4">
-            <strong>${item.precio.toLocaleString('es-CO')}</strong>
+            <strong>${item.precio.toLocaleString("es-CO")}</strong>
           </Card.Text>
           <CardAvalaibleStyle>
-            {item.tipo_entrega.toLowerCase().includes('domi') ? (
+            {item.tipo_entrega.toLowerCase().includes("domi") ? (
               <i className="bi bi-check"></i>
             ) : (
               <i className="bi bi-x"></i>
             )}
-            {isService ? 'Servicio a domicilio' : 'Disponible para despacho'}
+            {isService ? "Servicio a domicilio" : "Disponible para despacho"}
           </CardAvalaibleStyle>
           <CardAvalaibleStyle>
-            {item.tipo_entrega.toLowerCase().includes('retiro') ? (
+            {item.tipo_entrega.toLowerCase().includes("retiro") ? (
               <i className="bi bi-check"></i>
             ) : (
               <i className="bi bi-x"></i>
             )}
-            {isService ? 'Servicio en Taller' : 'Disponible para Retiro'}
+            {isService ? "Servicio en Taller" : "Disponible para Retiro"}
           </CardAvalaibleStyle>
           <Card.Text>
-            {[...Array(promedioValoraciones(item.valoraciones))].map(
+            {[...Array(medianaValoraciones(item.valoraciones))].map(
               (_, index) => (
                 <IconStyled
                   key={index}
                   className="bi bi-star-fill"
                 ></IconStyled>
-              ),
+              )
             )}
-            {[...Array(5 - promedioValoraciones(item.valoraciones))].map(
+            {[...Array(5 - medianaValoraciones(item.valoraciones))].map(
               (_, index) => (
                 <IconStyled key={index} className="bi bi-star"></IconStyled>
-              ),
+              )
             )}
 
-            <span> {promedioValoraciones(item.valoraciones)} </span>
+            <span> {medianaValoraciones(item.valoraciones)} </span>
           </Card.Text>
-          {!user || user.userClass === 'Cliente' ? (
+          {!user || user.userClass === "Cliente" ? (
             <ContainerButtonStyled>
               <BtnSubmitStyled
                 onClick={(event) => {
@@ -99,7 +99,7 @@ export function Item({ item, isService }) {
                 variant="success"
                 data-cy="btn-add-to-cart"
               >
-                {isService ? 'Solicitar Servicio' : 'Agregar al carrito'}
+                {isService ? "Solicitar Servicio" : "Agregar al carrito"}
               </BtnSubmitStyled>
 
               {showAlert && (
@@ -110,7 +110,7 @@ export function Item({ item, isService }) {
                   }}
                   dismissible
                 >
-                  {isService ? 'Servicio Solicitado' : 'Producto Agregado'}
+                  {isService ? "Servicio Solicitado" : "Producto Agregado"}
                 </AlertStyled>
               )}
 
@@ -128,7 +128,7 @@ export function Item({ item, isService }) {
             <div>
               <AlertWarningStyled variant="warning">
                 <p>
-                  Este servicio o producto está disponible solo para clientes.{' '}
+                  Este servicio o producto está disponible solo para clientes.{" "}
                 </p>
               </AlertWarningStyled>
             </div>

@@ -9,6 +9,26 @@ export function promedioValoraciones(valoraciones) {
   return Math.round(suma / valoraciones.length);
 }
 
+export function medianaValoraciones(valoraciones) {
+  if (valoraciones.length === 0) return 0;
+  let valoracionesOrdenadas = [];
+  valoraciones.forEach((valoracion) => {
+    valoracionesOrdenadas.push(valoracion.calificacion);
+  });
+  valoracionesOrdenadas.sort((a, b) => a - b);
+  const mitad = Math.floor(valoracionesOrdenadas.length / 2);
+
+  // si es par
+  if (valoracionesOrdenadas.length % 2 === 0) {
+    return (
+      (valoracionesOrdenadas[mitad - 1] + valoracionesOrdenadas[mitad]) / 2
+    );
+  }
+
+  // si es impar
+  return valoracionesOrdenadas[mitad];
+}
+
 export function generarQueryFiltros(filtros) {
   let query = "";
   let categorias = filtros.category;
@@ -26,8 +46,9 @@ export function generarQueryFiltros(filtros) {
     query += `filterMarcas=${marcas}&`;
   }
   if (precios !== undefined) {
-    precios = reemplazarEspacios(precios);
-    query += `precioMin=${precios}&`;
+    precios = precios.split(",");
+    console.log(precios);
+    query += `precioMin=${precios[0]}&precioMax=${precios[1]}&`;
   }
   if (calificaciones !== undefined) {
     calificaciones = reemplazarEspacios(calificaciones);
@@ -71,3 +92,23 @@ export function formatError(e) {
     return e.message;
   }
 }
+
+// generar rangos precios
+export const generarRangos = (elements) => {
+  const minRangos = 5;
+  const tamanoRango = Math.ceil(elements.length / minRangos);
+  let rangoActual = [];
+  const rangos = [];
+  elements.forEach((element) => {
+    if (rangoActual.length >= tamanoRango) {
+      rangos.push([rangoActual[0], rangoActual[rangoActual.length - 1]]);
+      rangoActual = [];
+    }
+    rangoActual.push(element);
+  });
+  if (rangoActual.length > 0) {
+    rangos.push([rangoActual[0], rangoActual[rangoActual.length - 1]]);
+  }
+
+  return rangos;
+};
