@@ -1,3 +1,4 @@
+import { id } from "date-fns/locale";
 import { instance as http } from "../http";
 import { decodeProductOutput } from "./decoder";
 
@@ -122,6 +123,24 @@ export async function createProduct(payload) {
 export async function updateProduct(payload, id) {
   try {
     const { data: response } = await http.put(`/productos/${id}`, payload);
+    const data = response.data;
+    return { data, meta: response.meta };
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+}
+
+/**
+ * Esta funcion asincrónica, 'updateProduct', se encarga de actualizar un producto en la API de The Garage.
+ */
+
+export async function getProductTop(id_empresa, limit, offset) {
+  console.log("API AGENT");
+  console.log(id_empresa, limit, offset);
+  try {
+    const { data: response } = await http.get(
+      `productos/misproductosTop?limit=${limit}&offset=${offset}&id_empresa=${id_empresa}`
+    );
     const data = response.data;
     return { data, meta: response.meta };
   } catch (error) {

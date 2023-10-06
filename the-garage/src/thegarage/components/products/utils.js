@@ -46,9 +46,33 @@ export function generarQueryFiltros(filtros) {
     query += `filterMarcas=${marcas}&`;
   }
   if (precios !== undefined) {
-    precios = precios.split(",");
-    console.log(precios);
-    query += `precioMin=${precios[0]}&precioMax=${precios[1]}&`;
+    if (precios.indexOf("-") === -1) {
+      precios = precios.split(",");
+      query += `precioMin=${precios[0]}&precioMax=${precios[1]}&`;
+    } else {
+      precios = precios.split("-");
+      console.log("aqui fue", precios);
+
+      let preciosMaximos = precios.map((elementos) => {
+        let result = "";
+        elementos = elementos.split(",");
+        result += `${elementos[1]}`;
+        return result;
+      });
+
+      let preciosMinimos = precios.map((elementos) => {
+        let result = "";
+        elementos = elementos.split(",");
+        result += `${elementos[0]}`;
+        return result;
+      });
+      console.log("preciosMaximos", preciosMaximos);
+      console.log("preciosMinimos", preciosMinimos);
+
+      query += `precioMin=${preciosMinimos.join(
+        "-"
+      )}&precioMax=${preciosMaximos.join("-")}&`;
+    }
   }
   if (calificaciones !== undefined) {
     calificaciones = reemplazarEspacios(calificaciones);

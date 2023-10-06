@@ -35,11 +35,23 @@ export const useProductos = (
       if (searchValue) {
         response = await getProductsSearch(10, page, searchValue);
         responseFiltros = await getProductsSearch(100, page, searchValue);
-        console.log("search activo");
+        if (!objetoEstaVacio(filtrosSeleccionadosAgrupados)) {
+          const filterquery = generarQueryFiltros(
+            filtrosSeleccionadosAgrupados
+          );
+          navigate(
+            `/productos?${filterquery}&limit=10&offset=${page}&search=${searchValue}`
+          );
+          response = await getProductsFilter(
+            `${filterquery}+&search=${searchValue}`,
+            10,
+            page
+          );
+        }
       } else if (!objetoEstaVacio(filtrosSeleccionadosAgrupados)) {
-        console.log("por aqui ando");
+        console.log("es vacio y entre");
         const filterquery = generarQueryFiltros(filtrosSeleccionadosAgrupados);
-        navigate(`/productos?${filterquery}`);
+        navigate(`/productos?${filterquery}&limit=10&offset=${page}`);
 
         response = await getProductsFilter(filterquery, 10, page);
 
@@ -64,7 +76,7 @@ export const useProductos = (
 
   useEffect(() => {
     cargarProductos();
-  }, [page, filtrosSeleccionadosAgrupados]);
+  }, [page, JSON.stringify(filtrosSeleccionadosAgrupados)]);
 
   return { data, dataMeta, datosParaFiltros, loading, error };
 };

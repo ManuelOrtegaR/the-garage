@@ -7,7 +7,6 @@ export const useProducto = ({ id }) => {
     error,
     isLoading,
   } = useSWR(`productos/${id}`, () => getProduct({ id }));
-  console.log(id, response?.data, error, isLoading);
 
   return { data: response?.data, loading: isLoading, error };
 };

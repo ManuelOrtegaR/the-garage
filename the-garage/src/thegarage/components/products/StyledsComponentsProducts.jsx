@@ -182,6 +182,7 @@ export const AlertWarningStyled = styled(Alert)(({ theme }) => ({
 //productDetail
 
 export const CardStoreStyle = styled(Card)(({ theme }) => ({
+  marginTop: "20px",
   backgroundColor: theme.colors.gray100,
   color: theme.colors.mainColor,
 }));
@@ -220,4 +221,14 @@ export const CardDescroptionStyle = styled(Card.Text)(() => ({
   overflow: "hidden",
   whiteSpace: "normal",
   textOverflow: "ellipsis",
+}));
+
+export const DivColor = styled("div")(({ theme }) => ({
+  color: theme.colors.mainColor,
+  paddingTop: "50px",
+}));
+
+export const SpanColor = styled("span")(({ theme }) => ({
+  color: theme.colors.mainColor,
+  paddingTop: "50px",
 }));
