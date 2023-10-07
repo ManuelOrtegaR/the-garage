@@ -73,7 +73,7 @@ export const NavProfiles = () => {
         {
           if (navItem.by.includes(user.userClass)) {
             return (
-              <>
+              <div key={navItem.url}>
                 <Nav.Item>
                   <NavLinkStyled
                     to={navItem.url}
@@ -84,7 +84,7 @@ export const NavProfiles = () => {
                     {navItem.name}
                   </NavLinkStyled>
                 </Nav.Item>
-              </>
+              </div>
             );
           } else {
             return null;

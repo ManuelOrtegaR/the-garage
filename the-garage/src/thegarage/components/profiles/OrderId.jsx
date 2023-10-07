@@ -72,13 +72,15 @@ export const OrderId = () => {
         <span>Total: ${Intl.NumberFormat('es-Co').format(total)}</span>
         <div
           className={
-            user.userClass !== 'admin'
+            user.userClass !== 'Administrador'
               ? 'd-flex  align-items-center mt-3  justify-content-between'
               : 'd-flex  align-items-center mt-3  justify-content-center'
           }
         >
           <span
-            className={user.userClass !== 'admin' ? 'fw-bold' : 'fw-bold me-5'}
+            className={
+              user.userClass !== 'Administrador' ? 'fw-bold' : 'fw-bold me-5'
+            }
           >
             Estado
           </span>
@@ -89,7 +91,7 @@ export const OrderId = () => {
             userClass={user.userClass}
           />
 
-          {user.userClass !== 'admin' ? (
+          {user.userClass !== 'Administrador' && (
             <>
               <BtnSubmitStyled onClick={() => setModalMessages(true)}>
                 Mensaje
@@ -98,16 +100,29 @@ export const OrderId = () => {
                 show={modalMessages}
                 onHide={() => setModalMessages(false)}
               />
+            </>
+          )}
 
-              <BtnSubmitStyled onClick={() => setModalRating(true)}>
-                {user.userClass === 'client' ? 'Calificar' : 'Actualizar'}
+          {user.userClass === 'Cliente' && (
+            <>
+              <BtnSubmitStyled
+                onClick={() => setModalRating(true)}
+                style={
+                  data.estados.length < 4
+                    ? { display: 'none' }
+                    : { display: 'block' }
+                }
+              >
+                Valorar
               </BtnSubmitStyled>
               <ModalScore
                 show={modalRating}
                 onHide={() => setModalRating(false)}
+                items={items}
+                id={id}
               />
             </>
-          ) : null}
+          )}
         </div>
       </div>
     </div>

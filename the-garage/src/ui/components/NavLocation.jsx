@@ -17,7 +17,7 @@ const locationItems = [
   { id: 12, department: 'Cesar', city: 'Valledupar' },
   { id: 13, department: 'Chocó', city: 'Quibdó' },
   { id: 14, department: 'Córdoba', city: 'Montería' },
-  { id: 15, department: 'Cundinamarca', city: 'Bogotá' },
+  { id: 15, department: 'Cundinamarca', city: 'Bogota' },
   { id: 16, department: 'Guainía', city: 'Inírida' },
   { id: 17, department: 'Guaviare', city: 'Guaviare' },
   { id: 18, department: 'Huila', city: 'Neiva' },

@@ -17,10 +17,10 @@ export const NavMenu = () => {
     <Nav variant="pills" className="align-items-center">
       {navItems.map(({ name, url }) => {
         return (
-          <>
+          <div key={name} className="d-flex">
             <NavLinkStyled to={url}>{name}</NavLinkStyled>
             <Divider height={30} color={'white'} />
-          </>
+          </div>
         );
       })}
     </Nav>

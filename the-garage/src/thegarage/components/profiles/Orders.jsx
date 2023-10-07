@@ -32,7 +32,7 @@ export const Orders = () => {
           <div className="d-flex w-25  align-items-center">
             <span className="w-50">Filtrar por: </span>
             <select className="form-select" aria-label="Default select example">
-              <option selected>Todo</option>
+              <option defaultValue="Todo">Todo</option>
               <option value="1">Estado</option>
               <option value="2">Fecha</option>
               <option value="3">Tienda</option>
@@ -42,7 +42,7 @@ export const Orders = () => {
         <ListGroupStyle>
           {data
             .map((order, index) => (
-              <>
+              <div key={index}>
                 <ItemStyle key={order.id} className="border-bottom">
                   <Image
                     src={order.foto_cliente}
@@ -71,7 +71,7 @@ export const Orders = () => {
                     />
                   </ShowOrder>
                 </ItemStyle>
-              </>
+              </div>
             ))
             .slice(firstIndex, lastIndex)}
         </ListGroupStyle>

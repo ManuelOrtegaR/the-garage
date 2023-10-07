@@ -43,14 +43,17 @@ export const PasswordUpdate = () => {
             placeholder="Ingrese su contraseña actual"
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3" controlId="formBasicNewPassword">
           <Form.Label className="lh-1">Nueva Contraseña</Form.Label>
           <Form.Control
             type="password"
             placeholder="Ingrese su nueva contraseña"
           />
         </Form.Group>
-        <Form.Group className="mb-3 w-100" controlId="formBasicPassword">
+        <Form.Group
+          className="mb-3 w-100"
+          controlId="formBasicConfirmNewPassword"
+        >
           <Form.Label className="lh-1">Confirmar Contraseña</Form.Label>
           <Form.Control
             type="password"
