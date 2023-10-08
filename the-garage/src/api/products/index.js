@@ -112,7 +112,7 @@ export async function createProduct(payload) {
     const data = response.data;
     return { data, meta: response.meta };
   } catch (error) {
-    return Promise.reject(error.message);
+    return Promise.reject(error);
   }
 }
 
@@ -144,6 +144,7 @@ export async function getProductTop(id_empresa, limit, offset) {
     const data = response.data;
     return { data, meta: response.meta };
   } catch (error) {
+    console;
     return Promise.reject(error.message);
   }
 }

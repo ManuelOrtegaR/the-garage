@@ -29,7 +29,7 @@ export const useProductsCompany = () => {
     cargarProductos();
   }, []);
 
-  return { data, loading, error };
+  return { data, loading, error, cargarProductos };
 };
 
 export const useProductosCompanyTop = ({ id_empresa }) => {

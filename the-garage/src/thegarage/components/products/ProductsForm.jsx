@@ -46,9 +46,7 @@ const unidadesRqd = z
   })
   .int({ message: "Las unidades diponibles deben ser un valor entero" });
 
-const imageRqd = z.any({
-  required_error: "La imagen del producto es requerida",
-});
+const imageRqd = z.any().optional();
 const marcarqd = z.string({
   required_error: "La marca del producto es requerida.",
 });
@@ -56,6 +54,23 @@ const marcarqd = z.string({
 const tipo_entregaRqd = z.string({
   required_error: "El tipo de Entrega es requerido",
 });
+
+const categorias = [
+  "Mecanica",
+  "Transmision",
+  "Pinturas",
+  "Accesorios",
+  "Llantas",
+  "Lubricantes",
+  "Herramientas",
+  "Otros",
+];
+
+const tipo_entrega = [
+  "Recoger en tienda",
+  "Envío domicilio",
+  "Recoger en tienda y Envío domicilio",
+];
 
 const productSchema = z.object({
   nombre_categoria: refRqd,
@@ -75,6 +90,9 @@ export const ProductsForm = () => {
   const location = useLocation();
   const productToEdit = location.state?.product;
   const {
+    data,
+    loading,
+    error: errorPrisma,
     actions: { crearProducto },
   } = useCreateProduct();
 
@@ -106,6 +124,13 @@ export const ProductsForm = () => {
             Volver
           </FinishBtnStyle>
         </div>
+
+        {errorPrisma && (
+          <Alert variant="danger">
+            Ocurrio un problema al Crear el producto, vuelve a intentarlo
+          </Alert>
+        )}
+
         <Formik
           initialValues={initialValues}
           onSubmit={async (values, { setSubmitting }) => {
@@ -127,10 +152,11 @@ export const ProductsForm = () => {
               formData.append("marca", values.marca);
               formData.append("estatus", "true");
 
-              values.images.forEach((file, index) => {
-                formData.append(`images`, file);
-              });
-
+              if (values.images && values.images.length > 0) {
+                values.images.forEach((file, index) => {
+                  formData.append(`images`, file);
+                });
+              }
               if (productToEdit) {
                 await actualizarProducto(formData, productToEdit.id);
 
@@ -138,8 +164,11 @@ export const ProductsForm = () => {
                 navigate(`/profile/products`);
               } else {
                 await crearProducto(formData);
-                setSubmitting(false);
-                navigate(`/profile/products`);
+
+                if (!loading && !errorPrisma) {
+                  setSubmitting(false);
+                  navigate(`/profile/products`);
+                }
               }
             } catch (e) {
               const message = formatError(e);
@@ -166,22 +195,24 @@ export const ProductsForm = () => {
                   controlId="formBasicProdRef"
                 >
                   <Form.Label column sm="2">
-                    Nombre de Categoria
+                    Categoria
                   </Form.Label>
                   <Col>
-                    <Form.Control
-                      type="text"
-                      placeholder="Ingrese el código o Referencia del producto"
+                    <Form.Select
                       name="nombre_categoria"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.nombre_categoria}
-                      className={
-                        touched.nombre_categoria && errors.nombre_categoria
-                          ? "is-invalid"
-                          : ""
-                      }
-                    />
+                    >
+                      <option value="0">Selecciona la categoria</option>
+                      {categorias.map((categoria) => {
+                        return (
+                          <option key={categoria} value={categoria}>
+                            {categoria}
+                          </option>
+                        );
+                      })}
+                    </Form.Select>
                     <ErrorMessage
                       name="nombre_categoria"
                       component="div"
@@ -285,23 +316,24 @@ export const ProductsForm = () => {
                 controlId="formBasicProdEntrega"
               >
                 <Form.Label column sm="1">
-                  Tipo de Entrega
+                  Tipo Entrega
                 </Form.Label>
                 <Col>
-                  <Form.Control
-                    type="text"
-                    rows={2}
-                    placeholder="Ingrese el tipo de Entrega del producto"
+                  <Form.Select
                     name="tipo_entrega"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.tipo_entrega}
-                    className={
-                      touched.tipo_entrega && errors.tipo_entrega
-                        ? "is-invalid"
-                        : ""
-                    }
-                  />
+                  >
+                    <option value="0">Selecciona tipo de Entrega</option>
+                    {tipo_entrega.map((entrega) => {
+                      return (
+                        <option key={entrega} value={entrega}>
+                          {entrega}
+                        </option>
+                      );
+                    })}
+                  </Form.Select>
 
                   <ErrorMessage
                     name="tipo_entrega"
@@ -401,7 +433,7 @@ export const ProductsForm = () => {
                   controlId="formBasicProdUnits"
                 >
                   <Form.Label column sm="3">
-                    Unidades Disponibles{" "}
+                    Cantidad{" "}
                   </Form.Label>
                   <Col>
                     <Form.Control
@@ -427,30 +459,6 @@ export const ProductsForm = () => {
                 </Form.Group>
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                {/* <Form.Group
-                  as={Row}
-                  className="align-items-center"
-                  controlId="formBasicProdAvailability"
-                >
-                  <Form.Label column sm="4">
-                    Tipo de Despacho
-                  </Form.Label>
-                  <Col>
-                    <div>
-                      <Form.Check // prettier-ignore
-                        type="checkbox"
-                        id="ch_tienda"
-                        label="recoger en tienda"
-                      />
-
-                      <Form.Check // prettier-ignore
-                        type="checkbox"
-                        id="ch_domicilio"
-                        label="envío domicilio"
-                      />
-                    </div>
-                  </Col>
-                </Form.Group> */}
                 <Form.Group
                   as={Row}
                   className="align-items-center"

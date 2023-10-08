@@ -1,13 +1,29 @@
 import { createProduct } from "../api/products";
+import { useState } from "react";
 
 export const useCreateProduct = () => {
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   async function crearProducto(payload) {
+    setLoading(true);
+    setError("");
     try {
-      await createProduct(payload);
+      const response = await createProduct(payload);
+      setData(response.data);
     } catch (error) {
-      return Promise.reject(error.message);
+      console.log("error desde custom", error);
+      setError(error);
+    } finally {
+      setLoading(false);
     }
   }
 
-  return { actions: { crearProducto } };
+  return {
+    data,
+    loading,
+    error,
+    actions: { crearProducto },
+  };
 };

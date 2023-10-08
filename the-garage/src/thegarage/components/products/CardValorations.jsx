@@ -1,7 +1,8 @@
 import { Card } from "react-bootstrap";
-import { BtnSubmitStyled } from "../../../components";
+
 import { CardStoreStyle, IconStyled } from "./StyledsComponentsProducts";
-import { useNavigate } from "react-router-dom";
+
+import { format } from "date-fns";
 
 export const CardValorations = ({ item }) => {
   return (
@@ -10,11 +11,14 @@ export const CardValorations = ({ item }) => {
         {/* <Card.Header>AutoParts</Card.Header> */}
         <Card.Body>
           <Card.Title>{item.cliente.nombre_completo + " comento:"}</Card.Title>
-          <Card.Text>{item.comentarios}</Card.Text>
+
           <Card.Text>
+            <p>{format(new Date(item.fecha_creacion), "dd/MM/yyyy HH:mm")}</p>
+            <p>{item.comentarios}</p>
             {[...Array(item.calificacion)].map((_, index) => (
               <IconStyled key={index} className="bi bi-star-fill"></IconStyled>
             ))}
+            <span> ({item.calificacion}) estrellas </span>
           </Card.Text>
         </Card.Body>
       </CardStoreStyle>

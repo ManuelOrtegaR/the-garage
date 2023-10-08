@@ -58,7 +58,7 @@ export function Item({ item, isService }) {
             <strong>${item.precio.toLocaleString("es-CO")}</strong>
           </Card.Text>
           <CardAvalaibleStyle>
-            {item.tipo_entrega.toLowerCase().includes("domi") ? (
+            {item.tipo_entrega.toLowerCase().includes("domicilio") ? (
               <i className="bi bi-check"></i>
             ) : (
               <i className="bi bi-x"></i>
@@ -66,7 +66,7 @@ export function Item({ item, isService }) {
             {isService ? "Servicio a domicilio" : "Disponible para despacho"}
           </CardAvalaibleStyle>
           <CardAvalaibleStyle>
-            {item.tipo_entrega.toLowerCase().includes("retiro") ? (
+            {item.tipo_entrega.toLowerCase().includes("Recoger") ? (
               <i className="bi bi-check"></i>
             ) : (
               <i className="bi bi-x"></i>
@@ -94,12 +94,18 @@ export function Item({ item, isService }) {
             <ContainerButtonStyled>
               <BtnSubmitStyled
                 onClick={(event) => {
-                  handleClickSuceess(item, 1);
+                  if (item.estatus) {
+                    handleClickSuceess(item, 1);
+                  }
                 }}
                 variant="success"
                 data-cy="btn-add-to-cart"
               >
-                {isService ? "Solicitar Servicio" : "Agregar al carrito"}
+                {isService
+                  ? "Solicitar Servicio"
+                  : item.estatus
+                  ? "Agregar al carrito"
+                  : "No disponible"}
               </BtnSubmitStyled>
 
               {showAlert && (
@@ -116,7 +122,9 @@ export function Item({ item, isService }) {
 
               <BtnDangerSubmitStyled
                 onClick={() => {
-                  handleClick(item.id);
+                  if (item.estatus) {
+                    handleClick(item.id);
+                  }
                 }}
                 variant="danger"
                 className="px-1 w-100"
