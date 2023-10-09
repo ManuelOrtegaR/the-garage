@@ -1,5 +1,5 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import { FooterComponent, NavComponent } from "../../ui/pages";
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { FooterComponent, NavComponent } from '../../ui/pages';
 
 import {
   Contact,
@@ -11,9 +11,8 @@ import {
   ServicesPage,
   ServicesDetail,
   Profiles,
-  SuccessPurchase,
-  FailurePurchase,
-} from "../pages";
+  PurchaseDetails,
+} from '../pages';
 
 export const TheGarageRoutes = () => {
   return (
@@ -30,10 +29,9 @@ export const TheGarageRoutes = () => {
         <Route path="/profile/*" element={<Profiles />} />
         <Route path="servicesDetail/:id" element={<ServicesDetail />} />
         <Route path="chat" element={<Chat />} />
-        <Route path="successPurchase" element={<SuccessPurchase />} />
-        <Route path="failurePurchase" element={<FailurePurchase />} />
+        <Route path="purchaseDetails" element={<PurchaseDetails />} />
         <Route path="chat" element={<Chat />} />
-        <Route path="/" element={<Navigate to={"home"} />} />
+        <Route path="/" element={<Navigate to={'home'} />} />
       </Routes>
       <FooterComponent />
     </>

@@ -1,4 +1,5 @@
 import SingUpModal from '../components/SingUpModal';
+import Alert from 'react-bootstrap/Alert';
 import { useContext, useState } from 'react';
 
 import {
@@ -36,6 +37,8 @@ export function Login() {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const handleShow = () => setShowModal(true);
   const initialValues = {
     email: '',
@@ -44,6 +47,13 @@ export function Login() {
 
   const onLogin = async (formData) => {
     const response = await signIn(formData);
+
+    if (response?.error) {
+      setError(true);
+      setErrorMessage(response.error.message);
+      return;
+    }
+
     const { name, type, token, user, typeData } = response;
     const profileData = {
       ...user,
@@ -54,7 +64,10 @@ export function Login() {
       replace: true,
     });
   };
+
   const onSubmit = (values, { setSubmitting }) => {
+    setError(false);
+    setErrorMessage('');
     onLogin(values);
     setSubmitting(false);
   };
@@ -62,6 +75,14 @@ export function Login() {
     <MainConteiner className="img-fluid">
       <div className="login d-flex row w-50 bg-white">
         <div className="login__contenedor">
+          {error && (
+            <Alert
+              variant="danger"
+              style={{ width: '75%', margin: 'auto', marginTop: '10px' }}
+            >
+              {errorMessage}
+            </Alert>
+          )}
           <TitlePg>Inicio de Sesión</TitlePg>
           <Formik
             initialValues={initialValues}

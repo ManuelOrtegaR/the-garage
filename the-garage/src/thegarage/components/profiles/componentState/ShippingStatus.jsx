@@ -28,10 +28,10 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
 
   const onDelivered = async () => {
     const response = await updateOrderStatus(id);
-    if (response.data.status === 200) {
+    if (response.status === 200) {
       const newEstados = {
-        estado: response.data.data.estado,
-        fecha_estado: response.data.data.fecha_estado,
+        estado: response.data.estado,
+        fecha_estado: response.data.fecha_estado,
       };
       setData([...data, newEstados]);
     }
@@ -45,10 +45,10 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
       response = await updateOrderStatus(id, 'Cancelada');
     }
 
-    if (response.data.status === 200) {
+    if (response.status === 200) {
       const newEstados = {
-        estado: response.data.data.estado,
-        fecha_estado: response.data.data.fecha_estado,
+        estado: response.data.estado,
+        fecha_estado: response.data.fecha_estado,
       };
       setData([...data, newEstados]);
     }

@@ -5,14 +5,16 @@ import {
   ShowOrder,
   StatusStyle,
 } from './StylesComponentsProfiles';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { PaginationProfiles } from './PaginationProfiles';
 import { useNavigate } from 'react-router-dom';
 import { useOrders } from '../../../domain/useOrders';
+import { AuthContext } from '../../../auth/context/AuthContext';
 
 export const Orders = () => {
   const navigate = useNavigate();
-  const { data, loading, error } = useOrders();
+  const { user } = useContext(AuthContext);
+  const { data } = useOrders();
   const [productsBypage, setproductsByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const totalOrders = data.length;
@@ -44,10 +46,27 @@ export const Orders = () => {
             .map((order, index) => (
               <div key={index}>
                 <ItemStyle key={order.id} className="border-bottom">
-                  <Image
-                    src={order.foto_cliente}
-                    style={{ height: 65, width: 65 }}
-                  />
+                  {user.userclass !== 'Administrador' ? (
+                    <Image
+                      src={
+                        user.userClass === 'Cliente'
+                          ? order.foto_empresa
+                          : order.foto_cliente
+                      }
+                      style={{ height: 65, width: 65 }}
+                    />
+                  ) : (
+                    <>
+                      <Image
+                        src={order.foto_cliente}
+                        style={{ height: 65, width: 65 }}
+                      />
+                      <Image
+                        src={order.foto_empresa}
+                        style={{ height: 65, width: 65 }}
+                      />
+                    </>
+                  )}
                   <span className="col-2">
                     {order.detalle_orden_productos[0].nombre}
                   </span>

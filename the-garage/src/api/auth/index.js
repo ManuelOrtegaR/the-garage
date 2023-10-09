@@ -1,4 +1,5 @@
 import { instance as http } from '../http';
+import { decodeSignIn } from './decoder';
 
 export const signIn = async (payload) => {
   try {
@@ -6,12 +7,22 @@ export const signIn = async (payload) => {
       correo: payload.email,
       contrasena: payload.password,
     };
-    const { data: responseData } = await http.post(
+
+    const response = await http.post(
       `${import.meta.env.VITE_API_URL}/auth/signin`,
       body,
     );
-    const { data, meta } = responseData;
+
+    const responseData = response.data;
+
+    const decoded = await decodeSignIn(
+      responseData,
+      responseData.data.user.tipo_usuario,
+    );
+
+    const { data, meta } = decoded;
     const { user = {}, typeData = {} } = data;
+
     return {
       name: typeData.nombre_completo || typeData.razon_social,
       type: user.tipo_usuario,
@@ -20,7 +31,7 @@ export const signIn = async (payload) => {
       typeData,
     };
   } catch (error) {
-    console.log(error);
+    return { error };
   }
 };
 
@@ -83,11 +94,12 @@ export const signUp = async (payload, role) => {
     profilePhoto && form.append('images', profilePhoto);
     cCommerceDocument && form.append('images', cCommerceDocument);
 
-    const { data: responseData } = await http.post(
+    const response = await http.post(
       `${import.meta.env.VITE_API_URL}/auth/${role}/signup`,
       form,
     );
-    return responseData;
+
+    return response.data;
   } catch (error) {
     return error;
   }
@@ -104,7 +116,7 @@ export const reSendEmail = async (payload) => {
     );
     return responseData;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

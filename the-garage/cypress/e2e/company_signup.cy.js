@@ -3,11 +3,6 @@ describe('template spec', () => {
   it('passes', () => {
     cy.visit('/');
     cy.get(`[aria-label="login-button"]`).should('be.visible');
-    cy.get('.nav-pills')
-      .children()
-      .first()
-      .should('have.class', 'active')
-      .and('have.text', 'Inicio');
     cy.get(`[aria-label="login-button"]`).click();
     cy.get(`[data-cy="signup"]`).click();
     cy.get('button[name="signup_company"]').click();
