@@ -49,7 +49,6 @@ export const useProductos = (
           );
         }
       } else if (!objetoEstaVacio(filtrosSeleccionadosAgrupados)) {
-        console.log("es vacio y entre");
         const filterquery = generarQueryFiltros(filtrosSeleccionadosAgrupados);
         navigate(`/productos?${filterquery}&limit=10&offset=${page}`);
 

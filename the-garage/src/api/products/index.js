@@ -9,7 +9,6 @@ import { decodeProductOutput } from "./decoder";
 
 export async function getProducts(limit = 10, offset = 0) {
   try {
-    console.log("entre a getProducts");
     const { data: response } = await http.get(
       `/productos?limit=${limit}&offset=${offset}`
     );
@@ -135,8 +134,6 @@ export async function updateProduct(payload, id) {
  */
 
 export async function getProductTop(id_empresa, limit, offset) {
-  console.log("API AGENT");
-  console.log(id_empresa, limit, offset);
   try {
     const { data: response } = await http.get(
       `productos/misproductosTop?limit=${limit}&offset=${offset}&id_empresa=${id_empresa}`

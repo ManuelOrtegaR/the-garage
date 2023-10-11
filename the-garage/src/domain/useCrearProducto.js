@@ -13,7 +13,6 @@ export const useCreateProduct = () => {
       const response = await createProduct(payload);
       setData(response.data);
     } catch (error) {
-      console.log("error desde custom", error);
       setError(error);
     } finally {
       setLoading(false);

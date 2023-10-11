@@ -33,7 +33,6 @@ export const useProductsCompany = () => {
 };
 
 export const useProductosCompanyTop = ({ id_empresa }) => {
-  console.log("id_empresa", id_empresa);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -43,8 +42,10 @@ export const useProductosCompanyTop = ({ id_empresa }) => {
     setError("");
 
     try {
-      const response = await getProductTop(id_empresa, 3, 0);
-      setData(response.data);
+      if (id_empresa) {
+        const response = await getProductTop(id_empresa, 3, 0);
+        setData(response.data);
+      }
     } catch (error) {
       setError(error);
     } finally {
