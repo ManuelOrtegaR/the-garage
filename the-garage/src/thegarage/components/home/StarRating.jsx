@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
-export const StarRating = ({ width = '', itemRating = 0 }) => {
+export const StarRating = ({
+  width = '',
+  itemRating = 0,
+  disabled = false,
+}) => {
   const [rating, setRating] = useState(itemRating);
   const [hover, setHover] = useState(0);
   return (
@@ -15,6 +19,7 @@ export const StarRating = ({ width = '', itemRating = 0 }) => {
             onClick={() => setRating(index)}
             onMouseEnter={() => setHover(index)}
             onMouseLeave={() => setHover(rating)}
+            disabled={disabled}
           >
             <span className="star">&#9733;</span>
           </button>

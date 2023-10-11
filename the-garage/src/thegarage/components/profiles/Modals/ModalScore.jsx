@@ -7,8 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { StarRating } from '../../home';
 import { createRating } from '../../../../api/rating';
 import { useState } from 'react';
+import { useRatings } from '../../../../domain/useRatings';
 
 export function ModalScore(props) {
+  const { data: response } = useRatings(props.items, props.id);
   const [items, setItems] = useState(props.items);
   const ratingMsg = (event) => {
     event.preventDefault();
@@ -93,6 +95,7 @@ export function ModalScore(props) {
                     className="col-2"
                     name={item.nombre}
                     itemRating={item.calificacion}
+                    disabled={true}
                   />
                   <Form.Control
                     className="col-4"
@@ -100,6 +103,7 @@ export function ModalScore(props) {
                     rows={1}
                     style={{ width: 'auto' }}
                     value={item.comentarios}
+                    readOnly
                   />
                 </>
               )}
