@@ -26,8 +26,11 @@ export function Filter({
     let label = event.target.labels[0].innerText;
     if (label.startsWith("$")) {
       label = label.replace(/[$.]/g, "");
-    }
 
+      label = label.replace(/\s/g, "");
+
+      label = label.replace(/-/g, ",");
+    }
     if (event.target.checked) {
       addFilter(label);
       setFiltrosSeleccionadosAgrupados({
@@ -114,7 +117,15 @@ export function Filter({
         <Form.Check
           type="checkbox"
           id={`flexCheckChecked${filt}`}
-          label={type === "price" ? "$" + filt.toLocaleString("es-CO") : filt}
+          label={
+            type === "price"
+              ? "$" +
+                filt[0].toLocaleString("es-CO") +
+                " - " +
+                "$" +
+                filt[1].toLocaleString("es-CO")
+              : filt
+          }
           onChange={() => {
             handlerChange(event, type);
           }}
