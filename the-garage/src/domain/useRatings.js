@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { getRatings } from '../api/rating';
+import { useEffect, useState } from "react";
+import { allRatings, getRatings } from "../api/rating";
 
 export const useRatings = (items, id) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const cargarValoraciones = async () => {
     setLoading(true);
-    setError('');
+    setError("");
 
     let newItems = items;
 
@@ -29,6 +29,37 @@ export const useRatings = (items, id) => {
       });
 
       setData(newItems);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    cargarValoraciones();
+  }, []);
+
+  return { data, loading, error };
+};
+
+export const useAllRatings = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const cargarValoraciones = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await allRatings();
+
+      if (response.data.length > 9) {
+        setData(response.data.slice(0, 9));
+      } else {
+        setData(response.data);
+      }
     } catch (error) {
       setError(error);
     } finally {

@@ -1,24 +1,31 @@
-import Card from 'react-bootstrap/Card';
-import { StarRating } from './StarRating';
-import userIcon from '../../../../assets/images/home/user.png';
+import Card from "react-bootstrap/Card";
+import { StarRating } from "./StarRating";
 
-export const ReviewCard = () => {
+import { format } from "date-fns";
+
+export const ReviewCard = ({ item }) => {
   return (
     <Card border="main-color">
       <Card.Header>
-        <Card.Img variant="top" src={userIcon} style={{ width: 50 }} />
-        JAVIER GUZMAN
+        <Card.Img
+          variant="top"
+          src={
+            item.cliente.usuario.url_foto
+              ? item.cliente.usuario.url_foto
+              : "https://res.cloudinary.com/db9nfgjqr/image/upload/v1697054977/default_image/istockphoto-1316420668-612x612_xcyynq.jpg"
+          }
+          style={{ width: 30 }}
+          className="rounded-circle object-fit-cover "
+        />
+        <span> {item.cliente.nombre_completo}</span>
       </Card.Header>
       <Card.Body>
-        <Card.Title>La tienda TodoAutos es buena</Card.Title>
-        <Card.Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-          explicabo consequuntur modi ipsum, nulla totam inventore doloribus,
-          velit aperiam veritatis ullam rem iste mollitia unde libero ducimus,
-          voluptatum suscipit ad.
-        </Card.Text>
+        <Card.Title>
+          {format(new Date(item.fecha_creacion), "dd/MM/yyyy HH:mm")}
+        </Card.Title>
+        <Card.Text>{item.comentarios}</Card.Text>
         <div className="d-flex justify-content-center">
-          <StarRating />
+          <StarRating itemRating={item.calificacion} />
         </div>
       </Card.Body>
     </Card>
