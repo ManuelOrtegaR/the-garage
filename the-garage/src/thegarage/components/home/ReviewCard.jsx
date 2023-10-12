@@ -2,6 +2,7 @@ import Card from "react-bootstrap/Card";
 import { StarRating } from "./StarRating";
 
 import { format } from "date-fns";
+import { NavLinkStyled, NavLinkStyledCompany } from "../../../ui/components";
 
 export const ReviewCard = ({ item }) => {
   return (
@@ -23,6 +24,18 @@ export const ReviewCard = ({ item }) => {
         <Card.Title>
           {format(new Date(item.fecha_creacion), "dd/MM/yyyy HH:mm")}
         </Card.Title>
+        <Card.Text>
+          Opinion sobre{" "}
+          <strong>
+            <NavLinkStyledCompany
+              color="blue"
+              to={`/productDetail/${item.id_producto}`}
+            >
+              {" "}
+              {item.producto.nombre}
+            </NavLinkStyledCompany>
+          </strong>
+        </Card.Text>
         <Card.Text>{item.comentarios}</Card.Text>
         <div className="d-flex justify-content-center">
           <StarRating itemRating={item.calificacion} />

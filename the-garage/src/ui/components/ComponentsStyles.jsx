@@ -61,6 +61,15 @@ export const NavLinkStyled = styled(NavLink)(({ ...props }) => ({
     fontWeight: "bold",
   },
 }));
+export const NavLinkStyledCompany = styled(NavLink)(({ theme, ...props }) => ({
+  margin: "0 10px",
+  color: theme.colors.mainColor,
+  textDecoration: "none",
+  "&:hover": {
+    color: theme.colors.mainColor,
+    fontWeight: "bold",
+  },
+}));
 
 export const NavDropDownStyled = styled(NavDropdown)(({ theme }) => ({
   border: "1px solid white",
