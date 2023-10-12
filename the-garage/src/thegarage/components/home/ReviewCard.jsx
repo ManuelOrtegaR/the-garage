@@ -5,7 +5,7 @@ import { format } from "date-fns";
 
 export const ReviewCard = ({ item }) => {
   return (
-    <Card border="main-color">
+    <Card border="main-color" style={{ width: "18rem" }}>
       <Card.Header>
         <Card.Img
           variant="top"
@@ -14,7 +14,7 @@ export const ReviewCard = ({ item }) => {
               ? item.cliente.usuario.url_foto
               : "https://res.cloudinary.com/db9nfgjqr/image/upload/v1697054977/default_image/istockphoto-1316420668-612x612_xcyynq.jpg"
           }
-          style={{ width: 30 }}
+          style={{ width: 30, border: "1px solid gray" }}
           className="rounded-circle object-fit-cover "
         />
         <span> {item.cliente.nombre_completo}</span>

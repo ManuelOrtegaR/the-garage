@@ -66,7 +66,7 @@ export function Item({ item, isService }) {
             {isService ? "Servicio a domicilio" : "Disponible para despacho"}
           </CardAvalaibleStyle>
           <CardAvalaibleStyle>
-            {item.tipo_entrega.toLowerCase().includes("Recoger") ? (
+            {item.tipo_entrega.toLowerCase().includes("recoger") ? (
               <i className="bi bi-check"></i>
             ) : (
               <i className="bi bi-x"></i>

@@ -81,7 +81,13 @@ export const FormSelectStyled = styled(Form.Select)(({ theme }) => ({
   },
 }));
 
-export const IconContainer = styled("img")(({ ...props }) => ({
+export const IconContainer = styled("img")(({ theme, ...props }) => ({
   maxWidth: props.maxWidth || "30px",
   borderRadius: props.borderRadius,
+  boxShadow: `0px 0px 10px 0px ${theme.colors.mainColor}`,
+  "&:hover": {
+    transform: "scale(1.1)",
+    border: "1px solid white",
+    boxShadow: `0px 0px 20px ${theme.colors.mainColor}`,
+  },
 }));
