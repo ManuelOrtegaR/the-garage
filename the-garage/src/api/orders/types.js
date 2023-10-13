@@ -26,6 +26,7 @@ const ordenSchema = z.object({
   id_cliente: z.string(),
   id_empresa: z.string(),
   fecha_orden: z.string(),
+  no_orden: z.number(),
   total: z.string(),
   detalle_orden_productos: detalleOrdenSchema,
   estados: estadosSchema,

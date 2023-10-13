@@ -17,14 +17,18 @@ export const getOrders = async () => {
   return orders;
 };
 
-export const updateOrderStatus = async (id, status = null) => {
+export const updateOrderStatus = async (id, status = null, message) => {
   if (status === null) {
-    const response = await http.put(`/orden_productos/${id}`);
+    const response = await http.put(`/orden_productos/${id}`, {
+      estado: 'Enviada',
+      mensaje: message,
+    });
     const data = await decodeUpdateOrderOutput(response.data);
     return data;
   } else {
     const response = await http.put(`/orden_productos/${id}`, {
       estado: status,
+      mensaje: message,
     });
     const data = await decodeUpdateOrderOutput(response.data);
     return data;

@@ -1,10 +1,6 @@
-import { instance as http } from "../http";
+import { instance as http } from '../http';
 
-export const createOrdenProducts = async (state) => {
-  const { cart, total } = state;
-  console.log("Entro a la funcion");
-  console.log("El carrito", cart);
-
+export const createOrdenProducts = async ({ cart, total }) => {
   const detallesOrdenProductos = cart.map((producto) => {
     return {
       id_producto: producto.id,
@@ -23,7 +19,7 @@ export const createOrdenProducts = async (state) => {
   try {
     const response = await http.post(
       `${import.meta.env.VITE_API_URL}/orden_productos`,
-      body
+      body,
     );
     const { data } = response;
     const { paymentUrl } = data;

@@ -1,16 +1,16 @@
-import styled from "@emotion/styled";
-import { Card } from "react-bootstrap";
+import styled from '@emotion/styled';
+import { Card } from 'react-bootstrap';
 
-export const DivisorHr = styled("hr")(({ theme }) => ({
+export const DivisorHr = styled('hr')(({ theme }) => ({
   borderColor: theme.colors.mainColor,
 }));
 
-export const DescriptionStyled = styled("div")(({ theme }) => ({
+export const DescriptionStyled = styled('div')(({ theme }) => ({
   color: theme.colors.mainColor,
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: "30px",
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginBottom: '30px',
 }));
 
 export const CardElementStyle = styled(Card)(({ theme }) => ({
@@ -19,30 +19,31 @@ export const CardElementStyle = styled(Card)(({ theme }) => ({
 
 export const CardChekoutStyle = styled(Card)(({ theme }) => ({
   backgroundColor: theme.colors.mainColor,
-  color: "white",
+  color: 'white',
+  margin: '15px',
 }));
-export const TitleStyled = styled("div")(({ theme }) => ({
+export const TitleStyled = styled('div')(({ theme }) => ({
   color: theme.colors.mainColor,
-  marginBottom: "30px",
+  marginBottom: '30px',
   fontFamily: theme.fontFamily.mainFont,
-  fontWeight: "bold",
+  fontWeight: 'bold',
 
   // fontSize: theme.fonts[8],
 }));
-export const ServiceDetailStyled = styled("div")(({ theme }) => ({
+export const ServiceDetailStyled = styled('div')(({ theme }) => ({
   color: theme.colors.mainColor,
-  display: "flex",
-  flexDirection: "column",
-  gap: "10px",
-  "& > :first-child": {
-    fontWeight: "bold",
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '10px',
+  '& > :first-child': {
+    fontWeight: 'bold',
   },
 }));
 
-export const ContainerSheduleStyled = styled("div")(({ theme }) => ({
+export const ContainerSheduleStyled = styled('div')(({ theme }) => ({
   color: theme.colors.mainColor,
 }));
-export const PriceStyled = styled("div")(({ theme }) => ({
+export const PriceStyled = styled('div')(({ theme }) => ({
   color: theme.colors.mainColor,
-  fontWeight: "bold",
+  fontWeight: 'bold',
 }));

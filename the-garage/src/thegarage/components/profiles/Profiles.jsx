@@ -5,7 +5,7 @@ import { AuthContext } from '../../../auth/context/AuthContext';
 import { NavLinkProfile } from './StylesComponentsProfiles';
 import { BtnSubmitStyled } from '../../../components';
 
-export const TestProfiles = () => {
+export const Profiles = () => {
   const { user } = useContext(AuthContext);
   const [active, setActive] = useState(false);
   const [formData, setFormData] = useState({

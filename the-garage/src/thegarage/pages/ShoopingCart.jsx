@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card, Form } from "react-bootstrap";
+import { Container, Card } from 'react-bootstrap';
 
 import {
   Continue,
@@ -6,53 +6,65 @@ import {
   ServiceDetail,
   ServiceElement,
   Title,
-} from "../components/car";
-import { Divisor } from "../components/car/Divisor";
-import { Description } from "../components/car/Description";
-import CardElements from "../components/car/CardElements";
-import CarCheckout from "../components/car/CarCheckout";
+  TitleStyled,
+} from '../components/car';
+import { Divisor } from '../components/car/Divisor';
+import { Description } from '../components/car/Description';
+import CardElements from '../components/car/CardElements';
+import CarCheckout from '../components/car/CarCheckout';
+import { useCart } from '../store';
 
 export const ShoppingCart = () => {
-  const type = "products";
-
+  const type = 'products';
+  const { state, dispatch } = useCart();
   return (
     <section>
       <Container className="pt-5 mb-5">
-        <Row className="d-flex justify-content-center align-items-center h-100">
-          <Col>
-            <Card>
-              <Card.Body className="p-4">
-                <Row>
-                  <Col lg={8}>
-                    <Continue />
-
-                    <Divisor />
-                    {type === "products" ? (
-                      <>
-                        <Description />
-                        <CardElements />
-                      </>
-                    ) : (
-                      <>
-                        <Title />
-                        <ServiceElement />
-                        <ServiceDetail />
-                        <Schedule />
-                      </>
-                    )}
-                    {/* Varia entre Podudcto y Servicio */}
-                    {/* <Description />
+        <Card>
+          <Card.Body className="p-4">
+            <Continue />
+            <Divisor />
+            {type === 'products' ? (
+              <>
+                {state.length > 0 ? (
+                  state.map((company) => (
+                    <div key={company.id_empresa} className="d-flex">
+                      <div className="w-100">
+                        <Description
+                          totalItems={company.totalItems}
+                          nombre_empresa={company.nombre_empresa}
+                        />
+                        <CardElements
+                          carElements={company.cart}
+                          dispatch={dispatch}
+                        />
+                      </div>
+                      <CarCheckout
+                        cart={company}
+                        total={company.total}
+                        id_empresa={company.id_empresa}
+                        dispatch={dispatch}
+                      />
+                    </div>
+                  ))
+                ) : (
+                  <TitleStyled>No hay productos en el carrito</TitleStyled>
+                )}
+              </>
+            ) : (
+              <>
+                <Title />
+                <ServiceElement />
+                <ServiceDetail />
+                <Schedule />
+              </>
+            )}
+            {/* Varia entre Podudcto y Servicio */}
+            {/* <Description />
                     <CardElements /> */}
-                    {/* Varia entre Podudcto y Servicio */}
-                  </Col>
-                  <Col lg={4}>
-                    <CarCheckout />
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+            {/* Varia entre Podudcto y Servicio */}
+          </Card.Body>
+        </Card>
       </Container>
     </section>
   );

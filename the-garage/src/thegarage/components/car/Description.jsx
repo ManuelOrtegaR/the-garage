@@ -1,16 +1,13 @@
-import { Dropdown, DropdownButton } from "react-bootstrap";
-import { DescriptionStyled } from "./StylesComponentsCar";
-import { useCart } from "../../store";
+/* eslint-disable react/prop-types */
+import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { DescriptionStyled } from './StylesComponentsCar';
 
-export const Description = () => {
-  const { state } = useCart();
+export const Description = ({ totalItems, nombre_empresa }) => {
   return (
     <DescriptionStyled>
       <div>
-        <p className="mb-1">{"Carrito de Compras"}</p>
-        <p className="mb-0">
-          Tienes {state.totalItems} Elemento(s) en tu carrito
-        </p>
+        <p className="mb-1">{`Carrito de Compras de ${nombre_empresa}`}</p>
+        <p className="mb-0">Tienes {totalItems} Elemento(s)</p>
       </div>
       <div className=" d-flex justify-content-center pt-5 ">
         <DropdownButton

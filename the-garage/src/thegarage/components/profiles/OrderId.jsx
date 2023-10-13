@@ -14,7 +14,7 @@ export const OrderId = () => {
   const [items, setItems] = useState(data.detalle_orden_productos);
   const [modalRating, setModalRating] = React.useState(false);
   const [modalMessages, setModalMessages] = React.useState(false);
-  //Implementar DB ordenes
+
   let total = 0;
   items
     .map((item) => (total += item.precio_unitario * item.cantidad))
@@ -22,7 +22,7 @@ export const OrderId = () => {
 
   return (
     <div className="py-4 px-5">
-      <span className="fw-bold py-3">Pedido {id}</span>
+      <span className="fw-bold py-3">Pedido #{data.no_orden}</span>
       <div className="overflow-auto" style={{ maxHeight: '300px' }}>
         <TableStyled>
           <tr>

@@ -15,6 +15,10 @@ export const UserLogged = ({ user }) => {
   const handleClick = () => {
     navigate('/ShoppingCart');
   };
+  const total = state.reduce((acc, company) => {
+    return acc + company.totalItems;
+  }, 0);
+
   return (
     <>
       <UserContainer>
@@ -29,7 +33,7 @@ export const UserLogged = ({ user }) => {
           src={basketIcon}
           data-cy="btn-cart"
         />
-        <Badge bg="secondary">{state.totalItems}</Badge>
+        <Badge bg="secondary">{total}</Badge>
       </UserContainer>
     </>
   );

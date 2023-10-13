@@ -9,8 +9,11 @@ import {
 import { updateOrderStatus } from '../../../../api/orders';
 import { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
+import { ModalDetails } from '../Modals/ModalDetails';
 
 export const ShippingStatus = ({ estados, id, userClass }) => {
+  const [modalDetails, setModalDetails] = useState(false);
+  const [messageStatus, setMessageStatus] = useState('');
   const [data, setData] = useState(estados);
 
   const enviada = data.length > 2 ? data[2].estado : '';
@@ -28,23 +31,6 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
 
   const onDelivered = async () => {
     const response = await updateOrderStatus(id);
-    if (response.status === 200) {
-      const newEstados = {
-        estado: response.data.estado,
-        fecha_estado: response.data.fecha_estado,
-      };
-      setData([...data, newEstados]);
-    }
-  };
-  const onSent = async (event) => {
-    let response;
-
-    if (event.target.innerText === 'Enviar') {
-      response = await updateOrderStatus(id, 'Enviada');
-    } else {
-      response = await updateOrderStatus(id, 'Cancelada');
-    }
-
     if (response.status === 200) {
       const newEstados = {
         estado: response.data.estado,
@@ -90,15 +76,33 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
       >
         {userClass !== 'Cliente' ? (
           <>
-            <Dropdown.Item eventKey="1" onClick={onSent}>
+            <Dropdown.Item
+              eventKey="1"
+              onClick={() => {
+                setMessageStatus('Enviar');
+                setModalDetails(true);
+              }}
+            >
               Enviar
             </Dropdown.Item>
-            <Dropdown.Item eventKey="2" onClick={onSent}>
+            <Dropdown.Item
+              eventKey="2"
+              onClick={() => {
+                setMessageStatus('Cancelar');
+                setModalDetails(true);
+              }}
+            >
               Cancelar
             </Dropdown.Item>
           </>
         ) : (
-          <Dropdown.Item eventKey="2" onClick={onSent}>
+          <Dropdown.Item
+            eventKey="2"
+            onClick={() => {
+              setMessageStatus('Cancelar');
+              setModalDetails(true);
+            }}
+          >
             Cancelar
           </Dropdown.Item>
         )}
@@ -112,6 +116,14 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
       <DateStyle className="start-0 translate-middle">
         {format(new Date(estados[1].fecha_estado), 'dd/MM/yyyy HH:mm')}
       </DateStyle>
+      <ModalDetails
+        show={modalDetails}
+        messageType={messageStatus}
+        id={id}
+        setData={setData}
+        data={data}
+        onHide={() => setModalDetails(false)}
+      />
     </div>
   );
 };

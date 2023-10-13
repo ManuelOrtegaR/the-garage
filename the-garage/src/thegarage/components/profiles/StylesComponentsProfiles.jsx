@@ -250,3 +250,11 @@ export const StatusRequestStyle = styled.span(() => ({
     background: '#FF0000',
   },
 }));
+
+export const SpanForm = styled.span(() => ({
+  width: '100%',
+  height: '37.6px',
+  display: 'flex',
+  alignItems: 'center',
+  paddingBottom: '8px',
+}));

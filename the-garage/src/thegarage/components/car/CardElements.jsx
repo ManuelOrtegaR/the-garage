@@ -1,24 +1,18 @@
-import React, { useContext } from 'react';
-import { Button, Card } from 'react-bootstrap';
+/* eslint-disable react/prop-types */
+
+import Card from 'react-bootstrap/Card';
 import { CardElementStyle } from './StylesComponentsCar';
-import { AuthContext } from '../../../auth/context/AuthContext';
-import { useCart } from '../../store';
 import { ButtonStyledSuccess } from '../products';
 
-const CardElements = () => {
-  // const { carElements } = useContext(AuthContext);
-
-  const { state, dispatch } = useCart();
-
+const CardElements = ({ carElements, dispatch }) => {
   const deleteElement = (cardElement) => {
-    console.log(cardElement);
     dispatch({ type: 'REMOVE_FROM_CART', payload: cardElement });
   };
 
   return (
     <CardElementStyle className="mb-3 element-list">
       <Card.Body>
-        {state.cart.map((carElement) => (
+        {carElements.map((carElement) => (
           <div
             className="d-flex justify-content-between mb-3"
             key={carElement.id}

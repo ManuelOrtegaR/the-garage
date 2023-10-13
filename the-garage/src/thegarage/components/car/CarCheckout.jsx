@@ -1,37 +1,31 @@
-import { Card, Col, Form, Row } from 'react-bootstrap';
-import { ButtonStyledSuccess } from '../products';
+/* eslint-disable react/prop-types */
+import Card from 'react-bootstrap/Card';
 import { BtnSubmitStyled } from '../../../components';
 import { CardChekoutStyle } from './StylesComponentsCar';
-import { useContext } from 'react';
-import { AuthContext } from '../../../auth/context/AuthContext';
-import { useCart } from '../../store';
-import { createOrdenProducts } from '../../../api/Car';
-import { useNavigate } from 'react-router-dom';
 
-const CarCheckout = () => {
-  const { state } = useCart();
-  const navigate = useNavigate();
+import { createOrdenProducts } from '../../../api/Car';
+
+const CarCheckout = ({ cart, total, id_empresa, dispatch }) => {
   let paymentUrl;
   const onClick = async () => {
     try {
-      paymentUrl = await createOrdenProducts(state);
-      console.log(paymentUrl);
-      // navigate(`/../${paymentUrl}`);
-      window.open(paymentUrl);
+      paymentUrl = await createOrdenProducts(cart, total);
+      window.open(paymentUrl, '_blank');
+      dispatch({ type: 'REMOVE_COMPANY', payload: id_empresa });
     } catch (error) {
       console.log('el error', error);
     }
   };
 
-  const domicilio = 5000;
-  const total = state.total + domicilio;
+  const domicilio = 0;
+  const totalCart = cart.total + domicilio;
   return (
     <CardChekoutStyle>
+      <Card.Header>Cuenta</Card.Header>
       <Card.Body>
-        <hr className="my-4" />
         <div className="d-flex justify-content-between">
           <p className="mb-2">Subtotal</p>
-          <p className="mb-2">${state.total.toLocaleString('es-CO')}</p>
+          <p className="mb-2">${cart.total.toLocaleString('es-CO')}</p>
         </div>
         <div className="d-flex justify-content-between">
           <p className="mb-2">Domicilio</p>
@@ -39,7 +33,7 @@ const CarCheckout = () => {
         </div>
         <div className="d-flex justify-content-between mb-4">
           <p className="mb-2">Total(Incl. impuestos)</p>
-          <p className="mb-2">${total.toLocaleString('es-CO')}</p>
+          <p className="mb-2">${totalCart.toLocaleString('es-CO')}</p>
         </div>
         <BtnSubmitStyled
           variant="light"
@@ -47,9 +41,7 @@ const CarCheckout = () => {
           onClick={onClick}
           data-cy="btn-buy"
         >
-          <div className="d-flex justify-content-around">
-            <div>Pagar</div>
-          </div>
+          Pagar
         </BtnSubmitStyled>
       </Card.Body>
     </CardChekoutStyle>
