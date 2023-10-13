@@ -1,0 +1,61 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  getProductTop,
+  getProducts,
+  getProductsCompany,
+} from "../api/products";
+
+export const useProductsCompany = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function cargarProductos() {
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await getProductsCompany(100, 0);
+      setData(response.data);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    cargarProductos();
+  }, []);
+
+  return { data, loading, error, cargarProductos };
+};
+
+export const useProductosCompanyTop = ({ id_empresa }) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function cargarProductos() {
+    setLoading(true);
+    setError("");
+
+    try {
+      if (id_empresa) {
+        const response = await getProductTop(id_empresa, 3, 0);
+        setData(response.data);
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    cargarProductos();
+  }, [id_empresa]);
+
+  return { data, loading, error };
+};

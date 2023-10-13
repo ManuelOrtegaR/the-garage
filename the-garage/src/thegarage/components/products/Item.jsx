@@ -1,45 +1,148 @@
-import { Button, Card } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
+import {
+  AlertStyled,
+  AlertWarningStyled,
+  CardAvalaibleStyle,
+  CardDescroptionStyle,
+  CardImgStyle,
+  CardStyle,
+  CardTitleStyle,
+  ContainerButtonStyled,
+  ContainerStyled,
+  IconStyled,
+} from "./StyledsComponentsProducts";
+import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../../components";
+import { Card } from "react-bootstrap";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../../auth/context/AuthContext";
+import { medianaValoraciones, promedioValoraciones } from "./utils";
+import { useCart } from "../../store";
 
-export function Item() {
+export function Item({ item, isService }) {
+  const [showAlert, setShowAlert] = useState(false);
+  const { user } = useContext(AuthContext);
+  const { dispatch } = useCart();
+
+  const navigate = useNavigate();
+
+  function handleClick(id) {
+    if (user) {
+      isService
+        ? navigate(`/servicesDetail/${id}`)
+        : navigate(`/productDetail/${id}`);
+    } else navigate("/login");
+  }
+
+  function handleClickSuceess(item, cant) {
+    if (user) {
+      dispatch({ type: "ADD_TO_CART", payload: { item, cant: 1 } });
+      setShowAlert(!showAlert);
+    } else navigate("/login");
+  }
+
   return (
-    <div className="pt-2">
-      <Card className="card" style={{ width: '17rem' }}>
-        <Card.Img
-          className="card__img"
+    <ContainerStyled>
+      <CardStyle>
+        <CardImgStyle
           variant="top"
-          src="https://placehold.co/288x196"
+          src={
+            item.fotos.length > 0
+              ? item.fotos[0].url_foto
+              : "https://placehold.co/600x400"
+          }
         />
-        <Card.Body className="card__body">
-          <Card.Title className="card__titlle">Refrigerante</Card.Title>
-          <Card.Text className="card_text">
-            Some quick example text to build on the card title and make up the
-            bulk of the cards content.
+        <Card.Body>
+          <CardTitleStyle>{item.nombre}</CardTitleStyle>
+          <CardDescroptionStyle>{item.descripcion}</CardDescroptionStyle>
+          <Card.Text className="fs-4">
+            <strong>${item.precio.toLocaleString("es-CO")}</strong>
           </Card.Text>
-          <Card.Text className="card_text fs-4">
-            <strong>$120.000</strong>
-          </Card.Text>
-          <Card.Text className="card_text d-flex">
-            <i className="bi bi-check2-circle">Disponible para despacho</i>
-            <i className="bi bi-check2-circle">Disponible para retiro</i>
-          </Card.Text>
+          <CardAvalaibleStyle>
+            {item.tipo_entrega.toLowerCase().includes("domicilio") ? (
+              <i className="bi bi-check"></i>
+            ) : (
+              <i className="bi bi-x"></i>
+            )}
+            {isService ? "Servicio a domicilio" : "Disponible para despacho"}
+          </CardAvalaibleStyle>
+          <CardAvalaibleStyle>
+            {item.tipo_entrega.toLowerCase().includes("recoger") ? (
+              <i className="bi bi-check"></i>
+            ) : (
+              <i className="bi bi-x"></i>
+            )}
+            {isService ? "Servicio en Taller" : "Disponible para Retiro"}
+          </CardAvalaibleStyle>
           <Card.Text>
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star"></i>
-            <span>(4)</span>
+            {[...Array(medianaValoraciones(item.valoraciones))].map(
+              (_, index) => (
+                <IconStyled
+                  key={index}
+                  className="bi bi-star-fill"
+                ></IconStyled>
+              )
+            )}
+            {[...Array(5 - medianaValoraciones(item.valoraciones))].map(
+              (_, index) => (
+                <IconStyled key={index} className="bi bi-star"></IconStyled>
+              )
+            )}
+
+            <span> {medianaValoraciones(item.valoraciones)} </span>
           </Card.Text>
-          <div className="d-flex justify-content-between gap-1">
-            <Button className="px-1 w-100" variant="success">
-              <i className="bi bi-cart-plus"></i> Agregar al Carrito
-            </Button>
-            {/* <Button className="px-4" variant="primary">
-              Ver Detalle
-            </Button> */}
-          </div>
+          {!user || user.userClass === "Cliente" ? (
+            <ContainerButtonStyled>
+              <BtnSubmitStyled
+                onClick={(event) => {
+                  if (item.estatus) {
+                    handleClickSuceess(item, 1);
+                  }
+                }}
+                variant="success"
+                data-cy="btn-add-to-cart"
+              >
+                {isService
+                  ? "Solicitar Servicio"
+                  : item.estatus
+                  ? "Agregar al carrito"
+                  : "No disponible"}
+              </BtnSubmitStyled>
+
+              {showAlert && (
+                <AlertStyled
+                  variant="primary"
+                  onClose={() => {
+                    setShowAlert(!showAlert);
+                  }}
+                  dismissible
+                >
+                  {isService ? "Servicio Solicitado" : "Producto Agregado"}
+                </AlertStyled>
+              )}
+
+              <BtnDangerSubmitStyled
+                onClick={() => {
+                  if (item.estatus) {
+                    handleClick(item.id);
+                  }
+                }}
+                variant="danger"
+                className="px-1 w-100"
+              >
+                Ver Detalles
+              </BtnDangerSubmitStyled>
+            </ContainerButtonStyled>
+          ) : (
+            <div>
+              <AlertWarningStyled variant="warning">
+                <p>
+                  Este servicio o producto está disponible solo para clientes.{" "}
+                </p>
+              </AlertWarningStyled>
+            </div>
+          )}
         </Card.Body>
-      </Card>
-    </div>
+      </CardStyle>
+    </ContainerStyled>
   );
 }

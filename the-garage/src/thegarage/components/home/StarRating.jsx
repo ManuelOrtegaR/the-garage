@@ -1,10 +1,14 @@
 import { useState } from 'react';
 
-export const StarRating = () => {
-  const [rating, setRating] = useState(0);
+export const StarRating = ({
+  width = '',
+  itemRating = 0,
+  disabled = false,
+}) => {
+  const [rating, setRating] = useState(itemRating);
   const [hover, setHover] = useState(0);
   return (
-    <div className="star-rating">
+    <div className={`star-rating`} style={{ width: 'auto' }}>
       {[...Array(5)].map((star, index) => {
         index += 1;
         return (
@@ -15,6 +19,7 @@ export const StarRating = () => {
             onClick={() => setRating(index)}
             onMouseEnter={() => setHover(index)}
             onMouseLeave={() => setHover(rating)}
+            disabled={disabled}
           >
             <span className="star">&#9733;</span>
           </button>

@@ -2,10 +2,15 @@
 @import '../node_modules/bootstrap/scss/variables';
 @import '../node_modules/bootstrap/scss/variables-dark';
 
-$main-color: #1d426b;
+// anterior #1d426b
+$main-color: #163252;
+$secondary-color: #1b589e;
+$button-color: #c4820c;
 
 $proyect-colors: (
   'main-color': $main-color,
+  'secondary-color': $secondary-color,
+  'button-color': $button-color,
 );
 
 $line-height-base: 1.5;

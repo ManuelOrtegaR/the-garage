@@ -1,37 +1,28 @@
-import { Nav, Navbar } from 'react-bootstrap';
+import Nav from 'react-bootstrap/Nav';
 import { Divider } from './Divider';
-import { NavLinkStyled } from './ComponentsStyled';
+import { NavLinkStyled } from './ComponentsStyles';
 
 const navItems = [
   { name: 'Inicio', url: '/home' },
   { name: 'Productos', url: '/productos' },
   { name: 'Servicios', url: '/servicios' },
-  { name: 'Empresas', url: '/empresas' },
-  { name: '¿Quiénes somos?', url: '/acercade' },
-  { name: 'PQR', url: '/pqr' },
+  { name: 'Empresas', url: '/home' },
+  { name: '¿Quiénes somos?', url: '/home' },
+  { name: 'PQR', url: '/contacto' },
   { name: 'Contacto', url: '/contacto' },
 ];
 
 export const NavMenu = () => {
   return (
-    <Navbar.Collapse
-      id="responsive-navbar-nav"
-      style={{
-        flexGrow: 0,
-      }}
-    >
-      <Nav className="align-items-center">
-        {navItems.map(({ name, url }) => {
-          return (
-            <div className="d-flex align-items-center" key={name}>
-              <NavLinkStyled className={'nav-link'} to={url}>
-                {name}
-              </NavLinkStyled>
-              <Divider height={30} color={'white'} />
-            </div>
-          );
-        })}
-      </Nav>
-    </Navbar.Collapse>
+    <Nav variant="pills" className="align-items-center">
+      {navItems.map(({ name, url }) => {
+        return (
+          <div key={name} className="d-flex">
+            <NavLinkStyled to={url}>{name}</NavLinkStyled>
+            <Divider height={30} color={'white'} />
+          </div>
+        );
+      })}
+    </Nav>
   );
 };

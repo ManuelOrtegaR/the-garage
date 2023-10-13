@@ -1,84 +1,37 @@
-import { Card } from 'react-bootstrap';
-import { StarRating } from './StarRating';
-import user from '../../../../assets/images/home/user.png';
+import { Alert, Carousel, Spinner } from "react-bootstrap";
+import { CarouselStyled, SubTitleStyled } from "./ComponentsStyles";
+import { ReviewCard } from "./ReviewCard";
+import { useAllRatings } from "../../../domain/useRatings";
 
 export const ReviewsComponent = () => {
+  const { data, loading, error } = useAllRatings();
+
   return (
     <>
-      <h2 className="d-flex justify-content-center mt-4">Comentarios</h2>
-      <div className="d-flex justify-content-center gap-3">
-        <Card border="primary" style={{ width: '18rem' }}>
-          <Card.Header>
-            <Card.Img variant="top" src={user} style={{ width: 50 }} />
-            JAVIER GUZMAN
-          </Card.Header>
-          <Card.Body>
-            <Card.Title>La tienda TodoAutos es buena</Card.Title>
-            <Card.Text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              explicabo consequuntur modi ipsum, nulla totam inventore
-              doloribus, velit aperiam veritatis ullam rem iste mollitia unde
-              libero ducimus, voluptatum suscipit ad.
-            </Card.Text>
-            <div className="d-flex justify-content-center">
-              <StarRating />
-            </div>
-          </Card.Body>
-        </Card>
-        <Card border="primary" style={{ width: '18rem' }}>
-          <Card.Header>
-            <Card.Img variant="top" src={user} style={{ width: 50 }} />
-            JAVIER GUZMAN
-          </Card.Header>
-          <Card.Body>
-            <Card.Title>La tienda TodoAutos es buena</Card.Title>
-            <Card.Text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              explicabo consequuntur modi ipsum, nulla totam inventore
-              doloribus, velit aperiam veritatis ullam rem iste mollitia unde
-              libero ducimus, voluptatum suscipit ad.
-            </Card.Text>
-            <div className="d-flex justify-content-center">
-              <StarRating />
-            </div>
-          </Card.Body>
-        </Card>
-        <Card border="primary" style={{ width: '18rem' }}>
-          <Card.Header>
-            <Card.Img variant="top" src={user} style={{ width: 50 }} />
-            JAVIER GUZMAN
-          </Card.Header>
-          <Card.Body>
-            <Card.Title>La tienda TodoAutos es buena</Card.Title>
-            <Card.Text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              explicabo consequuntur modi ipsum, nulla totam inventore
-              doloribus, velit aperiam veritatis ullam rem iste mollitia unde
-              libero ducimus, voluptatum suscipit ad.
-            </Card.Text>
-            <div className="d-flex justify-content-center">
-              <StarRating />
-            </div>
-          </Card.Body>
-        </Card>
-        <Card border="primary" style={{ width: '18rem' }}>
-          <Card.Header>
-            <Card.Img variant="top" src={user} style={{ width: 50 }} />
-            JAVIER GUZMAN
-          </Card.Header>
-          <Card.Body>
-            <Card.Title>La tienda TodoAutos es buena</Card.Title>
-            <Card.Text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              explicabo consequuntur modi ipsum, nulla totam inventore
-              doloribus, velit aperiam veritatis ullam rem iste mollitia unde
-              libero ducimus, voluptatum suscipit ad.
-            </Card.Text>
-            <div className="d-flex justify-content-center">
-              <StarRating />
-            </div>
-          </Card.Body>
-        </Card>
+      <div className="bg-main-color pt-4">
+        <SubTitleStyled color="white">Comentarios</SubTitleStyled>
+
+        <CarouselStyled>
+          {loading && <Spinner animation="border" variant="primary" />}
+          {error && <Alert variant="danger">{error}</Alert>}
+          {data.map((rating, index) => {
+            if (index % 3 === 0) {
+              return (
+                <Carousel.Item key={index}>
+                  <div className="d-flex justify-content-center gap-5 py-5">
+                    {data
+                      .slice(index, Math.min(index + 3, data.length))
+                      .map((item, subIndex) => (
+                        <ReviewCard key={subIndex} item={item} />
+                      ))}
+                  </div>
+                </Carousel.Item>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </CarouselStyled>
       </div>
     </>
   );

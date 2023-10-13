@@ -1,113 +1,106 @@
-import { User } from '../../pages';
-
-import ListGroup from 'react-bootstrap/ListGroup';
-import Nav from 'react-bootstrap/Nav';
-import Pagination from 'react-bootstrap/Pagination';
+import Image from 'react-bootstrap/Image';
+import {
+  ItemStyle,
+  ListGroupStyle,
+  ShowOrder,
+  StatusStyle,
+} from './StylesComponentsProfiles';
+import { useContext, useState } from 'react';
+import { PaginationProfiles } from './PaginationProfiles';
+import { useNavigate } from 'react-router-dom';
+import { useOrders } from '../../../domain/useOrders';
+import { AuthContext } from '../../../auth/context/AuthContext';
 
 export const Orders = () => {
-  const widthOrders = User === 'Company' ? 'w-50' : 'w-75';
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const { data } = useOrders();
+  const [productsBypage, setproductsByPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalOrders = data.length;
+
+  const lastIndex = currentPage * productsBypage;
+  const firstIndex = lastIndex - productsBypage;
+
+  const orderDetails = (order, index) => {
+    navigate(`${order.id}`, { state: data[index] });
+  };
+
   return (
-    <div
-      className={widthOrders + ' position-relative border text-center m-auto'}
-    >
-      <div className="bg-body z-3 py-1 px-2 position-absolute translate-middle mt-0 start-50 text-center border rounded-pill">
-        <h5>Orders</h5>
-      </div>
-
-      <div className="mx-5 mt-5 mb-2 d-flex flex-column align-items-center">
-        {User === 'Company' ? (
-          <div className="d-flex justify-content-between align-items-center col-11 m-2">
-            <select
-              className="form-select w-auto"
-              aria-label="Default select example"
-            >
-              <option selected>Products / Services</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+    <>
+      <div className="m-auto w-100 p-4 ">
+        <div className="d-flex justify-content-between mb-4">
+          <span className="fs-6 fw-bold">Ordenes</span>
+          <div className="d-flex w-25  align-items-center">
+            <span className="w-50">Filtrar por: </span>
+            <select className="form-select" aria-label="Default select example">
+              <option defaultValue="Todo">Todo</option>
+              <option value="1">Estado</option>
+              <option value="2">Fecha</option>
+              <option value="3">Tienda</option>
             </select>
-            <nav>
-              <Nav defaultActiveKey="/home" className="flex-column">
-                <Nav.Link href="/home">
-                  <i className="bi bi-funnel-fill"></i>
-                </Nav.Link>
-              </Nav>
-            </nav>
           </div>
-        ) : null}
-        <ListGroup as="ul" className="w-100">
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-center align-items-center m-0 position-relative"
-          >
-            <img src="https://placehold.co/50x25" className="rounded m-1" />
-            <span className="w-100 p-2 lh-1 text-start">
-              {User === 'Company'
-                ? 'User'
-                : 'Este es un texto con ciertas caracteristicas que no puedo mensionar gustele a quien le guste.'}
-            </span>
-            <span className="p-2">
-              {User === 'Company' ? 'Order' : 'Value'}
-            </span>
-            <span className="p-2">Status</span>
-            <Nav.Link href="/home" className="p-2">
-              <i className="bi bi-eye-fill"></i>
-            </Nav.Link>
-          </ListGroup.Item>
-
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-center align-items-center m-0 position-relative"
-          >
-            <img src="https://placehold.co/50x25" className="rounded m-1" />
-            <span className="w-100 p-2 lh-1 text-start">
-              {User === 'Company' ? 'User' : 'Description.'}
-            </span>
-            <span className="p-2">
-              {User === 'Company' ? 'Order' : 'Value'}
-            </span>
-            <span className="p-2">Status</span>
-            <Nav.Link href="/home" className="p-2">
-              <i className="bi bi-eye-fill"></i>
-            </Nav.Link>
-          </ListGroup.Item>
-
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-center align-items-center m-0 position-relative"
-          >
-            <img src="https://placehold.co/50x25" className="rounded m-1" />
-            <span className="w-100 p-2 lh-1 text-start">
-              {User === 'Company' ? 'User' : 'Description.'}
-            </span>
-            <span className="p-2">
-              {User === 'Company' ? 'Order' : 'Value'}
-            </span>
-            <span className="p-2">Status</span>
-            <Nav.Link href="/home" className="p-2">
-              <i className="bi bi-eye-fill"></i>
-            </Nav.Link>
-          </ListGroup.Item>
-        </ListGroup>
-
-        <Pagination className="m-2">
-          <Pagination.First />
-          <Pagination.Prev />
-          <Pagination.Item>{1}</Pagination.Item>
-          <Pagination.Ellipsis />
-
-          <Pagination.Item>{10}</Pagination.Item>
-          <Pagination.Item>{11}</Pagination.Item>
-          <Pagination.Item active>{12}</Pagination.Item>
-          <Pagination.Item>{13}</Pagination.Item>
-          <Pagination.Item disabled>{14}</Pagination.Item>
-
-          <Pagination.Ellipsis />
-          <Pagination.Item>{20}</Pagination.Item>
-          <Pagination.Next />
-          <Pagination.Last />
-        </Pagination>
+        </div>
+        <ListGroupStyle>
+          {data
+            .map((order, index) => (
+              <div key={index}>
+                <ItemStyle key={order.id} className="border-bottom">
+                  {user.userclass !== 'Administrador' ? (
+                    <Image
+                      src={
+                        user.userClass === 'Cliente'
+                          ? order.foto_empresa
+                          : order.foto_cliente
+                      }
+                      style={{ height: 65, width: 65 }}
+                    />
+                  ) : (
+                    <>
+                      <Image
+                        src={order.foto_cliente}
+                        style={{ height: 65, width: 65 }}
+                      />
+                      <Image
+                        src={order.foto_empresa}
+                        style={{ height: 65, width: 65 }}
+                      />
+                    </>
+                  )}
+                  <span className="col-2">
+                    {order.detalle_orden_productos[0].nombre}
+                  </span>
+                  <span className="col-1">
+                    Articulos: {order.detalle_orden_productos.length}
+                  </span>
+                  <span className="col-2 fw-bold fs-5 ">
+                    {'$' + new Intl.NumberFormat('es-Co').format(order.total)}
+                  </span>
+                  <div className="col-2">
+                    <StatusStyle
+                      className={order.estados[order.estados.length - 1].estado}
+                    >
+                      {order.estados[order.estados.length - 1].estado}
+                    </StatusStyle>
+                  </div>
+                  <ShowOrder onClick={() => orderDetails(order, index)}>
+                    <i
+                      className="bi bi-eye-fill"
+                      style={{ width: '20px', height: '20px' }}
+                    />
+                  </ShowOrder>
+                </ItemStyle>
+              </div>
+            ))
+            .slice(firstIndex, lastIndex)}
+        </ListGroupStyle>
+        <PaginationProfiles
+          byPage={productsBypage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          total={totalOrders}
+        />
       </div>
-    </div>
+    </>
   );
 };

@@ -1,25 +1,66 @@
-import { Pagination } from 'react-bootstrap';
+import { Pagination } from "react-bootstrap";
+import {
+  ContainerStyledPaginator,
+  PaginationStyled,
+} from "./StyledsComponentsProducts";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export function Paginator() {
+export function Paginator({
+  nextHandler,
+  prevHandler,
+  currentPage,
+  totalPages,
+  specificHandler,
+  cambiarPagina,
+}) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
+  const specificPage = (page) => {
+    const rutaActual = location.pathname;
+    console.log(rutaActual);
+
+    specificHandler(page);
+
+    navigate(`${rutaActual}?offset=${(page - 1) * 10}`);
+    cambiarPagina((page - 1) * 10);
+  };
+
+  const irAsiguientePagina = () => {
+    if (currentPage + 1 < totalPages) {
+      specificPage(currentPage + 2);
+      nextHandler();
+    }
+  };
+
+  const irAPaginaAnterior = () => {
+    if (currentPage > 0) {
+      specificPage(currentPage);
+      prevHandler();
+    }
+  };
+
+  const generatePages = () => {
+    const pages = Array.from({ length: totalPages }, (_, index) => (
+      <Pagination.Item
+        onClick={(event) => specificPage(index + 1)}
+        active={currentPage + 1 === index + 1 ? true : false}
+        key={index + 1}
+      >
+        {index + 1}
+      </Pagination.Item>
+    ));
+
+    return pages;
+  };
   return (
-    <div className="d-flex justify-content-center pt-3">
-      <Pagination>
-        <Pagination.First />
-        <Pagination.Prev />
-        <Pagination.Item>{1}</Pagination.Item>
-        <Pagination.Ellipsis />
-
-        <Pagination.Item>{10}</Pagination.Item>
-        <Pagination.Item>{11}</Pagination.Item>
-        <Pagination.Item active>{12}</Pagination.Item>
-        <Pagination.Item>{13}</Pagination.Item>
-        <Pagination.Item disabled>{14}</Pagination.Item>
-
-        <Pagination.Ellipsis />
-        <Pagination.Item>{20}</Pagination.Item>
-        <Pagination.Next />
-        <Pagination.Last />
-      </Pagination>
-    </div>
+    <ContainerStyledPaginator>
+      <PaginationStyled>
+        <Pagination.Prev onClick={irAPaginaAnterior}> Prev</Pagination.Prev>
+        {generatePages()}
+        <Pagination.Next onClick={irAsiguientePagina}> Next</Pagination.Next>
+      </PaginationStyled>
+    </ContainerStyledPaginator>
   );
 }

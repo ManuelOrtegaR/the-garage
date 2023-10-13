@@ -1,18 +1,17 @@
-import { Navbar } from 'react-bootstrap';
+import styled from '@emotion/styled';
 import logoTextW from '../../../assets/logos/logoTextW.png';
 import { NavLink } from 'react-router-dom';
 
 export const NavLogo = () => {
   return (
-    <Navbar.Brand>
-      <NavLink to={'/home'}>
-        <img
-          alt="logo-the-garage"
-          src={logoTextW}
-          height="50"
-          className="d-inline-block align-top"
-        />
-      </NavLink>
-    </Navbar.Brand>
+    <NavLink to={'/home'} className={'nav-brand'}>
+      <LogoStyled alt="logo-the-garage" src={logoTextW} />
+    </NavLink>
   );
 };
+
+const LogoStyled = styled('img')(() => ({
+  width: '100%',
+  height: 'auto',
+  maxWidth: '400px',
+}));
