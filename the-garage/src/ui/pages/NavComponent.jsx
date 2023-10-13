@@ -10,18 +10,19 @@ import {
   LoginSpace,
 } from '../components';
 
-const token = getSession();
-
-if (token) {
-  const { data } = await getSessionData();
-
-  if (!data) {
-    clearSession();
-    localStorage.removeItem('user');
-  }
-}
-
 export const NavComponent = () => {
+  (async () => {
+    const token = getSession();
+
+    if (token) {
+      const { data } = await getSessionData();
+
+      if (!data) {
+        clearSession();
+        localStorage.removeItem('user');
+      }
+    }
+  })();
   return (
     <>
       <NavbarStyled>
