@@ -8,8 +8,9 @@ import {
   ButtonStyled,
 } from '../components/StyledsComponents';
 import Form from 'react-bootstrap/Form';
-import googleIcon from '../../../assets/authIcons/google-icono.svg';
-import facebookIcon from '../../../assets/authIcons/facebook-icono.svg';
+import Spinner from 'react-bootstrap/Spinner';
+// import googleIcon from '../../../assets/authIcons/google-icono.svg';
+// import facebookIcon from '../../../assets/authIcons/facebook-icono.svg';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
@@ -65,10 +66,11 @@ export function Login() {
     });
   };
 
-  const onSubmit = (values, { setSubmitting }) => {
+  const onSubmit = async (values, { setSubmitting }) => {
+    setSubmitting(true);
     setError(false);
     setErrorMessage('');
-    onLogin(values);
+    await onLogin(values);
     setSubmitting(false);
   };
   return (
@@ -160,12 +162,16 @@ export function Login() {
                     className="w-100"
                     disabled={isSubmitting}
                   >
-                    <NavLink
-                      style={{ textDecoration: 'none', color: 'white' }}
-                      data-cy="login-button"
-                    >
-                      Ingresar
-                    </NavLink>
+                    {!isSubmitting ? (
+                      'Iniciar Sesión'
+                    ) : (
+                      <Spinner
+                        as="span"
+                        animation="grow"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    )}
                   </ButtonStyled>
                 </div>
                 <div className="d-flex gap-1 mt-2 justify-content-center">
@@ -177,7 +183,7 @@ export function Login() {
               </Form>
             )}
           </Formik>
-          <div className="d-flex justify-content-center m-2">
+          {/* <div className="d-flex justify-content-center m-2">
             <span>o</span>
           </div>
           <div className="btn d-flex gap-2 justify-content-center border mb-1 shadow-sm">
@@ -187,7 +193,7 @@ export function Login() {
           <div className="btn d-flex gap-2 justify-content-center border shadow-sm">
             <img src={facebookIcon} className="register_Methods"></img>
             <label>Continúa con Facebook</label>
-          </div>
+          </div> */}
         </div>
       </div>
       {showModal ? <SingUpModal /> : <></>}

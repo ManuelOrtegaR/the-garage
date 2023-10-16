@@ -12,19 +12,6 @@ import { useRatings } from '../../../../domain/useRatings';
 export function ModalScore(props) {
   const { data: response } = useRatings(props.items, props.id);
   const [items, setItems] = useState(props.items);
-  const ratingMsg = (event) => {
-    event.preventDefault();
-    toast.success('Se a actualizado exitosamente!!', {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-  };
 
   const onRating = async (event, id, index) => {
     event.preventDefault();

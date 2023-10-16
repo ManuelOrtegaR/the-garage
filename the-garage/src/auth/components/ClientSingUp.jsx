@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
 import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { z } from 'zod';
@@ -81,8 +82,9 @@ function ClientSingUp() {
     navigate('/confirmacion', { state: response });
   };
 
-  const onSubmit = (values, { setSubmitting }) => {
-    onClientSignUp(values);
+  const onSubmit = async (values, { setSubmitting }) => {
+    setSubmitting(true);
+    await onClientSignUp(values);
     setSubmitting(false);
   };
 
@@ -330,8 +332,21 @@ function ClientSingUp() {
             </Form.Group>
 
             <div className="d-flex justify-content-center">
-              <BtnSubmitStyled type="submit" disabled={isSubmitting}>
-                Guardar
+              <BtnSubmitStyled
+                type="submit"
+                disabled={isSubmitting}
+                className="w-100 p-2"
+              >
+                {!isSubmitting ? (
+                  'Registrate'
+                ) : (
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                )}
               </BtnSubmitStyled>
             </div>
           </Form>
