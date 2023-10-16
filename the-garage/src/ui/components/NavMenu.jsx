@@ -5,16 +5,16 @@ import { NavLinkStyled } from './ComponentsStyles';
 const navItems = [
   { name: 'Inicio', url: '/home' },
   { name: 'Productos', url: '/productos' },
-  { name: 'Servicios', url: '/servicios' },
-  { name: 'Empresas', url: '/home' },
-  { name: '¿Quiénes somos?', url: '/home' },
-  { name: 'PQR', url: '/contacto' },
+  // { name: 'Servicios', url: '/servicios' },
+  { name: 'Empresas', url: '/home?section=companies' },
+  { name: '¿Quiénes somos?', url: '/home?section=about' },
+  // { name: 'PQR', url: '/contacto' },
   { name: 'Contacto', url: '/contacto' },
 ];
 
 export const NavMenu = () => {
   return (
-    <Nav variant="pills" className="align-items-center">
+    <Nav variant="pills" className="d-flex align-items-center ">
       {navItems.map(({ name, url }) => {
         return (
           <div key={name} className="d-flex">
