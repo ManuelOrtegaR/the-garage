@@ -3,6 +3,7 @@ import { AuthContext } from '../../../auth/context/AuthContext';
 import { useAdressLocation } from '../../../domain/useAddressLocation';
 import { ClientProfile } from './ClientProfile';
 import { CompanyProfile } from './CompanyProfile';
+import { AdminProfile } from './AdminProfile';
 
 export const ProfileDetails = () => {
   const { user, login } = useContext(AuthContext);
@@ -34,8 +35,20 @@ export const ProfileDetails = () => {
           changeImageInput={changeImageInput}
           fileInputRef={fileInputRef}
         />
-      ) : (
+      ) : user.userClass === 'Empresa' ? (
         <CompanyProfile
+          user={user}
+          login={login}
+          handelUpdate={handelUpdate}
+          setHandelUpdate={setHandelUpdate}
+          departments={departments}
+          city={city}
+          handleChangeDepartment={handleChangeDepartment}
+          changeImageInput={changeImageInput}
+          fileInputRef={fileInputRef}
+        />
+      ) : (
+        <AdminProfile
           user={user}
           login={login}
           handelUpdate={handelUpdate}

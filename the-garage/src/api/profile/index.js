@@ -1,5 +1,6 @@
 import { instance as http } from '../http';
 import {
+  decodeAdminUpdate,
   decodeClientUpdate,
   decodeCompanyUpdate,
   decodeDetailsUpdate,
@@ -66,5 +67,21 @@ export const updateCompanyDetails = async (details) => {
   form.append('data', JSON.stringify(body));
   const { data } = await http.put('/perfil', form);
   const decoded = await decodeDetailsUpdate(data);
+  return decoded;
+};
+
+export const updateAdminProfile = async (profile) => {
+  const body = {
+    userData: {
+      ciudad: profile.ciudad,
+      departamento: profile.departamento,
+      direccion: profile.direccion,
+    },
+  };
+  const form = new FormData();
+  form.append('data', JSON.stringify(body));
+  const { data } = await http.put('/perfil', form);
+
+  const decoded = await decodeAdminUpdate(data);
   return decoded;
 };

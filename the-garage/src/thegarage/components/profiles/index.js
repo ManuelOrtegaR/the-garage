@@ -18,3 +18,4 @@ export * from './PaginationProfiles';
 export * from './ProfileDetails';
 export * from './ClientProfile';
 export * from './CompanyProfile';
+export * from './AdminProfile';

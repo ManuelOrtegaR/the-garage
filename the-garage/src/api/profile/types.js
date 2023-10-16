@@ -67,3 +67,22 @@ export const CompanyDetailsOutput = z.object({
     tipo_documento_representante: z.string(),
   }),
 });
+
+export const AdminUpdateOutput = z.object({
+  user: z.object({
+    ciudad: z.string(),
+    correo: z.string().email(),
+    departamento: z.string(),
+    direccion: z.string(),
+    fecha_actualizacion: z.string().nullable().optional(),
+    fecha_creacion: z.string(),
+    tipo_usuario: z.string(),
+    url_foto: z.string().optional(),
+  }),
+  typeData: z
+    .object({
+      nombre_completo: z.string().optional().nullable(),
+    })
+    .optional()
+    .nullable(),
+});

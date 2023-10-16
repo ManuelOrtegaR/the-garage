@@ -2,17 +2,28 @@ import {
   ItemStyle,
   ListGroupStyle,
   ShowOrder,
-  PaginationStyle,
-  PagEllipsisStyle,
-  PagItemStyle,
-  PagNextStyle,
-  PagPrevStyle,
-  StatusRequestStyle,
+  StatusStyle,
 } from './StylesComponentsProfiles';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
+import { PaginationProfiles } from './PaginationProfiles';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../auth/context/AuthContext';
+import { useCompanyApprove } from '../../../domain/useCompanyApprove';
 
 export const Requests = () => {
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const { data } = useCompanyApprove();
+
+  const [requestBypage, setRequestByPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalRequests = data.length;
+
+  const lastIndex = currentPage * requestBypage;
+  const firstIndex = lastIndex - requestBypage;
+
   return (
     <div className="w-100 m-3">
       <span className="fw-bold">Solicitud de Empresas</span>
@@ -36,91 +47,46 @@ export const Requests = () => {
       </div>
 
       <ListGroupStyle>
-        <ItemStyle>
-          <Image src="https://placehold.co/60x60" />
-          <span>Nombre de la empresa 1</span>
-          <span>30/jun/2023</span>
-          <div className="col-2">
-            <StatusRequestStyle className="pending">
-              Pendiente
-            </StatusRequestStyle>
-          </div>
-          <ShowOrder>
-            <i
-              className="bi bi-eye-fill"
-              style={{ width: '20px', height: '20px' }}
-            />
-          </ShowOrder>
-        </ItemStyle>
-        <ItemStyle>
-          <Image src="https://placehold.co/60x60" />
-          <span>Nombre de la empresa 2</span>
-          <span>02/jul/2023</span>
-          <div className="col-2">
-            <StatusRequestStyle className="approved">
-              Aprovado
-            </StatusRequestStyle>
-          </div>
-          <ShowOrder>
-            <i
-              className="bi bi-eye-fill"
-              style={{ width: '20px', height: '20px' }}
-            />
-          </ShowOrder>
-        </ItemStyle>
-        <ItemStyle>
-          <Image src="https://placehold.co/60x60" />
-          <span>Nombre de la empresa 3</span>
-          <span>23/jul/2023</span>
-          <div className="col-2">
-            <StatusRequestStyle className="dismissed">
-              Rechazado
-            </StatusRequestStyle>
-          </div>
-          <ShowOrder>
-            <i
-              className="bi bi-eye-fill"
-              style={{ width: '20px', height: '20px' }}
-            />
-          </ShowOrder>
-        </ItemStyle>
-        <ItemStyle>
-          <Image src="https://placehold.co/60x60" />
-          <span>Nombre de la empresa 4</span>
-          <span>23/jul/2023</span>
-          <div className="col-2">
-            <StatusRequestStyle className="approved">
-              Aprovado
-            </StatusRequestStyle>
-          </div>
-          <ShowOrder>
-            <i
-              className="bi bi-eye-fill"
-              style={{ width: '20px', height: '20px' }}
-            />
-          </ShowOrder>
-        </ItemStyle>
+        {data
+          .map((company, index) => (
+            <div key={index}>
+              <ItemStyle key={company.id} className="border-bottom">
+                <Image
+                  src={company.url_foto}
+                  style={{ height: 65, width: 65 }}
+                />
+                <span className="col-2">{company.empresa.razon_social}</span>
+                <span className="col-1">
+                  NIT: {company.empresa.numero_documento_empresa}
+                </span>
+                <span className="col-2 fw-bold fs-5 ">fecha de solicitud</span>
+                <div className="col-2">
+                  <StatusStyle className="Pagada">
+                    {company.estatus}
+                  </StatusStyle>
+                </div>
+                <ShowOrder
+                  onClick={() => {
+                    navigate(`${company.id}`, { state: company.id });
+                  }}
+                >
+                  <i
+                    className="bi bi-eye-fill"
+                    style={{ width: '20px', height: '20px' }}
+                  />
+                </ShowOrder>
+              </ItemStyle>
+            </div>
+          ))
+          .slice(firstIndex, lastIndex)}
       </ListGroupStyle>
 
-      <PaginationStyle className="justify-content-center">
-        <PagPrevStyle>
-          <i className="bi bi-arrow-left p-1"></i>
-          Prev
-        </PagPrevStyle>
-        <PagItemStyle>{1}</PagItemStyle>
-        <PagItemStyle>{2}</PagItemStyle>
-        <PagItemStyle active>{3}</PagItemStyle>
-        <PagItemStyle>{4}</PagItemStyle>
-        <PagItemStyle>{5}</PagItemStyle>
-        <PagItemStyle>{6}</PagItemStyle>
-        <PagItemStyle>{7}</PagItemStyle>
-        <PagEllipsisStyle />
-        <PagItemStyle>{20}</PagItemStyle>
-        <PagNextStyle>
-          Next
-          <i className="bi bi-arrow-right p-1"></i>
-        </PagNextStyle>
-      </PaginationStyle>
+      <PaginationProfiles
+        byPage={requestBypage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        total={totalRequests}
+      />
     </div>
   );
 };

@@ -258,3 +258,16 @@ export const SpanForm = styled.span(() => ({
   alignItems: 'center',
   paddingBottom: '8px',
 }));
+
+export const AccountStatusStyle = styled(DropdownButton)(() => ({
+  position: 'absolute',
+  background: '#EB7F00',
+  color: 'white',
+  borderRadius: 25,
+  '&.Activo': {
+    background: '#63ea00',
+  },
+  '&.Bloqueado': {
+    background: '#eb0000',
+  },
+}));

@@ -59,15 +59,24 @@ export const SignInCompanyOutput = z.object({
   }),
 });
 
-// const SignInSchema = z.object({
-//   correo: z.string().trim().email().toLowerCase(),
-//   contrasena: z.string().min(8).max(16),
-// });
-
-// const RecoverySchema = z.object({
-//   correo: z.string().trim().email().toLowerCase(),
-// });
-
-// const UpdateSchema = z.object({
-//   contrasena: z.string().min(8).max(16),
-// });
+export const SignInAdminOutput = z.object({
+  data: z.object({
+    user: z.object({
+      correo: z.string().email(),
+      tipo_usuario: z.string(),
+      fecha_creacion: z.string(),
+      fecha_actualizacion: z.string().nullable().optional(),
+      estatus: z.string(),
+      url_foto: z.string().optional(),
+      departamento: z.string(),
+      ciudad: z.string(),
+      direccion: z.string(),
+    }),
+    typeData: z.object({
+      nombre_completo: z.string().optional().nullable(),
+    }),
+  }),
+  meta: z.object({
+    token: z.string(),
+  }),
+});

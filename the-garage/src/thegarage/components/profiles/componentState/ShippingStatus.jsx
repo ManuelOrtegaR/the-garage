@@ -74,7 +74,7 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
         disabled={data.length >= 3}
         size="sm"
       >
-        {userClass !== 'Cliente' ? (
+        {userClass === 'Empresa' ? (
           <>
             <Dropdown.Item
               eventKey="1"
@@ -95,9 +95,20 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
               Cancelar
             </Dropdown.Item>
           </>
+        ) : userClass === 'Cliente' ? (
+          <Dropdown.Item
+            eventKey="2"
+            onClick={() => {
+              setMessageStatus('Cancelar');
+              setModalDetails(true);
+            }}
+          >
+            Cancelar
+          </Dropdown.Item>
         ) : (
           <Dropdown.Item
             eventKey="2"
+            disabled
             onClick={() => {
               setMessageStatus('Cancelar');
               setModalDetails(true);

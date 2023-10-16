@@ -24,7 +24,7 @@ export const signIn = async (payload) => {
     const { user = {}, typeData = {} } = data;
 
     return {
-      name: typeData.nombre_completo || typeData.razon_social,
+      name: typeData.nombre_completo || typeData.razon_social || user.correo,
       type: user.tipo_usuario,
       token: meta.token,
       user,
