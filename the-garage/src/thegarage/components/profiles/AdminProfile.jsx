@@ -9,7 +9,8 @@ import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { BtnSubmitStyled } from '../../../components';
 import { getSession } from '../../../api/session';
-import { updateAdminProfile, updateClientProfile } from '../../../api/profile';
+import { updateAdminProfile } from '../../../api/profile';
+import { useRef } from 'react';
 
 export const AdminProfile = ({
   user,
@@ -19,8 +20,6 @@ export const AdminProfile = ({
   departments,
   city,
   handleChangeDepartment,
-  changeImageInput,
-  fileInputRef,
 }) => {
   const updateAdminSchema = z.object({
     direccion: z.string().min(3, 'Mínimo 3 caracteres'),
@@ -34,6 +33,12 @@ export const AdminProfile = ({
     departamento: user.profileData.departamento,
     ciudad: user.profileData.ciudad,
     correo: user.profileData.correo,
+  };
+
+  const fileInputRef = useRef(null);
+
+  const changeImageInput = () => {
+    fileInputRef.current.click();
   };
 
   const onSubmit = async (values, { setSubmitting }) => {
@@ -50,46 +55,58 @@ export const AdminProfile = ({
 
   return (
     <>
-      <div className="position-relative mb-4 col">
-        <Image
-          src={user.profileData.url_foto}
-          style={{ height: 100, width: 100 }}
-          roundedCircle
-        />
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={toFormikValidationSchema(updateAdminSchema)}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+          setFieldValue,
+        }) => (
+          <Form
+            className="Form_client m-4 d-flex w-100"
+            onSubmit={handleSubmit}
+          >
+            <div className="d-flex col-2 align-items-center">
+              <div className="position-relative">
+                <Image
+                  src={user.profileData.url_foto}
+                  style={{ height: 125, width: 125 }}
+                  roundedCircle
+                />
 
-        <Form.Control
-          type="file"
-          size="sm"
-          ref={fileInputRef}
-          style={{ display: 'none' }}
-        />
+                <Form.Control
+                  type="file"
+                  size="sm"
+                  name="profile_photo"
+                  ref={fileInputRef}
+                  style={{ display: 'none' }}
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    setFieldValue('profile_photo', file);
+                  }}
+                />
 
-        <NavLinkProfile
-          className="position-absolute top-100 start-50 translate-middle"
-          onClick={changeImageInput}
-        >
-          <Image
-            src="../../../../assets/images/home/tecnologiesIcons/editImage.svg"
-            style={{ height: 25, width: 25 }}
-          />
-        </NavLinkProfile>
-      </div>
-      <div className="col-11">
-        <Formik
-          initialValues={initialValues}
-          onSubmit={onSubmit}
-          validationSchema={toFormikValidationSchema(updateAdminSchema)}
-        >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-          }) => (
-            <Form className="Form_client m-4 " onSubmit={handleSubmit}>
+                <NavLinkProfile
+                  className="position-absolute top-100 start-50 translate-middle"
+                  onClick={changeImageInput}
+                  hidden={!handelUpdate}
+                >
+                  <Image
+                    src="../../../../assets/images/home/tecnologiesIcons/editImage.svg"
+                    style={{ height: 25, width: 25 }}
+                  />
+                </NavLinkProfile>
+              </div>
+            </div>
+            <div className="col-10">
               <Row className="align-items-center mb-2">
                 <Col>
                   <Form.Group
@@ -267,10 +284,10 @@ export const AdminProfile = ({
                   Cancelar
                 </BtnSubmitStyled>
               </div>
-            </Form>
-          )}
-        </Formik>
-      </div>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </>
   );
 };

@@ -21,11 +21,15 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
   const fechaEnviada =
     data.length > 2
       ? format(new Date(data[2].fecha_estado), 'dd/MM/yyyy HH:mm')
-      : '-';
+      : userClass === 'Cliente'
+      ? 'Click para cancelar'
+      : 'Click para confirmar envío';
   const fechaEntregada =
     data.length > 3
       ? format(new Date(data[3].fecha_estado), 'dd/MM/yyyy HH:mm')
-      : '-';
+      : userClass === 'Cliente'
+      ? '-'
+      : 'Click para confirmar entrega';
 
   const beCancelled = data.length > 2 ? data[2].estado : 'Enviada';
 

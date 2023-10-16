@@ -25,8 +25,10 @@ export const updateClientProfile = async (profile) => {
       telefono: profile.telefono,
     },
   };
+  const profilePhoto = profile.profile_photo ? profile.profile_photo : null;
   const form = new FormData();
   form.append('data', JSON.stringify(body));
+  profilePhoto && form.append('images', profilePhoto);
   const { data } = await http.put('/perfil', form);
 
   const decoded = await decodeClientUpdate(data);
@@ -44,8 +46,10 @@ export const updateCompanyProfile = async (profile) => {
       telefono: profile.telefono,
     },
   };
+  const profilePhoto = profile.profile_photo ? profile.profile_photo : null;
   const form = new FormData();
   form.append('data', JSON.stringify(body));
+  profilePhoto && form.append('images', profilePhoto);
   const { data } = await http.put('/perfil', form);
   const decoded = await decodeCompanyUpdate(data);
   return decoded;
@@ -78,8 +82,11 @@ export const updateAdminProfile = async (profile) => {
       direccion: profile.direccion,
     },
   };
+
+  const profilePhoto = profile.profile_photo ? profile.profile_photo : null;
   const form = new FormData();
   form.append('data', JSON.stringify(body));
+  profilePhoto && form.append('images', profilePhoto);
   const { data } = await http.put('/perfil', form);
 
   const decoded = await decodeAdminUpdate(data);

@@ -15,14 +15,8 @@ export const ProfileDetails = () => {
     cargarCiudades(value);
   };
 
-  const fileInputRef = useRef(null);
-
-  const changeImageInput = () => {
-    fileInputRef.current.click();
-  };
-
   return (
-    <div className="d-flex align-items-center justify-content-around">
+    <div className="d-flex align-items-center">
       {user.userClass === 'Cliente' ? (
         <ClientProfile
           user={user}
@@ -32,8 +26,6 @@ export const ProfileDetails = () => {
           departments={departments}
           city={city}
           handleChangeDepartment={handleChangeDepartment}
-          changeImageInput={changeImageInput}
-          fileInputRef={fileInputRef}
         />
       ) : user.userClass === 'Empresa' ? (
         <CompanyProfile
@@ -44,8 +36,6 @@ export const ProfileDetails = () => {
           departments={departments}
           city={city}
           handleChangeDepartment={handleChangeDepartment}
-          changeImageInput={changeImageInput}
-          fileInputRef={fileInputRef}
         />
       ) : (
         <AdminProfile
@@ -56,8 +46,6 @@ export const ProfileDetails = () => {
           departments={departments}
           city={city}
           handleChangeDepartment={handleChangeDepartment}
-          changeImageInput={changeImageInput}
-          fileInputRef={fileInputRef}
         />
       )}
     </div>
