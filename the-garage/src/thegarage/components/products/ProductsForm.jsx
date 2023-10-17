@@ -98,7 +98,6 @@ export const ProductsForm = () => {
 
   const [data, setData] = useState(null);
   const [errorPrisma, setErrorPrisma] = useState("");
-  const [errorPrismaUpdate, setErrorPrismaUpdate] = useState("");
   const [loading, setLoading] = useState(false);
 
   const crearProducto = async (formData) => {

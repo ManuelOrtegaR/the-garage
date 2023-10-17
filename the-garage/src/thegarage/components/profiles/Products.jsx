@@ -14,7 +14,7 @@ import {
   BtnSubmitStyled,
 } from "../../../components/StyledButtons";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useProductsCompany } from "../../../domain/useProductsCompany";
 import ModalProductState from "./Modals/ModalProductState";
 import { set } from "date-fns";
@@ -22,6 +22,7 @@ import { ButtonStyled } from "../../../auth/components/StyledsComponents";
 import { AuthContext } from "../../../auth/context/AuthContext";
 
 export const Products = () => {
+  const [resetFilters, setResetFilters] = useState(false);
   const { user } = useContext(AuthContext);
   const [productState, setProductState] = useState({});
   const [showProcessingModal, setShowProcessingModal] = useState(false);
@@ -73,6 +74,7 @@ export const Products = () => {
       });
 
     setFilteredProducts(filtered);
+    setNoResults(filtered.length === 0);
   };
 
   const onSubmit = (e) => {
@@ -95,6 +97,13 @@ export const Products = () => {
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
   };
+
+  useEffect(() => {
+    setFilteredProducts([]);
+    setSearchValue("");
+    setFiltroSelected("Todo");
+    setResetFilters(false);
+  }, [resetFilters]);
 
   return (
     <div className="w-100">
@@ -254,6 +263,7 @@ export const Products = () => {
           setShowProcessingModal={setShowProcessingModal}
           productState={productState}
           cargarProductos={cargarProductos}
+          setResetFilters={setResetFilters}
         />
       ) : (
         <></>
