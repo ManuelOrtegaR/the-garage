@@ -1,17 +1,22 @@
 import Form from "react-bootstrap/Form";
 //import Button from "react-bootstrap/Button";
 import { ButtonStyled } from "../../../auth/components/StyledsComponents";
-import { FinishBtnStyle } from "../profiles/StylesComponentsProfiles";
-import { Alert, Col, Row } from "react-bootstrap";
+import {
+  FinishBtnStyle,
+  NavLinkStyled,
+} from "../profiles/StylesComponentsProfiles";
+import { Alert, Col, Row, Spinner } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { z } from "zod";
 import { formatError } from "./utils";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useCreateProduct } from "../../../domain/useCrearProducto";
 import { useUpdateProducto } from "../../../domain/useUpdateProducto";
+import { AuthContext } from "../../../auth/context/AuthContext";
+import { createProduct, updateProduct } from "../../../api/products";
 
 const refRqd = z.string({
   required_error: "La referencia es requerida",
@@ -86,19 +91,42 @@ const productSchema = z.object({
 });
 
 export const ProductsForm = () => {
+  const { user } = useContext(AuthContext);
   const back = useNavigate();
   const location = useLocation();
   const productToEdit = location.state?.product;
-  const {
-    data,
-    loading,
-    error: errorPrisma,
-    actions: { crearProducto },
-  } = useCreateProduct();
 
-  const {
-    actions: { actualizarProducto },
-  } = useUpdateProducto();
+  const [data, setData] = useState(null);
+  const [errorPrisma, setErrorPrisma] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const crearProducto = async (formData) => {
+    setLoading(true);
+    setErrorPrisma("");
+    try {
+      const response = await createProduct(formData);
+      setData(response.data);
+      navigate(`/profile/products`);
+    } catch (error) {
+      setErrorPrisma(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const actualizarProducto = async (formData, id) => {
+    setLoading(true);
+    setErrorPrisma("");
+    try {
+      const response = await updateProduct(formData, id);
+      setData(response.data);
+      navigate(`/profile/products`);
+    } catch (error) {
+      setErrorPrisma(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const initialValues = {
     nombre_categoria: productToEdit?.categoria.nombre_categoria || "",
@@ -127,7 +155,15 @@ export const ProductsForm = () => {
 
         {errorPrisma && (
           <Alert variant="danger">
-            Ocurrio un problema al Crear el producto, vuelve a intentarlo
+            Ocurrió un problema al Crear el producto, revisa los errores y
+            vuelve a intentarlo:
+            <ul>
+              {Object.values(errorPrisma.response.data)?.map((error, index) => (
+                <li key={index}>
+                  {error.path} - Campo diligenciado erroneamente
+                </li>
+              ))}
+            </ul>
           </Alert>
         )}
 
@@ -160,15 +196,9 @@ export const ProductsForm = () => {
               if (productToEdit) {
                 await actualizarProducto(formData, productToEdit.id);
 
-                setSubmitting(false);
-                navigate(`/profile/products`);
+                // setSubmitting(false);
               } else {
                 await crearProducto(formData);
-
-                if (!loading && !errorPrisma) {
-                  setSubmitting(false);
-                  navigate(`/profile/products`);
-                }
               }
             } catch (e) {
               const message = formatError(e);
@@ -459,48 +489,74 @@ export const ProductsForm = () => {
                 </Form.Group>
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                <Form.Group
-                  as={Row}
-                  className="align-items-center"
-                  controlId="formProdFileIMG"
-                >
-                  <Form.Label column sm="3">
-                    Imagen del producto
-                  </Form.Label>
-                  <Col>
-                    <Form.Control
-                      type="file"
-                      multiple
-                      size="sm"
-                      name="images"
-                      onChange={(e) => {
-                        // const file = e.currentTarget.files[0];
-                        const file = Array.from(e.currentTarget.files);
-                        setFieldValue("images", file);
-                      }}
-                      //onBlur={handleBlur}
-                      // value={values.name}
-                      className={
-                        touched.images && errors.images ? "is-invalid" : ""
-                      }
-                    />
-                    <ErrorMessage
-                      name="images"
-                      component="div"
-                      className="invalid-feedback"
-                    />
-                  </Col>
-                </Form.Group>
+                {user.userClass !== "Administrador" && (
+                  <Form.Group
+                    as={Row}
+                    className="align-items-center"
+                    controlId="formProdFileIMG"
+                  >
+                    <Form.Label column sm="3">
+                      Imagen del producto
+                    </Form.Label>
+                    <Col>
+                      <Form.Control
+                        type="file"
+                        multiple
+                        size="sm"
+                        name="images"
+                        onChange={(e) => {
+                          // const file = e.currentTarget.files[0];
+                          const file = Array.from(e.currentTarget.files);
+                          setFieldValue("images", file);
+                        }}
+                        //onBlur={handleBlur}
+                        // value={values.name}
+                        className={
+                          touched.images && errors.images ? "is-invalid" : ""
+                        }
+                      />
+                      <ErrorMessage
+                        name="images"
+                        component="div"
+                        className="invalid-feedback"
+                      />
+                    </Col>
+                  </Form.Group>
+                )}
 
-                <ButtonStyled
-                  variant="primary"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  {(productToEdit &&
-                    (isSubmitting ? "Actualizando" : "Actualizar")) ||
-                    (isSubmitting ? "Creando" : "Guardar")}
-                </ButtonStyled>
+                {user.userClass === "Administrador" && (
+                  <div className="d-flex gap-5">
+                    {" "}
+                    <Form.Label column sm="3">
+                      Imagen del producto:
+                    </Form.Label>
+                    <img
+                      width={200}
+                      src={productToEdit?.fotos[0]?.url_foto}
+                      alt="Imagen del producto"
+                    />{" "}
+                  </div>
+                )}
+
+                {user.userClass !== "Administrador" && (
+                  <ButtonStyled
+                    variant="primary"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting && (
+                      <Spinner
+                        as="span"
+                        animation="grow"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    )}
+                    {(productToEdit &&
+                      (isSubmitting ? "Actualizando..." : "Actualizar")) ||
+                      (isSubmitting ? "Guardando..." : "Guardar")}
+                  </ButtonStyled>
+                )}
               </div>
             </Form>
           )}

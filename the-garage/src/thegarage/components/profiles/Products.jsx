@@ -4,16 +4,26 @@ import { PaginationProfiles } from "./PaginationProfiles";
 import {
   ItemStyle,
   ListGroupStyle,
+  NavLinkEdit,
+  NavLinkStyled,
   ShowOrder,
 } from "./StylesComponentsProfiles";
 import Image from "react-bootstrap/Image";
-import { BtnSubmitStyled } from "../../../components/StyledButtons";
+import {
+  BtnLinkStyled,
+  BtnSubmitStyled,
+} from "../../../components/StyledButtons";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useProductsCompany } from "../../../domain/useProductsCompany";
 import ModalProductState from "./Modals/ModalProductState";
+import { set } from "date-fns";
+import { ButtonStyled } from "../../../auth/components/StyledsComponents";
+import { AuthContext } from "../../../auth/context/AuthContext";
 
 export const Products = () => {
+  const [resetFilters, setResetFilters] = useState(false);
+  const { user } = useContext(AuthContext);
   const [productState, setProductState] = useState({});
   const [showProcessingModal, setShowProcessingModal] = useState(false);
   const viewProduct = (product) => {
@@ -26,32 +36,61 @@ export const Products = () => {
   };
 
   const navigate = useNavigate();
-  const { data, loading, error, cargarProductos } = useProductsCompany();
+  const { data, loading, error, cargarProductos } = useProductsCompany({
+    user,
+  });
 
   const [productsBypage, setProducstsByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalProducst = data.length;
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [noResults, setNoResults] = useState(false);
+  const totalProducst =
+    filteredProducts.length > 0 ? filteredProducts.length : data.length;
 
   const lastIndex = currentPage * productsBypage;
   const firstIndex = lastIndex - productsBypage;
+
+  const [filtroSelected, setFiltroSelected] = useState("Todo");
+
+  const handleFiltro = (e) => {
+    const valorSeleccionado = e.target.value;
+    setFiltroSelected(valorSeleccionado);
+
+    const filtered = data
+      .filter((product) => {
+        if (valorSeleccionado === "Todo") {
+          return product;
+        } else if (valorSeleccionado === "1") {
+          return product.cantidad_disponible > 0;
+        } else if (valorSeleccionado === "2") {
+          return product.estatus === true;
+        } else if (valorSeleccionado === "3") {
+          return product.estatus === false;
+        }
+      })
+      .sort((a, b) => {
+        return a.cantidad_disponible - b.cantidad_disponible;
+      });
+
+    setFilteredProducts(filtered);
+    setNoResults(filtered.length === 0);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     navigate("/profile/products/add");
   };
 
-  const onSearch = (e) => {
-    if (e.key === "Enter") {
+  const onSearch = async (e) => {
+    if (e.key === "Enter" && e.target.value !== "") {
       e.preventDefault();
-      setFilteredProducts(
-        data.filter((product) => {
-          return product.nombre
-            .toLowerCase()
-            .includes(searchValue.toLowerCase());
-        })
-      );
+      const filtered = data.filter((product) => {
+        return product.nombre.toLowerCase().includes(searchValue.toLowerCase());
+      });
+      setFilteredProducts(filtered);
+      setNoResults(filtered.length === 0);
+      setSearchValue("");
     }
   };
 
@@ -59,14 +98,27 @@ export const Products = () => {
     setSearchValue(event.target.value);
   };
 
+  useEffect(() => {
+    setFilteredProducts([]);
+    setSearchValue("");
+    setFiltroSelected("Todo");
+    setResetFilters(false);
+  }, [resetFilters]);
+
   return (
     <div className="w-100">
       <div className="d-flex justify-content-between align-items-center my-4 mx-3">
-        <span className="fw-bold">Mis Productos</span>
+        {user.userClass === "Administrador" ? (
+          <span className="fw-bold">Productos de The Garage</span>
+        ) : (
+          <span className="fw-bold">Mis Productos</span>
+        )}
 
-        <BtnSubmitStyled onClick={onSubmit} data-cy="add-product">
-          Agregar Nuevo Producto
-        </BtnSubmitStyled>
+        {user.userClass !== "Administrador" && (
+          <BtnSubmitStyled onClick={onSubmit} data-cy="add-product">
+            Agregar Nuevo Producto
+          </BtnSubmitStyled>
+        )}
       </div>
       <div className="d-flex justify-content-between m-3">
         <Form.Control
@@ -76,14 +128,20 @@ export const Products = () => {
           aria-label="Search"
           onChange={handleInputChange}
           onKeyDown={onSearch}
+          value={searchValue}
         />
         <div className="d-flex text-nowrap align-items-center">
           <span>Ordenar por: </span>
-          <select className="form-select" aria-label="Default select example">
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            value={filtroSelected}
+            onChange={handleFiltro}
+          >
             <option selected>Todo</option>
-            <option value="1">Estado</option>
-            <option value="2">Fecha</option>
-            <option value="3">Tienda</option>
+            <option value="1">Stock</option>
+            <option value="2">Disponible</option>
+            <option value="3">No disponible</option>
           </select>
         </div>
       </div>
@@ -91,74 +149,121 @@ export const Products = () => {
         {loading && <Spinner animation="border" variant="primary" />}
         {error && <Alert variant="danger">{error}</Alert>}
 
-        {filteredProducts.length > 0
-          ? filteredProducts
+        {noResults ? (
+          <div className="text-center mt-3 d-flex gap-3 ">
+            <span> No se encontraron resultados.</span>
+            <BtnSubmitStyled
+              onClick={() => {
+                setFilteredProducts([]);
+                setSearchValue("");
+                setNoResults(false);
+              }}
+            >
+              Mostrar todos los productos
+            </BtnSubmitStyled>
+          </div>
+        ) : filteredProducts.length > 0 ? (
+          <div>
+            <div>Se encontraron estas coincidencias:</div>
+            {filteredProducts
               .map((product) => (
-                <>
-                  <ItemStyle>
-                    <Image
-                      src={product.fotos[0]?.url_foto}
-                      style={{ width: "65px", height: "65px" }}
-                    ></Image>
-                    <span className="col-3">{product.nombre}</span>
-                    <span>Stock: {product.cantidad_disponible}</span>
-                    <span className="fw-bold col-2">
-                      ${product.precio.toLocaleString("es-CO")}
-                    </span>
-                    <ShowOrder onClick={() => viewProduct(product)}>
-                      <i className="bi bi-eye-fill" />
-                    </ShowOrder>
-                    <ShowOrder>
-                      <i className="bi bi-trash-fill" />
-                    </ShowOrder>
-                  </ItemStyle>
-                </>
-              ))
-              .slice(firstIndex, lastIndex)
-          : data
-              .map((product) => (
-                <>
-                  <ItemStyle>
-                    <Image
-                      src={product.fotos[0]?.url_foto}
-                      style={{ width: "65px", height: "65px" }}
-                    ></Image>
-                    <span className="col-3">{product.nombre}</span>
-                    <span className="col-3">
-                      {product.estatus === false ? (
-                        <i className="bi bi-x-circle-fill"> No disponible</i>
-                      ) : (
-                        <i className="bi bi-check-circle-fill"> Disponible</i>
-                      )}
-                    </span>
-
-                    <span>Stock: {product.cantidad_disponible}</span>
-                    <span className="fw-bold col-2">
-                      ${product.precio.toLocaleString("es-CO")}
-                    </span>
-                    <ShowOrder onClick={() => viewProduct(product)}>
-                      <i className="bi bi-eye-fill" />
-                    </ShowOrder>
-                    <ShowOrder onClick={() => updateProduct(product)}>
-                      <i className="bi bi-trash-fill" />
-                    </ShowOrder>
-                  </ItemStyle>
-                </>
+                <ItemStyle key={product.nombre}>
+                  <Image
+                    src={product.fotos[0]?.url_foto}
+                    style={{ width: "65px", height: "65px" }}
+                  ></Image>
+                  <span className="col-3">{product.nombre}</span>
+                  <span>Stock: {product.cantidad_disponible}</span>
+                  <span className="col-3">
+                    {product.estatus === false ? (
+                      <i className="bi bi-x-circle-fill"> No disponible</i>
+                    ) : (
+                      <i className="bi bi-check-circle-fill"> Disponible</i>
+                    )}
+                  </span>
+                  <span className="fw-bold col-2">
+                    ${product.precio.toLocaleString("es-CO")}
+                  </span>
+                  <ShowOrder onClick={() => viewProduct(product)}>
+                    <i className="bi bi-eye-fill" />
+                  </ShowOrder>
+                  <ShowOrder onClick={() => updateProduct(product)}>
+                    {product.estatus ? (
+                      <i className="bi bi-toggle-on"></i>
+                    ) : (
+                      <i className="bi bi-toggle-off"></i>
+                    )}
+                  </ShowOrder>
+                </ItemStyle>
               ))
               .slice(firstIndex, lastIndex)}
+
+            <BtnSubmitStyled
+              onClick={() => {
+                setFilteredProducts([]);
+                setSearchValue("");
+                setNoResults(false);
+                setFiltroSelected("Todo");
+              }}
+            >
+              Mostrar todos los productos
+            </BtnSubmitStyled>
+          </div>
+        ) : (
+          data
+            .map((product) => (
+              <>
+                <ItemStyle>
+                  <Image
+                    src={product.fotos[0]?.url_foto}
+                    style={{ width: "65px", height: "65px" }}
+                  ></Image>
+                  <span>Stock: {product.cantidad_disponible}</span>
+                  <span className="col-3">{product.nombre}</span>
+                  <span className="col-3">
+                    {product.estatus === false ? (
+                      <i className="bi bi-x-circle-fill"> No disponible</i>
+                    ) : (
+                      <i className="bi bi-check-circle-fill"> Disponible</i>
+                    )}
+                  </span>
+
+                  <span className="fw-bold col-2">
+                    ${product.precio.toLocaleString("es-CO")}
+                  </span>
+                  <ShowOrder onClick={() => viewProduct(product)}>
+                    <i className="bi bi-eye-fill" />
+                  </ShowOrder>
+                  <ShowOrder onClick={() => updateProduct(product)}>
+                    {product.estatus ? (
+                      <i className="bi bi-toggle-on"></i>
+                    ) : (
+                      <i className="bi bi-toggle-off"></i>
+                    )}
+                  </ShowOrder>
+                </ItemStyle>
+              </>
+            ))
+            .slice(firstIndex, lastIndex)
+        )}
       </ListGroupStyle>
-      <PaginationProfiles
-        byPage={productsBypage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        total={totalProducst}
-      />
+
+      {noResults ? null : (
+        <PaginationProfiles
+          byPage={productsBypage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          total={totalProducst}
+        />
+      )}
+
       {showProcessingModal ? (
         <ModalProductState
           showProcessingModal={showProcessingModal}
           setShowProcessingModal={setShowProcessingModal}
           productState={productState}
           cargarProductos={cargarProductos}
+          setResetFilters={setResetFilters}
         />
       ) : (
         <></>

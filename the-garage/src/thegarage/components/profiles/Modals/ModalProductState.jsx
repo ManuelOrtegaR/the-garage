@@ -7,33 +7,52 @@ import { BtnSubmitStyled } from "../../../../components/StyledButtons";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import { useUpdateProducto } from "../../../../domain/useUpdateProducto";
+import { updateProduct } from "../../../../api/products";
+import { Spinner } from "react-bootstrap";
+import { set } from "date-fns";
 
 function ModalProductState({
   showProcessingModal,
   setShowProcessingModal,
   productState,
   cargarProductos,
+  setResetFilters,
 }) {
   const [show, setShow] = useState(true);
   const navigate = useNavigate();
-  const {
-    actions: { actualizarProducto },
-  } = useUpdateProducto();
+  const [data, setData] = useState(null);
+  const [errorPrisma, setErrorPrisma] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
     setShow(false);
     setShowProcessingModal(!showProcessingModal);
   };
 
-  const handleConfirmation = async () => {
-    setShowProcessingModal(!showProcessingModal);
+  const handleConfirmation = async (e) => {
+    e.preventDefault();
     await actualizarProducto(
       { estatus: productState.estatus ? false : true },
       productState.id
     );
 
     await cargarProductos();
-    navigate("/profile/products");
+    setResetFilters(true);
+    // navigate("/profile/products");
+    setShowProcessingModal(!showProcessingModal);
+  };
+
+  const actualizarProducto = async (formData, id) => {
+    setLoading(true);
+    setErrorPrisma("");
+    try {
+      const response = await updateProduct(formData, id);
+      setData(response.data);
+    } catch (error) {
+      setErrorPrisma(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -57,6 +76,14 @@ function ModalProductState({
                 </div>
 
                 <BtnSubmitStyled width="100px" onClick={handleConfirmation}>
+                  {loading && (
+                    <Spinner
+                      as="span"
+                      animation="grow"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  )}
                   SI
                 </BtnSubmitStyled>
               </Col>

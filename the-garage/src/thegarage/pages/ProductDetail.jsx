@@ -30,7 +30,7 @@ export function ProductDetail() {
   return (
     <Container>
       <Row>
-        <BreadCrumbRoute />
+        {data?.nombre && <BreadCrumbRoute nameProducto={data.nombre} />}
       </Row>
       <div className="pb-5">
         {loading && <Spinner animation="border" variant="primary" />}
