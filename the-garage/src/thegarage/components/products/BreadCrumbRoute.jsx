@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { historyReducer } from "./reducers/BreadCrumbReducer";
 import { types } from "./reducers/types";
 
-export const BreadCrumbRoute = () => {
+export const BreadCrumbRoute = ({ nameProducto }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [history, dispatch] = useReducer(historyReducer, [
@@ -13,10 +13,13 @@ export const BreadCrumbRoute = () => {
   ]);
 
   useEffect(() => {
+    const newPathname = location.pathname.includes("productDetail")
+      ? `/Producto / Detalle del Producto /  ${nameProducto}`
+      : location.pathname;
     dispatch({
       type: types.add,
       payload: {
-        routeName: location.pathname.substring(1).replace(/\//g, "-"),
+        routeName: newPathname.substring(1).replace(/\//g, " / "),
         path: location.pathname,
       },
     });

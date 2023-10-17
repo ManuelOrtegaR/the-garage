@@ -1,8 +1,11 @@
 import Form from "react-bootstrap/Form";
 //import Button from "react-bootstrap/Button";
 import { ButtonStyled } from "../../../auth/components/StyledsComponents";
-import { FinishBtnStyle } from "../profiles/StylesComponentsProfiles";
-import { Alert, Col, Row } from "react-bootstrap";
+import {
+  FinishBtnStyle,
+  NavLinkStyled,
+} from "../profiles/StylesComponentsProfiles";
+import { Alert, Col, Row, Spinner } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { z } from "zod";
@@ -498,8 +501,8 @@ export const ProductsForm = () => {
                   disabled={isSubmitting}
                 >
                   {(productToEdit &&
-                    (isSubmitting ? "Actualizando" : "Actualizar")) ||
-                    (isSubmitting ? "Creando" : "Guardar")}
+                    (isSubmitting ? "Actualizando..." : "Actualizar")) ||
+                    (isSubmitting ? "Guardando..." : "Guardar")}
                 </ButtonStyled>
               </div>
             </Form>

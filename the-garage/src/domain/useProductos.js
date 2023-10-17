@@ -9,9 +9,7 @@ import {
   generarQueryFiltros,
   objetoEstaVacio,
 } from "../thegarage/components/products/utils";
-import { useNavigate } from "react-router-dom";
-
-//({ page, selectedFilters, searchValue })
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const useProductos = (
   page,

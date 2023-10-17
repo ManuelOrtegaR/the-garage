@@ -31,8 +31,8 @@ export function Controls({
         <ContainerBadgeStyled>
           {filters.map((filter) => (
             <Badge key={filter} bg="secondary">
-              {filter}
-              <CloseButton />
+              {filter + "   "}
+              <i className="bi bi-info-circle-fill"></i>
             </Badge>
           ))}
         </ContainerBadgeStyled>

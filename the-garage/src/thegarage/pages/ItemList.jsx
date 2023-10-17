@@ -90,17 +90,8 @@ export function ItemList() {
         <Col md={9}>
           <ContainerNumberItemsStyled>
             <strong>
-              <span>
-                {" "}
-                {/* {searchValue ? dataSearch.length : dataFiltered.length}{" "} */}
-                Productos Encontrados
-              </span>
+              <span>Productos Encontrados</span>
             </strong>
-            <div>
-              <span>Visualizacion: </span>
-              <i className="bi bi-grid-3x3-gap-fill"></i>
-              <i className="bi bi-distribute-vertical"></i>
-            </div>
           </ContainerNumberItemsStyled>
           <ContainerVisualizationStyled>
             {loading && <Spinner animation="border" variant="primary" />}
