@@ -14,13 +14,15 @@ import {
   BtnSubmitStyled,
 } from "../../../components/StyledButtons";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useProductsCompany } from "../../../domain/useProductsCompany";
 import ModalProductState from "./Modals/ModalProductState";
 import { set } from "date-fns";
 import { ButtonStyled } from "../../../auth/components/StyledsComponents";
+import { AuthContext } from "../../../auth/context/AuthContext";
 
 export const Products = () => {
+  const { user } = useContext(AuthContext);
   const [productState, setProductState] = useState({});
   const [showProcessingModal, setShowProcessingModal] = useState(false);
   const viewProduct = (product) => {
@@ -33,11 +35,12 @@ export const Products = () => {
   };
 
   const navigate = useNavigate();
-  const { data, loading, error, cargarProductos } = useProductsCompany();
+  const { data, loading, error, cargarProductos } = useProductsCompany({
+    user,
+  });
 
   const [productsBypage, setProducstsByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [noResults, setNoResults] = useState(false);
@@ -46,6 +49,31 @@ export const Products = () => {
 
   const lastIndex = currentPage * productsBypage;
   const firstIndex = lastIndex - productsBypage;
+
+  const [filtroSelected, setFiltroSelected] = useState("Todo");
+
+  const handleFiltro = (e) => {
+    const valorSeleccionado = e.target.value;
+    setFiltroSelected(valorSeleccionado);
+
+    const filtered = data
+      .filter((product) => {
+        if (valorSeleccionado === "Todo") {
+          return product;
+        } else if (valorSeleccionado === "1") {
+          return product.cantidad_disponible > 0;
+        } else if (valorSeleccionado === "2") {
+          return product.estatus === true;
+        } else if (valorSeleccionado === "3") {
+          return product.estatus === false;
+        }
+      })
+      .sort((a, b) => {
+        return a.cantidad_disponible - b.cantidad_disponible;
+      });
+
+    setFilteredProducts(filtered);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -71,11 +99,17 @@ export const Products = () => {
   return (
     <div className="w-100">
       <div className="d-flex justify-content-between align-items-center my-4 mx-3">
-        <span className="fw-bold">Mis Productos</span>
+        {user.userClass === "Administrador" ? (
+          <span className="fw-bold">Productos de The Garage</span>
+        ) : (
+          <span className="fw-bold">Mis Productos</span>
+        )}
 
-        <BtnSubmitStyled onClick={onSubmit} data-cy="add-product">
-          Agregar Nuevo Producto
-        </BtnSubmitStyled>
+        {user.userClass !== "Administrador" && (
+          <BtnSubmitStyled onClick={onSubmit} data-cy="add-product">
+            Agregar Nuevo Producto
+          </BtnSubmitStyled>
+        )}
       </div>
       <div className="d-flex justify-content-between m-3">
         <Form.Control
@@ -89,11 +123,16 @@ export const Products = () => {
         />
         <div className="d-flex text-nowrap align-items-center">
           <span>Ordenar por: </span>
-          <select className="form-select" aria-label="Default select example">
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            value={filtroSelected}
+            onChange={handleFiltro}
+          >
             <option selected>Todo</option>
-            <option value="1">Estado</option>
-            <option value="2">Fecha</option>
-            <option value="3">Tienda</option>
+            <option value="1">Stock</option>
+            <option value="2">Disponible</option>
+            <option value="3">No disponible</option>
           </select>
         </div>
       </div>
@@ -139,8 +178,12 @@ export const Products = () => {
                   <ShowOrder onClick={() => viewProduct(product)}>
                     <i className="bi bi-eye-fill" />
                   </ShowOrder>
-                  <ShowOrder>
-                    <i className="bi bi-trash-fill" />
+                  <ShowOrder onClick={() => updateProduct(product)}>
+                    {product.estatus ? (
+                      <i className="bi bi-toggle-on"></i>
+                    ) : (
+                      <i className="bi bi-toggle-off"></i>
+                    )}
                   </ShowOrder>
                 </ItemStyle>
               ))
@@ -151,6 +194,7 @@ export const Products = () => {
                 setFilteredProducts([]);
                 setSearchValue("");
                 setNoResults(false);
+                setFiltroSelected("Todo");
               }}
             >
               Mostrar todos los productos
@@ -182,7 +226,11 @@ export const Products = () => {
                     <i className="bi bi-eye-fill" />
                   </ShowOrder>
                   <ShowOrder onClick={() => updateProduct(product)}>
-                    <i className="bi bi-trash-fill" />
+                    {product.estatus ? (
+                      <i className="bi bi-toggle-on"></i>
+                    ) : (
+                      <i className="bi bi-toggle-off"></i>
+                    )}
                   </ShowOrder>
                 </ItemStyle>
               </>

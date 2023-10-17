@@ -6,7 +6,7 @@ import {
   getProductsCompany,
 } from "../api/products";
 
-export const useProductsCompany = () => {
+export const useProductsCompany = ({ user }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -16,8 +16,13 @@ export const useProductsCompany = () => {
     setError("");
 
     try {
-      const response = await getProductsCompany(100, 0);
-      setData(response.data);
+      if (user.userClass === "Administrador") {
+        const response = await getProducts(100, 0);
+        setData(response.data);
+      } else {
+        const response = await getProductsCompany(100, 0);
+        setData(response.data);
+      }
     } catch (error) {
       setError(error);
     } finally {
