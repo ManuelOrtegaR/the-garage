@@ -1,0 +1,31 @@
+{
+  "data": {
+    "id": "04ce3239-b95b-426a-8fcb-cdc439c28ab3",
+    "nombre": "Transmision Spicer",
+    "descripcion": "Ofrecemos una línea de kits americana y otra japonesa para poder proveer también a aquellos vehículos de origen asiático.",
+    "ficha_tecnica": "Nuestras cajas de cambio son definitivamente la mejor elección que puede hacer para su vehículo.",
+    "precio": 150000,
+    "cantidad_disponible": 10,
+    "estatus": true,
+    "tipo_entrega": "Envío domicilio",
+    "marca": "Spicer",
+    "impuestos": "19",
+    "fecha_creacion": "2023-10-18T20:24:52.014Z",
+    "empresa": {
+      "razon_social": "AutoMedellin"
+    },
+    "categoria": {
+      "nombre_categoria": "Mecanica"
+    },
+    "fotos": [
+      {
+        "id": "caeaeee9-d51b-4351-86b9-28676cbedd53",
+        "id_producto": "04ce3239-b95b-426a-8fcb-cdc439c28ab3",
+        "id_servicio": null,
+        "url_foto": "https://placehold.co/400x400",
+        "fecha_creacion": "2023-10-18T20:24:52.014Z"
+      }
+    ],
+    "valoraciones": []
+  }
+}

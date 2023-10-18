@@ -8,14 +8,15 @@ describe('Test Home page', () => {
     cy.get(`[aria-label="login-button"]`).should('be.visible');
     cy.get('.nav-pills').children().first().and('have.text', 'Inicio');
   });
+  
   it('Charge companies and reviews', () => {
-    cy.visit('/');
     cy.intercept('GET', '/api/v1/perfil/empresas', {
       fixture: 'companies.json',
-    });
+    }).as('getCompanies');
     cy.intercept('GET', '/api/v1/valoraciones?orderBy=fecha_creacion', {
       fixture: 'reviews.json',
-    });
+    }).as('getReviews');
+    cy.visit('/');
     cy.contains('Empresas');
     cy.get(`[data-cy="company-container"]`).children().should('have.length', 2);
     cy.contains('Comentarios');
