@@ -34,7 +34,7 @@ export const useProductos = (
       if (urlFilter && objetoEstaVacio(filtrosSeleccionadosAgrupados)) {
         urlFilter = urlFilter.replace("?", "");
 
-        navigate(`/productos?${urlFilter}&limit=10&offset=${page}`);
+        navigate(`/productos?${urlFilter}`);
         response = await getProductsFilter(urlFilter, 10, page);
         responseFiltros = await getProducts(100, 0);
         setData(response.data);

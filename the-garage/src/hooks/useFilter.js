@@ -11,7 +11,7 @@ export const useFilter = (initialFilter = [], data, searchValue, urlFilter) => {
   const [dataSearch2, setDataSearch2] = useState([]);
 
   useEffect(() => {
-    if (urlFilter && selectedFilters.length == 0) {
+    if (urlFilter.includes("filter") && selectedFilters.length == 0) {
       const valores = [];
       const urlParams = new URLSearchParams(urlFilter);
       urlParams.delete("limit");
