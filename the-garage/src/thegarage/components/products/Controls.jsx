@@ -10,6 +10,7 @@ import { ContainerBadgeStyled } from "./StyledsComponentsProducts";
 import { BreadCrumbRoute } from "./BreadCrumbRoute";
 import { BtnSubmitStyled } from "../../../components";
 import { set } from "zod";
+import { useNavigate } from "react-router-dom";
 
 export function Controls({
   filters,
@@ -17,10 +18,12 @@ export function Controls({
   setCurrentPage,
   setFiltrosSeleccionadosAgrupados,
 }) {
+  const navigate = useNavigate();
   const cleanAll = () => {
     clean();
     setCurrentPage(0);
     setFiltrosSeleccionadosAgrupados({});
+    navigate("/productos");
   };
   return (
     <>
