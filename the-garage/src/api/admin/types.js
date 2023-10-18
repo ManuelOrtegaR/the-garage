@@ -7,6 +7,7 @@ const companySchema = z.object({
   estatus: z.string(),
   url_foto: z.string(),
   cliente: z.string().nullable(),
+  fecha_creacion: z.string(),
   empresa: z.object({
     numero_documento_empresa: z.string(),
     razon_social: z.string(),

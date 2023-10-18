@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -14,11 +14,21 @@ import { companyDecision } from '../../../api/admin';
 export const Accounts = () => {
   const [modalDetails, setModalDetails] = useState(false);
   const [messageStatus, setMessageStatus] = useState('');
-  const { data, error, loading } = useAccounts();
+  const { data: responseData, error, loading } = useAccounts();
+  const [data, setData] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+  const initialData = useRef(null);
 
   const [accountsBypage, setAccountsByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const totalAccounts = data?.length;
+
+  useEffect(() => {
+    if (responseData) {
+      setData(responseData);
+      initialData.current = responseData;
+    }
+  }, [responseData]);
 
   const lastIndex = currentPage * accountsBypage;
   const firstIndex = lastIndex - accountsBypage;
@@ -29,6 +39,55 @@ export const Accounts = () => {
     setModalDetails(false);
     setMessageStatus('');
   };
+
+  const [filtroSelected, setFiltroSelected] = useState('Todo');
+
+  const handleFiltro = (e) => {
+    const valorSeleccionado = e.target.value;
+    setFiltroSelected(valorSeleccionado);
+
+    const filtered = initialData.current.filter((account) => {
+      if (valorSeleccionado === 'Todo') {
+        return account;
+      } else if (valorSeleccionado === '1') {
+        return account.estatus === 'Bloqueado';
+      } else if (valorSeleccionado === '2') {
+        return account.estatus === 'Activo';
+      } else if (valorSeleccionado === '3') {
+        return account.estatus !== 'Bloqueado' && account.estatus !== 'Activo';
+      }
+    });
+    setData(filtered);
+    setSearchValue('');
+  };
+
+  const onSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  useEffect(() => {
+    if (searchValue === '') {
+      setData(initialData.current);
+    } else {
+      const filtered = initialData.current.filter((account) => {
+        let resultados;
+
+        if (account.tipo_usuario === 'Cliente') {
+          resultados = account.cliente.nombre_completo
+            .toLowerCase()
+            .includes(searchValue.toLowerCase());
+        } else {
+          resultados = account.empresa.razon_social
+            .toLowerCase()
+            .includes(searchValue.toLowerCase());
+        }
+
+        return resultados;
+      });
+      setData(filtered);
+      setFiltroSelected('Todo');
+    }
+  }, [searchValue]);
 
   return (
     <>
@@ -42,17 +101,22 @@ export const Accounts = () => {
               placeholder="Buscar Por Nombre"
               className="me-2 w-50"
               aria-label="Search"
+              name="search"
+              onChange={onSearchChange}
+              value={searchValue}
             />
             <div className="d-flex text-nowrap align-items-center">
-              <span>Ordenar por: </span>
+              <span>Filtrar por: </span>
               <select
                 className="form-select"
                 aria-label="Default select example"
+                value={filtroSelected}
+                onChange={handleFiltro}
               >
                 <option selected>Todo</option>
-                <option value="1">Estado</option>
-                <option value="2">Fecha</option>
-                <option value="3">Tienda</option>
+                <option value="1">Bloqueados</option>
+                <option value="2">Activos</option>
+                <option value="3">Otros</option>
               </select>
             </div>
           </div>

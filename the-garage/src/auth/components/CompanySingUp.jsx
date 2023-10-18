@@ -325,6 +325,7 @@ function CompanySingUp() {
                     type="file"
                     size="sm"
                     name="c_commerce_document"
+                    accept=".pdf"
                     onChange={(e) => {
                       const file = e.target.files[0];
                       setFieldValue('c_commerce_document', file);
@@ -339,6 +340,7 @@ function CompanySingUp() {
                     type="file"
                     size="sm"
                     name="profile_photo"
+                    accept=".jpg, .jpeg"
                     onChange={(e) => {
                       const file = e.target.files[0];
                       setFieldValue('profile_photo', file);
