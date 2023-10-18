@@ -200,6 +200,7 @@ function ClientSingUp() {
               <Form.Control
                 type="file"
                 name="profile_photo"
+                accept=".jpg, .jpeg"
                 onChange={(e) => {
                   const file = e.target.files[0];
                   setFieldValue('profile_photo', file);

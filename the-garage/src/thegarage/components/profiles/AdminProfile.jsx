@@ -88,6 +88,7 @@ export const AdminProfile = ({
                   name="profile_photo"
                   ref={fileInputRef}
                   style={{ display: 'none' }}
+                  accept=".jpg, .jpeg"
                   onChange={(e) => {
                     const file = e.target.files[0];
                     setFieldValue('profile_photo', file);
