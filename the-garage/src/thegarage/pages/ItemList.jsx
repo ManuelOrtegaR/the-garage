@@ -100,17 +100,21 @@ export function ItemList() {
           <ContainerVisualizationStyled>
             {loading && <Spinner animation="border" variant="primary" />}
             {error && <Alert variant="danger">{error}</Alert>}
-            {dataSearch.length === 0 && dataFiltered.length === 0 ? (
-              <span>No se encontraron resultados</span>
-            ) : null}
+            {!loading && (
+              <>
+                {dataSearch.length === 0 && dataFiltered.length === 0 ? (
+                  <span>No se encontraron resultados</span>
+                ) : null}
 
-            {searchValue
-              ? dataSearch.map((element) => (
-                  <Item key={element.id} item={element} />
-                ))
-              : dataFiltered.map((element) => (
-                  <Item key={element.id} item={element} />
-                ))}
+                {searchValue
+                  ? dataSearch.map((element) => (
+                      <Item key={element.id} item={element} />
+                    ))
+                  : dataFiltered.map((element) => (
+                      <Item key={element.id} item={element} />
+                    ))}
+              </>
+            )}
           </ContainerVisualizationStyled>
           <Paginator
             totalPages={totalPages}
