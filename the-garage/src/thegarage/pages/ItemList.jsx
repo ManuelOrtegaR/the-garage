@@ -24,6 +24,9 @@ export function ItemList() {
   const [filtrosSeleccionadosAgrupados, setFiltrosSeleccionadosAgrupados] =
     useState({});
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { search: urlFilter } = location;
 
   function cambiarPagina(newPage) {
     setPage(newPage);
@@ -32,7 +35,8 @@ export function ItemList() {
   const { data, dataMeta, loading, error, datosParaFiltros } = useProductos(
     page,
     searchValue,
-    filtrosSeleccionadosAgrupados
+    filtrosSeleccionadosAgrupados,
+    urlFilter
   );
 
   const {
@@ -44,7 +48,7 @@ export function ItemList() {
     setCheckFilter,
     dataFiltered,
     dataSearch,
-  } = useFilter([], data, searchValue);
+  } = useFilter([], data, searchValue, urlFilter);
 
   const ITEM_PER_PAGE = 10;
 
@@ -96,6 +100,10 @@ export function ItemList() {
           <ContainerVisualizationStyled>
             {loading && <Spinner animation="border" variant="primary" />}
             {error && <Alert variant="danger">{error}</Alert>}
+            {dataSearch.length === 0 && dataFiltered.length === 0 ? (
+              <span>No se encontraron resultados</span>
+            ) : null}
+
             {searchValue
               ? dataSearch.map((element) => (
                   <Item key={element.id} item={element} />
