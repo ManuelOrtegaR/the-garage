@@ -18,7 +18,9 @@ export const NavMenu = () => {
       {navItems.map(({ name, url }) => {
         return (
           <div key={name} className="d-flex">
-            <NavLinkStyled to={url}>{name}</NavLinkStyled>
+            <NavLinkStyled to={url} data-cy={`nav-${name}`}>
+              {name}
+            </NavLinkStyled>
             <Divider height={30} color={'white'} />
           </div>
         );

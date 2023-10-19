@@ -1,0 +1,36 @@
+{
+  "data": {
+    "id": "producto1",
+    "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e",
+    "id_categoria": "225ff9fb-6fb1-4cff-8552-ba740d2c14dc",
+    "nombre": "Freno de disco",
+    "descripcion": "Freno de disco para motocicletas",
+    "ficha_tecnica": "Ficha tecnica del producto Freno de disco para motocicletas Yamaha",
+    "precio": 150000,
+    "cantidad_disponible": 8,
+    "estatus": true,
+    "tipo_entrega": "Domicilio",
+    "fecha_creacion": "2023-10-04T14:00:20.185Z",
+    "fecha_actualizacion": null,
+    "marca": "Yamaha",
+    "impuestos": "19",
+    "categoria": {
+      "id": "225ff9fb-6fb1-4cff-8552-ba740d2c14dc",
+      "nombre_categoria": "Mecanica"
+    },
+    "fotos": [
+      {
+        "id": "fcd6b729-dba8-4792-ab72-1c5c740ac825",
+        "id_producto": "producto1",
+        "id_servicio": null,
+        "url_foto": "https://placehold.co/400x400",
+        "fecha_creacion": "2023-10-04T14:00:20.185Z"
+      }
+    ],
+    "valoraciones": [],
+    "empresa": {
+      "razon_social": "Autocolombia",
+      "descripcion": "Somos una empresa a la vanguardia en repuestos para vehículos que innova en desarrollo"
+    }
+  }
+}

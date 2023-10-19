@@ -1,0 +1,75 @@
+{
+  "data": [
+    {
+      "id": "producto1",
+      "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e",
+      "id_categoria": "225ff9fb-6fb1-4cff-8552-ba740d2c14dc",
+      "nombre": "Freno de disco",
+      "descripcion": "Freno de disco para motocicletas",
+      "ficha_tecnica": "Ficha tecnica del producto Freno de disco para motocicletas Yamaha",
+      "precio": 150000,
+      "cantidad_disponible": 9,
+      "estatus": true,
+      "tipo_entrega": "Domicilio",
+      "fecha_creacion": "2023-10-04T14:00:20.185Z",
+      "fecha_actualizacion": null,
+      "marca": "Yamaha",
+      "impuestos": "19",
+      "fotos": [
+        {
+          "id": "fcd6b729-dba8-4792-ab72-1c5c740ac825",
+          "id_producto": "bb949a32-4a02-4757-be1d-110eaf31c175",
+          "id_servicio": null,
+          "url_foto": "https://placehold.co/400x400",
+          "fecha_creacion": "2023-10-04T14:00:20.185Z"
+        }
+      ],
+      "valoraciones": [],
+      "categoria": {
+        "nombre_categoria": "Mecanica"
+      },
+      "empresa": {
+        "razon_social": "Autocolombia"
+      }
+    },
+    {
+      "id": "producto2",
+      "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e",
+      "id_categoria": "225ff9fb-6fb1-4cff-8552-ba740d2c14dc",
+      "nombre": "Transmision Spicer",
+      "descripcion": "Ofrecemos una línea de kits americana y otra japonesa para poder proveer también a aquellos vehículos de origen asiático.",
+      "ficha_tecnica": "Nuestras cajas de cambio son definitivamente la mejor elección que puede hacer para su vehículo.",
+      "precio": 1000000,
+      "cantidad_disponible": 9,
+      "estatus": true,
+      "tipo_entrega": "Domicilio",
+      "fecha_creacion": "2023-10-04T14:00:28.119Z",
+      "fecha_actualizacion": null,
+      "marca": "Spicer",
+      "impuestos": "19",
+      "fotos": [
+        {
+          "id": "57c74e74-b9d0-4014-ba92-e6cc936d7359",
+          "id_producto": "74afd11d-1e74-43ac-80e4-93a56a4ff70b",
+          "id_servicio": null,
+          "url_foto": "https://placehold.co/400x400",
+          "fecha_creacion": "2023-10-04T14:00:28.119Z"
+        }
+      ],
+      "valoraciones": [],
+      "categoria": {
+        "nombre_categoria": "Mecanica"
+      },
+      "empresa": {
+        "razon_social": "Autocolombia"
+      }
+    }
+  ],
+  "meta": {
+    "limit": 100,
+    "offset": 0,
+    "total": 2,
+    "orderBy": "id",
+    "direction": "desc"
+  }
+}

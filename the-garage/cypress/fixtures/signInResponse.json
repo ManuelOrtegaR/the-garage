@@ -1,0 +1,24 @@
+{
+  "data": {
+    "user": {
+      "correo": "client@example.com",
+      "tipo_usuario": "Cliente",
+      "fecha_creacion": "2023-10-04T14:00:48.740Z",
+      "fecha_actualizacion": "2023-10-18T13:35:19.262Z",
+      "estatus": "Activo",
+      "url_foto": "https://placehold.co/400x400",
+      "departamento": "Córdoba",
+      "ciudad": "Montería",
+      "direccion": "Cll 22 #15-18"
+    },
+    "typeData": {
+      "nombre_completo": "Manuel Ortega",
+      "tipo_documento": "Cédula de Ciudadanía",
+      "numero_documento": "1067354789",
+      "telefono": "3106908888"
+    }
+  },
+  "meta": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFmZTZhMmJkLWRkMjgtNGQyZi05YjQwLWM3ZWYzYzYyNTlmMiIsInVzZXJUeXBlIjoiQ2xpZW50ZSIsImlkVHlwZSI6Ijg1NjA5Y2E1LWRjMGQtNDgzMC04ZTQ2LTQ0MGQ5MjkxOTE5NiIsImlhdCI6MTY5NzY0NTY0MiwiZXhwIjoxNjk3NjYwMDQyfQ.sGiQHxGm9Tfb3GctBahuh1jczRQdpO6MHjukbDNCDQg"
+  }
+}

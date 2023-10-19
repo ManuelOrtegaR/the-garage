@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -11,6 +12,69 @@
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
+
+Cypress.Commands.add('signInClient', (email, password) => {
+  cy.intercept('POST', '/api/v1/auth/signin', {
+    fixture: 'signInResponse.json',
+  }).as('signIn');
+  cy.intercept('GET', '/api/v1/perfil/empresas', {
+    fixture: 'companies.json',
+  }).as('getCompanies');
+  cy.intercept('GET', '/api/v1/valoraciones?orderBy=fecha_creacion', {
+    fixture: 'reviews.json',
+  }).as('getReviews');
+  cy.intercept(
+    'GET',
+    'https://www.datos.gov.co/resource/xdk5-pm3f.json?$select=distinct%20departamento',
+    {
+      fixture: 'departments.json',
+    },
+  ).as('getDepartments');
+  cy.intercept(
+    'GET',
+    'https://www.datos.gov.co/resource/xdk5-pm3f.json?departamento=C%C3%B3rdoba',
+    {
+      fixture: 'cities.json',
+    },
+  ).as('getCities');
+
+  cy.visit('/login');
+  cy.get('input[name="email"]').type(email);
+  cy.get('input[name="password"]').type(`${password}{enter}`);
+  cy.get('.nav-link').click();
+});
+
+Cypress.Commands.add('signInCompany', (email, password) => {
+  cy.intercept('POST', '/api/v1/auth/signin', {
+    fixture: 'signInResponseCompany.json',
+  }).as('signIn');
+  cy.intercept('GET', '/api/v1/perfil/empresas', {
+    fixture: 'companies.json',
+  }).as('getCompanies');
+  cy.intercept('GET', '/api/v1/valoraciones?orderBy=fecha_creacion', {
+    fixture: 'reviews.json',
+  }).as('getReviews');
+  cy.intercept(
+    'GET',
+    'https://www.datos.gov.co/resource/xdk5-pm3f.json?$select=distinct%20departamento',
+    {
+      fixture: 'departments.json',
+    },
+  ).as('getDepartments');
+  cy.intercept(
+    'GET',
+    'https://www.datos.gov.co/resource/xdk5-pm3f.json?departamento=C%C3%B3rdoba',
+    {
+      fixture: 'cities.json',
+    },
+  ).as('getCities');
+
+  cy.visit('/login');
+  cy.get('input[name="email"]').type(email);
+  cy.get('input[name="password"]').type(`${password}{enter}`);
+  cy.get('.nav-link').click();
+});
+
 //
 //
 // -- This is a child command --

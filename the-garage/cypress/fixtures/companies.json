@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "url_foto": "https://placehold.co/400x400",
+      "fecha_creacion": "2023-10-08T21:42:59.173Z",
+      "empresa": {
+        "razon_social": "Autocolombia"
+      }
+    },
+    {
+      "url_foto": "https://placehold.co/400x400",
+      "fecha_creacion": "2023-10-04T13:59:55.202Z",
+      "empresa": {
+        "razon_social": "TodoCarros la 22"
+      }
+    }
+  ],
+  "meta": {
+    "limit": 10,
+    "offset": 0,
+    "total": 2,
+    "orderBy": "id",
+    "direction": "desc"
+  }
+}

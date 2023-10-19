@@ -1,7 +1,7 @@
-import { Alert, Carousel, Spinner } from "react-bootstrap";
-import { CarouselStyled, SubTitleStyled } from "./ComponentsStyles";
-import { ReviewCard } from "./ReviewCard";
-import { useAllRatings } from "../../../domain/useRatings";
+import { Alert, Carousel, Spinner } from 'react-bootstrap';
+import { CarouselStyled, SubTitleStyled } from './ComponentsStyles';
+import { ReviewCard } from './ReviewCard';
+import { useAllRatings } from '../../../domain/useRatings';
 
 export const ReviewsComponent = () => {
   const { data, loading, error } = useAllRatings();
@@ -18,7 +18,10 @@ export const ReviewsComponent = () => {
             if (index % 3 === 0) {
               return (
                 <Carousel.Item key={index}>
-                  <div className="d-flex justify-content-center gap-5 py-5">
+                  <div
+                    className="d-flex justify-content-center gap-5 py-5"
+                    data-cy="review-item"
+                  >
                     {data
                       .slice(index, Math.min(index + 3, data.length))
                       .map((item, subIndex) => (
