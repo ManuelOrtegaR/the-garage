@@ -63,6 +63,7 @@ export function ModalDetails(props) {
             <Form.Control
               className="ms-3"
               name="messageForm"
+              data-cy="messageForm"
               as="textarea"
               rows={3}
               value={handleChange}
@@ -72,7 +73,11 @@ export function ModalDetails(props) {
         </Form>
       </Modal.Body>
       <Modal.Footer className="bg-secondary-subtle d-flex">
-        <BtnDangerSubmitStyled onClick={sentMessage} disabled={handleDisabled}>
+        <BtnDangerSubmitStyled
+          onClick={sentMessage}
+          disabled={handleDisabled}
+          data-cy="sendMessage"
+        >
           {!isSubmitting ? (
             'Enviar'
           ) : (

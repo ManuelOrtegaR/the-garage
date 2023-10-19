@@ -106,6 +106,7 @@ export const OrderId = () => {
           {user.userClass === 'Cliente' && (
             <>
               <BtnSubmitStyled
+                data-cy="btn-review"
                 onClick={() => setModalRating(true)}
                 style={
                   data.estados.length < 4

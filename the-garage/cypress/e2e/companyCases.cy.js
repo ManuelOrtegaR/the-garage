@@ -1,13 +1,17 @@
 /* eslint-disable no-undef */
-describe('Add products', () => {
-  it('Add two products', () => {
+describe('Company cases', () => {
+  it('Add products', () => {
     cy.intercept('GET', '/api/v1/productos/misProductos?limit=100&offset=0', {
       fixture: 'myProductsEmpty.json',
     }).as('getMyProducts');
 
+    cy.intercept('GET', '/api/v1/perfil', {
+      fixture: 'companyProfile.json',
+    }).as('profile');
+
     cy.signInCompany('company@example.com', 'Company123');
     cy.get(`[data-cy="products"]`).click();
-
+    cy.get(`[data-cy="add-product"]`).should('be.visible');
     cy.get(`[data-cy="add-product"]`).click();
 
     cy.fixture('product1.json').then((product) => {
@@ -37,6 +41,7 @@ describe('Add products', () => {
       cy.contains(product.name);
     });
 
+    cy.get(`[data-cy="add-product"]`).should('be.visible');
     cy.get(`[data-cy="add-product"]`).click();
 
     cy.fixture('product2.json').then((product) => {
@@ -65,5 +70,67 @@ describe('Add products', () => {
 
       cy.contains(product.name);
     });
+  });
+
+  it('Cancel order', () => {
+    cy.intercept('GET', '/api/v1/orden_productos', {
+      fixture: 'myOrders.json',
+    }).as('getMyOrders');
+
+    cy.intercept('GET', '/api/v1/perfil', {
+      fixture: 'companyProfile.json',
+    }).as('profile');
+
+    cy.intercept('PUT', '/api/v1/orden_productos/orden1', {
+      fixture: 'orderCancelled.json',
+    }).as('updateOrder');
+
+    cy.signInCompany('company@example.com', 'Company123');
+
+    cy.get(`[data-cy="orders"]`).click();
+
+    cy.get(`[data-cy="show-order"]`).first().click();
+    cy.get('.dropdown-toggle').click();
+    cy.get('.dropdown-menu > :nth-child(2)').click();
+    cy.get(`[data-cy="messageForm"]`).type('I want to cancel this order');
+    cy.get(`[data-cy="sendMessage"]`).click();
+    cy.wait('@updateOrder');
+    cy.get(`.btn-close`).click();
+    cy.contains('Cancelada');
+  });
+
+  it('Send order', () => {
+    cy.intercept('GET', '/api/v1/orden_productos', {
+      fixture: 'myOrders.json',
+    }).as('getMyOrders');
+
+    cy.intercept('GET', '/api/v1/perfil', {
+      fixture: 'companyProfile.json',
+    }).as('profile');
+
+    cy.intercept('PUT', '/api/v1/orden_productos/orden1', {
+      fixture: 'orderSended.json',
+    }).as('updateOrder');
+
+    cy.signInCompany('company@example.com', 'Company123');
+
+    cy.get(`[data-cy="orders"]`).click();
+
+    cy.get(`[data-cy="show-order"]`).first().click();
+    cy.get('.dropdown-toggle').click();
+    cy.get('.dropdown-menu > :nth-child(1)').click();
+    cy.get(`[data-cy="messageForm"]`).type('I send this order');
+    cy.get(`[data-cy="sendMessage"]`).click();
+    cy.wait('@updateOrder');
+    cy.get(`.btn-close`).click();
+    cy.contains('Enviada');
+
+    cy.intercept('PUT', '/api/v1/orden_productos/orden1', {
+      fixture: 'orderDelivered.json',
+    }).as('updateOrder2');
+
+    cy.get(`[data-cy="delivered"]`).click();
+    cy.wait('@updateOrder2');
+    cy.contains('Entregada');
   });
 });

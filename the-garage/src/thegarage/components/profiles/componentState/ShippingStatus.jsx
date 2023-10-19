@@ -55,6 +55,7 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
       </div>
       <DeliveredStyle
         className={`translate-middle ${entregada}`}
+        data-cy="delivered"
         onClick={() => {
           if (userClass !== 'Cliente' && data.length === 3) {
             onDelivered();

@@ -123,7 +123,10 @@ export const Orders = () => {
                         {order.estados[order.estados.length - 1].estado}
                       </StatusStyle>
                     </div>
-                    <ShowOrder onClick={() => orderDetails(order, index)}>
+                    <ShowOrder
+                      onClick={() => orderDetails(order, index)}
+                      data-cy="show-order"
+                    >
                       <i
                         className="bi bi-eye-fill"
                         style={{ width: '20px', height: '20px' }}

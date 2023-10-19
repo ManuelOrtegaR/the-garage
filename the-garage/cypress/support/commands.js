@@ -23,6 +23,20 @@ Cypress.Commands.add('signInClient', (email, password) => {
   cy.intercept('GET', '/api/v1/valoraciones?orderBy=fecha_creacion', {
     fixture: 'reviews.json',
   }).as('getReviews');
+  cy.intercept(
+    'GET',
+    'https://www.datos.gov.co/resource/xdk5-pm3f.json?$select=distinct%20departamento',
+    {
+      fixture: 'departments.json',
+    },
+  ).as('getDepartments');
+  cy.intercept(
+    'GET',
+    'https://www.datos.gov.co/resource/xdk5-pm3f.json?departamento=C%C3%B3rdoba',
+    {
+      fixture: 'cities.json',
+    },
+  ).as('getCities');
 
   cy.visit('/login');
   cy.get('input[name="email"]').type(email);
@@ -40,6 +54,20 @@ Cypress.Commands.add('signInCompany', (email, password) => {
   cy.intercept('GET', '/api/v1/valoraciones?orderBy=fecha_creacion', {
     fixture: 'reviews.json',
   }).as('getReviews');
+  cy.intercept(
+    'GET',
+    'https://www.datos.gov.co/resource/xdk5-pm3f.json?$select=distinct%20departamento',
+    {
+      fixture: 'departments.json',
+    },
+  ).as('getDepartments');
+  cy.intercept(
+    'GET',
+    'https://www.datos.gov.co/resource/xdk5-pm3f.json?departamento=C%C3%B3rdoba',
+    {
+      fixture: 'cities.json',
+    },
+  ).as('getCities');
 
   cy.visit('/login');
   cy.get('input[name="email"]').type(email);

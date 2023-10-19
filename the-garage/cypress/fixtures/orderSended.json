@@ -1,0 +1,10 @@
+{
+  "message": "Estado actualizado",
+  "data": {
+    "id": "070f52ca-339d-4e41-adf3-484bb19bc497",
+    "id_orden_productos": "orden1",
+    "estado": "Enviada",
+    "fecha_estado": "2023-10-19T02:27:01.259Z"
+  },
+  "status": 200
+}

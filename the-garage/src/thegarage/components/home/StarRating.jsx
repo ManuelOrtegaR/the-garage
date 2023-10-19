@@ -8,7 +8,11 @@ export const StarRating = ({
   const [rating, setRating] = useState(itemRating);
   const [hover, setHover] = useState(0);
   return (
-    <div className={`star-rating`} style={{ width: 'auto' }}>
+    <div
+      className={`star-rating`}
+      style={{ width: 'auto' }}
+      data-cy="star-rating"
+    >
       {[...Array(5)].map((star, index) => {
         index += 1;
         return (

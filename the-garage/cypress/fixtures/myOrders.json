@@ -1,0 +1,106 @@
+{
+  "data": [
+    {
+      "foto_cliente": "https://placehold.co/400x400",
+      "foto_empresa": "https://placehold.co/400x400",
+      "id": "orden1",
+      "no_orden": 4,
+      "id_cliente": "f65be74b-e1fe-4dea-92e0-2df20a4a22a1",
+      "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e",
+      "fecha_orden": "2023-10-15T15:15:53.913Z",
+      "total": "1150000",
+      "detalle_orden_productos": [
+        {
+          "id_producto": "bb949a32-4a02-4757-be1d-110eaf31c175",
+          "cantidad": 1,
+          "precio_unitario": "150000",
+          "nombre": "Freno de disco",
+          "descripcion": "Freno de disco para motocicletas",
+          "fotos": [
+            {
+              "url_foto": "https://placehold.co/400x400"
+            }
+          ],
+          "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e"
+        },
+        {
+          "id_producto": "74afd11d-1e74-43ac-80e4-93a56a4ff70b",
+          "cantidad": 1,
+          "precio_unitario": "1000000",
+          "nombre": "Transmision Spicer",
+          "descripcion": "Ofrecemos una línea de kits americana y otra japonesa para poder proveer también a aquellos vehículos de origen asiático.",
+          "fotos": [
+            {
+              "url_foto": "https://placehold.co/400x400"
+            }
+          ],
+          "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e"
+        }
+      ],
+      "estados": [
+        {
+          "estado": "Creado",
+          "fecha_estado": "2023-10-15T15:15:53.913Z"
+        },
+        {
+          "estado": "Pagada",
+          "fecha_estado": "2023-10-15T15:16:46.277Z"
+        }
+      ]
+    },
+    {
+      "foto_cliente": "https://placehold.co/400x400",
+      "foto_empresa": "https://placehold.co/400x400",
+      "id": "orden2",
+      "no_orden": 2,
+      "id_cliente": "85609ca5-dc0d-4830-8e46-440d92919196",
+      "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e",
+      "fecha_orden": "2023-10-12T17:36:50.939Z",
+      "total": "2300000",
+      "detalle_orden_productos": [
+        {
+          "id_producto": "bb949a32-4a02-4757-be1d-110eaf31c175",
+          "cantidad": 2,
+          "precio_unitario": "150000",
+          "nombre": "Freno de disco",
+          "descripcion": "Freno de disco para motocicletas",
+          "fotos": [
+            {
+              "url_foto": "https://placehold.co/400x400"
+            }
+          ],
+          "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e"
+        },
+        {
+          "id_producto": "74afd11d-1e74-43ac-80e4-93a56a4ff70b",
+          "cantidad": 2,
+          "precio_unitario": "1000000",
+          "nombre": "Transmision Spicer",
+          "descripcion": "Ofrecemos una línea de kits americana y otra japonesa para poder proveer también a aquellos vehículos de origen asiático.",
+          "fotos": [
+            {
+              "url_foto": "https://placehold.co/400x400"
+            }
+          ],
+          "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e"
+        }
+      ],
+      "estados": [
+        {
+          "estado": "Creado",
+          "fecha_estado": "2023-10-12T17:36:50.939Z"
+        },
+        {
+          "estado": "Pagada",
+          "fecha_estado": "2023-10-12T17:37:34.346Z"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "limit": 10,
+    "offset": 0,
+    "orderBy": "id",
+    "direction": "desc"
+  }
+}
