@@ -7,4 +7,3 @@ export * from './CardStore';
 export * from './CardProduct_store';
 export * from './ProductSheet';
 export * from './ProductsForm';
-export * from './ServicesForm';

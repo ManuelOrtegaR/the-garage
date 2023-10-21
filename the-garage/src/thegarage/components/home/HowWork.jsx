@@ -5,9 +5,9 @@ import engrane from '../../../../assets/images/home/engrane.png';
 import taller from '../../../../assets/images/home/taller.png';
 import herramientas from '../../../../assets/images/home/herramientas.png';
 
-const step1 = 'Busca el producto o servicio deseado';
-const step2 = '¡Realiza la compra o solicita un servicio!';
-const step3 = 'Paga el total de los productos o parte del servicio';
+const step1 = 'Busca el producto deseado';
+const step2 = '¡Realiza la compra!';
+const step3 = 'Paga el total de los productos';
 const step4 = '¡Recibe los productos o retira tu auto!';
 
 export const HowWork = () => {
@@ -15,8 +15,8 @@ export const HowWork = () => {
     <>
       <SubTitleStyled>¿Cómo funciona?</SubTitleStyled>
       <TextStyled>
-        4 pasos para acceder a los mejores productos y servicios en un abrir y
-        cerrar de ojos
+        4 pasos para acceder a los mejores productos en un abrir y cerrar de
+        ojos
       </TextStyled>
       <div
         className="d-flex gap-5 justify-content-center"

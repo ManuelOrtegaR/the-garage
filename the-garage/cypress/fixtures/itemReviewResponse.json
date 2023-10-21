@@ -5,7 +5,6 @@
     "comentarios": "This is a review",
     "id_cliente": "f65be74b-e1fe-4dea-92e0-2df20a4a22a1",
     "id_producto": "producto1",
-    "id_servicio": null,
     "fecha_creacion": "2023-10-19T15:10:04.900Z",
     "cliente": {
       "id": "f65be74b-e1fe-4dea-92e0-2df20a4a22a1",

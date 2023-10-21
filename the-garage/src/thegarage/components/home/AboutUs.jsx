@@ -4,7 +4,6 @@ import { TeamCard } from './TeamCard';
 export const AboutUs = () => {
   return (
     <>
-      {/* <SubTitleStyled>¿Quiénes somos?</SubTitleStyled> */}
       <div
         style={{
           backgroundColor: '#163252',
@@ -17,16 +16,15 @@ export const AboutUs = () => {
         </SubTitleStyled>
         <TextStyled color="white">
           Somos una empresa líder en el sector automotriz dedicada a conectar a
-          las empresas de servicios de autos con los clientes que buscan
-          productos, repuestos y servicios de calidad. Nuestra plataforma ofrece
-          un espacio virtual que facilita la interacción y transacciones entre
-          ambas partes, brindando comodidad, eficiencia y confianza en cada paso
-          del proceso. Nuestro objetivo es simplificar la búsqueda y adquisición
-          de productos y servicios automotrices, fomentando una experiencia
-          satisfactoria tanto para las empresas como para los clientes. Con un
-          enfoque en la calidad, variedad y excelencia en el servicio, nos
-          esforzamos por ser el puente que une las necesidades automotrices con
-          las soluciones más adecuadas.
+          las empresas de autos con los clientes que buscan productos, repuestos
+          de calidad. Nuestra plataforma ofrece un espacio virtual que facilita
+          la interacción y transacciones entre ambas partes, brindando
+          comodidad, eficiencia y confianza en cada paso del proceso. Nuestro
+          objetivo es simplificar la búsqueda y adquisición de productos
+          automotrices, fomentando una experiencia satisfactoria tanto para las
+          empresas como para los clientes. Con un enfoque en la calidad,
+          variedad y excelencia en el servicio, nos esforzamos por ser el puente
+          que une las necesidades automotrices con las soluciones más adecuadas.
         </TextStyled>
         <div className="mt-5">
           <SubTitleStyled color="white">Nuestro Equipo</SubTitleStyled>
