@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "id": "1774f801-b4df-457d-b0d0-b18285565022",
+      "calificacion": 4,
+      "comentarios": "Bueno",
+      "id_cliente": "85609ca5-dc0d-4830-8e46-440d92919196",
+      "id_producto": "3846af65-83cc-43f7-bbce-f4e903bd5c4e",
+      "fecha_creacion": "2023-10-16T17:43:12.503Z",
+      "cliente": {
+        "nombre_completo": "Manuel Ortega",
+        "usuario": {
+          "url_foto": "https://placehold.co/400x400"
+        }
+      },
+      "producto": {
+        "nombre": "Freno de disco"
+      }
+    },
+    {
+      "id": "7ad06b28-cd19-4b38-9a66-ec57237c6c78",
+      "calificacion": 4,
+      "comentarios": "Muy bueno",
+      "id_cliente": "85609ca5-dc0d-4830-8e46-440d92919196",
+      "id_producto": "747d026d-8439-49df-b33a-0825ffb24156",
+      "fecha_creacion": "2023-10-16T17:42:11.987Z",
+      "cliente": {
+        "nombre_completo": "Manuel Ortega",
+        "usuario": {
+          "url_foto": "https://placehold.co/400x400"
+        }
+      },
+      "producto": {
+        "nombre": "Transmision Spicer"
+      }
+    }
+  ],
+  "meta": {
+    "limit": 10,
+    "offset": 0,
+    "total": 2,
+    "orderBy": "fecha_creacion",
+    "direction": "desc"
+  }
+}

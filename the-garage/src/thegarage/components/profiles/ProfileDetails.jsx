@@ -3,6 +3,7 @@ import { AuthContext } from '../../../auth/context/AuthContext';
 import { useAdressLocation } from '../../../domain/useAddressLocation';
 import { ClientProfile } from './ClientProfile';
 import { CompanyProfile } from './CompanyProfile';
+import { AdminProfile } from './AdminProfile';
 
 export const ProfileDetails = () => {
   const { user, login } = useContext(AuthContext);
@@ -14,14 +15,8 @@ export const ProfileDetails = () => {
     cargarCiudades(value);
   };
 
-  const fileInputRef = useRef(null);
-
-  const changeImageInput = () => {
-    fileInputRef.current.click();
-  };
-
   return (
-    <div className="d-flex align-items-center justify-content-around">
+    <div className="d-flex align-items-center">
       {user.userClass === 'Cliente' ? (
         <ClientProfile
           user={user}
@@ -31,10 +26,8 @@ export const ProfileDetails = () => {
           departments={departments}
           city={city}
           handleChangeDepartment={handleChangeDepartment}
-          changeImageInput={changeImageInput}
-          fileInputRef={fileInputRef}
         />
-      ) : (
+      ) : user.userClass === 'Empresa' ? (
         <CompanyProfile
           user={user}
           login={login}
@@ -43,8 +36,16 @@ export const ProfileDetails = () => {
           departments={departments}
           city={city}
           handleChangeDepartment={handleChangeDepartment}
-          changeImageInput={changeImageInput}
-          fileInputRef={fileInputRef}
+        />
+      ) : (
+        <AdminProfile
+          user={user}
+          login={login}
+          handelUpdate={handelUpdate}
+          setHandelUpdate={setHandelUpdate}
+          departments={departments}
+          city={city}
+          handleChangeDepartment={handleChangeDepartment}
         />
       )}
     </div>

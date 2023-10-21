@@ -5,11 +5,11 @@ import {
   DeliveredStyle,
   OnTheWayStyle,
   ProcessingStyle,
-} from '../StylesComponentsProfiles';
-import { updateOrderStatus } from '../../../../api/orders';
+} from './StylesComponentsProfiles';
+import { updateOrderStatus } from '../../../api/orders';
 import { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { ModalDetails } from '../Modals/ModalDetails';
+import { ModalDetails } from './Modals/ModalDetails';
 
 export const ShippingStatus = ({ estados, id, userClass }) => {
   const [modalDetails, setModalDetails] = useState(false);
@@ -21,11 +21,15 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
   const fechaEnviada =
     data.length > 2
       ? format(new Date(data[2].fecha_estado), 'dd/MM/yyyy HH:mm')
-      : '-';
+      : userClass === 'Cliente'
+      ? 'Click para cancelar'
+      : 'Click para confirmar envío';
   const fechaEntregada =
     data.length > 3
       ? format(new Date(data[3].fecha_estado), 'dd/MM/yyyy HH:mm')
-      : '-';
+      : userClass === 'Cliente'
+      ? '-'
+      : 'Click para confirmar entrega';
 
   const beCancelled = data.length > 2 ? data[2].estado : 'Enviada';
 
@@ -51,6 +55,7 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
       </div>
       <DeliveredStyle
         className={`translate-middle ${entregada}`}
+        data-cy="delivered"
         onClick={() => {
           if (userClass !== 'Cliente' && data.length === 3) {
             onDelivered();
@@ -74,7 +79,7 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
         disabled={data.length >= 3}
         size="sm"
       >
-        {userClass !== 'Cliente' ? (
+        {userClass === 'Empresa' ? (
           <>
             <Dropdown.Item
               eventKey="1"
@@ -95,9 +100,20 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
               Cancelar
             </Dropdown.Item>
           </>
+        ) : userClass === 'Cliente' ? (
+          <Dropdown.Item
+            eventKey="2"
+            onClick={() => {
+              setMessageStatus('Cancelar');
+              setModalDetails(true);
+            }}
+          >
+            Cancelar
+          </Dropdown.Item>
         ) : (
           <Dropdown.Item
             eventKey="2"
+            disabled
             onClick={() => {
               setMessageStatus('Cancelar');
               setModalDetails(true);

@@ -1,0 +1,10 @@
+{
+  "data": [],
+  "meta": {
+    "limit": 100,
+    "offset": 0,
+    "total": 0,
+    "orderBy": "id",
+    "direction": "desc"
+  }
+}

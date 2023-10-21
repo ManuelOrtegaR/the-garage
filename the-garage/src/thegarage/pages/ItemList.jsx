@@ -24,6 +24,9 @@ export function ItemList() {
   const [filtrosSeleccionadosAgrupados, setFiltrosSeleccionadosAgrupados] =
     useState({});
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { search: urlFilter } = location;
 
   function cambiarPagina(newPage) {
     setPage(newPage);
@@ -32,7 +35,8 @@ export function ItemList() {
   const { data, dataMeta, loading, error, datosParaFiltros } = useProductos(
     page,
     searchValue,
-    filtrosSeleccionadosAgrupados
+    filtrosSeleccionadosAgrupados,
+    urlFilter
   );
 
   const {
@@ -44,7 +48,7 @@ export function ItemList() {
     setCheckFilter,
     dataFiltered,
     dataSearch,
-  } = useFilter([], data, searchValue);
+  } = useFilter([], data, searchValue, urlFilter);
 
   const ITEM_PER_PAGE = 10;
 
@@ -90,28 +94,27 @@ export function ItemList() {
         <Col md={9}>
           <ContainerNumberItemsStyled>
             <strong>
-              <span>
-                {" "}
-                {/* {searchValue ? dataSearch.length : dataFiltered.length}{" "} */}
-                Productos Encontrados
-              </span>
+              <span>Productos Encontrados</span>
             </strong>
-            <div>
-              <span>Visualizacion: </span>
-              <i className="bi bi-grid-3x3-gap-fill"></i>
-              <i className="bi bi-distribute-vertical"></i>
-            </div>
           </ContainerNumberItemsStyled>
           <ContainerVisualizationStyled>
             {loading && <Spinner animation="border" variant="primary" />}
             {error && <Alert variant="danger">{error}</Alert>}
-            {searchValue
-              ? dataSearch.map((element) => (
-                  <Item key={element.id} item={element} />
-                ))
-              : dataFiltered.map((element) => (
-                  <Item key={element.id} item={element} />
-                ))}
+            {!loading && (
+              <>
+                {dataSearch.length === 0 && dataFiltered.length === 0 ? (
+                  <span>No se encontraron resultados</span>
+                ) : null}
+
+                {searchValue
+                  ? dataSearch.map((element) => (
+                      <Item key={element.id} item={element} />
+                    ))
+                  : dataFiltered.map((element) => (
+                      <Item key={element.id} item={element} />
+                    ))}
+              </>
+            )}
           </ContainerVisualizationStyled>
           <Paginator
             totalPages={totalPages}

@@ -38,7 +38,6 @@ export const Contact = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }}
         validationSchema={toFormikValidationSchema(pqrSchema)}

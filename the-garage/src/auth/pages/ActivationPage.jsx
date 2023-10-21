@@ -22,7 +22,6 @@ export const ActivationPage = () => {
 
     try {
       const response = await activateAccount(userToken);
-      console.log(response);
       if (response.message === 'Autenticacion correcta') {
         setSuccess(true);
       }

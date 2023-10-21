@@ -5,12 +5,12 @@ import {
   ListGroupStyle,
 } from './StylesComponentsProfiles';
 import { useState } from 'react';
-import { mockDataTest } from '../../dataTest/dataMock';
+//import { mockDataTest } from '../../dataTest/dataMock';
 import { PaginationProfiles } from './PaginationProfiles';
 import { useNavigate } from 'react-router-dom';
 
 export const Messages = () => {
-  const [data, setData] = useState(mockDataTest);
+  //const [data, setData] = useState(mockDataTest);
   const [messages, setMessages] = useState([...data]);
   const [messagesBypage, setMessagesByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);

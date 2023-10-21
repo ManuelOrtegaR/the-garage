@@ -1,0 +1,50 @@
+[
+  {
+    "id": "51fabb36-dc6c-4c53-a3f8-875d97d0911a",
+    "id_orden_productos": "ordenid",
+    "id_producto": "producto1",
+    "cantidad": 1,
+    "precio_unitario": "150000",
+    "producto": {
+      "id": "producto1",
+      "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e",
+      "id_categoria": "225ff9fb-6fb1-4cff-8552-ba740d2c14dc",
+      "nombre": "Freno de disco",
+      "descripcion": "Freno de disco para motocicletas",
+      "ficha_tecnica": "Ficha tecnica del producto Freno de disco para motocicletas Yamaha",
+      "precio": 150000,
+      "cantidad_disponible": 8,
+      "estatus": true,
+      "tipo_entrega": "Domicilio",
+      "fecha_creacion": "2023-10-04T14:00:20.185Z",
+      "fecha_actualizacion": null,
+      "marca": "Yamaha",
+      "impuestos": "19",
+      "valoraciones": []
+    }
+  },
+  {
+    "id": "1143faf4-bc63-452d-b30d-36d931ae9860",
+    "id_orden_productos": "ordenid",
+    "id_producto": "producto2",
+    "cantidad": 1,
+    "precio_unitario": "1000000",
+    "producto": {
+      "id": "producto2",
+      "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e",
+      "id_categoria": "225ff9fb-6fb1-4cff-8552-ba740d2c14dc",
+      "nombre": "Transmision Spicer",
+      "descripcion": "Ofrecemos una línea de kits americana y otra japonesa para poder proveer también a aquellos vehículos de origen asiático.",
+      "ficha_tecnica": "Nuestras cajas de cambio son definitivamente la mejor elección que puede hacer para su vehículo.",
+      "precio": 1000000,
+      "cantidad_disponible": 8,
+      "estatus": true,
+      "tipo_entrega": "Domicilio",
+      "fecha_creacion": "2023-10-04T14:00:28.119Z",
+      "fecha_actualizacion": null,
+      "marca": "Spicer",
+      "impuestos": "19",
+      "valoraciones": []
+    }
+  }
+]

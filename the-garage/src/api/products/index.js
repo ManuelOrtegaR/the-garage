@@ -125,7 +125,7 @@ export async function updateProduct(payload, id) {
     const data = response.data;
     return { data, meta: response.meta };
   } catch (error) {
-    return Promise.reject(error.message);
+    return Promise.reject(error);
   }
 }
 

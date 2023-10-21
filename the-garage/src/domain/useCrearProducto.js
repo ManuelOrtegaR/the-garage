@@ -2,7 +2,7 @@ import { createProduct } from "../api/products";
 import { useState } from "react";
 
 export const useCreateProduct = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 

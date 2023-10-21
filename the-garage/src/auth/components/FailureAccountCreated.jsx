@@ -19,8 +19,8 @@ export const FailureAccountCreated = (error) => {
           {message && <TextPg color="red">Motivo: {message}</TextPg>}
         </div>
         <div className="m-5">
-          <BtnSubmitStyled onClick={() => navigate('/Singupclient')}>
-            Volver al registro de cliente
+          <BtnSubmitStyled onClick={() => navigate('/login')}>
+            Volver al inicio de sesión
           </BtnSubmitStyled>
         </div>
       </div>

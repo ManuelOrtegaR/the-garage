@@ -1,0 +1,31 @@
+{
+  "data": {
+    "user": {
+      "correo": "empresa@example.com",
+      "tipo_usuario": "Empresa",
+      "fecha_creacion": "2023-10-04T13:59:55.202Z",
+      "fecha_actualizacion": "2023-10-18T14:37:04.019Z",
+      "estatus": "Activo",
+      "url_foto": "https://placehold.co/400x400",
+      "departamento": "Antioquia",
+      "ciudad": "Medellín",
+      "direccion": "Tv 45 #79CC - 10"
+    },
+    "typeData": {
+      "razon_social": "AutoMedellin",
+      "tipo_documento_empresa": "NIT",
+      "numero_documento_empresa": "900800245",
+      "telefono": "3156592777",
+      "sitio_web": "http://www.autocolombia.com",
+      "camara_comercio": "https://placehold.co/400x400",
+      "representante_legal": "Javier Ortega",
+      "tipo_documento_representante": "Cédula de Ciudadanía",
+      "numero_documento_representante": "1067354666",
+      "correo_representante": "representante@example.com",
+      "descripcion": "Somos una empresa a la vanguardia en repuestos para vehículos que innova en desarrollo"
+    }
+  },
+  "meta": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyYWIyZDU2LTdkOGQtNDU4ZS1hNzEyLWE5YmY5YWY0YmI0NyIsInVzZXJUeXBlIjoiRW1wcmVzYSIsImlkVHlwZSI6IjQ4MTc5MThhLWMwMmMtNGY1My05Njc4LTQ5NWU3NTU4ZTk2ZSIsImlhdCI6MTY5NzY1OTgwMiwiZXhwIjoxNjk3Njc0MjAyfQ.VU5eKW_Y4niceJH7ChyDgT9KcikQ8Vanx2s0NJw9ZxM"
+  }
+}

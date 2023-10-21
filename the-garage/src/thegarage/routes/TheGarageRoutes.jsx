@@ -8,8 +8,6 @@ import {
   ProductDetail,
   ShoppingCart,
   Chat,
-  ServicesPage,
-  ServicesDetail,
   Profiles,
   PurchaseDetails,
 } from '../pages';
@@ -24,7 +22,6 @@ export const TheGarageRoutes = () => {
         <Route path="productos" element={<ItemList />} />
         <Route path="productos/:searchValue" element={<ItemList />} />
         <Route path="productDetail/:id" element={<ProductDetail />} />
-        <Route path="servicios" element={<ServicesPage />} />
         <Route
           path="shoppingCart"
           element={
@@ -42,7 +39,6 @@ export const TheGarageRoutes = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="servicesDetail/:id" element={<ServicesDetail />} />
         <Route
           path="chat"
           element={

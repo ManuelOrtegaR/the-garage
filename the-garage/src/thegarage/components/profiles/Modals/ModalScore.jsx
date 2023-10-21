@@ -12,19 +12,6 @@ import { useRatings } from '../../../../domain/useRatings';
 export function ModalScore(props) {
   const { data: response } = useRatings(props.items, props.id);
   const [items, setItems] = useState(props.items);
-  const ratingMsg = (event) => {
-    event.preventDefault();
-    toast.success('Se a actualizado exitosamente!!', {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-  };
 
   const onRating = async (event, id, index) => {
     event.preventDefault();
@@ -80,12 +67,17 @@ export function ModalScore(props) {
                 <>
                   <StarRating className="col-2" name={item.nombre} />
                   <Form.Control
+                    data-cy="comments"
                     className="col-4"
                     as="textarea"
                     rows={1}
                     style={{ width: 'auto' }}
                   />
-                  <BtnSubmitStyled className="col-1 mx-4" type="submit">
+                  <BtnSubmitStyled
+                    className="col-1 mx-4"
+                    type="submit"
+                    data-cy="btn-review-item"
+                  >
                     Califica
                   </BtnSubmitStyled>
                 </>

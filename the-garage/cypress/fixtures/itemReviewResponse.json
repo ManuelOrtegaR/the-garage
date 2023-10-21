@@ -1,0 +1,14 @@
+{
+  "data": {
+    "id": "3e3dd0e2-ae02-4058-9a44-097a29f36245",
+    "calificacion": 3,
+    "comentarios": "This is a review",
+    "id_cliente": "f65be74b-e1fe-4dea-92e0-2df20a4a22a1",
+    "id_producto": "producto1",
+    "fecha_creacion": "2023-10-19T15:10:04.900Z",
+    "cliente": {
+      "id": "f65be74b-e1fe-4dea-92e0-2df20a4a22a1",
+      "nombre_completo": "Manuel Leonardo Ortega Ruiz"
+    }
+  }
+}

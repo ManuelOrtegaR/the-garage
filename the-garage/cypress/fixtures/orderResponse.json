@@ -1,0 +1,43 @@
+{
+  "data": {
+    "id": "ordenid",
+    "no_orden": 5,
+    "id_cliente": "85609ca5-dc0d-4830-8e46-440d92919196",
+    "id_empresa": "4817918a-c02c-4f53-9678-495e7558e96e",
+    "fecha_orden": "2023-10-19T14:14:05.292Z",
+    "total": "1150000",
+    "estado": [
+      {
+        "id": "005f8ba8-f710-426d-a428-2550775da857",
+        "id_orden_productos": "2223b0de-f427-4a77-80df-951c02b8960a",
+        "estado": "Creado",
+        "fecha_estado": "2023-10-19T14:14:05.292Z"
+      },
+      {
+        "id": "55abd2f9-6a09-4904-b8f1-b2a50c62b280",
+        "id_orden_productos": "2223b0de-f427-4a77-80df-951c02b8960a",
+        "estado": "Pagada",
+        "fecha_estado": "2023-10-19T14:28:10.353Z"
+      }
+    ],
+    "detalle_orden_productos": [
+      {
+        "id": "89fabb80-6715-4136-a27f-122324d1353d",
+        "id_orden_productos": "2223b0de-f427-4a77-80df-951c02b8960a",
+        "id_producto": "producto1",
+        "cantidad": 1,
+        "precio_unitario": "150000"
+      },
+      {
+        "id": "4e181859-3d65-4437-978a-6f922054d447",
+        "id_orden_productos": "2223b0de-f427-4a77-80df-951c02b8960a",
+        "id_producto": "producto2",
+        "cantidad": 1,
+        "precio_unitario": "1000000"
+      }
+    ],
+    "_count": {
+      "estado": 2
+    }
+  }
+}

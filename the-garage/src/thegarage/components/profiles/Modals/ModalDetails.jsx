@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Form, Modal } from 'react-bootstrap';
+import { Form, Modal, Spinner } from 'react-bootstrap';
 import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../../components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,15 +9,19 @@ import { useState } from 'react';
 export function ModalDetails(props) {
   const [handleChange, setHandleChange] = useState('');
   const [handleDisabled, setHandleDisabled] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const sentMessage = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
     let response;
 
     if (props.messageType === 'Enviar') {
       response = await updateOrderStatus(props.id, 'Enviada', handleChange);
+      setIsSubmitting(false);
     } else {
       response = await updateOrderStatus(props.id, 'Cancelada', handleChange);
+      setIsSubmitting(false);
     }
 
     if (response.status === 200) {
@@ -59,6 +63,7 @@ export function ModalDetails(props) {
             <Form.Control
               className="ms-3"
               name="messageForm"
+              data-cy="messageForm"
               as="textarea"
               rows={3}
               value={handleChange}
@@ -68,8 +73,21 @@ export function ModalDetails(props) {
         </Form>
       </Modal.Body>
       <Modal.Footer className="bg-secondary-subtle d-flex">
-        <BtnDangerSubmitStyled onClick={sentMessage} disabled={handleDisabled}>
-          Enviar
+        <BtnDangerSubmitStyled
+          onClick={sentMessage}
+          disabled={handleDisabled}
+          data-cy="sendMessage"
+        >
+          {!isSubmitting ? (
+            'Enviar'
+          ) : (
+            <Spinner
+              as="span"
+              animation="grow"
+              role="status"
+              aria-hidden="true"
+            />
+          )}
         </BtnDangerSubmitStyled>
         <ToastContainer
           position="top-center"

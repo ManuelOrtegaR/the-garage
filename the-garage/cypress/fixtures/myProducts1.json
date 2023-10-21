@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": "04ce3239-b95b-426a-8fcb-cdc439c28abc",
+      "id_empresa": "aa0bb88e-41a6-43e6-9a3d-ea9fbff143aa",
+      "id_categoria": "225ff9fb-6fb1-4cff-8552-ba740d2c14dc",
+      "nombre": "Freno de disco",
+      "descripcion": "Freno de disco para motocicletas",
+      "ficha_tecnica": "Ficha tecnica del producto Freno de disco para motocicletas Yamaha",
+      "precio": 150000,
+      "cantidad_disponible": 10,
+      "estatus": true,
+      "tipo_entrega": "Envío domicilio",
+      "fecha_creacion": "2023-10-18T20:24:52.014Z",
+      "fecha_actualizacion": null,
+      "marca": "Yamaha",
+      "impuestos": "19",
+      "fotos": [
+        {
+          "id": "caeaeee9-d51b-4351-86b9-28676cbedd51",
+          "id_producto": "04ce3239-b95b-426a-8fcb-cdc439c28abc",
+          "url_foto": "https://placehold.co/400x400",
+          "fecha_creacion": "2023-10-18T20:24:52.014Z"
+        }
+      ],
+      "valoraciones": [],
+      "categoria": {
+        "nombre_categoria": "Mecanica"
+      }
+    }
+  ],
+  "meta": {
+    "limit": 100,
+    "offset": 0,
+    "total": 1,
+    "orderBy": "id",
+    "direction": "desc"
+  }
+}

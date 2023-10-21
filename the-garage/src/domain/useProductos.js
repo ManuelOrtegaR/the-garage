@@ -4,19 +4,17 @@ import {
   getProductsFilter,
   getProductsSearch,
 } from "../api/products";
-import useSWR from "swr";
 import {
   generarQueryFiltros,
   objetoEstaVacio,
 } from "../thegarage/components/products/utils";
-import { useNavigate } from "react-router-dom";
-
-//({ page, selectedFilters, searchValue })
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const useProductos = (
   page,
   searchValue,
-  filtrosSeleccionadosAgrupados
+  filtrosSeleccionadosAgrupados,
+  urlFilter
 ) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -32,6 +30,19 @@ export const useProductos = (
     let responseFiltros = null;
 
     try {
+      //Aqui hare un if que compruebe si hay filtros en la url y haga la peticion correcta y actualice el navigate
+      if (urlFilter && objetoEstaVacio(filtrosSeleccionadosAgrupados)) {
+        urlFilter = urlFilter.replace("?", "");
+
+        navigate(`/productos?${urlFilter}`);
+        response = await getProductsFilter(urlFilter, 10, page);
+        responseFiltros = await getProducts(100, 0);
+        setData(response.data);
+        setDataMeta(response.meta);
+        setDatosParaFiltros(responseFiltros.data);
+        return;
+      }
+
       if (searchValue) {
         response = await getProductsSearch(10, page, searchValue);
         responseFiltros = await getProductsSearch(100, page, searchValue);
@@ -43,7 +54,7 @@ export const useProductos = (
             `/productos?${filterquery}&limit=10&offset=${page}&search=${searchValue}`
           );
           response = await getProductsFilter(
-            `${filterquery}+&search=${searchValue}`,
+            `${filterquery}&search=${searchValue}`,
             10,
             page
           );
