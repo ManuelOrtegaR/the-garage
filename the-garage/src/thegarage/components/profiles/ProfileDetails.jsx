@@ -47,18 +47,6 @@ export const ProfileDetails = () => {
           city={city}
           handleChangeDepartment={handleChangeDepartment}
         />
-      ) : (
-        <AdminProfile
-          user={user}
-          login={login}
-          handelUpdate={handelUpdate}
-          setHandelUpdate={setHandelUpdate}
-          departments={departments}
-          city={city}
-          handleChangeDepartment={handleChangeDepartment}
-          changeImageInput={changeImageInput}
-          fileInputRef={fileInputRef}
-        />
       )}
     </div>
   );
