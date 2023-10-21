@@ -1,4 +1,4 @@
-import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
+import { Alert, Col, Container, Row, Spinner } from 'react-bootstrap';
 
 import {
   Item,
@@ -8,19 +8,19 @@ import {
   RowItemStyled,
   ContainerNumberItemsStyled,
   ContainerVisualizationStyled,
-} from "../components";
-import { useFilter } from "../../hooks/useFilter";
-import { usePaginator } from "../../hooks/usePaginator";
-import { useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+} from '../components';
+import { useFilter } from '../../hooks/useFilter';
+import { usePaginator } from '../../hooks/usePaginator';
+import { useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { useSearchParams } from "react-router-dom";
-import { useProductos } from "../../domain/useProductos";
+import { useSearchParams } from 'react-router-dom';
+import { useProductos } from '../../domain/useProductos';
 
 export function ItemList() {
   const { searchValue } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(searchParams.get("offset") || 0);
+  const [page, setPage] = useState(searchParams.get('offset') || 0);
   const [filtrosSeleccionadosAgrupados, setFiltrosSeleccionadosAgrupados] =
     useState({});
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ export function ItemList() {
     page,
     searchValue,
     filtrosSeleccionadosAgrupados,
-    urlFilter
+    urlFilter,
   );
 
   const {
@@ -63,7 +63,7 @@ export function ItemList() {
     selectedFilters > 0 ? data : dataMeta.total,
     ITEM_PER_PAGE,
     page / 10,
-    page
+    page,
   );
 
   return (

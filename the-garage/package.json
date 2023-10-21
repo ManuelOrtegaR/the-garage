@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "test": "cypress run",
+    "pretest": "npm run build"
   },
   "dependencies": {
     "@emotion/css": "^11.11.2",
