@@ -1,4 +1,4 @@
-import { ERRORS } from "./conts";
+import { ERRORS } from './conts';
 
 export function promedioValoraciones(valoraciones) {
   let suma = 0;
@@ -30,7 +30,7 @@ export function medianaValoraciones(valoraciones) {
 }
 
 export function generarQueryFiltros(filtros) {
-  let query = "";
+  let query = '';
   let categorias = filtros.category;
   let marcas = filtros.brand;
   let precios = filtros.price;
@@ -46,32 +46,29 @@ export function generarQueryFiltros(filtros) {
     query += `filterMarcas=${marcas}&`;
   }
   if (precios !== undefined) {
-    if (precios.indexOf("-") === -1) {
-      precios = precios.split(",");
+    if (precios.indexOf('-') === -1) {
+      precios = precios.split(',');
       query += `precioMin=${precios[0]}&precioMax=${precios[1]}&`;
     } else {
-      precios = precios.split("-");
-      console.log("aqui fue", precios);
+      precios = precios.split('-');
 
       let preciosMaximos = precios.map((elementos) => {
-        let result = "";
-        elementos = elementos.split(",");
+        let result = '';
+        elementos = elementos.split(',');
         result += `${elementos[1]}`;
         return result;
       });
 
       let preciosMinimos = precios.map((elementos) => {
-        let result = "";
-        elementos = elementos.split(",");
+        let result = '';
+        elementos = elementos.split(',');
         result += `${elementos[0]}`;
         return result;
       });
-      console.log("preciosMaximos", preciosMaximos);
-      console.log("preciosMinimos", preciosMinimos);
 
       query += `precioMin=${preciosMinimos.join(
-        "-"
-      )}&precioMax=${preciosMaximos.join("-")}&`;
+        '-',
+      )}&precioMax=${preciosMaximos.join('-')}&`;
     }
   }
   if (calificaciones !== undefined) {
@@ -83,7 +80,7 @@ export function generarQueryFiltros(filtros) {
     query += `filterAlmacen=${empresas}&`;
   }
 
-  if (query.endsWith("&")) {
+  if (query.endsWith('&')) {
     query = query.slice(0, -1);
   }
 
@@ -91,7 +88,7 @@ export function generarQueryFiltros(filtros) {
 }
 
 const reemplazarEspacios = (texto) => {
-  return texto.replace(/ /g, "%20");
+  return texto.replace(/ /g, '%20');
 };
 
 export function objetoEstaVacio(obj) {
@@ -106,10 +103,10 @@ export function objetoEstaVacio(obj) {
 
 // function to format error messages
 export function formatError(e) {
-  if (e.name === "ZodError") {
+  if (e.name === 'ZodError') {
     return ERRORS.DECODE;
   }
-  if (typeof e === "string") {
+  if (typeof e === 'string') {
     return e;
   }
   if (e instanceof Error || e.message) {

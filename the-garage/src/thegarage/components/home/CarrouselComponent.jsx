@@ -24,17 +24,13 @@ export const CarrouselComponent = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={exampleImage}
-          alt="services slide"
-        />
+        <img className="d-block w-100" src={exampleImage} alt="contact slide" />
         <Carousel.Caption className="d-flex flex-column align-items-center pb-5">
           <CarouselTitle className="mb-5">
-            DESCUBRE TODAS LAS OPCIONES DE SERVICIOS ESPECIALIZADOS PARA TU
+            DESCUBRE TODAS LAS OPCIONES DE PRODUCTOS ESPECIALIZADOS PARA TU
             VEHICULO EN TU CIUDAD
           </CarouselTitle>
-          <BtnDangerLinkStyled to="/servicios">Servicios</BtnDangerLinkStyled>
+          <BtnDangerLinkStyled to="/contacto">Contáctanos</BtnDangerLinkStyled>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>

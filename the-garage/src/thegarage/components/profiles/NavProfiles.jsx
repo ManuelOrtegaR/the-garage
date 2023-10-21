@@ -36,12 +36,6 @@ export const itemsProfiles = [
     icon: <i className="bi bi-basket me-2" />,
   },
   {
-    name: 'Servicios',
-    url: 'services',
-    by: ['Administrador', 'Empresa'],
-    icon: <i className="bi bi-file-bar-graph me-2" />,
-  },
-  {
     name: 'Ordenes',
     url: 'orders',
     by: ['Administrador', 'Empresa', 'Cliente'],

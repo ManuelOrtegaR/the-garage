@@ -9,9 +9,8 @@ import {
   PasswordUpdate,
   Products,
   Requests,
-  Services,
 } from '../../profiles';
-import { ProductsForm, ServicesForm } from '../../products';
+import { ProductsForm } from '../../products';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../auth/context/AuthContext';
 import { RequestsId } from '../RequestsId';
@@ -30,9 +29,6 @@ export const ProfilesRoutes = () => {
         <Route path="products" element={<Products />} />
         <Route path="products/add" element={<ProductsForm />} />
         <Route path="products/:id" element={<ProductsForm />} />
-        <Route path="services" element={<Services />} />
-        <Route path="services/add" element={<ServicesForm />} />
-        <Route path="services/:id" element={<ServicesForm />} />
         <Route path="requests" element={<Requests />} />
         <Route path="requests/:id" element={<RequestsId />} />
         <Route path="accounts" element={<Accounts />} />

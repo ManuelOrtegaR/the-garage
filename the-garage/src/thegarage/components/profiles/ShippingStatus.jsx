@@ -5,11 +5,11 @@ import {
   DeliveredStyle,
   OnTheWayStyle,
   ProcessingStyle,
-} from '../StylesComponentsProfiles';
-import { updateOrderStatus } from '../../../../api/orders';
+} from './StylesComponentsProfiles';
+import { updateOrderStatus } from '../../../api/orders';
 import { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { ModalDetails } from '../Modals/ModalDetails';
+import { ModalDetails } from './Modals/ModalDetails';
 
 export const ShippingStatus = ({ estados, id, userClass }) => {
   const [modalDetails, setModalDetails] = useState(false);

@@ -19,7 +19,6 @@
         {
           "id": "fcd6b729-dba8-4792-ab72-1c5c740ac825",
           "id_producto": "bb949a32-4a02-4757-be1d-110eaf31c175",
-          "id_servicio": null,
           "url_foto": "https://placehold.co/400x400",
           "fecha_creacion": "2023-10-04T14:00:20.185Z"
         }
@@ -51,7 +50,6 @@
         {
           "id": "57c74e74-b9d0-4014-ba92-e6cc936d7359",
           "id_producto": "74afd11d-1e74-43ac-80e4-93a56a4ff70b",
-          "id_servicio": null,
           "url_foto": "https://placehold.co/400x400",
           "fecha_creacion": "2023-10-04T14:00:28.119Z"
         }

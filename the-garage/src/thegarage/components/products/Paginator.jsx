@@ -1,9 +1,9 @@
-import { Pagination } from "react-bootstrap";
+import { Pagination } from 'react-bootstrap';
 import {
   ContainerStyledPaginator,
   PaginationStyled,
-} from "./StyledsComponentsProducts";
-import { useLocation, useNavigate } from "react-router-dom";
+} from './StyledsComponentsProducts';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export function Paginator({
   nextHandler,
@@ -19,7 +19,6 @@ export function Paginator({
 
   const specificPage = (page) => {
     const rutaActual = location.pathname;
-    console.log(rutaActual);
 
     specificHandler(page);
 

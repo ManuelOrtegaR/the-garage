@@ -5,10 +5,8 @@ import { NavLinkStyled } from './ComponentsStyles';
 const navItems = [
   { name: 'Inicio', url: '/home' },
   { name: 'Productos', url: '/productos' },
-  // { name: 'Servicios', url: '/servicios' },
   { name: 'Empresas', url: '/home?section=companies' },
   { name: '¿Quiénes somos?', url: '/home?section=about' },
-  // { name: 'PQR', url: '/contacto' },
   { name: 'Contacto', url: '/contacto' },
 ];
 

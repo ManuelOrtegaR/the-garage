@@ -1,4 +1,4 @@
-import { NavLinkStyled } from "./ComponentsStyles";
+import { NavLinkStyled } from './ComponentsStyles';
 
 export const FooterSection = () => {
   return (
@@ -16,7 +16,6 @@ export const FooterSection = () => {
         <h6 className="text-uppercase fw-bold mb-4 text-light">¿Qué buscas?</h6>
         <div className="d-flex flex-column">
           <NavLinkStyled to="/productos">Productos</NavLinkStyled>
-          <NavLinkStyled to="/servicios">Servicios</NavLinkStyled>
           <NavLinkStyled to="/empresas">Empresas</NavLinkStyled>
         </div>
       </div>
