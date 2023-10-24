@@ -101,7 +101,14 @@ export const signUp = async (payload, role) => {
 
     return response.data;
   } catch (error) {
-    return error;
+    if (error.status) {
+      return error;
+    } else {
+      return {
+        status: 500,
+        message: 'Error de conexión con el servidor',
+      };
+    }
   }
 };
 

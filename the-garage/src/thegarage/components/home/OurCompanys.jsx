@@ -17,7 +17,11 @@ export const OurCompanys = () => {
         data-cy="company-container"
       >
         {loading && <Spinner animation="border" variant="primary" />}
-        {error && <Alert variant="danger">{error}</Alert>}
+        {error && (
+          <Alert variant="danger">
+            No se pudo obtener el recurso, por favor recarga la página
+          </Alert>
+        )}
         {data.map((company, index) => {
           return (
             <div
