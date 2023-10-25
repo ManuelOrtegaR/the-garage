@@ -36,6 +36,7 @@ export const ordenSchemaById = z.object({
   id: z.string(),
   id_cliente: z.string(),
   id_empresa: z.string(),
+  no_orden: z.number(),
   fecha_orden: z.string(),
   total: z.string(),
   detalle_orden_productos: z.array(

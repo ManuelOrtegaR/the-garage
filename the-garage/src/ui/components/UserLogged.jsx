@@ -26,14 +26,17 @@ export const UserLogged = ({ user }) => {
           {user.name}
         </NavLinkStyled>
         <IconContainer borderRadius="50%" src={user.profileData.url_foto} />
-
-        <IconContainer
-          onClick={handleClick}
-          maxWidth="25px"
-          src={basketIcon}
-          data-cy="btn-cart"
-        />
-        <Badge bg="secondary">{total}</Badge>
+        {user.userClass === 'Cliente' && (
+          <>
+            <IconContainer
+              onClick={handleClick}
+              maxWidth="25px"
+              src={basketIcon}
+              data-cy="btn-cart"
+            />
+            <Badge bg="secondary">{total}</Badge>
+          </>
+        )}
       </UserContainer>
     </>
   );

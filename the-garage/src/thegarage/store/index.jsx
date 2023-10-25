@@ -3,10 +3,17 @@ import { createContext, useReducer, useContext } from 'react';
 
 const CartContext = createContext();
 
-const initialState = [];
+const initialState = () => {
+  const cart = JSON.parse(localStorage.getItem('cart'));
+  if (cart) {
+    return cart;
+  } else {
+    return [];
+  }
+};
 
 export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState());
 
   const store = {
     state,
@@ -16,6 +23,11 @@ export const CartProvider = ({ children }) => {
 };
 
 const reducer = (state, action) => {
+  const updateStorage = (state) => {
+    localStorage.removeItem('cart');
+    localStorage.setItem('cart', JSON.stringify(state));
+  };
+
   switch (action.type) {
     case 'ADD_TO_CART': {
       const { item, cant } = action.payload;
@@ -37,7 +49,8 @@ const reducer = (state, action) => {
         const total = newCart
           .map((i) => i.cant * i.precio)
           .reduce((a, b) => a + b, 0);
-        return [
+
+        const newState = [
           ...state.slice(0, empresaIndex),
           {
             id_empresa,
@@ -48,6 +61,8 @@ const reducer = (state, action) => {
           },
           ...state.slice(empresaIndex + 1),
         ];
+        updateStorage(newState);
+        return newState;
       } else {
         const newCart = [{ ...item, cant, id_empresa }];
         const totalItems = newCart
@@ -56,7 +71,8 @@ const reducer = (state, action) => {
         const total = newCart
           .map((i) => i.cant * i.precio)
           .reduce((a, b) => a + b, 0);
-        return [
+
+        const newState = [
           ...state,
           {
             id_empresa,
@@ -66,6 +82,8 @@ const reducer = (state, action) => {
             totalItems,
           },
         ];
+        updateStorage(newState);
+        return newState;
       }
     }
 
@@ -90,12 +108,14 @@ const reducer = (state, action) => {
           .reduce((a, b) => a + b, 0);
 
         if (totalItems === 0) {
-          return [
+          const newState = [
             ...state.slice(0, empresaIndex),
             ...state.slice(empresaIndex + 1),
           ];
+          updateStorage(newState);
+          return newState;
         } else {
-          return [
+          const newState = [
             ...state.slice(0, empresaIndex),
             {
               ...state[empresaIndex],
@@ -105,6 +125,9 @@ const reducer = (state, action) => {
             },
             ...state.slice(empresaIndex + 1),
           ];
+          updateStorage(newState);
+
+          return newState;
         }
       } else {
         return state;
@@ -115,11 +138,15 @@ const reducer = (state, action) => {
       const id_empresa = action.payload;
       const empresaIndex = state.findIndex((e) => e.id_empresa === id_empresa);
       if (empresaIndex !== -1) {
-        return [
+        const newState = [
           ...state.slice(0, empresaIndex),
           ...state.slice(empresaIndex + 1),
         ];
+        updateStorage(newState);
+
+        return newState;
       } else {
+        updateStorage(state);
         return state;
       }
     }
