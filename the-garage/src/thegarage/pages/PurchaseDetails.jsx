@@ -12,7 +12,6 @@ export const PurchaseDetails = () => {
   const purchaseStatus = new URLSearchParams(location.search).get('status');
 
   const { data, loading, error } = usePurchase();
-
   const initialValues = {
     id: '',
     products: [],
@@ -32,7 +31,7 @@ export const PurchaseDetails = () => {
           >
             Detalles del pedido:{' '}
             <span className="fw-bold">
-              Orden #{data.id || initialValues.id}
+              Orden #{data.no_orden || initialValues.id}
             </span>
             <TableStyled>
               <tr>

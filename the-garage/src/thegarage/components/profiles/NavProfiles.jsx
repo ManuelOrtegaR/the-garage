@@ -30,6 +30,12 @@ export const itemsProfiles = [
     icon: <i className="bi bi-file-person me-2" />,
   },
   {
+    name: 'Consultas',
+    url: 'questions',
+    by: ['Administrador'],
+    icon: <i className="bi bi-question me-2" />,
+  },
+  {
     name: 'Productos',
     url: 'products',
     by: ['Administrador', 'Empresa'],

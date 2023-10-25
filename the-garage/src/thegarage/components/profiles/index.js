@@ -17,3 +17,5 @@ export * from './ClientProfile';
 export * from './CompanyProfile';
 export * from './AdminProfile';
 export * from './ShippingStatus';
+export * from './Questions';
+export * from './QuestionId';

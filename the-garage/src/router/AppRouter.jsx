@@ -23,8 +23,8 @@ export const AppRouter = () => {
           path="/Recoverypassword"
           element={<RecoveryPasswordPg />}
         ></Route>
-        <Route path="/activacion/" element={<Navigate to={'/login'} />}></Route>
         <Route path="/activacion/:token" element={<ActivationPage />}></Route>
+        <Route path="/activacion/" element={<Navigate to={'/login'} />}></Route>
         <Route path="/confirmacion" element={<ConfirmationPage />}></Route>
       </Routes>
     </>

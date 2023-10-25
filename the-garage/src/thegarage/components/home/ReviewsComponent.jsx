@@ -10,31 +10,35 @@ export const ReviewsComponent = () => {
     <>
       <div className="bg-main-color pt-4">
         <SubTitleStyled color="white">Comentarios</SubTitleStyled>
-
-        <CarouselStyled>
-          {loading && <Spinner animation="border" variant="primary" />}
-          {error && <Alert variant="danger">{error}</Alert>}
-          {data.map((rating, index) => {
-            if (index % 3 === 0) {
-              return (
-                <Carousel.Item key={index}>
-                  <div
-                    className="d-flex justify-content-center gap-5 py-5"
-                    data-cy="review-item"
-                  >
-                    {data
-                      .slice(index, Math.min(index + 3, data.length))
-                      .map((item, subIndex) => (
-                        <ReviewCard key={subIndex} item={item} />
-                      ))}
-                  </div>
-                </Carousel.Item>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </CarouselStyled>
+        {error ? (
+          <Alert variant="danger">
+            No se pudo obtener el recurso, por favor recarga la página
+          </Alert>
+        ) : (
+          <CarouselStyled>
+            {loading && <Spinner animation="border" variant="primary" />}
+            {data.map((rating, index) => {
+              if (index % 3 === 0) {
+                return (
+                  <Carousel.Item key={index}>
+                    <div
+                      className="d-flex justify-content-center gap-5 py-5"
+                      data-cy="review-item"
+                    >
+                      {data
+                        .slice(index, Math.min(index + 3, data.length))
+                        .map((item, subIndex) => (
+                          <ReviewCard key={subIndex} item={item} />
+                        ))}
+                    </div>
+                  </Carousel.Item>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </CarouselStyled>
+        )}
       </div>
     </>
   );

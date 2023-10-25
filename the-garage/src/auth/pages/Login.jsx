@@ -82,7 +82,8 @@ export function Login() {
               variant="danger"
               style={{ width: '75%', margin: 'auto', marginTop: '10px' }}
             >
-              {errorMessage}
+              No se pudo iniciar sesión, por favor verifica tu conexión e
+              intentalo nuevamente
             </Alert>
           )}
           <TitlePg>Inicio de Sesión</TitlePg>
