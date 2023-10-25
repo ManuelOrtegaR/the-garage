@@ -1,10 +1,10 @@
-import Image from 'react-bootstrap/Image';
-import { TableStyled } from './StylesComponentsProfiles';
-import { BtnSubmitStyled } from '../../../components';
-import { ModalMessages, ModalScore, ShippingStatus } from '..';
-import { useLocation, useParams } from 'react-router-dom';
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../../auth/context/AuthContext';
+import Image from "react-bootstrap/Image";
+import { TableStyled } from "./StylesComponentsProfiles";
+import { BtnSubmitStyled } from "../../../components";
+import { ModalMessages, ModalScore, ShippingStatus } from "..";
+import { useLocation, useParams } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../../auth/context/AuthContext";
 
 export const OrderId = () => {
   const { user } = useContext(AuthContext);
@@ -23,7 +23,7 @@ export const OrderId = () => {
   return (
     <div className="py-4 px-5">
       <span className="fw-bold py-3">Pedido #{data.no_orden}</span>
-      <div className="overflow-auto" style={{ maxHeight: '300px' }}>
+      <div className="overflow-auto" style={{ maxHeight: "300px" }}>
         <TableStyled>
           <tr>
             <th>Item</th>
@@ -41,7 +41,7 @@ export const OrderId = () => {
                       <Image
                         src={item.fotos[0].url_foto}
                         rounded
-                        style={{ width: '70px', height: '70px' }}
+                        style={{ width: "70px", height: "70px" }}
                       />
                       <div className="ps-2">
                         <span className="fw-bold ">{item.nombre}</span>
@@ -51,15 +51,15 @@ export const OrderId = () => {
                   </td>
                   <td>{item.cantidad}</td>
                   <td className="fw-bold">
-                    {'$' +
-                      new Intl.NumberFormat('es-Co').format(
-                        item.precio_unitario,
+                    {"$" +
+                      new Intl.NumberFormat("es-Co").format(
+                        item.precio_unitario
                       )}
                   </td>
                   <td className="fw-bold">
-                    {'$' +
-                      new Intl.NumberFormat('es-Co').format(
-                        item.cantidad * item.precio_unitario,
+                    {"$" +
+                      new Intl.NumberFormat("es-Co").format(
+                        item.cantidad * item.precio_unitario
                       )}
                   </td>
                 </tr>
@@ -69,17 +69,17 @@ export const OrderId = () => {
         </TableStyled>
       </div>
       <div className="fw-bold text-end me-5 pe-2">
-        <span>Total: ${Intl.NumberFormat('es-Co').format(total)}</span>
+        <span>Total: ${Intl.NumberFormat("es-Co").format(total)}</span>
         <div
           className={
-            user.userClass !== 'Administrador'
-              ? 'd-flex  align-items-center mt-3  justify-content-between'
-              : 'd-flex  align-items-center mt-3  justify-content-center'
+            user.userClass !== "Administrador"
+              ? "d-flex  align-items-center mt-3  justify-content-between"
+              : "d-flex  align-items-center mt-3  justify-content-center"
           }
         >
           <span
             className={
-              user.userClass !== 'Administrador' ? 'fw-bold' : 'fw-bold me-5'
+              user.userClass !== "Administrador" ? "fw-bold" : "fw-bold me-5"
             }
           >
             Estado
@@ -91,7 +91,7 @@ export const OrderId = () => {
             userClass={user.userClass}
           />
 
-          {user.userClass !== 'Administrador' && (
+          {user.userClass !== "Administrador" && (
             <>
               <BtnSubmitStyled onClick={() => setModalMessages(true)}>
                 Mensaje
@@ -99,19 +99,21 @@ export const OrderId = () => {
               <ModalMessages
                 show={modalMessages}
                 onHide={() => setModalMessages(false)}
+                id={id}
+                idEmpresa={data.id_empresa}
               />
             </>
           )}
 
-          {user.userClass === 'Cliente' && (
+          {user.userClass === "Cliente" && (
             <>
               <BtnSubmitStyled
                 data-cy="btn-review"
                 onClick={() => setModalRating(true)}
                 style={
                   data.estados.length < 4
-                    ? { display: 'none' }
-                    : { display: 'block' }
+                    ? { display: "none" }
+                    : { display: "block" }
                 }
               >
                 Valorar
