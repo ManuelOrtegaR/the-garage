@@ -6,7 +6,9 @@ import Form from 'react-bootstrap/Form';
 import { BtnSubmitStyled } from '../../components/StyledButtons';
 import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { ToastContainer, toast } from 'react-toastify';
 import { z } from 'zod';
+import { sendQuestion } from '../../api/contact';
 
 const nameRqd = z.string({
   required_error: 'El nombre es requerido',
@@ -33,13 +35,43 @@ export const Contact = () => {
     question: '',
   };
 
+  const onSubmit = async (values, { setSubmitting, resetForm }) => {
+    const { name: nombre, email: correo, question: mensaje } = values;
+
+    try {
+      await sendQuestion({ nombre, correo, mensaje });
+      toast.success('Se ha enviado su consulta satisfactoriamente!!', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } catch (error) {
+      toast.error('No pudimos procesar su solicitud, intentelo mas tarde', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } finally {
+      setSubmitting(false);
+      resetForm();
+    }
+  };
+
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values, { setSubmitting }) => {
-          setSubmitting(false);
-        }}
+        onSubmit={onSubmit}
         validationSchema={toFormikValidationSchema(pqrSchema)}
       >
         {({
@@ -50,6 +82,7 @@ export const Contact = () => {
           handleBlur,
           handleSubmit,
           isSubmitting,
+          resetForm,
         }) => (
           <div className="mt-4">
             <SubTitleStyled>CONTACTANOS</SubTitleStyled>
@@ -102,7 +135,7 @@ export const Contact = () => {
                       name="question"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.question}
                       className={
                         touched.question && errors.question ? 'is-invalid' : ''
                       }
@@ -117,7 +150,11 @@ export const Contact = () => {
                   <Form.Label className="text-secondary">
                     Nosotros no compartiremos sus datos con nadie
                   </Form.Label>
-                  <BtnSubmitStyled disabled={isSubmitting}>
+                  <BtnSubmitStyled
+                    type="submit"
+                    disabled={isSubmitting}
+                    onReset={resetForm}
+                  >
                     Enviar
                   </BtnSubmitStyled>
                 </Form>
@@ -147,6 +184,18 @@ export const Contact = () => {
           </div>
         )}
       </Formik>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

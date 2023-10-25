@@ -9,6 +9,8 @@ import {
   PasswordUpdate,
   Products,
   Requests,
+  Questions,
+  QuestionId,
 } from '../../profiles';
 import { ProductsForm } from '../../products';
 import { useContext } from 'react';
@@ -30,6 +32,9 @@ export const ProfilesRoutes = () => {
         <Route path="products/add" element={<ProductsForm />} />
         <Route path="products/:id" element={<ProductsForm />} />
         <Route path="requests" element={<Requests />} />
+        <Route path="requests/:id" element={<RequestsId />} />
+        <Route path="questions/:id" element={<QuestionId />} />
+        <Route path="questions/" element={<Questions />} />
         <Route path="requests/:id" element={<RequestsId />} />
         <Route path="accounts" element={<Accounts />} />
         <Route
