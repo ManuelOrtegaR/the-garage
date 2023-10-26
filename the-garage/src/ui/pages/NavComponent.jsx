@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Col, Row } from 'react-bootstrap';
 import { getSessionData } from '../../api/auth';
 import { clearSession, getSession } from '../../api/session';
@@ -9,7 +10,7 @@ import {
   LoginSpace,
 } from '../components';
 
-export const NavComponent = () => {
+export const NavComponent = ({ handleSectionChange }) => {
   (async () => {
     const token = getSession();
 
@@ -38,7 +39,7 @@ export const NavComponent = () => {
           <Col className="col-12 col-md-3 d-flex flex-row-reverse mt-3">
             <LoginSpace />
           </Col>
-          <NavMenu />
+          <NavMenu handleSectionChange={handleSectionChange} />
         </Row>
       </NavbarStyled>
     </>
