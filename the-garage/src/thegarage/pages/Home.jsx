@@ -13,7 +13,7 @@ export const Home = () => {
         <CarrouselComponent />
         <div className="m-5" />
         <HowWork />
-        <div className="m-5 align-items-center" />
+        <div className="m-5" />
         <AboutUs />
         <div className="m-5" />
         <OurCompanys />

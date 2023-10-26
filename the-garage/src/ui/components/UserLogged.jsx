@@ -83,16 +83,22 @@ export const UserLogged = ({ user }) => {
         </Dropdown>
       )}
       <Row className="align-items-center">
-        <Col className="col-7">
+        <Col className={user.userClass === 'Cliente' ? 'col-7' : 'col-8'}>
           <NavLinkStyled
             margin={'0px'}
-            className={'nav-link text-center'}
+            className={'nav-link text-center text-white'}
             to={'/profile'}
           >
             {user.name}
           </NavLinkStyled>
         </Col>
-        <Col className="col-5 d-flex gap-3">
+        <Col
+          className={
+            user.userClass === 'Cliente'
+              ? 'col-5 d-flex gap-3'
+              : 'col-4 d-flex gap-3'
+          }
+        >
           <IconContainer
             borderRadius="50%"
             maxWidth="40px"

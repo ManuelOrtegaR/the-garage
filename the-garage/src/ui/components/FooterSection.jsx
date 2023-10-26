@@ -6,17 +6,20 @@ export const FooterSection = () => {
       <div className="col-3 mx-auto mb-4">
         <h6 className="text-uppercase fw-bold mb-4 text-light">THE GARAGE</h6>
         <div className="text-light">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos iusto
-          explicabo sit nobis ipsa unde magni odio ipsum eaque tempora
-          cupiditate asperiores voluptatem delectus atque, esse minus quibusdam
-          iure perferendis!
+          Somos una plataforma que conecta a los usuarios con las empresas de
+          autopartes y accesorios para vehículos. Brindando una experiencia de
+          compra única y personalizada.
         </div>
       </div>
       <div className="col-2 mx-auto mb-4">
         <h6 className="text-uppercase fw-bold mb-4 text-light">¿Qué buscas?</h6>
         <div className="d-flex flex-column">
-          <NavLinkStyled to="/productos">Productos</NavLinkStyled>
-          <NavLinkStyled to="/empresas">Empresas</NavLinkStyled>
+          <NavLinkStyled margin="0px" to="/productos">
+            Productos
+          </NavLinkStyled>
+          <NavLinkStyled margin="0px" to="/empresas">
+            Empresas
+          </NavLinkStyled>
         </div>
       </div>
       <div className="col-2 mx-auto mb-4">
@@ -24,9 +27,12 @@ export const FooterSection = () => {
           Otros enlaces
         </h6>
         <div className="d-flex flex-column">
-          <NavLinkStyled to="/pqr">Preguntas frecuentes</NavLinkStyled>
-          <NavLinkStyled to="/acercade">Acerca de nosotros</NavLinkStyled>
-          <NavLinkStyled to="/pqr">PQR</NavLinkStyled>
+          <NavLinkStyled margin="0px" to="/pqr">
+            Contáctanos
+          </NavLinkStyled>
+          <NavLinkStyled margin="0px" to="/acercade">
+            Acerca de nosotros
+          </NavLinkStyled>
         </div>
       </div>
       <div className="col-3 mx-auto mb-4">

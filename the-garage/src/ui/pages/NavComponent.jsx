@@ -6,7 +6,6 @@ import {
   SearchInput,
   NavMenu,
   NavbarStyled,
-  ContainerNavStyled,
   LoginSpace,
 } from '../components';
 
