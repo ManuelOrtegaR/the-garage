@@ -26,7 +26,7 @@ export function ModalMessages(props) {
 
     try {
       const conversacion = await create({
-        recipientId: props.idEmpresa,
+        recipientId: props.idRecipient,
         orden_ProductosId: props.id,
       });
       if (conversacion) {

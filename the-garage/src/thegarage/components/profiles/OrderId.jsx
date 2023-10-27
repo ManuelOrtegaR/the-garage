@@ -100,7 +100,12 @@ export const OrderId = () => {
                 show={modalMessages}
                 onHide={() => setModalMessages(false)}
                 id={id}
-                idEmpresa={data.id_empresa}
+                idRecipient={
+                  user.userClass === "Cliente"
+                    ? data.id_empresa
+                    : data.id_cliente
+                }
+                // idEmpresa={data.id_empresa}
               />
             </>
           )}
