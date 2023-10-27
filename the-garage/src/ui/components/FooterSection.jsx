@@ -17,7 +17,7 @@ export const FooterSection = () => {
           <NavLinkStyled margin="0px" to="/productos">
             Productos
           </NavLinkStyled>
-          <NavLinkStyled margin="0px" to="/empresas">
+          <NavLinkStyled margin="0px" to="/companies">
             Empresas
           </NavLinkStyled>
         </div>
@@ -27,10 +27,10 @@ export const FooterSection = () => {
           Otros enlaces
         </h6>
         <div className="d-flex flex-column">
-          <NavLinkStyled margin="0px" to="/pqr">
+          <NavLinkStyled margin="0px" to="/contacto">
             Contáctanos
           </NavLinkStyled>
-          <NavLinkStyled margin="0px" to="/acercade">
+          <NavLinkStyled margin="0px" to="/about">
             Acerca de nosotros
           </NavLinkStyled>
         </div>

@@ -21,6 +21,7 @@ export const NavMenu = ({ handleSectionChange }) => {
                 onClick={() => {
                   handleSectionChange(ref);
                 }}
+                to={'home'}
                 data-cy={`nav-${name}`}
               >
                 {name}

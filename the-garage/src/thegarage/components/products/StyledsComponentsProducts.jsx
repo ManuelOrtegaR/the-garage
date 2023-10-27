@@ -194,7 +194,6 @@ export const AlertWarningStyled = styled(Alert)(({ theme }) => ({
 //productDetail
 
 export const CardStoreStyle = styled(Card)(({ theme }) => ({
-  marginTop: '20px',
   backgroundColor: theme.colors.gray100,
   color: theme.colors.mainColor,
 }));
@@ -213,10 +212,7 @@ export const ColumnSheetStyle = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   gap: '50px',
 }));
-export const PrincipalImg = styled('img')(() => ({
-  height: '400px',
-  width: '400px',
-}));
+
 export const SecondaryImg = styled('img')(() => ({
   height: '50px',
   width: '50px',
@@ -238,6 +234,8 @@ export const CardDescroptionStyle = styled(Card.Text)(() => ({
 export const DivColor = styled('div')(({ theme }) => ({
   color: theme.colors.mainColor,
   paddingTop: '50px',
+  fontWeight: 'bold',
+  marginBottom: '20px',
 }));
 
 export const SpanColor = styled('span')(({ theme }) => ({
