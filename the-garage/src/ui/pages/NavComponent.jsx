@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Col, Row } from 'react-bootstrap';
-import { getSessionData } from '../../api/auth';
-import { clearSession, getSession } from '../../api/session';
+
 import {
   NavLogo,
   SearchInput,
