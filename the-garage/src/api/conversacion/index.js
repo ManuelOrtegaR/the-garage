@@ -31,3 +31,13 @@ export const getConversacion = async ({ id }) => {
     return Promise.reject(error.message);
   }
 };
+
+export const update = async (id, payload) => {
+  try {
+    const { data: response } = await http.put(`/conversaciones/${id}`, payload);
+
+    return response.data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};

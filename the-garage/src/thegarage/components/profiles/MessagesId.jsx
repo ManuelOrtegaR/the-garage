@@ -10,27 +10,40 @@ import {
 import { ModalReport } from "..";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../../auth/context/AuthContext";
-import { useParams } from "react-router-dom";
-import { useConversacion } from "../../../domain/useConversacion";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  useConversacion,
+  useUpdateConversacion,
+} from "../../../domain/useConversacion";
 import { Alert, Spinner } from "react-bootstrap";
 import { createMessage } from "../../../api/message";
-import { mutate } from "swr";
 import socket from "../../../socket";
-
 import { format } from "date-fns";
 
 export const MessagesId = () => {
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [modalReport, setModalReport] = useState(false);
   const { id } = useParams();
   const { data, loading, error } = useConversacion({ id });
   const [newData, setNewData] = useState({});
+  const {
+    data: dataUp,
+    loading: loadingUp,
+    error: errorUp,
+    actions: { updateConversacion },
+  } = useUpdateConversacion();
 
   useEffect(() => {
     if (data?.mensajes) {
       setNewData(data);
     }
   }, [data]);
+
+  const finalizarConversacion = async () => {
+    await updateConversacion(id, { estado: false });
+    navigate("/profile/messages", { replace: true });
+  };
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +56,33 @@ export const MessagesId = () => {
       setMensajeContenido("");
 
       socket.emit("mensaje", {
+        emailDestino:
+          user.userClass == "Empresa"
+            ? data?.cliente.usuario.correo
+            : data?.empresa.usuario.correo,
+        autor:
+          user.userClass === "Empresa"
+            ? user.profileData.razon_social
+            : user.profileData.nombre_completo,
+
+        foto: user.profileData.url_foto,
+
+        mensaje: mensaje.data,
+        conversacionId: id,
+        recipientId:
+          user.userClass === "Cliente" ? data?.empresaId : data?.clienteId,
+      });
+      socket.emit("notificacion", {
+        orden: data?.orden_productos.no_orden,
+        emailDestino:
+          user.userClass == "Empresa"
+            ? data?.cliente.usuario.correo
+            : data?.empresa.usuario.correo,
+        autor:
+          user.userClass === "Empresa"
+            ? user.profileData.razon_social
+            : user.profileData.nombre_completo,
+        foto: user.profileData.url_foto,
         mensaje: mensaje.data,
         conversacionId: id,
         recipientId:
@@ -62,6 +102,31 @@ export const MessagesId = () => {
       });
       setMensajeContenido("");
       socket.emit("mensaje", {
+        emailDestino:
+          user.userClass == "Empresa"
+            ? data?.cliente.usuario.correo
+            : data?.empresa.usuario.correo,
+        autor:
+          user.userClass === "Empresa"
+            ? user.profileData.razon_social
+            : user.profileData.nombre_completo,
+        foto: user.profileData.url_foto,
+        mensaje: mensaje.data,
+        conversacionId: id,
+        recipientId:
+          user.userClass === "Cliente" ? data?.empresaId : data?.clienteId,
+      });
+      socket.emit("notificacion", {
+        orden: data?.orden_productos.no_orden,
+        emailDestino:
+          user.userClass == "Empresa"
+            ? data?.cliente.usuario.correo
+            : data?.empresa.usuario.correo,
+        autor:
+          user.userClass === "Empresa"
+            ? user.profileData.razon_social
+            : user.profileData.nombre_completo,
+        foto: user.profileData.url_foto,
         mensaje: mensaje.data,
         conversacionId: id,
         recipientId:
@@ -73,27 +138,9 @@ export const MessagesId = () => {
     setMensajeContenido(event.target.value);
   };
 
-  {
-    loading && <Spinner animation="border" variant="primary" />;
-  }
-  {
-    error && <Alert variant="danger">{error}</Alert>;
-  }
-
   useEffect(() => {
     socket.on("mensaje", (payload) => {
       if (payload.conversacionId === id) {
-        // mutate(
-        //   `/profile/messages/${id}`,
-        //   (prevData) => {
-        //     return {
-        //       ...prevData,
-        //       mensajes: [payload.mensaje, ...prevData.mensajes],
-        //     };
-        //   },
-        //   false
-        // );
-
         setNewData((prevData) => {
           return {
             ...prevData,
@@ -125,14 +172,23 @@ export const MessagesId = () => {
         <div className="d-flex">
           <div className="d-flex flex-column w-50">
             {/* <span className="fs-6 fw-bold mb-4">Titulo de prueba</span> */}
-            <div className="d-flex">
+            <div className="d-flex gap-2">
+              {loading && (
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  role="status"
+                  aria-hidden="true"
+                />
+              )}
+              {error && <Alert variant="danger">{error}</Alert>}
               <Image
                 src={
                   user.userClass === "Empresa"
                     ? data?.cliente.usuario.url_foto
                     : data?.empresa.usuario.url_foto
                 }
-                style={{ height: 65, width: 65 }}
+                style={{ height: 65, width: 65, borderRadius: "50%" }}
               />
               <div className="text-start">
                 <span className="fs-5 fw-bold">
@@ -149,20 +205,43 @@ export const MessagesId = () => {
             <div className="d-flex justify-content-between mt-auto mb-2 mx-2">
               {user.userClass !== "admin" ? (
                 <>
-                  <ReportBtnStyle
+                  {data?.estado === true ? (
+                    <ReportBtnStyle
+                      variant="danger"
+                      onClick={finalizarConversacion}
+                    >
+                      {loadingUp && (
+                        <Spinner
+                          as="span"
+                          animation="grow"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      )}
+                      Finalizar Conversacion
+                    </ReportBtnStyle>
+                  ) : (
+                    <p>
+                      Esta conversacion tiene estado <strong>finalizado</strong>
+                      , este es el historial de el chat.
+                    </p>
+                  )}
+                  {/* <ReportBtnStyle
                     variant="danger"
                     onClick={() => setModalReport(true)}
                   >
-                    Reportar
-                  </ReportBtnStyle>
-                  <ModalReport
+                    Finalizar Conversacion
+                  </ReportBtnStyle> */}
+                  {/* <ModalReport
                     show={modalReport}
                     onHide={() => setModalReport(false)}
                   />
 
                   {user.userClass !== "client" ? (
-                    <FinishBtnStyle>Finalizar</FinishBtnStyle>
-                  ) : null}
+                    <FinishBtnStyle variant="danger">
+                      Finalizar Conversacion
+                    </FinishBtnStyle>
+                  ) : null} */}
                 </>
               ) : (
                 <FinishBtnStyle className="ms-auto">Finalizar</FinishBtnStyle>
@@ -170,17 +249,16 @@ export const MessagesId = () => {
             </div>
           </div>
           <div
-            className="border rounded w-75 justify-content-between"
+            className="border rounded w-75 d-flex flex-column justify-content-between"
             style={{ height: "445px" }}
           >
             <div
-              className="overflow-auto"
+              className="overflow-auto d-flex"
               style={{ maxHeight: "360px" }}
               ref={messagesContainerRef}
             >
               <ListMessages className="list-group">
                 {
-                  //Aqui Va la funcion .map para imprimir el history de los mensajes Cliente-empresa
                   <>
                     {newData && newData?.mensajes?.length === 0 && (
                       <span>No hay Mensajes</span>
@@ -217,25 +295,28 @@ export const MessagesId = () => {
                           </ListMessagesItem>
                         </div>
                       ))}
-                    {/* <ListMessagesItem className="user">
-                      <span className="fw-bold ">Cliente 15:22</span>
-                      <p className="pt-2 lh-1 m-0 text-start">
-                        Este es el mensaje de prueba del Cliente baterías, hasta
-                        repuestos para maquinaria pesada, como motores,
-                        transmisiones, componentes.
-                      </p>
-                    </ListMessagesItem>
-                    <ListMessagesItem>
-                      <span className="fw-bold ">Empresa 15:28</span>
-                      <p className="pt-2 lh-1 m-0 text-start">
-                        Este es el mensaje de respuesta de la Tienda
-                      </p>
-                    </ListMessagesItem> */}
                   </>
                 }
               </ListMessages>
             </div>
-            <div className="d-flex align-items-center border rounded p-1 m-3">
+
+            {data?.estado === true ? (
+              <div className="d-flex align-items-center border rounded p-1 m-3">
+                <FormTextStyle
+                  size="sm"
+                  type="text"
+                  placeholder="Mensaje"
+                  value={mensajeContenido}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyPress}
+                />
+                <ButtonSentStyle onClick={handlerSubmit}>
+                  Enviar
+                  <i className="bi bi-send " />
+                </ButtonSentStyle>
+              </div>
+            ) : null}
+            {/* <div className="d-flex align-items-center border rounded p-1 m-3">
               <FormTextStyle
                 size="sm"
                 type="text"
@@ -248,7 +329,7 @@ export const MessagesId = () => {
                 Enviar
                 <i className="bi bi-send " />
               </ButtonSentStyle>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

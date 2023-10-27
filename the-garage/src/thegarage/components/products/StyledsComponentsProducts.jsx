@@ -157,6 +157,23 @@ export const IconStyled = styled(Navbar.Brand)(() => ({
   color: "#ECA206",
 }));
 
+export const IconStyledNot = styled(Navbar.Brand)(() => ({
+  color: "#FF0000",
+  "&:hover": {
+    color: "#ECA206",
+  },
+}));
+
+export const ButtonNotification = styled(Button)(({ theme }) => ({
+  color: theme.colors.mainColor,
+  background: "transparent",
+  borderColor: theme.colors.mainColor,
+  "&:hover": {
+    background: theme.colors.mainColor,
+    color: "white",
+  },
+}));
+
 //Alert
 
 export const AlertStyled = styled(Alert)(() => ({

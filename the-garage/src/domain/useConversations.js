@@ -12,7 +12,6 @@ export const useConversaciones = () => {
 
       return conversacion;
     } catch (error) {
-      console.log("errorW", error);
       return Promise.reject(error);
     }
   }
