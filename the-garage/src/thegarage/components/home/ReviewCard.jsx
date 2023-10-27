@@ -1,42 +1,41 @@
-import Card from "react-bootstrap/Card";
-import { StarRating } from "./StarRating";
+/* eslint-disable react/prop-types */
+import Card from 'react-bootstrap/Card';
+import { StarRating } from './StarRating';
 
-import { format } from "date-fns";
-import { NavLinkStyled, NavLinkStyledCompany } from "../../../ui/components";
+import { format } from 'date-fns';
+import { NavLinkStyledCompany } from '../../../ui/components';
+import { Col, Row } from 'react-bootstrap';
 
 export const ReviewCard = ({ item }) => {
   return (
-    <Card border="main-color" style={{ width: "18rem" }}>
+    <Card border="main-color" style={{ width: '18rem' }}>
       <Card.Header>
-        <Card.Img
-          variant="top"
-          src={
-            item.cliente.usuario.url_foto
-              ? item.cliente.usuario.url_foto
-              : "https://res.cloudinary.com/db9nfgjqr/image/upload/v1697054977/default_image/istockphoto-1316420668-612x612_xcyynq.jpg"
-          }
-          style={{ width: 30, border: "1px solid gray" }}
-          className="rounded-circle object-fit-cover "
-        />
-        <span> {item.cliente.nombre_completo}</span>
+        <Row className="d-flex align-items-center ">
+          <Col className="col-4">
+            <Card.Img
+              variant="top"
+              src={
+                item.cliente.usuario.url_foto
+                  ? item.cliente.usuario.url_foto
+                  : 'https://res.cloudinary.com/db9nfgjqr/image/upload/v1697054977/default_image/istockphoto-1316420668-612x612_xcyynq.jpg'
+              }
+              style={{ width: 50, border: '1px solid gray' }}
+              className="rounded-circle object-fit-cover "
+            />
+          </Col>
+          <Col className="col-8">
+            <span>{item.cliente.nombre_completo} </span>
+          </Col>
+        </Row>
       </Card.Header>
-      <Card.Body>
-        <Card.Title>
-          {format(new Date(item.fecha_creacion), "dd/MM/yyyy HH:mm")}
+      <Card.Body className="d-flex flex-column justify-content-between">
+        <Card.Title className="text-main-color" style={{ fontWeight: 'bold' }}>
+          Opinion sobre {item.producto.nombre}
         </Card.Title>
-        <Card.Text>
-          Opinion sobre{" "}
-          <strong>
-            <NavLinkStyledCompany
-              color="blue"
-              to={`/productDetail/${item.id_producto}`}
-            >
-              {" "}
-              {item.producto.nombre}
-            </NavLinkStyledCompany>
-          </strong>
-        </Card.Text>
         <Card.Text>{item.comentarios}</Card.Text>
+        <Card.Text className="d-flex justify-content-end">
+          {format(new Date(item.fecha_creacion), 'dd/MM/yyyy HH:mm')}
+        </Card.Text>
         <div className="d-flex justify-content-center">
           <StarRating itemRating={item.calificacion} />
         </div>

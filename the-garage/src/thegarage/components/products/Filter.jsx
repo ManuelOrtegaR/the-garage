@@ -1,16 +1,16 @@
-import { Accordion, Badge, Form, ListGroup } from "react-bootstrap";
+import { Accordion, Badge, Form, ListGroup } from 'react-bootstrap';
 import {
   AccordionStyle,
   Badgestyled,
   H4Styled,
-} from "./StyledsComponentsProducts";
+} from './StyledsComponentsProducts';
 import {
   generarQueryFiltros,
   generarRangos,
   medianaValoraciones,
   promedioValoraciones,
-} from "./utils";
-import { useNavigate } from "react-router-dom";
+} from './utils';
+import { useNavigate } from 'react-router-dom';
 
 export function Filter({
   data,
@@ -24,12 +24,12 @@ export function Filter({
   const navigate = useNavigate();
   const handlerChange = (event, type) => {
     let label = event.target.labels[0].innerText;
-    if (label.startsWith("$")) {
-      label = label.replace(/[$.]/g, "");
+    if (label.startsWith('$')) {
+      label = label.replace(/[$.]/g, '');
 
-      label = label.replace(/\s/g, "");
+      label = label.replace(/\s/g, '');
 
-      label = label.replace(/-/g, ",");
+      label = label.replace(/-/g, ',');
     }
     if (event.target.checked) {
       addFilter(label);
@@ -38,18 +38,18 @@ export function Filter({
         [type]:
           label +
           (filtrosSeleccionadosAgrupados[type]
-            ? "-" + filtrosSeleccionadosAgrupados[type]
-            : ""),
+            ? '-' + filtrosSeleccionadosAgrupados[type]
+            : ''),
       });
     } else {
       deleteFilter(label);
       let filtrosSeleccionadosAgrupadosAux = filtrosSeleccionadosAgrupados;
       let filtrosSeleccionadosAgrupadosAux2 =
-        filtrosSeleccionadosAgrupadosAux[type].split("-");
+        filtrosSeleccionadosAgrupadosAux[type].split('-');
       filtrosSeleccionadosAgrupadosAux2 =
         filtrosSeleccionadosAgrupadosAux2.filter((filt) => filt !== label);
       filtrosSeleccionadosAgrupadosAux[type] =
-        filtrosSeleccionadosAgrupadosAux2.join("-");
+        filtrosSeleccionadosAgrupadosAux2.join('-');
       setFiltrosSeleccionadosAgrupados(filtrosSeleccionadosAgrupadosAux);
     }
     // const query = generarQueryFiltros(filtrosSeleccionadosAgrupados);
@@ -63,30 +63,30 @@ export function Filter({
     let elements = [];
     let uniqueElements = [];
     elements = dataFilter.map((element) => {
-      return type === "category"
+      return type === 'category'
         ? element.categoria.nombre_categoria
-        : type === "price"
+        : type === 'price'
         ? element.precio
-        : type === "brand"
+        : type === 'brand'
         ? element.marca
-        : type === "rating"
+        : type === 'rating'
         ? medianaValoraciones(element.valoraciones)
-        : type === "store"
+        : type === 'store'
         ? element.empresa.razon_social
         : null;
     });
 
     uniqueElements = elements.filter(
-      (element, i) => elements.indexOf(element) === i
+      (element, i) => elements.indexOf(element) === i,
     );
     uniqueElements.sort((a, b) => a - b);
 
     // Para quitar del filtro lo que no tenga valoraciones
-    if (type === "rating") {
+    if (type === 'rating') {
       uniqueElements = uniqueElements.filter((element) => element !== 0);
     }
 
-    if (type === "price") {
+    if (type === 'price') {
       uniqueElements = generarRangos(uniqueElements);
     }
 
@@ -118,12 +118,12 @@ export function Filter({
           type="checkbox"
           id={`flexCheckChecked${filt}`}
           label={
-            type === "price"
-              ? "$" +
-                filt[0].toLocaleString("es-CO") +
-                " - " +
-                "$" +
-                filt[1].toLocaleString("es-CO")
+            type === 'price'
+              ? '$' +
+                filt[0].toLocaleString('es-CO') +
+                ' - ' +
+                '$' +
+                filt[1].toLocaleString('es-CO')
               : filt
           }
           onChange={() => {
@@ -131,19 +131,19 @@ export function Filter({
           }}
           checked={checkFilter[filt] || false}
         />
-        {type === "rating"
+        {type === 'rating'
           ? [...Array(filt)].map((_, index) => (
               <i key={index} className="bi bi-star-fill"></i>
             ))
           : null}
-        {type === "rating"
+        {type === 'rating'
           ? [...Array(5 - filt)].map((_, index) => (
               <i key={index} className="bi bi-star"></i>
             ))
           : null}
 
         <Badgestyled bg="secondary" pill>
-          {type === "price" ? countFilterPrice(filt) : countFilter(filt)}
+          {type === 'price' ? countFilterPrice(filt) : countFilter(filt)}
         </Badgestyled>
       </div>
     ));
@@ -151,7 +151,7 @@ export function Filter({
 
   return (
     <>
-      <div className="d-flex flex-column  gap-5 vh-100 pt-5">
+      <div className="d-flex flex-column gap-3 pt-3 mb-3">
         <div>
           <H4Styled>FILTRAR POR:</H4Styled>
         </div>
@@ -160,7 +160,7 @@ export function Filter({
             <Accordion.Item eventKey="0">
               <Accordion.Header>Categorias</Accordion.Header>
               <Accordion.Body>
-                {generateFilter(data, "category")}
+                {generateFilter(data, 'category')}
               </Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
@@ -170,7 +170,7 @@ export function Filter({
           <AccordionStyle>
             <Accordion.Item eventKey="1">
               <Accordion.Header>Almacen</Accordion.Header>
-              <Accordion.Body>{generateFilter(data, "store")}</Accordion.Body>
+              <Accordion.Body>{generateFilter(data, 'store')}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
         </div>
@@ -179,7 +179,7 @@ export function Filter({
           <AccordionStyle>
             <Accordion.Item eventKey="2">
               <Accordion.Header>Marcas</Accordion.Header>
-              <Accordion.Body>{generateFilter(data, "brand")}</Accordion.Body>
+              <Accordion.Body>{generateFilter(data, 'brand')}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
         </div>
@@ -187,7 +187,7 @@ export function Filter({
           <AccordionStyle>
             <Accordion.Item eventKey="3">
               <Accordion.Header>Calificacion</Accordion.Header>
-              <Accordion.Body>{generateFilter(data, "rating")}</Accordion.Body>
+              <Accordion.Body>{generateFilter(data, 'rating')}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
         </div>
@@ -195,7 +195,7 @@ export function Filter({
           <AccordionStyle>
             <Accordion.Item eventKey="4">
               <Accordion.Header>Precios</Accordion.Header>
-              <Accordion.Body>{generateFilter(data, "price")}</Accordion.Body>
+              <Accordion.Body>{generateFilter(data, 'price')}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
         </div>

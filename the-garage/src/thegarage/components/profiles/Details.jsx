@@ -58,10 +58,7 @@ export const Details = () => {
   };
 
   return (
-    <div
-      className="border rounded px-3 pt-2 pb-3 w-100"
-      style={{ marginLeft: '20px' }}
-    >
+    <div className="m-auto py-4 w-75">
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
@@ -77,7 +74,7 @@ export const Details = () => {
           isSubmitting,
           setFieldValue,
         }) => (
-          <Form className="Form_client m-4 " onSubmit={handleSubmit}>
+          <Form className="Form_client" onSubmit={handleSubmit}>
             <Row className="gap-3">
               <Col>
                 <Form.Group

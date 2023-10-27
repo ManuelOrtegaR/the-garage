@@ -18,6 +18,19 @@ export const Accounts = () => {
   const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const initialData = useRef(null);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
 
   const [accountsBypage, setAccountsByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
@@ -128,20 +141,22 @@ export const Accounts = () => {
                   return (
                     <div key={index}>
                       <ItemStyle key={user.id} className="border-bottom">
-                        <Image
-                          src={user.url_foto}
-                          style={{ height: 65, width: 65 }}
-                        />
-                        <span className="col-2">
+                        {viewportWidth > 800 && (
+                          <Image
+                            src={user.url_foto}
+                            style={{ height: 65, width: 65 }}
+                          />
+                        )}
+                        <span className="col-3">
                           {user.cliente.nombre_completo}
                         </span>
-                        <span className="col-1">
+                        <span className="col-2">
                           No. Doc: {user.cliente.numero_documento}
                         </span>
                         <span className="col-2 fw-bold fs-5 ">
                           {user.tipo_usuario}
                         </span>
-                        <div className="col-2">
+                        <div className="col-1">
                           <AccountStatusStyle
                             drop="up"
                             variant=""
@@ -149,7 +164,7 @@ export const Accounts = () => {
                               <span
                                 style={{ color: 'white', fontWeight: 'bold' }}
                               >
-                                {user.estatus}
+                                {viewportWidth > 800 ? user.estatus : ''}
                               </span>
                             }
                             className={`translate-middle ${user.estatus}`}
@@ -180,20 +195,22 @@ export const Accounts = () => {
                   return (
                     <div key={index}>
                       <ItemStyle key={user.id} className="border-bottom">
-                        <Image
-                          src={user.url_foto}
-                          style={{ height: 65, width: 65 }}
-                        />
-                        <span className="col-2">
+                        {viewportWidth > 800 && (
+                          <Image
+                            src={user.url_foto}
+                            style={{ height: 65, width: 65 }}
+                          />
+                        )}
+                        <span className="col-3">
                           {user.empresa.razon_social}
                         </span>
-                        <span className="col-1">
+                        <span className="col-2">
                           NIT: {user.empresa.numero_documento_empresa}
                         </span>
                         <span className="col-2 fw-bold fs-5 ">
                           {user.tipo_usuario}
                         </span>
-                        <div className="col-2">
+                        <div className="col-1">
                           <AccountStatusStyle
                             drop="up"
                             variant=""
@@ -201,7 +218,7 @@ export const Accounts = () => {
                               <span
                                 style={{ color: 'white', fontWeight: 'bold' }}
                               >
-                                {user.estatus}
+                                {viewportWidth > 800 ? user.estatus : ''}
                               </span>
                             }
                             className={`translate-middle ${user.estatus}`}

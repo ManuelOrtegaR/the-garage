@@ -14,10 +14,10 @@ import background from './../../../assets/authIcons/AuthBgFull.png';
 //   backgroundColor: theme.colors.mainColor,
 // }));
 
-export const MainConteiner = styled('div')(() => ({
+export const MainConteiner = styled('div')(({ ...props }) => ({
   display: 'flex',
-  height: '100vh',
   width: '100vw',
+  height: props.height || '100vh',
   backgroundImage: `url(${background})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',

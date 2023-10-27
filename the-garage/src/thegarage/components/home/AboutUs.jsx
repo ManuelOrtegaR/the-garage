@@ -9,6 +9,7 @@ export const AboutUs = () => {
           backgroundColor: '#163252',
           borderRadius: '100px 0px 100px 0px',
           padding: '50px',
+          minWidth: '700px',
         }}
       >
         <SubTitleStyled color="white" className="mb-4">
@@ -30,13 +31,13 @@ export const AboutUs = () => {
           <SubTitleStyled color="white">Nuestro Equipo</SubTitleStyled>
 
           <div className="row gap-3 justify-content-around mt-5">
+            <TeamCard name="Diana" description="Full Stack Developer" />
+            <TeamCard name="Welinton" description="Full Stack Developer" />
+            <TeamCard name="Manuel Ortega" description="Full Stack Developer" />
             <TeamCard
               name="Alejandro Gomez"
               description="Full Stack Developer"
             />
-            <TeamCard name="Diana" description="Full Stack Developer" />
-            <TeamCard name="Welinton" description="Full Stack Developer" />
-            <TeamCard name="Manuel Ortega" description="Full Stack Developer" />
           </div>
         </div>
       </div>

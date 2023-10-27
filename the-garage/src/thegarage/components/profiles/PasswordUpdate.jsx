@@ -64,7 +64,7 @@ export const PasswordUpdate = () => {
     });
 
   return (
-    <div className="m-auto w-25 py-4">
+    <div className="m-auto py-4">
       <h4 className="text-center">
         <strong>CAMBIAR CONTRASEÑA</strong>
       </h4>

@@ -20,6 +20,19 @@ export const Questions = () => {
   const initialData = useRef(null);
   const [questionsBypage, setQuestionsByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
 
   useEffect(() => {
     if (dataResponse) {
@@ -51,7 +64,7 @@ export const Questions = () => {
   const totalQuestions = data?.length;
 
   return (
-    <div className="w-100 m-3">
+    <div className="w-75 m-auto">
       <span className="fw-bold">Consultas</span>
 
       <div className="d-flex justify-content-between my-3">
@@ -82,21 +95,38 @@ export const Questions = () => {
             .map((question) => (
               <div key={question.id}>
                 <ItemStyle key={question.id} className="border-bottom">
-                  <span className="col-2">{question.nombre_contacto}</span>
-                  <span className="col-1">{question.correo_contacto}</span>
-                  <span className="col-2">
+                  <span className="col-4 col-md-3">
+                    {question.nombre_contacto}
+                  </span>
+                  {viewportWidth > 900 && (
+                    <span className="col-5 col-md-3">
+                      {question.correo_contacto}
+                    </span>
+                  )}
+                  <span className="col-2 col-md-3">
                     {format(new Date(question.fecha_consulta), 'dd/MM/yyyy')}
                   </span>
-                  <div className="col-2">
-                    <StatusStyle
-                      className={`${
-                        question.estado_consulta !== 'pendiente'
-                          ? 'Entregada'
-                          : 'Enviada'
-                      }`}
-                    >
-                      {question.estado_consulta}
-                    </StatusStyle>
+                  <div className="col-1 col-md-3">
+                    {viewportWidth > 900 ? (
+                      <StatusStyle
+                        className={`${
+                          question.estado_consulta !== 'pendiente'
+                            ? 'Entregada'
+                            : 'Enviada'
+                        }`}
+                      >
+                        {question.estado_consulta}
+                      </StatusStyle>
+                    ) : (
+                      <StatusStyle
+                        className={`${
+                          question.estado_consulta !== 'pendiente'
+                            ? 'Entregada'
+                            : 'Enviada'
+                        }`}
+                        style={{ paddingLeft: '10px', paddingRight: '10px' }}
+                      ></StatusStyle>
+                    )}
                   </div>
                   <ShowOrder
                     onClick={() => {

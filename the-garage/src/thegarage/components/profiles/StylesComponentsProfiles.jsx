@@ -64,7 +64,6 @@ export const BtnStateStyle = styled('button')(({ theme, variant }) => ({
 }));
 
 export const ItemStyle = styled(ListGroup.Item)(() => ({
-  margin: 5,
   display: 'flex',
   justifyContent: 'space-between',
   textAlign: 'center',

@@ -13,7 +13,7 @@ export const LoginSpace = () => {
         <UserLogged user={user} />
       ) : (
         <LoginStyled to={'/login'} aria-label="login-button">
-          Ingresa / Crea una cuenta
+          Ingresa / Regístrate
         </LoginStyled>
       )}
     </>

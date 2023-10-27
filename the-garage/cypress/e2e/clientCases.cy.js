@@ -17,7 +17,9 @@ describe('Client cases', () => {
     cy.get('[data-cy="btn-add-to-cart"]').first().click();
     cy.contains('Producto Agregado').should('be.visible');
     cy.get('[data-cy="btn-add-to-cart"]').last().click();
-    cy.get('[data-cy="btn-cart"]').click();
+
+    cy.visit('/ShoppingCart');
+
     cy.contains('Carrito de Compras').should('be.visible');
 
     cy.intercept('GET', '/api/v1/orden_productos/ordenid', {

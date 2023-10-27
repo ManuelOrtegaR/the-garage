@@ -16,7 +16,7 @@ export const ProfileDetails = () => {
   };
 
   return (
-    <div className="d-flex align-items-center">
+    <div className="d-flex align-items-center justify-content-evenly my-4 w-100">
       {user.userClass === 'Cliente' ? (
         <ClientProfile
           user={user}

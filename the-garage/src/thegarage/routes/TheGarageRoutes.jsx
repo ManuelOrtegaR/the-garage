@@ -12,13 +12,18 @@ import {
   PurchaseDetails,
 } from '../pages';
 import { ProtectedRoute } from '../../auth/context';
+import { useState } from 'react';
 
 export const TheGarageRoutes = () => {
+  const [handleSection, setHandleSection] = useState('home');
+  const handleSectionChange = (section) => {
+    setHandleSection(section);
+  };
   return (
     <>
-      <NavComponent />
+      <NavComponent handleSectionChange={handleSectionChange} />
       <Routes>
-        <Route path="home" element={<Home />} />
+        <Route path="home" element={<Home handleSection={handleSection} />} />
         <Route path="productos" element={<ItemList />} />
         <Route path="productos/:searchValue" element={<ItemList />} />
         <Route path="productDetail/:id" element={<ProductDetail />} />

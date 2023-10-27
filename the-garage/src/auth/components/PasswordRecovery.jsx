@@ -36,10 +36,7 @@ function PasswordRecovery() {
   return (
     <>
       {token ? (
-        <Form
-          className="Password_recovery m-5 w-90"
-          onSubmit={onSubmitRecovery}
-        >
+        <Form className="Password_recovery m-5" onSubmit={onSubmitRecovery}>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Nueva Contraseña</Form.Label>
             <Form.Control
@@ -56,15 +53,12 @@ function PasswordRecovery() {
               name="cpassword"
             />
           </Form.Group>
-          <div className="b-change-password   d-flex justify-content-center">
+          <div className="b-change-password d-flex justify-content-center">
             <BtnSubmitStyled type="submit">Recuperar</BtnSubmitStyled>
           </div>
         </Form>
       ) : show ? (
-        <Form
-          className="Password_recovery_mail m-5 w-90"
-          onSubmit={onSubmitEmail}
-        >
+        <Form className="Password_recovery_mail m-5" onSubmit={onSubmitEmail}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Digite el correo electrónico registrado</Form.Label>
             <Form.Control
@@ -80,7 +74,7 @@ function PasswordRecovery() {
         </Form>
       ) : (
         <>
-          <TextPg className="m-5">
+          <TextPg className="m-5" style={{ maxWidth: '700px' }}>
             Se ha enviado un correo electrónico para reestablecer su contraseña.
             Porfavor revise su bandeja de entrada o la bandeja de spam y haga
             click en el link para reestablecer su contraseña.
