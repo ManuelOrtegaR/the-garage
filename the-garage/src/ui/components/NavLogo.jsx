@@ -13,5 +13,5 @@ export const NavLogo = () => {
 const LogoStyled = styled('img')(() => ({
   width: '100%',
   height: 'auto',
-  maxWidth: '400px',
+  maxWidth: '200px',
 }));

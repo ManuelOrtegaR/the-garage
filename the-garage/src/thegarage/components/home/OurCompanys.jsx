@@ -7,7 +7,7 @@ export const OurCompanys = () => {
   const { data, loading, error } = useCompanys();
 
   return (
-    <>
+    <div className="px-5" style={{ minWidth: '700px' }}>
       <SubTitleStyled id="empresas">Empresas</SubTitleStyled>
       <TextStyled>
         Estas son algunas de las empresas que encontrarás en THE GARAGE
@@ -34,14 +34,13 @@ export const OurCompanys = () => {
                     ? company.url_foto
                     : 'https://res.cloudinary.com/db9nfgjqr/image/upload/v1697054977/default_image/istockphoto-1316420668-612x612_xcyynq.jpg'
                 }
-                maxWidth="220px"
+                maxWidth="75px"
                 borderRadius="50%"
               />
-              <TextStyled>{company.empresa.razon_social}</TextStyled>
             </div>
           );
         })}
       </div>
-    </>
+    </div>
   );
 };

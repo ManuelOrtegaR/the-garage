@@ -20,6 +20,19 @@ export const Requests = () => {
   const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const initialData = useRef(null);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
 
   const [requestBypage, setRequestByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,7 +66,7 @@ export const Requests = () => {
   }, [searchValue]);
 
   return (
-    <div className="w-100 m-3">
+    <div className="w-75 m-auto">
       <span className="fw-bold">Solicitud de Empresas</span>
 
       <div className="d-flex justify-content-between my-3">
@@ -72,21 +85,32 @@ export const Requests = () => {
           .map((company, index) => (
             <div key={index}>
               <ItemStyle key={company.id} className="border-bottom">
-                <Image
-                  src={company.url_foto}
-                  style={{ height: 65, width: 65 }}
-                />
-                <span className="col-2">{company.empresa.razon_social}</span>
-                <span className="col-1">
+                {viewportWidth > 800 && (
+                  <Image
+                    src={company.url_foto}
+                    style={{ height: 65, width: 65 }}
+                  />
+                )}
+                <span className="col-2 col-md-2">
+                  {company.empresa.razon_social}
+                </span>
+                <span className="col-2 col-md-2">
                   NIT: {company.empresa.numero_documento_empresa}
                 </span>
-                <span className="col-2">
+                <span className="col-2 col-md-2">
                   {format(new Date(company.fecha_creacion), 'dd/MM/yyyy')}
                 </span>
-                <div className="col-2">
-                  <StatusStyle className="Pagada">
-                    {company.estatus}
-                  </StatusStyle>
+                <div className="col-1 col-md-2">
+                  {viewportWidth > 800 ? (
+                    <StatusStyle className="Enviada">
+                      {company.estatus}
+                    </StatusStyle>
+                  ) : (
+                    <StatusStyle
+                      className="Enviada"
+                      style={{ paddingLeft: '10px', paddingRight: '10px' }}
+                    ></StatusStyle>
+                  )}
                 </div>
                 <ShowOrder
                   onClick={() => {

@@ -3,39 +3,32 @@
 import Card from 'react-bootstrap/Card';
 import { CardElementStyle } from './StylesComponentsCar';
 import { ButtonStyledSuccess } from '../products';
+import { Col, Row } from 'react-bootstrap';
 
 const CardElements = ({ carElements, dispatch }) => {
   const deleteElement = (cardElement) => {
     dispatch({ type: 'REMOVE_FROM_CART', payload: cardElement });
   };
-
+  //className="d-flex justify-content-between mb-3"
   return (
     <CardElementStyle className="mb-3 element-list">
       <Card.Body>
         {carElements.map((carElement) => (
-          <div
-            className="d-flex justify-content-between mb-3"
-            key={carElement.id}
-          >
-            <div className="d-flex flex-row align-items-center">
-              <div>
-                <img
-                  src={carElement.fotos[0].url_foto}
-                  alt="Imagen del producto"
-                  width="65"
-                  height="65"
-                />
-              </div>
-              <div className="ms-3">
-                <div>{carElement.nombre}</div>
-              </div>
-            </div>
-            <div className="d-flex align-items-center gap-5 justify-content-between">
-              <div>cantidad: {carElement.cant}</div>
-              <div>
-                <strong>${carElement.precio.toLocaleString('es-CO')}</strong>
-              </div>
-
+          <Row key={carElement.id} className="align-items-center">
+            <Col>
+              <img
+                src={carElement.fotos[0].url_foto}
+                alt="Imagen del producto"
+                width="65"
+                height="65"
+              />
+            </Col>
+            <Col>{carElement.nombre}</Col>
+            <Col>cantidad: {carElement.cant}</Col>
+            <Col>
+              <strong>${carElement.precio.toLocaleString('es-CO')}</strong>
+            </Col>
+            <Col>
               <ButtonStyledSuccess
                 onClick={() => {
                   deleteElement(carElement);
@@ -43,8 +36,8 @@ const CardElements = ({ carElements, dispatch }) => {
               >
                 <i className="bi bi-trash-fill" />
               </ButtonStyledSuccess>
-            </div>
-          </div>
+            </Col>
+          </Row>
         ))}
       </Card.Body>
     </CardElementStyle>

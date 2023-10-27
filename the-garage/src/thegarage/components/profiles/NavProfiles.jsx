@@ -1,6 +1,6 @@
 import Nav from 'react-bootstrap/Nav';
 import { NavLinkStyled } from './StylesComponentsProfiles';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../auth/context/AuthContext';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -14,7 +14,7 @@ export const itemsProfiles = [
   {
     name: 'Contraseña',
     url: 'change-pws',
-    by: ['Empresa', 'Cliente'],
+    by: ['Administrador', 'Empresa', 'Cliente'],
     icon: <i className="bi bi-lock-fill me-2" />,
   },
   {
@@ -56,7 +56,7 @@ export const itemsProfiles = [
   {
     name: 'Mensajes',
     url: 'messages',
-    by: ['Administrador', 'Empresa', 'Cliente'],
+    by: ['Empresa', 'Cliente'],
     icon: <i className="bi bi-chat-square-dots me-2" />,
   },
 ];
@@ -66,6 +66,20 @@ export const NavProfiles = () => {
   const onLogout = () => {
     logout();
   };
+
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
 
   return (
     <Nav variant="pills" defaultActiveKey="/home" className="flex-column">
@@ -81,7 +95,7 @@ export const NavProfiles = () => {
                     data-cy={navItem.url}
                   >
                     {navItem.icon}
-                    {navItem.name}
+                    {viewportWidth > 1000 && navItem.name}
                   </NavLinkStyled>
                 </Nav.Item>
               </div>
@@ -99,7 +113,7 @@ export const NavProfiles = () => {
           aria-label="logout"
         >
           <i className="bi bi-box-arrow-right me-2" />
-          Cerrar sesión
+          {viewportWidth > 1000 && 'Cerrar sesión'}
         </NavLinkStyled>
       </Nav.Item>
     </Nav>

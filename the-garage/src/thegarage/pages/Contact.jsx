@@ -3,6 +3,8 @@ import {
   TextStyled,
 } from '../components/home/ComponentsStyles';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { BtnSubmitStyled } from '../../components/StyledButtons';
 import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
@@ -84,12 +86,11 @@ export const Contact = () => {
           isSubmitting,
           resetForm,
         }) => (
-          <div className="mt-4">
-            <SubTitleStyled>CONTACTANOS</SubTitleStyled>
-            <div className="row bg-light m-4 p-3 rounded">
-              <div className="col-6 d-flex flex-column">
+          <div className="mt-4" style={{ minWidth: '700px' }}>
+            <SubTitleStyled className="mb-5">CONTACTANOS</SubTitleStyled>
+            <Row className="bg-light rounded p-5">
+              <Col className="col-12 col-md-6 mb-5">
                 <TextStyled>Envíanos tus datos</TextStyled>
-
                 <Form className="Contact_Form mt-4" onSubmit={handleSubmit}>
                   <Form.Group className="mb-2">
                     <Form.Control
@@ -158,29 +159,29 @@ export const Contact = () => {
                     Enviar
                   </BtnSubmitStyled>
                 </Form>
-              </div>
-              <div className="col-6 d-flex flex-column">
+              </Col>
+              <Col className="col-12 col-md-6">
                 <TextStyled>Encuentranos</TextStyled>
-                <div className="row align-items-center">
-                  <div className="col-6">
+                <Row className="d-flex">
+                  <Col className="text-center">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18913.802088584853!2d-74.0955343109588!3d4.746218924708735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d635520a33914!2zQm9nb3TDoQ!5e0!3m2!1ses-419!2sco!4v1687744931965!5m2!1ses-419!2sco"
-                      width="300"
-                      height="200"
+                      width="250"
+                      height="180"
                       style={{ border: 0 }}
                       loading="lazy"
                     ></iframe>
-                  </div>
-                  <div className="col-6">
+                  </Col>
+                  <Col className="text-center">
                     <p>Dirección: Cll 16 #21-54</p>
                     <p>Ciudad: Bogotá, Colombia</p>
                     <p>Correo: info@thegarage.com</p>
                     <p>Celular: + 57 310 655 8974</p>
                     <p>Whatsapp: + 57 310 655 8974</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
           </div>
         )}
       </Formik>

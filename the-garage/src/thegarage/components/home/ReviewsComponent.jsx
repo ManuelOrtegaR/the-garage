@@ -8,7 +8,7 @@ export const ReviewsComponent = () => {
 
   return (
     <>
-      <div className="bg-main-color pt-4">
+      <div className="bg-main-color pt-4" style={{ minWidth: '700px' }}>
         <SubTitleStyled color="white">Comentarios</SubTitleStyled>
         {error ? (
           <Alert variant="danger">

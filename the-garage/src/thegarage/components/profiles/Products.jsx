@@ -1,5 +1,5 @@
-import { Alert, Form, Spinner } from "react-bootstrap";
-import { PaginationProfiles } from "./PaginationProfiles";
+import { Alert, Form, Spinner } from 'react-bootstrap';
+import { PaginationProfiles } from './PaginationProfiles';
 
 import {
   ItemStyle,
@@ -7,25 +7,40 @@ import {
   NavLinkEdit,
   NavLinkStyled,
   ShowOrder,
-} from "./StylesComponentsProfiles";
-import Image from "react-bootstrap/Image";
+} from './StylesComponentsProfiles';
+import Image from 'react-bootstrap/Image';
 import {
   BtnLinkStyled,
   BtnSubmitStyled,
-} from "../../../components/StyledButtons";
-import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { useProductsCompany } from "../../../domain/useProductsCompany";
-import ModalProductState from "./Modals/ModalProductState";
-import { set } from "date-fns";
-import { ButtonStyled } from "../../../auth/components/StyledsComponents";
-import { AuthContext } from "../../../auth/context/AuthContext";
+} from '../../../components/StyledButtons';
+import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useProductsCompany } from '../../../domain/useProductsCompany';
+import ModalProductState from './Modals/ModalProductState';
+import { set } from 'date-fns';
+import { ButtonStyled } from '../../../auth/components/StyledsComponents';
+import { AuthContext } from '../../../auth/context/AuthContext';
 
 export const Products = () => {
   const [resetFilters, setResetFilters] = useState(false);
   const { user } = useContext(AuthContext);
   const [productState, setProductState] = useState({});
   const [showProcessingModal, setShowProcessingModal] = useState(false);
+
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
+
   const viewProduct = (product) => {
     navigate(`/profile/products/${product.id}`, { state: { product } });
   };
@@ -42,7 +57,7 @@ export const Products = () => {
 
   const [productsBypage, setProducstsByPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [noResults, setNoResults] = useState(false);
   const totalProducst =
@@ -51,7 +66,7 @@ export const Products = () => {
   const lastIndex = currentPage * productsBypage;
   const firstIndex = lastIndex - productsBypage;
 
-  const [filtroSelected, setFiltroSelected] = useState("Todo");
+  const [filtroSelected, setFiltroSelected] = useState('Todo');
 
   const handleFiltro = (e) => {
     const valorSeleccionado = e.target.value;
@@ -59,13 +74,13 @@ export const Products = () => {
 
     const filtered = data
       .filter((product) => {
-        if (valorSeleccionado === "Todo") {
+        if (valorSeleccionado === 'Todo') {
           return product;
-        } else if (valorSeleccionado === "1") {
+        } else if (valorSeleccionado === '1') {
           return product.cantidad_disponible > 0;
-        } else if (valorSeleccionado === "2") {
+        } else if (valorSeleccionado === '2') {
           return product.estatus === true;
-        } else if (valorSeleccionado === "3") {
+        } else if (valorSeleccionado === '3') {
           return product.estatus === false;
         }
       })
@@ -79,18 +94,18 @@ export const Products = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    navigate("/profile/products/add");
+    navigate('/profile/products/add');
   };
 
   const onSearch = async (e) => {
-    if (e.key === "Enter" && e.target.value !== "") {
+    if (e.key === 'Enter' && e.target.value !== '') {
       e.preventDefault();
       const filtered = data.filter((product) => {
         return product.nombre.toLowerCase().includes(searchValue.toLowerCase());
       });
       setFilteredProducts(filtered);
       setNoResults(filtered.length === 0);
-      setSearchValue("");
+      setSearchValue('');
     }
   };
 
@@ -100,21 +115,21 @@ export const Products = () => {
 
   useEffect(() => {
     setFilteredProducts([]);
-    setSearchValue("");
-    setFiltroSelected("Todo");
+    setSearchValue('');
+    setFiltroSelected('Todo');
     setResetFilters(false);
   }, [resetFilters]);
 
   return (
     <div className="w-100">
       <div className="d-flex justify-content-between align-items-center my-4 mx-3">
-        {user.userClass === "Administrador" ? (
+        {user.userClass === 'Administrador' ? (
           <span className="fw-bold">Productos de The Garage</span>
         ) : (
           <span className="fw-bold">Mis Productos</span>
         )}
 
-        {user.userClass !== "Administrador" && (
+        {user.userClass !== 'Administrador' && (
           <BtnSubmitStyled onClick={onSubmit} data-cy="add-product">
             Agregar Nuevo Producto
           </BtnSubmitStyled>
@@ -155,7 +170,7 @@ export const Products = () => {
             <BtnSubmitStyled
               onClick={() => {
                 setFilteredProducts([]);
-                setSearchValue("");
+                setSearchValue('');
                 setNoResults(false);
               }}
             >
@@ -164,14 +179,18 @@ export const Products = () => {
           </div>
         ) : filteredProducts.length > 0 ? (
           <div>
-            <div>Se encontraron estas coincidencias:</div>
+            <div style={{ marginBottom: '10px' }}>
+              Se encontraron estas coincidencias:
+            </div>
             {filteredProducts
               .map((product) => (
                 <ItemStyle key={product.nombre}>
-                  <Image
-                    src={product.fotos[0]?.url_foto}
-                    style={{ width: "65px", height: "65px" }}
-                  ></Image>
+                  {viewportWidth > 768 && (
+                    <Image
+                      src={product.fotos[0]?.url_foto}
+                      style={{ width: '65px', height: '65px' }}
+                    ></Image>
+                  )}
                   <span className="col-3">{product.nombre}</span>
                   <span>Stock: {product.cantidad_disponible}</span>
                   <span className="col-3">
@@ -182,7 +201,7 @@ export const Products = () => {
                     )}
                   </span>
                   <span className="fw-bold col-2">
-                    ${product.precio.toLocaleString("es-CO")}
+                    ${product.precio.toLocaleString('es-CO')}
                   </span>
                   <ShowOrder onClick={() => viewProduct(product)}>
                     <i className="bi bi-eye-fill" />
@@ -201,10 +220,11 @@ export const Products = () => {
             <BtnSubmitStyled
               onClick={() => {
                 setFilteredProducts([]);
-                setSearchValue("");
+                setSearchValue('');
                 setNoResults(false);
-                setFiltroSelected("Todo");
+                setFiltroSelected('Todo');
               }}
+              style={{ marginTop: '10px' }}
             >
               Mostrar todos los productos
             </BtnSubmitStyled>
@@ -214,10 +234,12 @@ export const Products = () => {
             .map((product) => (
               <>
                 <ItemStyle>
-                  <Image
-                    src={product.fotos[0]?.url_foto}
-                    style={{ width: "65px", height: "65px" }}
-                  ></Image>
+                  {viewportWidth > 768 && (
+                    <Image
+                      src={product.fotos[0]?.url_foto}
+                      style={{ width: '65px', height: '65px' }}
+                    ></Image>
+                  )}
                   <span>Stock: {product.cantidad_disponible}</span>
                   <span className="col-3">{product.nombre}</span>
                   <span className="col-3">
@@ -229,7 +251,7 @@ export const Products = () => {
                   </span>
 
                   <span className="fw-bold col-2">
-                    ${product.precio.toLocaleString("es-CO")}
+                    ${product.precio.toLocaleString('es-CO')}
                   </span>
                   <ShowOrder onClick={() => viewProduct(product)}>
                     <i className="bi bi-eye-fill" />

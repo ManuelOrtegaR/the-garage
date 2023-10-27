@@ -28,54 +28,53 @@ export function ProductDetail() {
   } = useProductosCompanyTop({ id_empresa: data?.id_empresa });
 
   return (
-    <Container>
-      <Row>
+    <Container style={{ minWidth: '700px' }} className="px-5">
+      <Row className="my-5 w-100">
         {data?.nombre && <BreadCrumbRoute nameProducto={data.nombre} />}
       </Row>
-      <div className="pb-5">
-        {loading && <Spinner animation="border" variant="primary" />}
-        {error && <Alert variant="danger">{error}</Alert>}
 
-        {data && (
-          <Row className="mt-5">
-            <Col className="" md={4}>
-              <ProductSheet item={data} />
-            </Col>
-            <Col md={8}>
-              <CardProduct_store item={data} />
-              <CardStore item={data} />
-              <DivColor>PRODUCTOS RECOMENDADOS</DivColor>
+      {loading && <Spinner animation="border" variant="primary" />}
+      {error && <Alert variant="danger">{error}</Alert>}
 
-              <div className="d-flex gap-1 ">
-                {loadingTop && <Spinner animation="border" variant="primary" />}
-                {errorTop && <Alert variant="danger">{errorTop}</Alert>}
-                {dataTop.length === 0 ? (
-                  <SpanColor>
-                    No hay productos recomendados.{' '}
-                    <i className="bi bi-x-circle-fill"></i>
-                  </SpanColor>
-                ) : (
-                  dataTop.map((item) => <Item key={item.id} item={item} />)
-                )}
-              </div>
-              <DivColor>VALORACIONES</DivColor>
-              {data.valoraciones.length === 0 ? (
+      {data && (
+        <Row className="my-5 w-100">
+          <Col className="col-12 col-md-4 mb-5">
+            <ProductSheet item={data} />
+          </Col>
+          <Col className="col-12 col-md-8">
+            <CardProduct_store item={data} />
+            <CardStore item={data} />
+            <DivColor>PRODUCTOS RECOMENDADOS</DivColor>
+
+            <div className="d-flex gap-1 ">
+              {loadingTop && <Spinner animation="border" variant="primary" />}
+              {errorTop && <Alert variant="danger">{errorTop}</Alert>}
+              {dataTop.length === 0 ? (
                 <SpanColor>
-                  No hay Valoraciones del producto.{' '}
+                  No hay productos recomendados.{' '}
                   <i className="bi bi-x-circle-fill"></i>
                 </SpanColor>
               ) : (
-                data.valoraciones.map((item) => (
-                  <CardValorations
-                    key={item.comentarios}
-                    item={item}
-                  ></CardValorations>
-                ))
+                dataTop.map((item) => <Item key={item.id} item={item} />)
               )}
-            </Col>
-          </Row>
-        )}
-      </div>
+            </div>
+            <DivColor>VALORACIONES</DivColor>
+            {data.valoraciones.length === 0 ? (
+              <SpanColor>
+                No hay Valoraciones del producto.{' '}
+                <i className="bi bi-x-circle-fill"></i>
+              </SpanColor>
+            ) : (
+              data.valoraciones.map((item) => (
+                <CardValorations
+                  key={item.comentarios}
+                  item={item}
+                ></CardValorations>
+              ))
+            )}
+          </Col>
+        </Row>
+      )}
     </Container>
   );
 }

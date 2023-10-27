@@ -1,17 +1,18 @@
-import { Button, Card } from "react-bootstrap";
-import { BtnDangerSubmitStyled, BtnSubmitStyled } from "../../../components";
+/* eslint-disable react/prop-types */
+import { Button, Card, Col } from 'react-bootstrap';
+import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../components';
 import {
   AlertStyled,
   ButtonCountStyled,
   CardStoreDescriptionStyle,
   CardStoreStyle,
   IconStyled,
-} from "./StyledsComponentsProducts";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useCounter } from "../../../hooks/useCounter";
-import { promedioValoraciones } from "./utils";
-import { useCart } from "../../store";
+} from './StyledsComponentsProducts';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useCounter } from '../../../hooks/useCounter';
+import { promedioValoraciones } from './utils';
+import { useCart } from '../../store';
 
 export const CardProduct_store = ({ item }) => {
   const { dispatch } = useCart();
@@ -19,107 +20,97 @@ export const CardProduct_store = ({ item }) => {
   const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
   function handleReturn() {
-    navigate("/productos");
+    navigate('/productos');
   }
 
   function handleClickSuceess() {
-    dispatch({ type: "ADD_TO_CART", payload: { item, cant: counter } });
+    dispatch({ type: 'ADD_TO_CART', payload: { item, cant: counter } });
     setShowAlert(!showAlert);
   }
 
   return (
-    <div className="pb-5 pt-2">
-      <CardStoreStyle>
-        <Card.Body>
-          <div className="d-flex flex-wrap justify-content-between">
-            <CardStoreDescriptionStyle>
-              <Card.Title>{item.nombre}</Card.Title>
-
-              <Card.Text>
-                <div>{item.descripcion}</div>
-              </Card.Text>
-            </CardStoreDescriptionStyle>
-            <div>
-              <Card.Text>
-                <div
-                  className="d-flex align-items-center gap-5"
-                  style={{ width: "330px" }}
-                >
-                  <div>
-                    <div>Precio por Unidad.</div>
-                    <div className="fs-4">
-                      ${item.precio.toLocaleString("es-CO")}
-                    </div>
-                    <div>
-                      {[...Array(promedioValoraciones(item.valoraciones))].map(
-                        (_, index) => (
-                          <IconStyled
-                            key={index}
-                            className="bi bi-star-fill"
-                          ></IconStyled>
-                        )
-                      )}
-                      {[
-                        ...Array(5 - promedioValoraciones(item.valoraciones)),
-                      ].map((_, index) => (
-                        <IconStyled
-                          key={index}
-                          className="bi bi-star"
-                        ></IconStyled>
-                      ))}
-
-                      <span> {promedioValoraciones(item.valoraciones)} </span>
-                    </div>
-                  </div>
-
-                  <div className="  d-flex justify-content-center">
-                    <ButtonCountStyled
-                      onClick={() => {
-                        decrement(1);
-                      }}
-                      className="border px-3"
-                      variant="light"
-                    >
-                      -
-                    </ButtonCountStyled>
-                    <div className="px-3 pt-2">{counter}</div>
-                    <ButtonCountStyled
-                      onClick={() => {
-                        increment(1);
-                      }}
-                      className=" border px-3"
-                      variant="light"
-                    >
-                      +
-                    </ButtonCountStyled>
-                  </div>
+    <CardStoreStyle className="d-flex mb-3">
+      <Card.Body className="d-flex justify-content-between row">
+        <Col className="col-5 col-md-12 col-xl-6 mb-2">
+          <Card.Title>{item.nombre}</Card.Title>
+          <Card.Text>{item.descripcion}</Card.Text>
+        </Col>
+        <Col className="col-7 col-md-12 col-xl-6">
+          <Card.Text>
+            <div className="d-flex align-items-center gap-5">
+              <div>
+                <div>Precio por Unidad.</div>
+                <div className="fs-4">
+                  ${item.precio.toLocaleString('es-CO')}
                 </div>
-              </Card.Text>
 
-              <div className="d-flex gap-3">
-                <BtnSubmitStyled onClick={handleClickSuceess} width="100%">
-                  Agregar al carrito
-                </BtnSubmitStyled>
-                {showAlert && (
-                  <AlertStyled
-                    variant="primary"
-                    onClose={() => {
-                      setShowAlert(!showAlert);
-                    }}
-                    dismissible
-                  >
-                    Producto agregado
-                  </AlertStyled>
-                )}
+                <div>
+                  {[...Array(promedioValoraciones(item.valoraciones))].map(
+                    (_, index) => (
+                      <IconStyled
+                        key={index}
+                        className="bi bi-star-fill"
+                      ></IconStyled>
+                    ),
+                  )}
+                  {[...Array(5 - promedioValoraciones(item.valoraciones))].map(
+                    (_, index) => (
+                      <IconStyled
+                        key={index}
+                        className="bi bi-star"
+                      ></IconStyled>
+                    ),
+                  )}
+                  <span> {promedioValoraciones(item.valoraciones)} </span>
+                </div>
+              </div>
 
-                <BtnDangerSubmitStyled onClick={handleReturn} width="100%">
-                  Volver
-                </BtnDangerSubmitStyled>
+              <div className="  d-flex justify-content-center">
+                <ButtonCountStyled
+                  onClick={() => {
+                    decrement(1);
+                  }}
+                  className="border px-3"
+                  variant="light"
+                >
+                  -
+                </ButtonCountStyled>
+                <div className="px-3 pt-2">{counter}</div>
+                <ButtonCountStyled
+                  onClick={() => {
+                    increment(1);
+                  }}
+                  className=" border px-3"
+                  variant="light"
+                >
+                  +
+                </ButtonCountStyled>
               </div>
             </div>
+          </Card.Text>
+
+          <div className="d-flex gap-3">
+            <BtnSubmitStyled onClick={handleClickSuceess} width="100%">
+              Agregar al carrito
+            </BtnSubmitStyled>
+            {showAlert && (
+              <AlertStyled
+                variant="primary"
+                onClose={() => {
+                  setShowAlert(!showAlert);
+                }}
+                dismissible
+              >
+                Producto agregado
+              </AlertStyled>
+            )}
+
+            <BtnDangerSubmitStyled onClick={handleReturn} width="100%">
+              Volver
+            </BtnDangerSubmitStyled>
           </div>
-        </Card.Body>
-      </CardStoreStyle>
-    </div>
+        </Col>
+      </Card.Body>
+    </CardStoreStyle>
   );
 };
