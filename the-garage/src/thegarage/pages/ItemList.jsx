@@ -12,7 +12,7 @@ import {
 import { useFilter } from '../../hooks/useFilter';
 import { usePaginator } from '../../hooks/usePaginator';
 import { useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import { useSearchParams } from 'react-router-dom';
 import { useProductos } from '../../domain/useProductos';
@@ -23,7 +23,6 @@ export function ItemList() {
   const [page, setPage] = useState(searchParams.get('offset') || 0);
   const [filtrosSeleccionadosAgrupados, setFiltrosSeleccionadosAgrupados] =
     useState({});
-  const navigate = useNavigate();
   const location = useLocation();
 
   const { search: urlFilter } = location;
@@ -67,8 +66,8 @@ export function ItemList() {
   );
 
   return (
-    <Container className="">
-      <Row>
+    <Container className="" style={{ minWidth: '700px' }}>
+      <Row className="my-5 w-100">
         <Controls
           setFiltrosSeleccionadosAgrupados={setFiltrosSeleccionadosAgrupados}
           filters={selectedFilters}
@@ -78,7 +77,7 @@ export function ItemList() {
       </Row>
 
       <RowItemStyled className="">
-        <Col md={3}>
+        <Col className="col-12 col-md-3">
           <Filter
             data={
               selectedFilters.length > 0 ? datosParaFiltros : datosParaFiltros
@@ -91,8 +90,8 @@ export function ItemList() {
             setFiltrosSeleccionadosAgrupados={setFiltrosSeleccionadosAgrupados}
           />
         </Col>
-        <Col md={9}>
-          <ContainerNumberItemsStyled>
+        <Col className="col-12 col-md-9">
+          <ContainerNumberItemsStyled className="pt-3 mb-2">
             <strong>
               <span>Productos Encontrados</span>
             </strong>

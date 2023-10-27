@@ -4,7 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 
 export const FooterComponent = () => {
   return (
-    <NavbarStyled style={{ minWidth: '700px' }}>
+    <NavbarStyled style={{ minWidth: '700px', paddingTop: '50px' }}>
       <Col>
         <Row>
           <FooterSection />
