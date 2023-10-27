@@ -105,7 +105,7 @@ function ClientSingUp() {
           isSubmitting,
           setFieldValue,
         }) => (
-          <Form className="Form_client m-5" onSubmit={handleSubmit}>
+          <Form className="Form_client" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Nombre Completo</Form.Label>
               <Form.Control

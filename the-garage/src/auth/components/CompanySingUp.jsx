@@ -139,7 +139,7 @@ function CompanySingUp() {
           isSubmitting,
           setFieldValue,
         }) => (
-          <Form className="Form_company m-5" onSubmit={handleSubmit}>
+          <Form className="Form_company" onSubmit={handleSubmit}>
             <Row>
               <Col>
                 <Form.Group className="mb-3" controlId="formLInfo">
@@ -375,9 +375,7 @@ function CompanySingUp() {
             <Row>
               <Col>
                 <Form.Group className="mb-3" controlId="formBasicDocumentType">
-                  <Form.Label>
-                    Tipo de documento del Representante Legal
-                  </Form.Label>
+                  <Form.Label>Tipo de documento</Form.Label>
                   <Form.Select
                     name="legal_rep_document_type"
                     onChange={handleChange}
@@ -405,9 +403,7 @@ function CompanySingUp() {
                   className="mb-3"
                   controlId="formBasicDocumentNumber"
                 >
-                  <Form.Label>
-                    Número de documento del Representante Legal
-                  </Form.Label>
+                  <Form.Label>Número de documento</Form.Label>
                   <Form.Control
                     type="texto"
                     placeholder="Ingrese su número de documento"

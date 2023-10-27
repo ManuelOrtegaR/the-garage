@@ -17,22 +17,19 @@ const CarCheckout = ({ cart, total, id_empresa, dispatch }) => {
     }
   };
 
-  const domicilio = 0;
-  const totalCart = cart.total + domicilio;
+  const subtotal = Math.floor(cart.total / 1.19);
+
+  const totalCart = cart.total;
   return (
     <CardChekoutStyle>
-      <Card.Header>Cuenta</Card.Header>
       <Card.Body>
+        <Card.Text>Cuenta</Card.Text>
         <div className="d-flex justify-content-between">
           <p className="mb-2">Subtotal</p>
-          <p className="mb-2">${cart.total.toLocaleString('es-CO')}</p>
-        </div>
-        <div className="d-flex justify-content-between">
-          <p className="mb-2">Domicilio</p>
-          <p className="mb-2">${domicilio.toLocaleString('es-CO')}</p>
+          <p className="mb-2">${subtotal.toLocaleString('es-CO')}</p>
         </div>
         <div className="d-flex justify-content-between mb-4">
-          <p className="mb-2">Total(Incl. impuestos)</p>
+          <p className="mb-2">Total</p>
           <p className="mb-2">${totalCart.toLocaleString('es-CO')}</p>
         </div>
         <BtnSubmitStyled

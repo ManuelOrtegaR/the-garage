@@ -46,7 +46,7 @@ export const ShippingStatus = ({ estados, id, userClass }) => {
 
   const progress = (data.length - 2) * 50;
   return (
-    <div className="position-relative m-4 w-50">
+    <div className="position-relative m-4 w-100">
       <div className="progress" style={{ height: '3px' }}>
         <div
           className={`progress-bar w-${progress}`}

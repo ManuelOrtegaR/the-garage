@@ -10,6 +10,7 @@ import { PaginationProfiles } from './PaginationProfiles';
 import { useNavigate } from 'react-router-dom';
 import { useOrders } from '../../../domain/useOrders';
 import { AuthContext } from '../../../auth/context/AuthContext';
+import { Col, Row } from 'react-bootstrap';
 
 export const Orders = () => {
   const navigate = useNavigate();
@@ -30,6 +31,20 @@ export const Orders = () => {
   const totalOrders = data.length;
   const lastIndex = currentPage * productsBypage;
   const firstIndex = lastIndex - productsBypage;
+
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
 
   const [filtroSelected, setFiltroSelected] = useState('Todo');
 
@@ -59,11 +74,13 @@ export const Orders = () => {
 
   return (
     <>
-      <div className="m-auto w-100 p-4 ">
-        <div className="d-flex justify-content-between mb-4">
-          <span className="fs-6 fw-bold">Ordenes</span>
-          <div className="d-flex w-25  align-items-center">
-            <span className="w-50">Filtrar por: </span>
+      <div className="m-auto p-4 w-75">
+        <Row className="align-items-center">
+          <Col>
+            <span className="fs-6 fw-bold">Ordenes</span>
+          </Col>
+          <Col className="d-flex align-items-center">
+            <span className="w-100">Filtrar por: </span>
             <select
               className="form-select"
               aria-label="Default select example"
@@ -76,15 +93,17 @@ export const Orders = () => {
               <option value="3">Entregadas</option>
               <option value="4">Canceladas</option>
             </select>
-          </div>
-        </div>
+          </Col>
+        </Row>
+
         <ListGroupStyle>
           {data.length > 0 ? (
             data
               .map((order, index) => (
                 <div key={index}>
                   <ItemStyle key={order.id} className="border-bottom">
-                    {user.userclass !== 'Administrador' ? (
+                    {user.userclass !== 'Administrador' &&
+                    viewportWidth > 900 ? (
                       <Image
                         src={
                           user.userClass === 'Cliente'
@@ -94,34 +113,45 @@ export const Orders = () => {
                         style={{ height: 65, width: 65 }}
                       />
                     ) : (
-                      <>
-                        <Image
-                          src={order.foto_cliente}
-                          style={{ height: 65, width: 65 }}
-                        />
-                        <Image
-                          src={order.foto_empresa}
-                          style={{ height: 65, width: 65 }}
-                        />
-                      </>
+                      viewportWidth > 900 && (
+                        <>
+                          <Image
+                            src={order.foto_cliente}
+                            style={{ height: 65, width: 65 }}
+                          />
+                          <Image
+                            src={order.foto_empresa}
+                            style={{ height: 65, width: 65 }}
+                          />
+                        </>
+                      )
                     )}
-                    <span className="col-2">
+                    <span className="col-3">
                       {order.detalle_orden_productos[0].nombre}
                     </span>
                     <span className="col-1">
-                      Articulos: {order.detalle_orden_productos.length}
+                      Cant: {order.detalle_orden_productos.length}
                     </span>
-                    <span className="col-2 fw-bold fs-5 ">
+                    <span className="col-3 col-md-2 fw-bold">
                       {'$' + new Intl.NumberFormat('es-Co').format(order.total)}
                     </span>
-                    <div className="col-2">
-                      <StatusStyle
-                        className={
-                          order.estados[order.estados.length - 1].estado
-                        }
-                      >
-                        {order.estados[order.estados.length - 1].estado}
-                      </StatusStyle>
+                    <div className="col-1 col-md-2">
+                      {viewportWidth > 900 ? (
+                        <StatusStyle
+                          className={
+                            order.estados[order.estados.length - 1].estado
+                          }
+                        >
+                          {order.estados[order.estados.length - 1].estado}
+                        </StatusStyle>
+                      ) : (
+                        <StatusStyle
+                          className={
+                            order.estados[order.estados.length - 1].estado
+                          }
+                          style={{ paddingLeft: '10px', paddingRight: '10px' }}
+                        ></StatusStyle>
+                      )}
                     </div>
                     <ShowOrder
                       onClick={() => orderDetails(order, index)}
