@@ -39,7 +39,7 @@ export function Login() {
   const { login } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
   const handleShow = () => setShowModal(true);
   const initialValues = {
     email: '',
@@ -69,7 +69,7 @@ export function Login() {
   const onSubmit = async (values, { setSubmitting }) => {
     setSubmitting(true);
     setError(false);
-    setErrorMessage('');
+    setErrorMessage(null);
     await onLogin(values);
     setSubmitting(false);
   };
@@ -82,8 +82,7 @@ export function Login() {
               variant="danger"
               style={{ width: '75%', margin: 'auto', marginTop: '10px' }}
             >
-              No se pudo iniciar sesión, por favor verifica tu conexión e
-              intentalo nuevamente
+              {errorMessage || 'Ha ocurrido un error, intenta de nuevo'}
             </Alert>
           )}
           <TitlePg>Inicio de Sesión</TitlePg>

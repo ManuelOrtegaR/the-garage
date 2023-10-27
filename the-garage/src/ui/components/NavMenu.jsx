@@ -12,14 +12,13 @@ const navItems = [
 
 export const NavMenu = () => {
   return (
-    <Nav variant="pills" className="d-flex align-items-center ">
+    <Nav variant="pills" className="justify-content-center">
       {navItems.map(({ name, url }) => {
         return (
           <div key={name} className="d-flex">
             <NavLinkStyled to={url} data-cy={`nav-${name}`}>
               {name}
             </NavLinkStyled>
-            <Divider height={30} color={'white'} />
           </div>
         );
       })}

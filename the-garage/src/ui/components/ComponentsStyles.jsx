@@ -5,39 +5,23 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import { NavLink } from 'react-router-dom';
 
-export const NavbarStyled = styled(Navbar)(({ theme, ...props }) => ({
+export const NavbarStyled = styled(Navbar)(({ theme }) => ({
   backgroundColor: theme.colors.mainColor,
-  display: 'flex',
-  flexDirection: 'column',
-  position: props.position,
-  marginTop: props.margin,
-  zIndex: props.zIndex,
-  // top: 0,
-  // width: '100%',
-  // overflow: 'hidden',
 }));
 
 export const ContainerNavStyled = styled(Container)(({ theme }) => ({
   gap: 30,
-  marginTop: '0px',
-  marginBottom: '10px',
-  paddingLeft: '30px',
-  paddingRight: '30px',
   maxWidth: '100%',
   display: 'flex',
+  padding: '0px',
 }));
 
 export const LoginStyled = styled(NavLink)(({ theme }) => ({
-  display: 'flex',
+  padding: '10px 20px',
   border: '1px solid white',
   borderRadius: '4px',
-  width: '100%',
-  maxWidth: '230px',
-  height: '35px',
   textDecoration: 'none',
   color: 'white',
-  justifyContent: 'center',
-  alignItems: 'center',
   '&:hover': {
     backgroundColor: 'white',
     color: theme.colors.mainColor,
@@ -54,7 +38,7 @@ export const UserContainer = styled('div')(() => ({
 }));
 
 export const NavLinkStyled = styled(NavLink)(({ ...props }) => ({
-  margin: '0 10px',
+  margin: props.margin || '20px',
   color: 'white',
   textDecoration: 'none',
   '&:hover': {
@@ -62,6 +46,7 @@ export const NavLinkStyled = styled(NavLink)(({ ...props }) => ({
     fontWeight: 'bold',
   },
 }));
+
 export const NavLinkStyledCompany = styled(NavLink)(({ theme, ...props }) => ({
   margin: '0 10px',
   color: theme.colors.mainColor,
