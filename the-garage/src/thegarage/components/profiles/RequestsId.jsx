@@ -23,74 +23,91 @@ export const RequestsId = () => {
   return (
     <>
       {data ? (
-        <div className="w-100 m-3">
-          <span className="fw-bold">
-            Solicitud de {data.empresa.razon_social} con fecha de{' '}
+        <div className="w-75 m-auto mt-3">
+          <div className="fw-bold">
+            Solicitud de {data.empresa.razon_social}
+          </div>
+          <div>
+            con fecha de{' '}
             {format(new Date(data.fecha_creacion), 'dd/MM/yyyy HH:mm')}
-          </span>
+          </div>
           <Container className="mt-3">
             <Row>
-              <Col className="fw-bold">Tipo Documento Empresa</Col>
-              <Col>NIT</Col>
-              <Col className="fw-bold">Número</Col>
-              <Col>{data.empresa.numero_documento_empresa}</Col>
+              <Col className="fw-bold col-6 col-md-3">
+                Tipo Documento Empresa
+              </Col>
+              <Col className="col-6 col-md-3">NIT</Col>
+              <Col className="fw-bold col-6 col-md-3">Número</Col>
+              <Col className="col-6 col-md-3">
+                {data.empresa.numero_documento_empresa}
+              </Col>
             </Row>
             <Row>
-              <Col className="fw-bold">Departamento</Col>
-              <Col>{data.departamento}</Col>
-              <Col className="fw-bold">Ciudad</Col>
-              <Col>{data.ciudad}</Col>
+              <Col className="fw-bold col-6 col-md-3">Departamento</Col>
+              <Col className="col-6 col-md-3">{data.departamento}</Col>
+              <Col className="fw-bold col-6 col-md-3">Ciudad</Col>
+              <Col className="col-6 col-md-3">{data.ciudad}</Col>
             </Row>
             <Row>
-              <Col className="fw-bold">Dirección</Col>
-              <Col>{data.direccion}</Col>
-              <Col className="fw-bold">Teléfono</Col>
-              <Col>{data.empresa.telefono}</Col>
+              <Col className="fw-bold col-6 col-md-3">Dirección</Col>
+              <Col className="col-6 col-md-3">{data.direccion}</Col>
+              <Col className="fw-bold col-6 col-md-3">Teléfono</Col>
+              <Col className="col-6 col-md-3">{data.empresa.telefono}</Col>
             </Row>
             <Row>
-              <Col className="fw-bold">E-mail</Col>
-              <Col>{data.correo}</Col>
-              <Col className="fw-bold">Sitio Web</Col>
-              <Col>
+              <Col className="fw-bold col-6 col-md-3">E-mail</Col>
+              <Col className="col-6 col-md-3">{data.correo}</Col>
+              <Col className="fw-bold col-6 col-md-3">Sitio Web</Col>
+              <Col className="col-6 col-md-3">
                 <a href={data.empresa.sitio_web} target="_blank">
                   {data.empresa.sitio_web}
                 </a>
               </Col>
             </Row>
             <Row>
-              <Col className="fw-bold" sm={3}>
-                Descripción
+              <Col className="fw-bold col-6 col-md-3">Descripción</Col>
+              <Col className="col-6 col-md-3">{data.empresa.descripcion}</Col>
+            </Row>
+            <div className="fw-bold my-3">Información Representante Legal</div>
+            <Row>
+              <Col className="fw-bold col-6 col-md-3">Tipo Documento</Col>
+              <Col className="col-6 col-md-3">
+                {data.empresa.tipo_documento_representante}
               </Col>
-              <Col sm={9}>{data.empresa.descripcion}</Col>
-            </Row>
-            <span className="fw-bold">Información Representante Legal</span>
-            <Row>
-              <Col className="fw-bold">Tipo Documento</Col>
-              <Col>{data.empresa.tipo_documento_representante}</Col>
-              <Col className="fw-bold">Número</Col>
-              <Col>{data.empresa.numero_documento_representante}</Col>
+              <Col className="fw-bold col-6 col-md-3">Número</Col>
+              <Col className="col-6 col-md-3">
+                {data.empresa.numero_documento_representante}
+              </Col>
             </Row>
             <Row>
-              <Col className="fw-bold">Nombre</Col>
-              <Col>{data.empresa.representante_legal}</Col>
-              <Col className="fw-bold">E-mail</Col>
-              <Col>{data.empresa.correo_representante}</Col>
+              <Col className="fw-bold col-6 col-md-3">Nombre</Col>
+              <Col className="col-6 col-md-3">
+                {data.empresa.representante_legal}
+              </Col>
+              <Col className="fw-bold col-6 col-md-3">E-mail</Col>
+              <Col className="col-6 col-md-3">
+                {data.empresa.correo_representante}
+              </Col>
             </Row>
             <Row>
-              <Col className="fw-bold" sm={3}>
+              <Col className="fw-bold col-6 col-md-3" sm={3}>
                 Cámara de comercio
               </Col>
-              <Col sm={9}>
+              <Col className="col-6 col-md-3">
                 <a href={data.empresa.camara_comercio} target="_blank">
                   Documento.pdf
                 </a>
               </Col>
             </Row>
+            <div className="mt-3 d-flex justify-content-center gap-5">
+              <Button className="bg-main-color" onClick={onApprove}>
+                Aceptar
+              </Button>
+              <Button variant="danger" onClick={onRejected}>
+                Rechazar
+              </Button>
+            </div>
           </Container>
-          <Button onClick={onApprove}>Aceptar</Button>
-          <Button variant="danger" onClick={onRejected}>
-            Rechazar
-          </Button>
         </div>
       ) : (
         <div>loading...</div>

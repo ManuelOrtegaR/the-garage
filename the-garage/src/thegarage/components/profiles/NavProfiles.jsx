@@ -14,7 +14,7 @@ export const itemsProfiles = [
   {
     name: 'Contraseña',
     url: 'change-pws',
-    by: ['Empresa', 'Cliente'],
+    by: ['Administrador', 'Empresa', 'Cliente'],
     icon: <i className="bi bi-lock-fill me-2" />,
   },
   {

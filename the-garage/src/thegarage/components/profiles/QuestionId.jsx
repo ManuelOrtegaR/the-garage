@@ -39,26 +39,31 @@ export const QuestionId = () => {
       )}
       {isLoading && <div>Cargando...</div>}
       {data && !error && !isLoading && (
-        <div className="w-100 m-3">
-          <span className="fw-bold">
-            Consulta de {data.nombre_contacto} con fecha de{' '}
+        <div className="w-75 m-auto">
+          <div className="fw-bold">Consulta de {data.nombre_contacto}</div>
+          <div>
+            con fecha de{' '}
             {format(new Date(data.fecha_consulta), 'dd/MM/yyyy HH:mm')}
-          </span>
+          </div>
           <Container className="mt-3 d-flex">
-            <Col sm={6}>
+            <Col>
               <Row className="fw-bold">Nombre de contacto:</Row>
               <Row>{data.nombre_contacto}</Row>
               <Row className="fw-bold">Detalles de consulta:</Row>
               <Row>{data.consulta}</Row>
             </Col>
-            <Col sm={6} hidden={data.respuesta}>
+            <Col hidden={data.respuesta}>
               <Row className="fw-bold">Responder mensaje</Row>
               <Row>
                 <Form.Control as="textarea" rows={5} name="respuesta" />
               </Row>
             </Col>
           </Container>
-          <Button onClick={onResponse} hidden={data.respuesta}>
+          <Button
+            className="bg-main-color"
+            onClick={onResponse}
+            hidden={data.respuesta}
+          >
             Responder
           </Button>
         </div>
