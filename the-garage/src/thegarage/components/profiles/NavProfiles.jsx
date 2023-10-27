@@ -56,7 +56,7 @@ export const itemsProfiles = [
   {
     name: 'Mensajes',
     url: 'messages',
-    by: ['Administrador', 'Empresa', 'Cliente'],
+    by: ['Empresa', 'Cliente'],
     icon: <i className="bi bi-chat-square-dots me-2" />,
   },
 ];
