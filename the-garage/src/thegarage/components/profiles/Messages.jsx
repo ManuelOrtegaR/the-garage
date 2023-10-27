@@ -102,7 +102,7 @@ export const Messages = () => {
                       }
                       style={{ height: 65, width: 65, borderRadius: "50%" }}
                     />
-                    {/* <span className="col-2">{message.empresaId}</span> */}
+                    <span>Pedido N° {message.orden_productos.no_orden}</span>
                     <span>
                       <strong className="col-2">
                         {message.estado ? (
@@ -146,6 +146,7 @@ export const Messages = () => {
                       style={{ height: 65, width: 65, borderRadius: "50%" }}
                     />
                     {/* <span className="col-2">{message.empresaId}</span> */}
+                    <span>Pedido N° {message.orden_productos.no_orden}</span>
                     <span>
                       <strong className="col-2">
                         {message.estado ? (
@@ -158,6 +159,7 @@ export const Messages = () => {
                         )}
                       </strong>
                     </span>
+
                     <span className="text-truncate col-5">
                       {user.userClass === "Cliente"
                         ? message.empresa.razon_social
