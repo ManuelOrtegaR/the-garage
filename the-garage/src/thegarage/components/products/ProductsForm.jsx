@@ -1,80 +1,82 @@
-import Form from "react-bootstrap/Form";
+import Form from 'react-bootstrap/Form';
 //import Button from "react-bootstrap/Button";
-import { ButtonStyled } from "../../../auth/components/StyledsComponents";
+import { ButtonStyled } from '../../../auth/components/StyledsComponents';
 import {
   FinishBtnStyle,
   NavLinkStyled,
-} from "../profiles/StylesComponentsProfiles";
-import { Alert, Col, Row, Spinner } from "react-bootstrap";
-import { Formik, ErrorMessage } from "formik";
-import { toFormikValidationSchema } from "zod-formik-adapter";
-import { z } from "zod";
-import { formatError } from "./utils";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { useCreateProduct } from "../../../domain/useCrearProducto";
-import { useUpdateProducto } from "../../../domain/useUpdateProducto";
-import { AuthContext } from "../../../auth/context/AuthContext";
-import { createProduct, updateProduct } from "../../../api/products";
+} from '../profiles/StylesComponentsProfiles';
+import { Alert, Col, Row, Spinner } from 'react-bootstrap';
+import { Formik, ErrorMessage } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { z } from 'zod';
+import { formatError } from './utils';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useCreateProduct } from '../../../domain/useCrearProducto';
+import { useUpdateProducto } from '../../../domain/useUpdateProducto';
+import { AuthContext } from '../../../auth/context/AuthContext';
+import { createProduct, updateProduct } from '../../../api/products';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const refRqd = z.string({
-  required_error: "La referencia es requerida",
+  required_error: 'La referencia es requerida',
 });
 
 const productNameRqd = z.string({
-  required_error: "El nombre es requerido",
+  required_error: 'El nombre es requerido',
 });
 
 const descripcionRqd = z.string({
-  required_error: "La descripción es requerida",
+  required_error: 'La descripción es requerida',
 });
 
 const dataSheetRqd = z.string({
-  required_error: "La Ficha técnica es requerida",
+  required_error: 'La Ficha técnica es requerida',
 });
 
 const priceRqd = z
   .number({
-    required_error: "El precio es requerido",
+    required_error: 'El precio es requerido',
   })
-  .int({ message: "El precio debe ser un valor Entero" });
+  .int({ message: 'El precio debe ser un valor Entero' });
 
 const ivaRqd = z
   .number({
-    required_error: "El porcentaje de IVA es requerido",
+    required_error: 'El porcentaje de IVA es requerido',
   })
-  .int({ message: "El porcentaje de IVA debe ser un valor Entero" });
+  .int({ message: 'El porcentaje de IVA debe ser un valor Entero' });
 const unidadesRqd = z
   .number({
-    required_error: "Las unidades diponibles son requeridas",
+    required_error: 'Las unidades diponibles son requeridas',
   })
-  .int({ message: "Las unidades diponibles deben ser un valor entero" });
+  .int({ message: 'Las unidades diponibles deben ser un valor entero' });
 
 const imageRqd = z.any().optional();
 const marcarqd = z.string({
-  required_error: "La marca del producto es requerida.",
+  required_error: 'La marca del producto es requerida.',
 });
 
 const tipo_entregaRqd = z.string({
-  required_error: "El tipo de Entrega es requerido",
+  required_error: 'El tipo de Entrega es requerido',
 });
 
 const categorias = [
-  "Mecanica",
-  "Transmision",
-  "Pinturas",
-  "Accesorios",
-  "Llantas",
-  "Lubricantes",
-  "Herramientas",
-  "Otros",
+  'Mecanica',
+  'Transmision',
+  'Pinturas',
+  'Accesorios',
+  'Llantas',
+  'Lubricantes',
+  'Herramientas',
+  'Otros',
 ];
 
 const tipo_entrega = [
-  "Recoger en tienda",
-  "Envío domicilio",
-  "Recoger en tienda y Envío domicilio",
+  'Recoger en tienda',
+  'Envío domicilio',
+  'Recoger en tienda y Envío domicilio',
 ];
 
 const productSchema = z.object({
@@ -97,18 +99,38 @@ export const ProductsForm = () => {
   const productToEdit = location.state?.product;
 
   const [data, setData] = useState(null);
-  const [errorPrisma, setErrorPrisma] = useState("");
+  const [errorPrisma, setErrorPrisma] = useState('');
   const [loading, setLoading] = useState(false);
 
   const crearProducto = async (formData) => {
     setLoading(true);
-    setErrorPrisma("");
+    setErrorPrisma('');
     try {
       const response = await createProduct(formData);
       setData(response.data);
       navigate(`/profile/products`);
+      toast.success('Se ha creado exitosamente!!', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     } catch (error) {
       setErrorPrisma(error);
+      toast.error('No fue posible crear el producto', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     } finally {
       setLoading(false);
     }
@@ -116,31 +138,51 @@ export const ProductsForm = () => {
 
   const actualizarProducto = async (formData, id) => {
     setLoading(true);
-    setErrorPrisma("");
+    setErrorPrisma('');
     try {
       const response = await updateProduct(formData, id);
       setData(response.data);
       navigate(`/profile/products`);
+      toast.success('Se ha actualizado exitosamente!!', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     } catch (error) {
       setErrorPrisma(error);
+      toast.error('No fue posible actualizar el producto', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     } finally {
       setLoading(false);
     }
   };
 
   const initialValues = {
-    nombre_categoria: productToEdit?.categoria.nombre_categoria || "",
-    nombre: productToEdit?.nombre || "",
-    descripcion: productToEdit?.descripcion || "",
-    ficha_tecnica: productToEdit?.ficha_tecnica || "",
-    iva: parseFloat(productToEdit?.impuestos) || "",
-    precio: productToEdit?.precio || "",
-    cantidad_disponible: productToEdit?.cantidad_disponible || "",
-    images: "",
-    marca: productToEdit?.marca || "",
-    tipo_entrega: productToEdit?.tipo_entrega || "",
+    nombre_categoria: productToEdit?.categoria.nombre_categoria || '',
+    nombre: productToEdit?.nombre || '',
+    descripcion: productToEdit?.descripcion || '',
+    ficha_tecnica: productToEdit?.ficha_tecnica || '',
+    iva: parseFloat(productToEdit?.impuestos) || '',
+    precio: productToEdit?.precio || '',
+    cantidad_disponible: productToEdit?.cantidad_disponible || '',
+    images: '',
+    marca: productToEdit?.marca || '',
+    tipo_entrega: productToEdit?.tipo_entrega || '',
   };
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   return (
@@ -148,7 +190,7 @@ export const ProductsForm = () => {
       <div className="singup__contenedor p-4 m-1 rounded-5 p-3 mb-2 bg-white text-dark">
         <div className="d-flex justify-content-between align-items-center">
           <span className="fs-6 fw-bold">Nuevo Producto </span>
-          <FinishBtnStyle onClick={() => back("../products")}>
+          <FinishBtnStyle onClick={() => back('../products')}>
             Volver
           </FinishBtnStyle>
         </div>
@@ -173,20 +215,20 @@ export const ProductsForm = () => {
             try {
               const formData = new FormData();
 
-              formData.append("nombre_categoria", values.nombre_categoria);
-              formData.append("nombre", values.nombre);
-              formData.append("descripcion", values.descripcion);
-              formData.append("ficha_tecnica", values.ficha_tecnica);
-              formData.append("impuestos", values.iva);
-              formData.append("precio", values.precio);
+              formData.append('nombre_categoria', values.nombre_categoria);
+              formData.append('nombre', values.nombre);
+              formData.append('descripcion', values.descripcion);
+              formData.append('ficha_tecnica', values.ficha_tecnica);
+              formData.append('impuestos', values.iva);
+              formData.append('precio', values.precio);
               formData.append(
-                "cantidad_disponible",
-                values.cantidad_disponible
+                'cantidad_disponible',
+                values.cantidad_disponible,
               );
-              formData.append("images", values.images);
-              formData.append("tipo_entrega", values.tipo_entrega);
-              formData.append("marca", values.marca);
-              formData.append("estatus", "true");
+              formData.append('images', values.images);
+              formData.append('tipo_entrega', values.tipo_entrega);
+              formData.append('marca', values.marca);
+              formData.append('estatus', 'true');
 
               if (values.images && values.images.length > 0) {
                 values.images.forEach((file, index) => {
@@ -267,7 +309,7 @@ export const ProductsForm = () => {
                       onBlur={handleBlur}
                       value={values.nombre}
                       className={
-                        touched.nombre && errors.nombre ? "is-invalid" : ""
+                        touched.nombre && errors.nombre ? 'is-invalid' : ''
                       }
                     />
                     <ErrorMessage
@@ -298,8 +340,8 @@ export const ProductsForm = () => {
                     value={values.descripcion}
                     className={
                       touched.descripcion && errors.descripcion
-                        ? "is-invalid"
-                        : ""
+                        ? 'is-invalid'
+                        : ''
                     }
                   />
 
@@ -328,7 +370,7 @@ export const ProductsForm = () => {
                     onBlur={handleBlur}
                     value={values.marca}
                     className={
-                      touched.marca && errors.marca ? "is-invalid" : ""
+                      touched.marca && errors.marca ? 'is-invalid' : ''
                     }
                   />
 
@@ -392,8 +434,8 @@ export const ProductsForm = () => {
                     value={values.ficha_tecnica}
                     className={
                       touched.ficha_tecnica && errors.ficha_tecnica
-                        ? "is-invalid"
-                        : ""
+                        ? 'is-invalid'
+                        : ''
                     }
                   />
                   <ErrorMessage
@@ -422,7 +464,7 @@ export const ProductsForm = () => {
                       onBlur={handleBlur}
                       value={values.precio}
                       className={
-                        touched.precio && errors.precio ? "is-invalid" : ""
+                        touched.precio && errors.precio ? 'is-invalid' : ''
                       }
                     />
                     <ErrorMessage
@@ -438,7 +480,7 @@ export const ProductsForm = () => {
                   controlId="formBasicProdTax"
                 >
                   <Form.Label column sm="3">
-                    IVA %{" "}
+                    IVA %{' '}
                   </Form.Label>
                   <Col>
                     <Form.Control
@@ -448,7 +490,7 @@ export const ProductsForm = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.iva}
-                      className={touched.iva && errors.iva ? "is-invalid" : ""}
+                      className={touched.iva && errors.iva ? 'is-invalid' : ''}
                     />
                     <ErrorMessage
                       name="iva"
@@ -463,7 +505,7 @@ export const ProductsForm = () => {
                   controlId="formBasicProdUnits"
                 >
                   <Form.Label column sm="3">
-                    Cantidad{" "}
+                    Cantidad{' '}
                   </Form.Label>
                   <Col>
                     <Form.Control
@@ -476,8 +518,8 @@ export const ProductsForm = () => {
                       className={
                         touched.cantidad_disponible &&
                         errors.cantidad_disponible
-                          ? "is-invalid"
-                          : ""
+                          ? 'is-invalid'
+                          : ''
                       }
                     />
                     <ErrorMessage
@@ -489,7 +531,7 @@ export const ProductsForm = () => {
                 </Form.Group>
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                {user.userClass !== "Administrador" && (
+                {user.userClass !== 'Administrador' && (
                   <Form.Group
                     as={Row}
                     className="align-items-center"
@@ -507,12 +549,12 @@ export const ProductsForm = () => {
                         onChange={(e) => {
                           // const file = e.currentTarget.files[0];
                           const file = Array.from(e.currentTarget.files);
-                          setFieldValue("images", file);
+                          setFieldValue('images', file);
                         }}
                         //onBlur={handleBlur}
                         // value={values.name}
                         className={
-                          touched.images && errors.images ? "is-invalid" : ""
+                          touched.images && errors.images ? 'is-invalid' : ''
                         }
                       />
                       <ErrorMessage
@@ -524,9 +566,9 @@ export const ProductsForm = () => {
                   </Form.Group>
                 )}
 
-                {user.userClass === "Administrador" && (
+                {user.userClass === 'Administrador' && (
                   <div className="d-flex gap-5">
-                    {" "}
+                    {' '}
                     <Form.Label column sm="3">
                       Imagen del producto:
                     </Form.Label>
@@ -534,11 +576,11 @@ export const ProductsForm = () => {
                       width={200}
                       src={productToEdit?.fotos[0]?.url_foto}
                       alt="Imagen del producto"
-                    />{" "}
+                    />{' '}
                   </div>
                 )}
 
-                {user.userClass !== "Administrador" && (
+                {user.userClass !== 'Administrador' && (
                   <ButtonStyled
                     variant="primary"
                     type="submit"
@@ -553,14 +595,26 @@ export const ProductsForm = () => {
                       />
                     )}
                     {(productToEdit &&
-                      (isSubmitting ? "Actualizando..." : "Actualizar")) ||
-                      (isSubmitting ? "Guardando..." : "Guardar")}
+                      (isSubmitting ? 'Actualizando...' : 'Actualizar')) ||
+                      (isSubmitting ? 'Guardando...' : 'Guardar')}
                   </ButtonStyled>
                 )}
               </div>
             </Form>
           )}
         </Formik>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </div>
   );

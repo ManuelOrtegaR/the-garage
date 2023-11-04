@@ -24,13 +24,13 @@ const clientSignUpSchema = z
       .string({
         required_error: 'La contraseña es requerida',
       })
-      .min(6, 'La contraseña debe tener mínimo 6 caracteres')
+      .min(8, 'La contraseña debe tener mínimo 8 caracteres')
       .max(16, 'La contraseña debe tener máximo 16 caracteres'),
     cpassword: z
       .string({
         required_error: 'La confirmación de contraseña es requerida',
       })
-      .min(6, 'La contraseña debe tener mínimo 6 caracteres')
+      .min(8, 'La contraseña debe tener mínimo 8 caracteres')
       .max(16, 'La contraseña debe tener máximo 16 caracteres'),
     name: z.string({
       required_error: 'El nombre es requerido',
@@ -311,6 +311,10 @@ function ClientSingUp() {
                 component="div"
                 className="invalid-feedback"
               />
+              <Form.Text className="text-muted">
+                La contraseña debe contener almenos una mayúscula, una minúscula
+                y un número.
+              </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
               <Form.Label>Confirmar Contraseña</Form.Label>

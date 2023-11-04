@@ -492,6 +492,10 @@ function CompanySingUp() {
                     component="div"
                     className="invalid-feedback"
                   />
+                  <Form.Text className="text-muted">
+                    La contraseña debe contener almenos una mayúscula, una
+                    minúscula y un número.
+                  </Form.Text>
                 </Form.Group>
               </Col>
               <Col>

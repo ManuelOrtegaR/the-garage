@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from 'react-router-dom';
 import {
-  AlertStyled,
   AlertWarningStyled,
   CardAvalaibleStyle,
   CardDescroptionStyle,
@@ -14,13 +13,14 @@ import {
 } from './StyledsComponentsProducts';
 import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../components';
 import { Card } from 'react-bootstrap';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../../auth/context/AuthContext';
 import { medianaValoraciones, promedioValoraciones } from './utils';
 import { useCart } from '../../store';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Item({ item }) {
-  const [showAlert, setShowAlert] = useState(false);
   const { user } = useContext(AuthContext);
   const { dispatch } = useCart();
 
@@ -35,7 +35,16 @@ export function Item({ item }) {
   function handleClickSuceess(item, cant) {
     if (user) {
       dispatch({ type: 'ADD_TO_CART', payload: { item, cant: 1 } });
-      setShowAlert(!showAlert);
+      toast.success('Producto agregado al carrito', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     } else navigate('/login');
   }
 
@@ -103,17 +112,18 @@ export function Item({ item }) {
                 {item.estatus ? 'Agregar al carrito' : 'No disponible'}
               </BtnSubmitStyled>
 
-              {showAlert && (
-                <AlertStyled
-                  variant="primary"
-                  onClose={() => {
-                    setShowAlert(!showAlert);
-                  }}
-                  dismissible
-                >
-                  {'Producto Agregado'}
-                </AlertStyled>
-              )}
+              <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
 
               <BtnDangerSubmitStyled
                 onClick={() => {

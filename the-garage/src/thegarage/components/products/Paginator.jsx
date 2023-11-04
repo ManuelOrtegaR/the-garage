@@ -56,9 +56,11 @@ export function Paginator({
   return (
     <ContainerStyledPaginator>
       <PaginationStyled>
-        <Pagination.Prev onClick={irAPaginaAnterior}> Prev</Pagination.Prev>
+        <Pagination.Prev onClick={irAPaginaAnterior}> Anterior</Pagination.Prev>
         {generatePages()}
-        <Pagination.Next onClick={irAsiguientePagina}> Next</Pagination.Next>
+        <Pagination.Next onClick={irAsiguientePagina}>
+          Siguiente
+        </Pagination.Next>
       </PaginationStyled>
     </ContainerStyledPaginator>
   );

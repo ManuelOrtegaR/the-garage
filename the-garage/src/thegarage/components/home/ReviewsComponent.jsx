@@ -10,13 +10,16 @@ export const ReviewsComponent = () => {
     <>
       <div className="bg-main-color pt-4" style={{ minWidth: '700px' }}>
         <SubTitleStyled color="white">Comentarios</SubTitleStyled>
-        {error ? (
-          <Alert variant="danger">
-            No se pudo obtener el recurso, por favor recarga la página
-          </Alert>
-        ) : (
+        {error && (
+          <div className="d-flex flex-wrap justify-content-center gap-5">
+            <Alert variant="danger">
+              No se pudo obtener el recurso, por favor recarga la página
+            </Alert>
+          </div>
+        )}
+        {loading && <Spinner animation="border" variant="primary" />}
+        {data && (
           <CarouselStyled>
-            {loading && <Spinner animation="border" variant="primary" />}
             {data.map((rating, index) => {
               if (index % 3 === 0) {
                 return (
