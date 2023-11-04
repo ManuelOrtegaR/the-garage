@@ -33,7 +33,7 @@ describe('Sign In', () => {
     cy.get('#formBasicEmail');
     cy.get('input[name="email"]').type('incorrect@example.com');
     cy.get('input[name="password"]').type('Client123{enter}');
-    cy.contains('Correo o contraseña invalidos');
+    cy.contains('Correo o contraseña incorrectos');
   });
 
   it('Sign in with an bloqued or unnactive account', () => {

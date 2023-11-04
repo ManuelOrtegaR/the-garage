@@ -9,15 +9,15 @@ import {
   IconStyled,
 } from './StyledsComponentsProducts';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { useCounter } from '../../../hooks/useCounter';
 import { promedioValoraciones } from './utils';
 import { useCart } from '../../store';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const CardProduct_store = ({ item }) => {
   const { dispatch } = useCart();
   const { counter, increment, decrement } = useCounter(1);
-  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
   function handleReturn() {
     navigate('/productos');
@@ -25,7 +25,16 @@ export const CardProduct_store = ({ item }) => {
 
   function handleClickSuceess() {
     dispatch({ type: 'ADD_TO_CART', payload: { item, cant: counter } });
-    setShowAlert(!showAlert);
+    toast.success('Producto agregado al carrito', {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
   }
 
   return (
@@ -93,17 +102,19 @@ export const CardProduct_store = ({ item }) => {
             <BtnSubmitStyled onClick={handleClickSuceess} width="100%">
               Agregar al carrito
             </BtnSubmitStyled>
-            {showAlert && (
-              <AlertStyled
-                variant="primary"
-                onClose={() => {
-                  setShowAlert(!showAlert);
-                }}
-                dismissible
-              >
-                Producto agregado
-              </AlertStyled>
-            )}
+
+            <ToastContainer
+              position="top-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
 
             <BtnDangerSubmitStyled onClick={handleReturn} width="100%">
               Volver
