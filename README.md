@@ -4,6 +4,8 @@ Development space for the group project
 # Idea del proyecto:
 "The Garage" es la solución definitiva para simplificar y mejorar el proceso de compra y venta de productos en el mercado automotriz. Nuestra aplicación actúa como un puente eficaz entre empresas y clientes consumidores, permitiendo una comunicación fluida y eficiente en todo el ciclo de compra-venta.
 
+Repositorio Back-end: https://github.com/AutoPaint-Workshops/theGarageBack.git
+
 # Para Empresas:
 Registro y Presentación de Productos: Registra tus productos con facilidad y muestra tu inventario de manera atractiva, lo que te ayuda a llegar a una audiencia más amplia.
 
