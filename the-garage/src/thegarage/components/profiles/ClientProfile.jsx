@@ -11,6 +11,8 @@ import { BtnSubmitStyled } from '../../../components';
 import { getSession } from '../../../api/session';
 import { updateClientProfile } from '../../../api/profile';
 import { useRef } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ClientProfile = ({
   user,
@@ -22,14 +24,20 @@ export const ClientProfile = ({
   handleChangeDepartment,
 }) => {
   const updateClientSchema = z.object({
-    nombre_completo: z.string().min(3, 'Mínimo 3 caracteres'),
+    nombre_completo: z
+      .string({ required_error: 'El nombre es requerido' })
+      .min(3, 'Mínimo 3 caracteres'),
     tipo_documento: z.string().min(3, 'Mínimo 3 caracteres'),
     numero_documento: z.string().min(3, 'Mínimo 3 caracteres'),
-    direccion: z.string().min(3, 'Mínimo 3 caracteres'),
+    direccion: z
+      .string({ required_error: 'La dirección es requerida' })
+      .min(3, 'Mínimo 3 caracteres'),
     departamento: z.string().min(3, 'Mínimo 3 caracteres'),
     ciudad: z.string().min(3, 'Mínimo 3 caracteres'),
     correo: z.string().min(3, 'Mínimo 3 caracteres'),
-    telefono: z.string().min(3, 'Mínimo 3 caracteres'),
+    telefono: z
+      .string({ required_error: 'El teléfono es requerido' })
+      .min(3, 'Mínimo 3 caracteres'),
   });
 
   const initialValues = {
@@ -50,16 +58,40 @@ export const ClientProfile = ({
   };
 
   const onSubmit = async (values, { setSubmitting }) => {
-    const response = await updateClientProfile(values);
-    const token = getSession();
-    const { nombre_completo: name } = response.typeData;
-    const type = response.user.tipo_usuario;
-    const profileData = {
-      ...response.user,
-      ...response.typeData,
-    };
-    login(name, type, token, profileData);
-    setSubmitting(false);
+    try {
+      const response = await updateClientProfile(values);
+      const token = getSession();
+      const { nombre_completo: name } = response.typeData;
+      const type = response.user.tipo_usuario;
+      const profileData = {
+        ...response.user,
+        ...response.typeData,
+      };
+      login(name, type, token, profileData);
+      toast.success('Se actualizaron los datos!!', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } catch (error) {
+      toast.error('No fue posible actualizar los datos', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -439,6 +471,18 @@ export const ClientProfile = ({
           </Form>
         )}
       </Formik>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

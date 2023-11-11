@@ -10,6 +10,8 @@ import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { updateCompanyDetails } from '../../../api/profile';
 import { NavLink } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Details = () => {
   const { user: userContext } = useContext(AuthContext);
@@ -44,17 +46,40 @@ export const Details = () => {
   ];
 
   const onSubmit = async (values, { setSubmitting }) => {
-    const response = await updateCompanyDetails(values);
-    const newUser = {
-      ...user,
-      profileData: {
-        ...user.profileData,
-        ...response.typeData,
-      },
-    };
-
-    setUser(newUser);
-    setSubmitting(false);
+    try {
+      const response = await updateCompanyDetails(values);
+      const newUser = {
+        ...user,
+        profileData: {
+          ...user.profileData,
+          ...response.typeData,
+        },
+      };
+      setUser(newUser);
+      toast.success('Se actualizaron los datos!!', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } catch (error) {
+      toast.error('No fue posible actualizar los datos', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -342,6 +367,18 @@ export const Details = () => {
           </Form>
         )}
       </Formik>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

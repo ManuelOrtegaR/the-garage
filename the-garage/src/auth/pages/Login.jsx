@@ -14,6 +14,8 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { z } from 'zod';
 import { AuthContext } from '../context/AuthContext';
 import { signIn } from '../../api/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const emailRqd = z.string({
   required_error: 'El correo es requerido',
@@ -35,8 +37,6 @@ export function Login() {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
   const handleShow = () => setShowModal(true);
   const initialValues = {
     email: '',
@@ -47,8 +47,16 @@ export function Login() {
     const response = await signIn(formData);
 
     if (response?.error) {
-      setError(true);
-      setErrorMessage(response.error.message);
+      toast.error(response.error.message, {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
       return;
     }
 
@@ -65,22 +73,12 @@ export function Login() {
 
   const onSubmit = async (values, { setSubmitting }) => {
     setSubmitting(true);
-    setError(false);
-    setErrorMessage(null);
     await onLogin(values);
     setSubmitting(false);
   };
   return (
     <MainConteiner className="img-fluid">
       <div className="login__contenedor p-5" style={{ minWidth: '700px' }}>
-        {error && (
-          <Alert
-            variant="danger"
-            style={{ width: '75%', margin: 'auto', marginTop: '10px' }}
-          >
-            {errorMessage || 'Ha ocurrido un error, intenta de nuevo'}
-          </Alert>
-        )}
         <Link to="/home" className="text-decoration-none">
           <i className="bi bi-arrow-left"> </i>
           Volver
@@ -144,12 +142,11 @@ export function Login() {
                 className="mb-3 d-flex justify-content-between"
                 controlId="formBasicCheckbox"
               >
-                <Form.Check type="checkbox" label="Recuerdáme" />
                 <NavLink
                   to={'/Recoverypassword'}
                   style={{ textDecoration: 'none', color: 'darkblue' }}
                 >
-                  ¿Olvidaste tu Constraseña?
+                  ¿Olvidaste tu Contraseña?
                 </NavLink>
               </Form.Group>
               <div className="d-flex justify-content-center">
@@ -181,8 +178,19 @@ export function Login() {
             </Form>
           )}
         </Formik>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
-
       {showModal ? <SingUpModal /> : <></>}
     </MainConteiner>
   );

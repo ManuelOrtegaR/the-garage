@@ -11,6 +11,8 @@ import { BtnSubmitStyled } from '../../../components';
 import { getSession } from '../../../api/session';
 import { updateCompanyProfile } from '../../../api/profile';
 import { useRef } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const CompanyProfile = ({
   user,
@@ -50,16 +52,40 @@ export const CompanyProfile = ({
   };
 
   const onSubmit = async (values, { setSubmitting }) => {
-    const response = await updateCompanyProfile(values);
-    const token = getSession();
-    const { razon_social: name } = response.typeData;
-    const type = response.user.tipo_usuario;
-    const profileData = {
-      ...response.user,
-      ...response.typeData,
-    };
-    login(name, type, token, profileData);
-    setSubmitting(false);
+    try {
+      const response = await updateCompanyProfile(values);
+      const token = getSession();
+      const { razon_social: name } = response.typeData;
+      const type = response.user.tipo_usuario;
+      const profileData = {
+        ...response.user,
+        ...response.typeData,
+      };
+      login(name, type, token, profileData);
+      toast.success('Se actualizaron los datos!!', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } catch (error) {
+      toast.error('No fue posible actualizar los datos', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -445,6 +471,18 @@ export const CompanyProfile = ({
           </Form>
         )}
       </Formik>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

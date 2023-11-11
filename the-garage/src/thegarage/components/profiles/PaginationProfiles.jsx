@@ -36,7 +36,7 @@ export const PaginationProfiles = ({
         onClick={onPreviousPage}
       >
         <i className="bi bi-arrow-left p-1"></i>
-        Prev
+        Anterior
       </PagPrevStyle>
       {pageNumbers.map((noPage) => (
         <PagItemStyle
@@ -52,7 +52,7 @@ export const PaginationProfiles = ({
         className={currentPage >= pageNumbers.length ? 'disabled' : ''}
         onClick={onNextPage}
       >
-        Next
+        Siguiente
         <i className="bi bi-arrow-right p-1"></i>
       </PagNextStyle>
     </PaginationStyle>

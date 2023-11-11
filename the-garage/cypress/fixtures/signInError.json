@@ -1,1 +1,1 @@
-{ "error": { "message": "Correo o contraseña invalidos", "status": 403 } }
+{ "error": { "message": "Correo o contraseña incorrectos", "status": 403 } }

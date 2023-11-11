@@ -1,15 +1,15 @@
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import { useState } from "react";
-import { BtnSubmitStyled } from "../../../../components/StyledButtons";
+/* eslint-disable react/prop-types */
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import { useState } from 'react';
+import { BtnSubmitStyled } from '../../../../components/StyledButtons';
 //import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
-import { useUpdateProducto } from "../../../../domain/useUpdateProducto";
-import { updateProduct } from "../../../../api/products";
-import { Spinner } from "react-bootstrap";
-import { set } from "date-fns";
+import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
+import { useUpdateProducto } from '../../../../domain/useUpdateProducto';
+import { updateProduct } from '../../../../api/products';
+import { Spinner } from 'react-bootstrap';
 
 function ModalProductState({
   showProcessingModal,
@@ -21,7 +21,7 @@ function ModalProductState({
   const [show, setShow] = useState(true);
   const navigate = useNavigate();
   const [data, setData] = useState(null);
-  const [errorPrisma, setErrorPrisma] = useState("");
+  const [errorPrisma, setErrorPrisma] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
@@ -33,7 +33,7 @@ function ModalProductState({
     e.preventDefault();
     await actualizarProducto(
       { estatus: productState.estatus ? false : true },
-      productState.id
+      productState.id,
     );
 
     await cargarProductos();
@@ -44,7 +44,7 @@ function ModalProductState({
 
   const actualizarProducto = async (formData, id) => {
     setLoading(true);
-    setErrorPrisma("");
+    setErrorPrisma('');
     try {
       const response = await updateProduct(formData, id);
       setData(response.data);
@@ -62,17 +62,13 @@ function ModalProductState({
           <Modal.Title>Actualizar estado</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="login__logo d-flex justify-content-center">
-            <img src="/../assets/logos/logo-icono.png" alt="logo" />
-          </div>
-
           <Form>
             <Row>
               <Col className="d-flex  flex-column justify-content-center align-items-center gap-2">
-                <div>
+                <div className="mb-3">
                   {productState.estatus
-                    ? "Desea deshabilitar el producto ?"
-                    : "Desea habilitar el producto ?"}
+                    ? `Desea deshabilitar el producto ${productState.nombre} ?`
+                    : `Desea habilitar el producto ${productState.nombre} ?`}
                 </div>
 
                 <BtnSubmitStyled width="100px" onClick={handleConfirmation}>
@@ -90,9 +86,6 @@ function ModalProductState({
             </Row>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <BtnSubmitStyled onClick={handleClose}>Salir</BtnSubmitStyled>
-        </Modal.Footer>
       </Modal>
     </>
   );

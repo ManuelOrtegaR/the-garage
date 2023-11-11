@@ -15,7 +15,7 @@ describe('Client cases', () => {
     cy.get('[data-cy="nav-Productos"]').click();
 
     cy.get('[data-cy="btn-add-to-cart"]').first().click();
-    cy.contains('Producto Agregado').should('be.visible');
+    cy.contains('Producto agregado al carrito');
     cy.get('[data-cy="btn-add-to-cart"]').last().click();
 
     cy.visit('/ShoppingCart');
