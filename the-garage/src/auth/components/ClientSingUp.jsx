@@ -255,7 +255,7 @@ function ClientSingUp() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPhone">
-              <Form.Label>Ingrese su telefono</Form.Label>
+              <Form.Label>Ingrese su teléfono</Form.Label>
               <Form.Control
                 type="texto"
                 placeholder="Ingrese su número de teléfono"
@@ -343,7 +343,7 @@ function ClientSingUp() {
                 className="w-100 p-2"
               >
                 {!isSubmitting ? (
-                  'Registrate'
+                  'Regístrate'
                 ) : (
                   <Spinner
                     as="span"

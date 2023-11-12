@@ -13,6 +13,7 @@ import { updateClientProfile } from '../../../api/profile';
 import { useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import editImage from '../../../../assets/images/home/tecnologiesIcons/editImage.svg';
 
 export const ClientProfile = ({
   user,
@@ -139,10 +140,7 @@ export const ClientProfile = ({
                     onClick={changeImageInput}
                     hidden={!handelUpdate}
                   >
-                    <Image
-                      src="../../../../assets/images/home/tecnologiesIcons/editImage.svg"
-                      style={{ height: 25, width: 25 }}
-                    />
+                    <Image src={editImage} style={{ height: 25, width: 25 }} />
                   </NavLinkProfile>
                 </div>
               </Col>

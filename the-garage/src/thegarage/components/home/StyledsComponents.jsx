@@ -17,5 +17,5 @@ export const TextStyled = styled('p')(({ theme }) => ({
 export const CarouselTitle = styled('h3')({
   fontFamily: 'Anton',
   textShadow: '4px 3px 2px black',
-  fontSize: '1.5rem',
+  fontSize: '2.5rem',
 });

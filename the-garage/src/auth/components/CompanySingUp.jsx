@@ -526,7 +526,7 @@ function CompanySingUp() {
             <div className="d-flex justify-content-center">
               <BtnSubmitStyled type="submit" disabled={isSubmitting}>
                 {!isSubmitting ? (
-                  'Registrate'
+                  'Regístrate'
                 ) : (
                   <Spinner
                     as="span"
