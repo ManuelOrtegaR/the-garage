@@ -158,7 +158,7 @@ export function Filter({
         <div>
           <AccordionStyle>
             <Accordion.Item eventKey="0">
-              <Accordion.Header>Categorias</Accordion.Header>
+              <Accordion.Header>Categorías</Accordion.Header>
               <Accordion.Body>
                 {generateFilter(data, 'category')}
               </Accordion.Body>
@@ -169,7 +169,7 @@ export function Filter({
         <div>
           <AccordionStyle>
             <Accordion.Item eventKey="1">
-              <Accordion.Header>Almacen</Accordion.Header>
+              <Accordion.Header>Almacén</Accordion.Header>
               <Accordion.Body>{generateFilter(data, 'store')}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
@@ -186,7 +186,7 @@ export function Filter({
         <div>
           <AccordionStyle>
             <Accordion.Item eventKey="3">
-              <Accordion.Header>Calificacion</Accordion.Header>
+              <Accordion.Header>Calificación</Accordion.Header>
               <Accordion.Body>{generateFilter(data, 'rating')}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
