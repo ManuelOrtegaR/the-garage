@@ -1,25 +1,22 @@
-import { Alert, Form, Spinner } from 'react-bootstrap';
-import { PaginationProfiles } from './PaginationProfiles';
+/* eslint-disable no-unused-vars */
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import Alert from 'react-bootstrap/Alert';
+import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
+import Image from 'react-bootstrap/Image';
+
+import { AuthContext } from '../../../auth/context/AuthContext';
+import { BtnSubmitStyled } from '../../../components/StyledButtons';
+import { useProductsCompany } from '../../../domain/useProductsCompany';
+import ModalProductState from './Modals/ModalProductState';
+import { PaginationProfiles } from './PaginationProfiles';
 import {
   ItemStyle,
   ListGroupStyle,
-  NavLinkEdit,
-  NavLinkStyled,
   ShowOrder,
 } from './StylesComponentsProfiles';
-import Image from 'react-bootstrap/Image';
-import {
-  BtnLinkStyled,
-  BtnSubmitStyled,
-} from '../../../components/StyledButtons';
-import { useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { useProductsCompany } from '../../../domain/useProductsCompany';
-import ModalProductState from './Modals/ModalProductState';
-import { set } from 'date-fns';
-import { ButtonStyled } from '../../../auth/components/StyledsComponents';
-import { AuthContext } from '../../../auth/context/AuthContext';
 
 export const Products = () => {
   const [resetFilters, setResetFilters] = useState(false);

@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import { allRatings, getRatings } from "../api/rating";
+import { useEffect, useState } from 'react';
+
+import { allRatings, getRatings } from '../api/rating';
 
 export const useRatings = (items, id) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const cargarValoraciones = async () => {
     setLoading(true);
-    setError("");
+    setError('');
 
     let newItems = items;
 
@@ -46,11 +47,11 @@ export const useRatings = (items, id) => {
 export const useAllRatings = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const cargarValoraciones = async () => {
     setLoading(true);
-    setError("");
+    setError('');
 
     try {
       const response = await allRatings();

@@ -1,7 +1,8 @@
 import Carousel from 'react-bootstrap/Carousel';
-import carrousel_picture_1 from '../../../../assets/images/home/carrousel_picture_1.jpg';
-import carrousel_picture_2 from '../../../../assets/images/home/carrousel_picture_2.jpg';
-import carrousel_picture_3 from '../../../../assets/images/home/carrousel_picture_3.jpg';
+
+import carrousel_picture_1 from '../../../../assets/images/home/carrousel/carrousel_picture_1.jpg';
+import carrousel_picture_2 from '../../../../assets/images/home/carrousel/carrousel_picture_2.jpg';
+import carrousel_picture_3 from '../../../../assets/images/home/carrousel/carrousel_picture_3.jpg';
 import { BtnDangerLinkStyled } from '../../../components/StyledButtons';
 import { CarouselTitle } from './StyledsComponents';
 

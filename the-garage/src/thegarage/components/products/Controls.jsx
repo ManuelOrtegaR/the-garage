@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
-import { Badge, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
+import Badge from 'react-bootstrap/Badge';
+import Col from 'react-bootstrap/Col';
+
 import { ContainerBadgeStyled } from './StyledsComponentsProducts';
 import { BreadCrumbRoute } from './BreadCrumbRoute';
 import { BtnSubmitStyled } from '../../../components';
-import { useNavigate } from 'react-router-dom';
 
 export function Controls({
   filters,

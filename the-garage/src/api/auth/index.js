@@ -43,7 +43,7 @@ export const signUp = async (payload, role) => {
           correo: payload.email,
           contrasena: payload.password,
           tipo_usuario: 'Cliente',
-          url_foto: 'https://fotocliente.png',
+          url_foto: 'https://placehold.co/400',
           departamento: payload.department,
           ciudad: payload.city,
           direccion: payload.address,

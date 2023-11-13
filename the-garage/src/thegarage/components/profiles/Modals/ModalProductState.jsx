@@ -1,15 +1,15 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
+
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { useState } from 'react';
-import { BtnSubmitStyled } from '../../../../components/StyledButtons';
-//import Button from "react-bootstrap/Button";
 import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from 'react-router-dom';
-import { useUpdateProducto } from '../../../../domain/useUpdateProducto';
+import Spinner from 'react-bootstrap/Spinner';
+
+import { BtnSubmitStyled } from '../../../../components/StyledButtons';
 import { updateProduct } from '../../../../api/products';
-import { Spinner } from 'react-bootstrap';
 
 function ModalProductState({
   showProcessingModal,
@@ -19,7 +19,6 @@ function ModalProductState({
   setResetFilters,
 }) {
   const [show, setShow] = useState(true);
-  const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [errorPrisma, setErrorPrisma] = useState('');
   const [loading, setLoading] = useState(false);
@@ -38,7 +37,6 @@ function ModalProductState({
 
     await cargarProductos();
     setResetFilters(true);
-    // navigate("/profile/products");
     setShowProcessingModal(!showProcessingModal);
   };
 

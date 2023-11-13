@@ -1,5 +1,11 @@
 /* eslint-disable react/prop-types */
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import Card from 'react-bootstrap/Card';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   AlertWarningStyled,
   CardAvalaibleStyle,
@@ -12,13 +18,9 @@ import {
   IconStyled,
 } from './StyledsComponentsProducts';
 import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../components';
-import { Card } from 'react-bootstrap';
-import { useContext } from 'react';
 import { AuthContext } from '../../../auth/context/AuthContext';
-import { medianaValoraciones, promedioValoraciones } from './utils';
+import { medianaValoraciones } from './utils';
 import { useCart } from '../../store';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export function Item({ item }) {
   const { user } = useContext(AuthContext);
@@ -32,7 +34,7 @@ export function Item({ item }) {
     } else navigate('/login');
   }
 
-  function handleClickSuceess(item, cant) {
+  function handleClickSuceess(item) {
     if (user) {
       dispatch({ type: 'ADD_TO_CART', payload: { item, cant: 1 } });
       toast.success('Producto agregado al carrito', {
@@ -101,7 +103,7 @@ export function Item({ item }) {
           {!user || user.userClass === 'Cliente' ? (
             <ContainerButtonStyled>
               <BtnSubmitStyled
-                onClick={(event) => {
+                onClick={() => {
                   if (item.estatus) {
                     handleClickSuceess(item, 1);
                   }

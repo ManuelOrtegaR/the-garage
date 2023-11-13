@@ -1,9 +1,12 @@
-import { Pagination } from 'react-bootstrap';
+/* eslint-disable react/prop-types */
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import Pagination from 'react-bootstrap/Pagination';
+
 import {
   ContainerStyledPaginator,
   PaginationStyled,
 } from './StyledsComponentsProducts';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 export function Paginator({
   nextHandler,
@@ -15,7 +18,6 @@ export function Paginator({
 }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
 
   const specificPage = (page) => {
     const rutaActual = location.pathname;
@@ -43,7 +45,7 @@ export function Paginator({
   const generatePages = () => {
     const pages = Array.from({ length: totalPages }, (_, index) => (
       <Pagination.Item
-        onClick={(event) => specificPage(index + 1)}
+        onClick={() => specificPage(index + 1)}
         active={currentPage + 1 === index + 1 ? true : false}
         key={index + 1}
       >

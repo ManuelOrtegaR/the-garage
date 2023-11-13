@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+
 import { getCompanyById } from '../api/admin';
 
 export const useCompanyId = (idEmpresa) => {

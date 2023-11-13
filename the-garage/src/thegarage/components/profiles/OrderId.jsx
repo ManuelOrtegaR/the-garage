@@ -1,11 +1,15 @@
-import Image from 'react-bootstrap/Image';
-import { TableStyled } from './StylesComponentsProfiles';
-import { BtnSubmitStyled } from '../../../components';
-import { ModalMessages, ModalScore, ShippingStatus } from '..';
-import { useLocation, useParams } from 'react-router-dom';
+/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Image from 'react-bootstrap/Image';
+
+import { ModalMessages, ModalScore, ShippingStatus } from '..';
 import { AuthContext } from '../../../auth/context/AuthContext';
-import { Col, Row } from 'react-bootstrap';
+import { BtnSubmitStyled } from '../../../components';
+import { TableStyled } from './StylesComponentsProfiles';
 
 export const OrderId = () => {
   const { user } = useContext(AuthContext);

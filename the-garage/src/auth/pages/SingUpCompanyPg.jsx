@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import CompanySingUp from '../components/CompanySingUp';
 
+import CompanySingUp from '../components/CompanySingUp';
 import { MainConteiner, TitlePg } from '../components/StyledsComponents';
 
 export function SingUpCompanyPg() {

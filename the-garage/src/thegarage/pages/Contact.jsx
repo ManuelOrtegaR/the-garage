@@ -1,16 +1,17 @@
+import { ToastContainer, toast } from 'react-toastify';
+import { z } from 'zod';
+import { ErrorMessage, Formik } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+
+import { sendQuestion } from '../../api/contact';
+import { BtnSubmitStyled } from '../../components/StyledButtons';
 import {
   SubTitleStyled,
   TextStyled,
 } from '../components/home/ComponentsStyles';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { BtnSubmitStyled } from '../../components/StyledButtons';
-import { Formik, ErrorMessage } from 'formik';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { ToastContainer, toast } from 'react-toastify';
-import { z } from 'zod';
-import { sendQuestion } from '../../api/contact';
 
 const nameRqd = z.string({
   required_error: 'El nombre es requerido',

@@ -1,17 +1,19 @@
 import { useContext, useState } from 'react';
-import { BtnSubmitStyled } from '../../../components/StyledButtons';
-import { AuthContext } from '../../../auth/context/AuthContext';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { z } from 'zod';
-import { SpanForm } from './StylesComponentsProfiles';
-import { Formik, ErrorMessage } from 'formik';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { updateCompanyDetails } from '../../../api/profile';
-import { NavLink } from 'react-bootstrap';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { z } from 'zod';
+import { ErrorMessage, Formik } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import NavLink from 'react-bootstrap/NavLink';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+
+import { updateCompanyDetails } from '../../../api/profile';
+import { AuthContext } from '../../../auth/context/AuthContext';
+import { BtnSubmitStyled } from '../../../components/StyledButtons';
+import { SpanForm } from './StylesComponentsProfiles';
 
 export const Details = () => {
   const { user: userContext } = useContext(AuthContext);

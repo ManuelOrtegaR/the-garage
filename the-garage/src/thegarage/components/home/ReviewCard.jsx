@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import Card from 'react-bootstrap/Card';
-import { StarRating } from './StarRating';
-
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import { format } from 'date-fns';
-import { NavLinkStyledCompany } from '../../../ui/components';
-import { Col, Row } from 'react-bootstrap';
+
+import { StarRating } from './StarRating';
 
 export const ReviewCard = ({ item }) => {
   return (

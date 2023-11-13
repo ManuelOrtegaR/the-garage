@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { ConfirmationPage, Login } from '../auth';
+
 import { TheGarageRoutes } from '../thegarage';
+import { ConfirmationPage, Login } from '../auth';
 import { SingUpClientPg } from '../auth/pages/SingUpClientPg';
 import { SingUpCompanyPg } from '../auth/pages/SingUpCompanyPg';
 import { RecoveryPasswordPg } from '../auth/pages/RecoveryPasswordPg';

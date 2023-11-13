@@ -1,5 +1,6 @@
-import { getProduct } from "../api/products";
-import useSWR from "swr";
+import useSWR from 'swr';
+
+import { getProduct } from '../api/products';
 
 export const useProducto = ({ id }) => {
   const {

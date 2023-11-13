@@ -1,15 +1,20 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useCompanyId } from '../../../domain/useCompanyId';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+
 import { format } from 'date-fns';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+
 import { companyDecision } from '../../../api/admin';
+import { useCompanyId } from '../../../domain/useCompanyId';
 
 export const RequestsId = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const idEmpresa = location.state;
-  const { data, error, loading } = useCompanyId(idEmpresa);
+  const { data } = useCompanyId(idEmpresa);
 
   const onApprove = async () => {
     await companyDecision(idEmpresa, 'Activo');

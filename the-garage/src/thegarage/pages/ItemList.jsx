@@ -1,21 +1,25 @@
-import { Alert, Col, Container, Row, Spinner } from 'react-bootstrap';
+/* eslint-disable no-unused-vars */
+import { useState } from 'react';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
-import {
-  Item,
-  Controls,
-  Filter,
-  Paginator,
-  RowItemStyled,
-  ContainerNumberItemsStyled,
-  ContainerVisualizationStyled,
-} from '../components';
+import Alert from 'react-bootstrap/Alert';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Spinner from 'react-bootstrap/Spinner';
+
+import { useProductos } from '../../domain/useProductos';
 import { useFilter } from '../../hooks/useFilter';
 import { usePaginator } from '../../hooks/usePaginator';
-import { useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-
-import { useSearchParams } from 'react-router-dom';
-import { useProductos } from '../../domain/useProductos';
+import {
+  ContainerNumberItemsStyled,
+  ContainerVisualizationStyled,
+  Controls,
+  Filter,
+  Item,
+  Paginator,
+  RowItemStyled,
+} from '../components';
 
 export function ItemList() {
   const { searchValue } = useParams();

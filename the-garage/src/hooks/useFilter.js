@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { objetoEstaVacio } from "../thegarage/components/products/utils";
+import { useEffect, useState } from 'react';
 
 export const useFilter = (initialFilter = [], data, searchValue, urlFilter) => {
   const [selectedFilters, setSelectedFilters] = useState(initialFilter);
@@ -11,15 +10,15 @@ export const useFilter = (initialFilter = [], data, searchValue, urlFilter) => {
   const [dataSearch2, setDataSearch2] = useState([]);
 
   useEffect(() => {
-    if (urlFilter.includes("filter") && selectedFilters.length == 0) {
+    if (urlFilter.includes('filter') && selectedFilters.length == 0) {
       const valores = [];
       const urlParams = new URLSearchParams(urlFilter);
-      urlParams.delete("limit");
-      urlParams.delete("offset");
+      urlParams.delete('limit');
+      urlParams.delete('offset');
 
       for (const value of urlParams.values()) {
-        if (value.includes("-")) {
-          const partes = value.split("-");
+        if (value.includes('-')) {
+          const partes = value.split('-');
           valores.push(...partes);
         } else {
           valores.push(value);

@@ -1,7 +1,10 @@
-import { Form, Modal } from 'react-bootstrap';
-import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../../components';
+/* eslint-disable react/prop-types */
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+
+import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../../components';
 
 export function ModalReport(props) {
   const sentReport = (event) => {

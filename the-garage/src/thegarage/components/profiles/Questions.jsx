@@ -1,16 +1,19 @@
+/* eslint-disable no-unused-vars */
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { format } from 'date-fns';
+import Alert from 'react-bootstrap/Alert';
+import Form from 'react-bootstrap/Form';
+
+import { useQuestions } from '../../../domain/useQuestions';
+import { PaginationProfiles } from './PaginationProfiles';
 import {
   ItemStyle,
   ListGroupStyle,
   ShowOrder,
   StatusStyle,
 } from './StylesComponentsProfiles';
-import Form from 'react-bootstrap/Form';
-import Alert from 'react-bootstrap/Alert';
-import { PaginationProfiles } from './PaginationProfiles';
-import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useQuestions } from '../../../domain/useQuestions';
 
 export const Questions = () => {
   const navigate = useNavigate();

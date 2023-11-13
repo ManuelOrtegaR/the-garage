@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
+
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 import { FooterSection, NavbarStyled } from '../components';
-import { Col, Row } from 'react-bootstrap';
 
 export const FooterComponent = () => {
   return (

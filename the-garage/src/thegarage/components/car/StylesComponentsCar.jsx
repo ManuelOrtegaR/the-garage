@@ -1,5 +1,5 @@
+import Card from 'react-bootstrap/Card';
 import styled from '@emotion/styled';
-import { Card } from 'react-bootstrap';
 
 export const DivisorHr = styled('hr')(({ theme }) => ({
   borderColor: theme.colors.mainColor,

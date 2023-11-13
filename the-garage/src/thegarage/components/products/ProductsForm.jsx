@@ -1,24 +1,24 @@
-import Form from 'react-bootstrap/Form';
-//import Button from "react-bootstrap/Button";
-import { ButtonStyled } from '../../../auth/components/StyledsComponents';
-import {
-  FinishBtnStyle,
-  NavLinkStyled,
-} from '../profiles/StylesComponentsProfiles';
-import { Alert, Col, Row, Spinner } from 'react-bootstrap';
-import { Formik, ErrorMessage } from 'formik';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { z } from 'zod';
-import { formatError } from './utils';
-import { useContext, useEffect, useState } from 'react';
+/* eslint-disable no-unused-vars */
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { useCreateProduct } from '../../../domain/useCrearProducto';
-import { useUpdateProducto } from '../../../domain/useUpdateProducto';
-import { AuthContext } from '../../../auth/context/AuthContext';
-import { createProduct, updateProduct } from '../../../api/products';
+
+import { z } from 'zod';
+import { Formik, ErrorMessage } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Spinner from 'react-bootstrap/Spinner';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { ButtonStyled } from '../../../auth/components/StyledsComponents';
+import { FinishBtnStyle } from '../profiles/StylesComponentsProfiles';
+import { formatError } from './utils';
+import { AuthContext } from '../../../auth/context/AuthContext';
+import { createProduct, updateProduct } from '../../../api/products';
 
 const refRqd = z.string({
   required_error: 'La referencia es requerida',

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Card, Image } from 'react-bootstrap';
+import { format } from 'date-fns';
+import Card from 'react-bootstrap/Card';
+import Image from 'react-bootstrap/Image';
 
 import { CardStoreStyle, IconStyled } from './StyledsComponentsProducts';
-
-import { format } from 'date-fns';
 
 export const CardValorations = ({ item }) => {
   return (

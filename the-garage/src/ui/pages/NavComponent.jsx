@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
-import { Col, Row } from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 import { getSessionData } from '../../api/auth';
 import { clearSession, getSession } from '../../api/session';
 import {
+  LoginSpace,
   NavLogo,
-  SearchInput,
   NavMenu,
   NavbarStyled,
-  LoginSpace,
+  SearchInput,
 } from '../components';
 
 export const NavComponent = ({ handleSectionChange }) => {

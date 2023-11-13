@@ -1,14 +1,15 @@
-import { createProduct } from "../api/products";
-import { useState } from "react";
+import { useState } from 'react';
+
+import { createProduct } from '../api/products';
 
 export const useCreateProduct = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   async function crearProducto(payload) {
     setLoading(true);
-    setError("");
+    setError('');
     try {
       const response = await createProduct(payload);
       setData(response.data);

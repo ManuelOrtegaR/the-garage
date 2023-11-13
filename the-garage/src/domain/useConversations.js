@@ -1,9 +1,10 @@
-import useSWR from "swr";
-import { getConversaciones, createConversacion } from "../api/conversacion";
+import useSWR from 'swr';
+
+import { getConversaciones, createConversacion } from '../api/conversacion';
 
 export const useConversaciones = () => {
-  const { data, error, isLoading, mutate } = useSWR("/profile/messages", () =>
-    getConversaciones()
+  const { data, error, isLoading } = useSWR('/profile/messages', () =>
+    getConversaciones(),
   );
 
   async function create(payload) {

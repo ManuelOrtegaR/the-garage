@@ -1,4 +1,5 @@
 import Container from 'react-bootstrap/Container';
+
 import { NavProfiles, ProfilesRoutes, ProfileDetails } from '../components';
 
 export const Profiles = () => {

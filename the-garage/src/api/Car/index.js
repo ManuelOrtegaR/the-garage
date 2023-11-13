@@ -1,4 +1,5 @@
 import { instance as http } from '../http';
+import { decodePayment } from './decoder';
 
 export const createOrdenProducts = async ({ cart, total }) => {
   const detallesOrdenProductos = cart.map((producto) => {
@@ -17,11 +18,13 @@ export const createOrdenProducts = async ({ cart, total }) => {
     detallesOrdenProductos,
   };
   try {
-    const response = await http.post(
+    const { data: response } = await http.post(
       `${import.meta.env.VITE_API_URL}/orden_productos`,
       body,
     );
-    const { data } = response;
+
+    const data = await decodePayment(response);
+
     const { paymentUrl } = data;
     return paymentUrl;
   } catch (error) {

@@ -1,4 +1,8 @@
-import { Container, Card, Row, Col } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 import { Continue, TitleStyled } from '../components/car';
 import { Divisor } from '../components/car/Divisor';
 import { Description } from '../components/car/Description';

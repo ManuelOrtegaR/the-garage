@@ -1,16 +1,13 @@
-import { Accordion, Badge, Form, ListGroup } from 'react-bootstrap';
+/* eslint-disable react/prop-types */
+import Accordion from 'react-bootstrap/Accordion';
+import Form from 'react-bootstrap/Form';
+
 import {
   AccordionStyle,
   Badgestyled,
   H4Styled,
 } from './StyledsComponentsProducts';
-import {
-  generarQueryFiltros,
-  generarRangos,
-  medianaValoraciones,
-  promedioValoraciones,
-} from './utils';
-import { useNavigate } from 'react-router-dom';
+import { generarRangos, medianaValoraciones } from './utils';
 
 export function Filter({
   data,
@@ -21,7 +18,6 @@ export function Filter({
   filtrosSeleccionadosAgrupados,
   setFiltrosSeleccionadosAgrupados,
 }) {
-  const navigate = useNavigate();
   const handlerChange = (event, type) => {
     let label = event.target.labels[0].innerText;
     if (label.startsWith('$')) {
@@ -52,9 +48,6 @@ export function Filter({
         filtrosSeleccionadosAgrupadosAux2.join('-');
       setFiltrosSeleccionadosAgrupados(filtrosSeleccionadosAgrupadosAux);
     }
-    // const query = generarQueryFiltros(filtrosSeleccionadosAgrupados);
-
-    // navigate(`/productos?${query}`);
 
     setCheckFilter({ ...checkFilter, [label]: !checkFilter[label] });
   };
