@@ -172,7 +172,7 @@ export function Login() {
               <div className="d-flex gap-1 mt-3 justify-content-center">
                 <label>¿No tienes un usuario?</label>
                 <NavLink onClick={handleShow} data-cy="signup">
-                  Registrate
+                  Regístrate
                 </NavLink>
               </div>
             </Form>
@@ -191,7 +191,7 @@ export function Login() {
           theme="light"
         />
       </div>
-      {showModal ? <SingUpModal /> : <></>}
+      {showModal ? <SingUpModal setShowModal={setShowModal} /> : <></>}
     </MainConteiner>
   );
 }

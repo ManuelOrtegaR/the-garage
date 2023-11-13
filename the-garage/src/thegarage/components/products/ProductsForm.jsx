@@ -267,7 +267,7 @@ export const ProductsForm = () => {
                   controlId="formBasicProdRef"
                 >
                   <Form.Label column sm="2">
-                    Categoria
+                    Categoría
                   </Form.Label>
                   <Col>
                     <Form.Select
@@ -421,7 +421,7 @@ export const ProductsForm = () => {
                 controlId="formBasicProdDescription"
               >
                 <Form.Label column sm="1">
-                  Ficha tecnica:
+                  Ficha técnica:
                 </Form.Label>
                 <Col>
                   <Form.Control

@@ -161,7 +161,7 @@ export const Contact = () => {
                 </Form>
               </Col>
               <Col className="col-12 col-md-6">
-                <TextStyled>Encuentranos</TextStyled>
+                <TextStyled>Encuéntranos</TextStyled>
                 <Row className="d-flex">
                   <Col className="text-center">
                     <iframe
