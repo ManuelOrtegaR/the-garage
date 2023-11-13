@@ -42,6 +42,16 @@ export const MessagesId = () => {
 
   const finalizarConversacion = async () => {
     await updateConversacion(id, { estado: false });
+    socket.emit("mensaje", {
+      emailDestino:
+        user.userClass == "Empresa"
+          ? data?.cliente.usuario.correo
+          : data?.empresa.usuario.correo,
+      estadoConversacion: false,
+      conversacionId: id,
+      recipientId:
+        user.userClass === "Cliente" ? data?.empresaId : data?.clienteId,
+    });
     navigate("/profile/messages", { replace: true });
   };
 
@@ -69,6 +79,7 @@ export const MessagesId = () => {
 
         mensaje: mensaje.data,
         conversacionId: id,
+        estadoConversacion: true,
         recipientId:
           user.userClass === "Cliente" ? data?.empresaId : data?.clienteId,
       });
@@ -113,6 +124,7 @@ export const MessagesId = () => {
         foto: user.profileData.url_foto,
         mensaje: mensaje.data,
         conversacionId: id,
+        estadoConversacion: true,
         recipientId:
           user.userClass === "Cliente" ? data?.empresaId : data?.clienteId,
       });
@@ -140,11 +152,25 @@ export const MessagesId = () => {
 
   useEffect(() => {
     socket.on("mensaje", (payload) => {
-      if (payload.conversacionId === id) {
+      if (
+        payload.conversacionId === id &&
+        payload.estadoConversacion === true
+      ) {
         setNewData((prevData) => {
           return {
             ...prevData,
             mensajes: [...prevData.mensajes, payload.mensaje],
+          };
+        });
+      }
+      if (
+        payload.estadoConversacion === false &&
+        payload.conversacionId === id
+      ) {
+        setNewData((prevData) => {
+          return {
+            ...prevData,
+            estado: false,
           };
         });
       }
@@ -205,7 +231,7 @@ export const MessagesId = () => {
             <div className="d-flex justify-content-between mt-auto mb-2 mx-2">
               {user.userClass !== "admin" ? (
                 <>
-                  {data?.estado === true ? (
+                  {newData?.estado === true ? (
                     <ReportBtnStyle
                       variant="danger"
                       onClick={finalizarConversacion}
@@ -300,7 +326,7 @@ export const MessagesId = () => {
               </ListMessages>
             </div>
 
-            {data?.estado === true ? (
+            {newData?.estado === true ? (
               <div className="d-flex align-items-center border rounded p-1 m-3">
                 <FormTextStyle
                   size="sm"
