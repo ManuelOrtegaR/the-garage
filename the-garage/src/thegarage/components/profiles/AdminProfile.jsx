@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 
+import editImage from '../../../../assets/images/profile/editImage.svg';
 import { updateAdminProfile } from '../../../api/profile';
 import { getSession } from '../../../api/session';
 import { BtnSubmitStyled } from '../../../components';
@@ -104,8 +105,9 @@ export const AdminProfile = ({
                     hidden={!handelUpdate}
                   >
                     <Image
-                      src="../../../../assets/images/home/tecnologiesIcons/editImage.svg"
+                      src={editImage}
                       style={{ height: 25, width: 25 }}
+                      roundedCircle
                     />
                   </NavLinkProfile>
                 </div>
