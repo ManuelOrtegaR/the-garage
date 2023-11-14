@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import { z } from 'zod';
 import { ErrorMessage, Formik } from 'formik';
@@ -36,6 +36,8 @@ export const AdminProfile = ({
     ciudad: user.profileData.ciudad,
     correo: user.profileData.correo,
   };
+
+  const [profilePhoto, setProfilePhoto] = useState(user.profileData.url_foto);
 
   const fileInputRef = useRef(null);
 
@@ -77,7 +79,7 @@ export const AdminProfile = ({
               <Col className="d-flex col-12 col-md-2 mb-3 align-items-center justify-content-center">
                 <div className="position-relative">
                   <Image
-                    src={user.profileData.url_foto}
+                    src={profilePhoto}
                     style={{ height: 125, width: 125 }}
                     roundedCircle
                   />
@@ -91,6 +93,7 @@ export const AdminProfile = ({
                     accept=".jpg, .jpeg"
                     onChange={(e) => {
                       const file = e.target.files[0];
+                      setProfilePhoto(URL.createObjectURL(file));
                       setFieldValue('profile_photo', file);
                     }}
                   />
@@ -283,6 +286,7 @@ export const AdminProfile = ({
                   hidden={!handelUpdate}
                   disabled={isSubmitting}
                   onClick={() => {
+                    setProfilePhoto(user.profileData.url_foto);
                     setHandelUpdate(false);
                   }}
                 >
