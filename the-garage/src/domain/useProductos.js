@@ -1,38 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import {
   getProducts,
   getProductsFilter,
   getProductsSearch,
-} from "../api/products";
+} from '../api/products';
 import {
   generarQueryFiltros,
   objetoEstaVacio,
-} from "../thegarage/components/products/utils";
-import { useLocation, useNavigate } from "react-router-dom";
+} from '../thegarage/components/products/utils';
 
 export const useProductos = (
   page,
   searchValue,
   filtrosSeleccionadosAgrupados,
-  urlFilter
+  urlFilter,
 ) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [dataMeta, setDataMeta] = useState({});
   const [datosParaFiltros, setDatosParaFiltros] = useState([]);
   const navigate = useNavigate();
 
   async function cargarProductos() {
     setLoading(true);
-    setError("");
+    setError('');
     let response = null;
     let responseFiltros = null;
 
     try {
       //Aqui hare un if que compruebe si hay filtros en la url y haga la peticion correcta y actualice el navigate
       if (urlFilter && objetoEstaVacio(filtrosSeleccionadosAgrupados)) {
-        urlFilter = urlFilter.replace("?", "");
+        urlFilter = urlFilter.replace('?', '');
 
         navigate(`/productos?${urlFilter}`);
         response = await getProductsFilter(urlFilter, 10, page);
@@ -48,15 +49,15 @@ export const useProductos = (
         responseFiltros = await getProductsSearch(100, page, searchValue);
         if (!objetoEstaVacio(filtrosSeleccionadosAgrupados)) {
           const filterquery = generarQueryFiltros(
-            filtrosSeleccionadosAgrupados
+            filtrosSeleccionadosAgrupados,
           );
           navigate(
-            `/productos?${filterquery}&limit=10&offset=${page}&search=${searchValue}`
+            `/productos?${filterquery}&limit=10&offset=${page}&search=${searchValue}`,
           );
           response = await getProductsFilter(
             `${filterquery}&search=${searchValue}`,
             10,
-            page
+            page,
           );
         }
       } else if (!objetoEstaVacio(filtrosSeleccionadosAgrupados)) {

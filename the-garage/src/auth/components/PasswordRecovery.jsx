@@ -1,7 +1,9 @@
-import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
-import { BtnSubmitStyled } from '../../components/StyledButtons';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import Form from 'react-bootstrap/Form';
+
+import { BtnSubmitStyled } from '../../components/StyledButtons';
 import { passwordRecovery, passwordReset } from '../../api/auth';
 import { TextPg } from './StyledsComponents';
 

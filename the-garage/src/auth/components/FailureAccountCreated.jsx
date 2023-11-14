@@ -1,6 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+
 import { BtnSubmitStyled } from '../../components';
 import { TextPg, TitlePg } from './StyledsComponents';
-import { useNavigate } from 'react-router-dom';
 
 export const FailureAccountCreated = (error) => {
   const message = error.message || 'Error de conexión con el servidor';

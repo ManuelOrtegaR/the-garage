@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { getCity, getDepartments } from '../api/localization';
 
 export const useAdressLocation = () => {

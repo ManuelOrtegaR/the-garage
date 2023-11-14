@@ -1,5 +1,6 @@
-import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+
+import styled from '@emotion/styled';
 
 export const BtnSubmitStyled = styled('button')(
   ({ theme, variant, fontSize, width }) => ({

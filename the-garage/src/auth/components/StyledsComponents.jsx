@@ -1,18 +1,8 @@
 import styled from '@emotion/styled';
-
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
-import background from './../../../assets/authIcons/AuthBgFull.png';
 
-// export const MainConteiner = styled("div")(({ theme }) => ({
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-//   height: "100vh",
-//   width: "100vw",
-//   flexDirection: "column",
-//   backgroundColor: theme.colors.mainColor,
-// }));
+import background from './../../../assets/images/auth/AuthBgFull.png';
 
 export const MainConteiner = styled('div')(({ ...props }) => ({
   display: 'flex',

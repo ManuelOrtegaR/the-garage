@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+
 import {
   getProductTop,
   getProducts,
   getProductsCompany,
-} from "../api/products";
+} from '../api/products';
 
 export const useProductsCompany = ({ user }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   async function cargarProductos() {
     setLoading(true);
-    setError("");
+    setError('');
 
     try {
-      if (user.userClass === "Administrador") {
+      if (user.userClass === 'Administrador') {
         const response = await getProducts(100, 0);
         setData(response.data);
       } else {
@@ -40,11 +40,11 @@ export const useProductsCompany = ({ user }) => {
 export const useProductosCompanyTop = ({ id_empresa }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   async function cargarProductos() {
     setLoading(true);
-    setError("");
+    setError('');
 
     try {
       if (id_empresa) {

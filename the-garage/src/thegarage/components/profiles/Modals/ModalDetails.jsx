@@ -1,10 +1,14 @@
 /* eslint-disable react/prop-types */
-import { Form, Modal, Spinner } from 'react-bootstrap';
-import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../../components';
+import { useState } from 'react';
+
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import Spinner from 'react-bootstrap/Spinner';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../../components';
 import { updateOrderStatus } from '../../../../api/orders';
-import { useState } from 'react';
 
 export function ModalDetails(props) {
   const [handleChange, setHandleChange] = useState('');

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import ClientSingUp from '../components/ClientSingUp';
 
+import ClientSingUp from '../components/ClientSingUp';
 import { MainConteiner, TitlePg } from '../components/StyledsComponents';
 
 export function SingUpClientPg() {

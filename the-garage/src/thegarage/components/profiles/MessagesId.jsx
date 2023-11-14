@@ -1,4 +1,19 @@
-import Image from "react-bootstrap/Image";
+/* eslint-disable no-unused-vars */
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import socket from '../../../socket';
+
+import { format } from 'date-fns';
+import Image from 'react-bootstrap/Image';
+import Alert from 'react-bootstrap/Alert';
+import Spinner from 'react-bootstrap/Spinner';
+
+import { createMessage } from '../../../api/message';
+import { AuthContext } from '../../../auth/context/AuthContext';
+import {
+  useConversacion,
+  useUpdateConversacion,
+} from '../../../domain/useConversacion';
 import {
   ButtonSentStyle,
   FinishBtnStyle,
@@ -6,19 +21,7 @@ import {
   ListMessages,
   ListMessagesItem,
   ReportBtnStyle,
-} from "./StylesComponentsProfiles";
-import { ModalReport } from "..";
-import { useContext, useEffect, useRef, useState } from "react";
-import { AuthContext } from "../../../auth/context/AuthContext";
-import { useNavigate, useParams } from "react-router-dom";
-import {
-  useConversacion,
-  useUpdateConversacion,
-} from "../../../domain/useConversacion";
-import { Alert, Spinner } from "react-bootstrap";
-import { createMessage } from "../../../api/message";
-import socket from "../../../socket";
-import { format } from "date-fns";
+} from './StylesComponentsProfiles';
 
 export const MessagesId = () => {
   const navigate = useNavigate();
@@ -42,36 +45,36 @@ export const MessagesId = () => {
 
   const finalizarConversacion = async () => {
     await updateConversacion(id, { estado: false });
-    socket.emit("mensaje", {
+    socket.emit('mensaje', {
       emailDestino:
-        user.userClass == "Empresa"
+        user.userClass == 'Empresa'
           ? data?.cliente.usuario.correo
           : data?.empresa.usuario.correo,
       estadoConversacion: false,
       conversacionId: id,
       recipientId:
-        user.userClass === "Cliente" ? data?.empresaId : data?.clienteId,
+        user.userClass === 'Cliente' ? data?.empresaId : data?.clienteId,
     });
-    navigate("/profile/messages", { replace: true });
+    navigate('/profile/messages', { replace: true });
   };
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
 
-    if (mensajeContenido !== "") {
+    if (mensajeContenido !== '') {
       const { response: mensaje } = await createMessage({
         mensaje: mensajeContenido,
         conversacionId: id,
       });
-      setMensajeContenido("");
+      setMensajeContenido('');
 
-      socket.emit("mensaje", {
+      socket.emit('mensaje', {
         emailDestino:
-          user.userClass == "Empresa"
+          user.userClass == 'Empresa'
             ? data?.cliente.usuario.correo
             : data?.empresa.usuario.correo,
         autor:
-          user.userClass === "Empresa"
+          user.userClass === 'Empresa'
             ? user.profileData.razon_social
             : user.profileData.nombre_completo,
 
@@ -81,44 +84,44 @@ export const MessagesId = () => {
         conversacionId: id,
         estadoConversacion: true,
         recipientId:
-          user.userClass === "Cliente" ? data?.empresaId : data?.clienteId,
+          user.userClass === 'Cliente' ? data?.empresaId : data?.clienteId,
       });
-      socket.emit("notificacion", {
+      socket.emit('notificacion', {
         orden: data?.orden_productos.no_orden,
         emailDestino:
-          user.userClass == "Empresa"
+          user.userClass == 'Empresa'
             ? data?.cliente.usuario.correo
             : data?.empresa.usuario.correo,
         autor:
-          user.userClass === "Empresa"
+          user.userClass === 'Empresa'
             ? user.profileData.razon_social
             : user.profileData.nombre_completo,
         foto: user.profileData.url_foto,
         mensaje: mensaje.data,
         conversacionId: id,
         recipientId:
-          user.userClass === "Cliente" ? data?.empresaId : data?.clienteId,
+          user.userClass === 'Cliente' ? data?.empresaId : data?.clienteId,
       });
     }
   };
 
-  const [mensajeContenido, setMensajeContenido] = useState("");
+  const [mensajeContenido, setMensajeContenido] = useState('');
 
   const handleKeyPress = async (event) => {
-    if (event.key === "Enter" && mensajeContenido !== "") {
+    if (event.key === 'Enter' && mensajeContenido !== '') {
       event.preventDefault();
       const { response: mensaje } = await createMessage({
         mensaje: mensajeContenido,
         conversacionId: id,
       });
-      setMensajeContenido("");
-      socket.emit("mensaje", {
+      setMensajeContenido('');
+      socket.emit('mensaje', {
         emailDestino:
-          user.userClass == "Empresa"
+          user.userClass == 'Empresa'
             ? data?.cliente.usuario.correo
             : data?.empresa.usuario.correo,
         autor:
-          user.userClass === "Empresa"
+          user.userClass === 'Empresa'
             ? user.profileData.razon_social
             : user.profileData.nombre_completo,
         foto: user.profileData.url_foto,
@@ -126,23 +129,23 @@ export const MessagesId = () => {
         conversacionId: id,
         estadoConversacion: true,
         recipientId:
-          user.userClass === "Cliente" ? data?.empresaId : data?.clienteId,
+          user.userClass === 'Cliente' ? data?.empresaId : data?.clienteId,
       });
-      socket.emit("notificacion", {
+      socket.emit('notificacion', {
         orden: data?.orden_productos.no_orden,
         emailDestino:
-          user.userClass == "Empresa"
+          user.userClass == 'Empresa'
             ? data?.cliente.usuario.correo
             : data?.empresa.usuario.correo,
         autor:
-          user.userClass === "Empresa"
+          user.userClass === 'Empresa'
             ? user.profileData.razon_social
             : user.profileData.nombre_completo,
         foto: user.profileData.url_foto,
         mensaje: mensaje.data,
         conversacionId: id,
         recipientId:
-          user.userClass === "Cliente" ? data?.empresaId : data?.clienteId,
+          user.userClass === 'Cliente' ? data?.empresaId : data?.clienteId,
       });
     }
   };
@@ -151,7 +154,7 @@ export const MessagesId = () => {
   };
 
   useEffect(() => {
-    socket.on("mensaje", (payload) => {
+    socket.on('mensaje', (payload) => {
       if (
         payload.conversacionId === id &&
         payload.estadoConversacion === true
@@ -177,7 +180,7 @@ export const MessagesId = () => {
     });
 
     return () => {
-      socket.off("mensaje");
+      socket.off('mensaje');
     };
   }, [id]);
 
@@ -210,26 +213,26 @@ export const MessagesId = () => {
               {error && <Alert variant="danger">{error}</Alert>}
               <Image
                 src={
-                  user.userClass === "Empresa"
+                  user.userClass === 'Empresa'
                     ? data?.cliente.usuario.url_foto
                     : data?.empresa.usuario.url_foto
                 }
-                style={{ height: 65, width: 65, borderRadius: "50%" }}
+                style={{ height: 65, width: 65, borderRadius: '50%' }}
               />
               <div className="text-start">
                 <span className="fs-5 fw-bold">
-                  {user.userClass === "Empresa" ? "Cliente" : "Empresa"}
+                  {user.userClass === 'Empresa' ? 'Cliente' : 'Empresa'}
                 </span>
                 {/* <p className="lh-1 mt-2">{data?.empresa?.razon_social}</p> */}
                 <p>
-                  {user.userClass === "Empresa"
+                  {user.userClass === 'Empresa'
                     ? data?.cliente?.nombre_completo
                     : data?.empresa?.razon_social}
                 </p>
               </div>
             </div>
             <div className="d-flex justify-content-between mt-auto mb-2 mx-2">
-              {user.userClass !== "admin" ? (
+              {user.userClass !== 'admin' ? (
                 <>
                   {newData?.estado === true ? (
                     <ReportBtnStyle
@@ -276,11 +279,11 @@ export const MessagesId = () => {
           </div>
           <div
             className="border rounded w-75 d-flex flex-column justify-content-between"
-            style={{ height: "445px" }}
+            style={{ height: '445px' }}
           >
             <div
               className="overflow-auto d-flex"
-              style={{ maxHeight: "360px" }}
+              style={{ maxHeight: '360px' }}
               ref={messagesContainerRef}
             >
               <ListMessages className="list-group">
@@ -295,24 +298,24 @@ export const MessagesId = () => {
                         <div key={message.id}>
                           <ListMessagesItem
                             className={
-                              (user.userClass === "Empresa" &&
+                              (user.userClass === 'Empresa' &&
                               message.empresaId !== null
-                                ? "user"
-                                : "") ||
-                              (user.userClass === "Cliente" &&
+                                ? 'user'
+                                : '') ||
+                              (user.userClass === 'Cliente' &&
                               message.clienteId !== null
-                                ? "user"
-                                : "")
+                                ? 'user'
+                                : '')
                             }
                           >
                             <span className="fw-bold ">
                               {message.clienteId !== null
                                 ? newData?.cliente.nombre_completo
                                 : newData?.empresa.razon_social}
-                              {" - "}
+                              {' - '}
                               {format(
                                 new Date(message.fecha_creacion),
-                                "dd/MM/yyyy HH:mm"
+                                'dd/MM/yyyy HH:mm',
                               )}
                             </span>
                             <p className="pt-2 lh-1 m-0 text-start">

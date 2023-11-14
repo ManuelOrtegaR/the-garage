@@ -1,4 +1,3 @@
-import { id } from "date-fns/locale";
 import { instance as http } from "../http";
 import { decodeProductOutput } from "./decoder";
 

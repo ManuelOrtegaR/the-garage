@@ -1,10 +1,14 @@
-import { instance as http } from "../http";
+import { instance as http } from '../http';
+import { decodeAllRatings, decodeRating, decodeRatingbyOrder } from './decoder';
 
 export const createRating = async (id, rating) => {
-  const { data, status } = await http.post(
+  const { data: response, status } = await http.post(
     `/productos/${id}/valoraciones/`,
-    rating
+    rating,
   );
+
+  const data = await decodeRating(response);
+
   return { data, status };
 };
 
@@ -12,17 +16,26 @@ export const getRatings = async (id) => {
   const body = {
     orderId: id,
   };
-  const { data } = await http.post(`/orden_productos/valoraciones`, body);
+  const { data: response } = await http.post(
+    `/orden_productos/valoraciones`,
+    body,
+  );
+
+  const data = await decodeRatingbyOrder(response);
+
   return data;
 };
 
 export const allRatings = async () => {
   try {
     const { data: response } = await http.get(
-      `/valoraciones?orderBy=fecha_creacion`
+      `/valoraciones?orderBy=fecha_creacion`,
     );
-    const data = response.data;
-    return { data, meta: response.meta };
+
+    const decode = await decodeAllRatings(response);
+
+    const data = decode.data;
+    return { data, meta: decode.meta };
   } catch (error) {
     return Promise.reject(error.message);
   }

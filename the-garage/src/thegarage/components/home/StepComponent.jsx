@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled from '@emotion/styled';
 
 export const StepComponent = ({ numb, text, img, color }) => {

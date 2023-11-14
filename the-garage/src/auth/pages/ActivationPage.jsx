@@ -1,13 +1,15 @@
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
+import Alert from 'react-bootstrap/Alert';
+import Spinner from 'react-bootstrap/Spinner';
+
 import {
   MainConteiner,
   TextPg,
   TitlePg,
 } from '../components/StyledsComponents';
-import { useEffect, useState } from 'react';
 import { activateAccount } from '../../api/auth';
-import Alert from 'react-bootstrap/Alert';
-import Spinner from 'react-bootstrap/Spinner';
 
 export const ActivationPage = () => {
   const params = useParams();

@@ -1,9 +1,11 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Col, Form, Row } from 'react-bootstrap';
+
 import { BtnSubmitStyled } from '../../components';
 import { TextPg, TitlePg } from '../components/StyledsComponents';
-import { useState } from 'react';
 import { reSendEmail } from '../../api/auth';
-import { useNavigate } from 'react-router-dom';
 
 export const SuccessAccountCreated = () => {
   const [resendEmail, setResendEmail] = useState(false);

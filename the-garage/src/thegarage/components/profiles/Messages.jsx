@@ -1,17 +1,20 @@
-import Image from "react-bootstrap/Image";
+/* eslint-disable no-unused-vars */
+import { useContext, useEffect, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+import Image from 'react-bootstrap/Image';
+import Alert from 'react-bootstrap/Alert';
+import Spinner from 'react-bootstrap/Spinner';
+
+import { AuthContext } from '../../../auth/context/AuthContext';
+import { BtnSubmitStyled } from '../../../components/StyledButtons';
+import { useConversaciones } from '../../../domain/useConversations';
+import { PaginationProfiles } from './PaginationProfiles';
 import {
   BtnStateStyle,
   ItemStyle,
   ListGroupStyle,
-} from "./StylesComponentsProfiles";
-import { useContext, useEffect, useState } from "react";
-
-import { PaginationProfiles } from "./PaginationProfiles";
-import { useNavigate } from "react-router-dom";
-import { useConversaciones } from "../../../domain/useConversations";
-import { Alert, Spinner } from "react-bootstrap";
-import { AuthContext } from "../../../auth/context/AuthContext";
-import { BtnSubmitStyled } from "../../../components/StyledButtons";
+} from './StylesComponentsProfiles';
 
 export const Messages = () => {
   const { data, loading, error } = useConversaciones();
@@ -22,7 +25,7 @@ export const Messages = () => {
 
   const lastIndex = currentPage * messagesBypage;
   const firstIndex = lastIndex - messagesBypage;
-  const [filtroSelected, setFiltroSelected] = useState("Todo");
+  const [filtroSelected, setFiltroSelected] = useState('Todo');
   const [filteredMensajes, setFilteredMensajes] = useState([]);
   const [noResults, setNoResults] = useState(false);
   const [resetFilters, setResetFilters] = useState(false);
@@ -33,11 +36,11 @@ export const Messages = () => {
     setFiltroSelected(valorSeleccionado);
 
     const filtered = data.filter((conversacion) => {
-      if (valorSeleccionado === "Todo") {
+      if (valorSeleccionado === 'Todo') {
         return conversacion;
-      } else if (valorSeleccionado === "1") {
+      } else if (valorSeleccionado === '1') {
         return conversacion.estado === true;
-      } else if (valorSeleccionado === "2") {
+      } else if (valorSeleccionado === '2') {
         return conversacion.estado === false;
       }
     });
@@ -50,7 +53,7 @@ export const Messages = () => {
 
   useEffect(() => {
     setFilteredMensajes([]);
-    setFiltroSelected("Todo");
+    setFiltroSelected('Todo');
     setResetFilters(false);
   }, [resetFilters]);
   return (
@@ -75,7 +78,7 @@ export const Messages = () => {
             </select>
           </div>
         </div>
-        <ListGroupStyle key={"a"}>
+        <ListGroupStyle key={'a'}>
           {data && data.length === 0 && <span>No hay Conversaciones</span>}
           {noResults ? (
             <div className="text-center mt-3 d-flex gap-3 ">
@@ -96,11 +99,11 @@ export const Messages = () => {
                   <ItemStyle className="border-bottom" key={message.id}>
                     <Image
                       src={
-                        user.userClass === "Cliente"
+                        user.userClass === 'Cliente'
                           ? message.empresa.usuario.url_foto
                           : message.cliente.usuario.url_foto
                       }
-                      style={{ height: 65, width: 65, borderRadius: "50%" }}
+                      style={{ height: 65, width: 65, borderRadius: '50%' }}
                     />
                     <span>Pedido N° {message.orden_productos.no_orden}</span>
                     <span>
@@ -109,22 +112,22 @@ export const Messages = () => {
                           <i className="bi bi-envelope-check"> Conversa con:</i>
                         ) : (
                           <i className="bi bi-envelope-dash-fill">
-                            {" "}
+                            {' '}
                             Chat Archivado
                           </i>
                         )}
                       </strong>
                     </span>
                     <span className="text-truncate col-5">
-                      {user.userClass === "Cliente"
+                      {user.userClass === 'Cliente'
                         ? message.empresa.razon_social
                         : message.cliente.nombre_completo}
                     </span>
                     <BtnStateStyle
-                      variant={message.estado === true ? "open" : "closed"}
+                      variant={message.estado === true ? 'open' : 'closed'}
                       onClick={() => viewMessage(`${message.id}`)}
                     >
-                      {message.estado === true ? "Abierto" : "Cerrado"}
+                      {message.estado === true ? 'Abierto' : 'Cerrado'}
                     </BtnStateStyle>
                   </ItemStyle>
                 </>
@@ -139,11 +142,11 @@ export const Messages = () => {
                   <ItemStyle className="border-bottom" key={message.id}>
                     <Image
                       src={
-                        user.userClass === "Cliente"
+                        user.userClass === 'Cliente'
                           ? message.empresa.usuario.url_foto
                           : message.cliente.usuario.url_foto
                       }
-                      style={{ height: 65, width: 65, borderRadius: "50%" }}
+                      style={{ height: 65, width: 65, borderRadius: '50%' }}
                     />
                     {/* <span className="col-2">{message.empresaId}</span> */}
                     <span>Pedido N° {message.orden_productos.no_orden}</span>
@@ -153,7 +156,7 @@ export const Messages = () => {
                           <i className="bi bi-envelope-check"> Conversa con:</i>
                         ) : (
                           <i className="bi bi-envelope-dash-fill">
-                            {" "}
+                            {' '}
                             Chat Archivado
                           </i>
                         )}
@@ -161,15 +164,15 @@ export const Messages = () => {
                     </span>
 
                     <span className="text-truncate col-5">
-                      {user.userClass === "Cliente"
+                      {user.userClass === 'Cliente'
                         ? message.empresa.razon_social
                         : message.cliente.nombre_completo}
                     </span>
                     <BtnStateStyle
-                      variant={message.estado === true ? "open" : "closed"}
+                      variant={message.estado === true ? 'open' : 'closed'}
                       onClick={() => viewMessage(`${message.id}`)}
                     >
-                      {message.estado === true ? "Abierto" : "Cerrado"}
+                      {message.estado === true ? 'Abierto' : 'Cerrado'}
                     </BtnStateStyle>
                   </ItemStyle>
                 </>

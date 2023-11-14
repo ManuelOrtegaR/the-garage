@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+
 import { getAllAccounts } from '../api/admin';
 
 export const useAccounts = () => {

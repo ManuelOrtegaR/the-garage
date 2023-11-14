@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { useState } from 'react';
-import { BtnSubmitStyled } from '../../components/StyledButtons';
-//import Button from "react-bootstrap/Button";
 import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from 'react-router-dom';
+
+import { BtnSubmitStyled } from '../../components/StyledButtons';
 import logo from '../../../assets/logos/logo-icono.png';
 
 function SingUpModal({ setShowModal }) {

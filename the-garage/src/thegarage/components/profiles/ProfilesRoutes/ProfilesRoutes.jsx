@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+
 import {
   Accounts,
   Details,
@@ -13,7 +15,6 @@ import {
   QuestionId,
 } from '../../profiles';
 import { ProductsForm } from '../../products';
-import { useContext } from 'react';
 import { AuthContext } from '../../../../auth/context/AuthContext';
 import { RequestsId } from '../RequestsId';
 

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from 'react';
 
-export const usePaginator = (totalData, itempage, initialPage, page) => {
+export const usePaginator = (totalData, itempage, initialPage) => {
   //pagina actual
   const [currentPage, setCurrentPage] = useState(initialPage);
   //totalPages
@@ -37,5 +37,6 @@ export const usePaginator = (totalData, itempage, initialPage, page) => {
     prevHandler,
     currentPage,
     setCurrentPage,
+    reset,
   };
 };

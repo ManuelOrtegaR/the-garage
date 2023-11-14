@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from 'react';
+
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 import Dropdown from 'react-bootstrap/Dropdown';
+
 import {
   AccountStatusStyle,
   ItemStyle,

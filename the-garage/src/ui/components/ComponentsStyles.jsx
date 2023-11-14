@@ -1,15 +1,16 @@
+import { NavLink } from 'react-router-dom';
+
 import styled from '@emotion/styled';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
-import { NavLink } from 'react-router-dom';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Navbar from 'react-bootstrap/Navbar';
 
 export const NavbarStyled = styled(Navbar)(({ theme }) => ({
   backgroundColor: theme.colors.mainColor,
 }));
 
-export const ContainerNavStyled = styled(Container)(({ theme }) => ({
+export const ContainerNavStyled = styled(Container)(() => ({
   gap: 30,
   maxWidth: '100%',
   display: 'flex',
@@ -47,7 +48,7 @@ export const NavLinkStyled = styled(NavLink)(({ ...props }) => ({
   },
 }));
 
-export const NavLinkStyledCompany = styled(NavLink)(({ theme, ...props }) => ({
+export const NavLinkStyledCompany = styled(NavLink)(({ theme }) => ({
   margin: '0 10px',
   color: theme.colors.mainColor,
   textDecoration: 'none',

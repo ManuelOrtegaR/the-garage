@@ -1,15 +1,17 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
+
 import { format } from 'date-fns';
+import Dropdown from 'react-bootstrap/Dropdown';
+
+import { updateOrderStatus } from '../../../api/orders';
+import { ModalDetails } from './Modals/ModalDetails';
 import {
   DateStyle,
   DeliveredStyle,
   OnTheWayStyle,
   ProcessingStyle,
 } from './StylesComponentsProfiles';
-import { updateOrderStatus } from '../../../api/orders';
-import { useState } from 'react';
-import { Dropdown } from 'react-bootstrap';
-import { ModalDetails } from './Modals/ModalDetails';
 
 export const ShippingStatus = ({ estados, id, userClass }) => {
   const [modalDetails, setModalDetails] = useState(false);

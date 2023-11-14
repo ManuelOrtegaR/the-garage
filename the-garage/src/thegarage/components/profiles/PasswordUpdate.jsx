@@ -1,12 +1,15 @@
-import { BtnSubmitStyled } from '../../../components';
-import Form from 'react-bootstrap/Form';
+/* eslint-disable no-unused-vars */
+import { useState } from 'react';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Formik, ErrorMessage } from 'formik';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { z } from 'zod';
+import { ErrorMessage, Formik } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import Form from 'react-bootstrap/Form';
+
 import { updatePassword } from '../../../api/profile';
-import { useState } from 'react';
+import { BtnSubmitStyled } from '../../../components';
 
 export const PasswordUpdate = () => {
   const [initialValues, setInitialValues] = useState({

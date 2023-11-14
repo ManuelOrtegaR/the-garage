@@ -1,6 +1,5 @@
-import { z } from "zod";
-//import { UserOutput } from "../users/types";
-//aqui debo importar el esquemas de la empresa sueña de ese producto que viene en el resutado de productos
+import { z } from 'zod';
+//aqui debo importar el esquemas de la empresa dueña de ese producto que viene en el resutado de productos
 
 export const ProductOuput = z
   .object({

@@ -1,10 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 
-export const StarRating = ({
-  width = '',
-  itemRating = 0,
-  disabled = false,
-}) => {
+export const StarRating = ({ itemRating = 0, disabled = false }) => {
   const [rating, setRating] = useState(itemRating);
   const [hover, setHover] = useState(0);
   return (

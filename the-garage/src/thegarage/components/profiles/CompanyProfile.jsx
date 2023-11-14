@@ -1,18 +1,20 @@
 /* eslint-disable react/prop-types */
-import Image from 'react-bootstrap/Image';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { z } from 'zod';
-import { NavLinkProfile, SpanForm } from './StylesComponentsProfiles';
-import { Formik, ErrorMessage } from 'formik';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { BtnSubmitStyled } from '../../../components';
-import { getSession } from '../../../api/session';
-import { updateCompanyProfile } from '../../../api/profile';
 import { useRef } from 'react';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { z } from 'zod';
+import { ErrorMessage, Formik } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+
+import { updateCompanyProfile } from '../../../api/profile';
+import { getSession } from '../../../api/session';
+import { BtnSubmitStyled } from '../../../components';
+import { NavLinkProfile, SpanForm } from './StylesComponentsProfiles';
 
 export const CompanyProfile = ({
   user,

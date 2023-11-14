@@ -1,15 +1,17 @@
-import { Form, Modal } from "react-bootstrap";
-import { BtnSubmitStyled } from "../../../../components";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useConversaciones } from "../../../../domain/useConversations";
-import { Navigate, useNavigate } from "react-router-dom";
-import { createMessage } from "../../../../api/message";
-import { useState } from "react";
-import { set } from "date-fns";
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { BtnSubmitStyled } from '../../../../components';
+import { useConversaciones } from '../../../../domain/useConversations';
+import { createMessage } from '../../../../api/message';
 
 export function ModalMessages(props) {
-  const [mensajeContenido, setMensajeContenido] = useState("");
+  const [mensajeContenido, setMensajeContenido] = useState('');
   const [error, setError] = useState(null);
   const {
     actions: { create },
@@ -37,9 +39,9 @@ export function ModalMessages(props) {
       }
 
       if (conversacion) {
-        navigate("/profile/messages", { replace: true });
+        navigate('/profile/messages', { replace: true });
       } else {
-        navigate("/profile/messages", { replace: true });
+        navigate('/profile/messages', { replace: true });
       }
     } catch (error) {
       setError(error);
@@ -54,7 +56,7 @@ export function ModalMessages(props) {
       <Modal.Body>
         <Form>
           {error && (
-            <span>{"Tienes un chat activo, dirigete a tus mensajes"}</span>
+            <span>{'Tienes un chat activo, dirigete a tus mensajes'}</span>
           )}
 
           {!error && (
@@ -69,16 +71,6 @@ export function ModalMessages(props) {
               />
             </Form.Group>
           )}
-          {/* <Form.Group className="d-flex mb-3 align-items-center">
-            <Form.Control
-              className="ms-3"
-              as="textarea"
-              rows={3}
-              placeholder="Escribe tu mensaje aquí"
-              value={mensajeContenido}
-              onChange={handleInputChange}
-            />
-          </Form.Group> */}
         </Form>
       </Modal.Body>
       <Modal.Footer className="bg-secondary-subtle">

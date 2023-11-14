@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { FooterComponent, NavComponent } from '../../ui/pages';
 
+import { FooterComponent, NavComponent } from '../../ui/pages';
 import {
   Contact,
   Home,
@@ -12,7 +13,6 @@ import {
   PurchaseDetails,
 } from '../pages';
 import { ProtectedRoute } from '../../auth/context';
-import { useState } from 'react';
 
 export const TheGarageRoutes = () => {
   const [handleSection, setHandleSection] = useState('home');

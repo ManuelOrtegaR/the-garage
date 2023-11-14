@@ -1,7 +1,14 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
+
 import { format } from 'date-fns';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+
 import { useQuestion } from '../../../domain/useQuestion';
 import { sendResponse } from '../../../api/contact';
 

@@ -1,10 +1,12 @@
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 import { StepComponent } from './StepComponent';
 import { SubTitleStyled, TextStyled } from './ComponentsStyles';
-import rueda from '../../../../assets/images/home/rueda.png';
-import engrane from '../../../../assets/images/home/engrane.png';
-import taller from '../../../../assets/images/home/taller.png';
-import herramientas from '../../../../assets/images/home/herramientas.png';
-import { Col, Row } from 'react-bootstrap';
+import rueda from '../../../../assets/images/home/icons/rueda.png';
+import engrane from '../../../../assets/images/home/icons/engrane.png';
+import taller from '../../../../assets/images/home/icons/taller.png';
+import herramientas from '../../../../assets/images/home/icons/herramientas.png';
 
 const step1 = 'Busca el producto deseado y agregalo al carrito';
 const step2 = '¡Realiza la compra!';

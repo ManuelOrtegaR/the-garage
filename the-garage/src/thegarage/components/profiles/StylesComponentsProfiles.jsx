@@ -1,13 +1,12 @@
-import styled from '@emotion/styled';
-import {
-  Button,
-  DropdownButton,
-  Form,
-  ListGroup,
-  Pagination,
-  Table,
-} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+
+import styled from '@emotion/styled';
+import Button from 'react-bootstrap/Button';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Form from 'react-bootstrap/Form';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Pagination from 'react-bootstrap/Pagination';
+import Table from 'react-bootstrap/Table';
 
 export const NavLinkStyled = styled(NavLink)(({ theme }) => ({
   display: 'block',
