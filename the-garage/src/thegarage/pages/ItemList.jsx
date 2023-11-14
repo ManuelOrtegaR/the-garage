@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Alert from 'react-bootstrap/Alert';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -30,6 +32,19 @@ export function ItemList() {
   const location = useLocation();
 
   const { search: urlFilter } = location;
+
+  function showToast() {
+    toast.success('Producto agregado al carrito', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+  }
 
   function cambiarPagina(newPage) {
     setPage(newPage);
@@ -111,10 +126,18 @@ export function ItemList() {
 
                 {searchValue
                   ? dataSearch.map((element) => (
-                      <Item key={element.id} item={element} />
+                      <Item
+                        key={element.id}
+                        item={element}
+                        showToast={showToast}
+                      />
                     ))
                   : dataFiltered.map((element) => (
-                      <Item key={element.id} item={element} />
+                      <Item
+                        key={element.id}
+                        item={element}
+                        showToast={showToast}
+                      />
                     ))}
               </>
             )}
@@ -129,6 +152,7 @@ export function ItemList() {
           />
         </Col>
       </RowItemStyled>
+      <ToastContainer />
     </Container>
   );
 }

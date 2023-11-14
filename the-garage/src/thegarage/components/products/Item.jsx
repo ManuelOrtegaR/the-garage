@@ -3,8 +3,6 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Card from 'react-bootstrap/Card';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import {
   AlertWarningStyled,
@@ -22,7 +20,7 @@ import { AuthContext } from '../../../auth/context/AuthContext';
 import { medianaValoraciones } from './utils';
 import { useCart } from '../../store';
 
-export function Item({ item }) {
+export function Item({ item, showToast }) {
   const { user } = useContext(AuthContext);
   const { dispatch } = useCart();
 
@@ -37,16 +35,7 @@ export function Item({ item }) {
   function handleClickSuceess(item) {
     if (user) {
       dispatch({ type: 'ADD_TO_CART', payload: { item, cant: 1 } });
-      toast.success('Producto agregado al carrito', {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      showToast();
     } else navigate('/login');
   }
 
@@ -113,19 +102,6 @@ export function Item({ item }) {
               >
                 {item.estatus ? 'Agregar al carrito' : 'No disponible'}
               </BtnSubmitStyled>
-
-              <ToastContainer
-                position="top-center"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-              />
 
               <BtnDangerSubmitStyled
                 onClick={() => {
