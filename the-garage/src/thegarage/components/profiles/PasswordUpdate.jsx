@@ -1,12 +1,15 @@
-import { BtnSubmitStyled } from '../../../components';
-import Form from 'react-bootstrap/Form';
+/* eslint-disable no-unused-vars */
+import { useState } from 'react';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Formik, ErrorMessage } from 'formik';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { z } from 'zod';
+import { ErrorMessage, Formik } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import Form from 'react-bootstrap/Form';
+
 import { updatePassword } from '../../../api/profile';
-import { useState } from 'react';
+import { BtnSubmitStyled } from '../../../components';
 
 export const PasswordUpdate = () => {
   const [initialValues, setInitialValues] = useState({
@@ -49,14 +52,23 @@ export const PasswordUpdate = () => {
   const changePasswordSchema = z
     .object({
       password: z
-        .string({ required_error: 'La contraseña es requerida' })
-        .min(6, 'La contraseña debe tener mínimo 6 caracteres'),
+        .string({
+          required_error: 'La contraseña es requerida',
+        })
+        .min(8, 'La contraseña debe tener mínimo 8 caracteres')
+        .max(16, 'La contraseña debe tener máximo 16 caracteres'),
       newPassword: z
-        .string({ required_error: 'La nueva contraseña es requerida' })
-        .min(6, 'La contraseña debe tener mínimo 6 caracteres'),
+        .string({
+          required_error: 'La nueva contraseña es requerida',
+        })
+        .min(8, 'La nueva contraseña debe tener mínimo 8 caracteres')
+        .max(16, 'La nueva contraseña debe tener máximo 16 caracteres'),
       confirmNewPassword: z
-        .string({ required_error: 'La confirmación es requerida' })
-        .min(6, 'La contraseña debe tener mínimo 6 caracteres'),
+        .string({
+          required_error: 'La confirmación de contraseña es requerida',
+        })
+        .min(8, 'La nueva contraseña debe tener mínimo 8 caracteres')
+        .max(16, 'La nueva contraseña debe tener máximo 16 caracteres'),
     })
     .refine((data) => data.newPassword === data.confirmNewPassword, {
       message: 'Las contraseñas no coinciden',
@@ -121,6 +133,10 @@ export const PasswordUpdate = () => {
                 component="div"
                 className="invalid-feedback"
               />
+              <Form.Text className="text-muted">
+                La contraseña debe contener almenos una mayúscula, una minúscula
+                y un número.
+              </Form.Text>
             </Form.Group>
             <Form.Group
               className="mb-3 w-100"

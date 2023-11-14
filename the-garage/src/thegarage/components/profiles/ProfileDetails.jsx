@@ -1,9 +1,10 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
+
 import { AuthContext } from '../../../auth/context/AuthContext';
 import { useAdressLocation } from '../../../domain/useAddressLocation';
+import { AdminProfile } from './AdminProfile';
 import { ClientProfile } from './ClientProfile';
 import { CompanyProfile } from './CompanyProfile';
-import { AdminProfile } from './AdminProfile';
 
 export const ProfileDetails = () => {
   const { user, login } = useContext(AuthContext);

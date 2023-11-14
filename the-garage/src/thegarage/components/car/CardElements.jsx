@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
-
 import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 import { CardElementStyle } from './StylesComponentsCar';
 import { ButtonStyledSuccess } from '../products';
-import { Col, Row } from 'react-bootstrap';
 
 const CardElements = ({ carElements, dispatch }) => {
   const deleteElement = (cardElement) => {
     dispatch({ type: 'REMOVE_FROM_CART', payload: cardElement });
   };
-  //className="d-flex justify-content-between mb-3"
   return (
     <CardElementStyle className="mb-3 element-list">
       <Card.Body>

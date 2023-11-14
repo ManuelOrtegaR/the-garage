@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { getCompanys } from "../api/company";
-import { set } from "date-fns";
+import { useEffect, useState } from 'react';
+
+import { getCompanys } from '../api/company';
 
 export const useCompanys = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const cargarEmpresas = async () => {
     setLoading(true);
-    setError("");
+    setError('');
 
     try {
       const response = await getCompanys();

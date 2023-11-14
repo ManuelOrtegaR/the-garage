@@ -1,14 +1,15 @@
-import { Formik, ErrorMessage } from 'formik';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { z } from 'zod';
+import { useNavigate } from 'react-router-dom';
 
-import Form from 'react-bootstrap/Form';
+import { z } from 'zod';
+import { ErrorMessage, Formik } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
 import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner';
-import { BtnSubmitStyled } from '../../components/StyledButtons';
+
 import { signUp } from '../../api/auth';
-import { useNavigate } from 'react-router-dom';
+import { BtnSubmitStyled } from '../../components/StyledButtons';
 import { useAdressLocation } from '../../domain/useAddressLocation';
 
 const companySignUpSchema = z
@@ -111,6 +112,7 @@ function CompanySingUp() {
   };
 
   const onClientSignUp = async (formData) => {
+    // eslint-disable-next-line no-unused-vars
     const { cpassword, ...data } = formData;
     const response = await signUp(data, 'empresa');
     navigate('/confirmacion', { state: response });
@@ -526,7 +528,7 @@ function CompanySingUp() {
             <div className="d-flex justify-content-center">
               <BtnSubmitStyled type="submit" disabled={isSubmitting}>
                 {!isSubmitting ? (
-                  'Registrate'
+                  'Regístrate'
                 ) : (
                   <Spinner
                     as="span"

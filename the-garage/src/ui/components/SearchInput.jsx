@@ -1,8 +1,10 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import buscar from '../../../assets/images/home/buscar.svg';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+
+import buscar from '../../../assets/images/nav/buscar.svg';
 
 export const SearchInput = () => {
   const navigate = useNavigate();

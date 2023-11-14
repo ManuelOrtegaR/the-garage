@@ -1,6 +1,8 @@
-import styled from '@emotion/styled';
-import logoTextW from '../../../assets/logos/logoTextW.png';
 import { NavLink } from 'react-router-dom';
+
+import styled from '@emotion/styled';
+
+import logoTextW from '../../../assets/logos/logoTextW.png';
 
 export const NavLogo = () => {
   return (

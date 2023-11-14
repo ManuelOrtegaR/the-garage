@@ -1,16 +1,19 @@
+/* eslint-disable no-unused-vars */
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { format } from 'date-fns';
+import Alert from 'react-bootstrap/Alert';
+import Form from 'react-bootstrap/Form';
+
+import { useQuestions } from '../../../domain/useQuestions';
+import { PaginationProfiles } from './PaginationProfiles';
 import {
   ItemStyle,
   ListGroupStyle,
   ShowOrder,
   StatusStyle,
 } from './StylesComponentsProfiles';
-import Form from 'react-bootstrap/Form';
-import Alert from 'react-bootstrap/Alert';
-import { PaginationProfiles } from './PaginationProfiles';
-import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useQuestions } from '../../../domain/useQuestions';
 
 export const Questions = () => {
   const navigate = useNavigate();
@@ -63,6 +66,24 @@ export const Questions = () => {
 
   const totalQuestions = data?.length;
 
+  const [filtroSelected, setFiltroSelected] = useState('Todo');
+
+  const handleFiltro = (e) => {
+    const valorSeleccionado = e.target.value;
+    setFiltroSelected(valorSeleccionado);
+
+    const filtered = initialData.current.filter((question) => {
+      if (valorSeleccionado === 'Todo') {
+        return question;
+      } else if (valorSeleccionado === '1') {
+        return question.estado_consulta === 'pendiente';
+      } else if (valorSeleccionado === '2') {
+        return question.estado_consulta === 'resuelto';
+      }
+    });
+    setData(filtered);
+  };
+
   return (
     <div className="w-75 m-auto">
       <span className="fw-bold">Consultas</span>
@@ -70,12 +91,25 @@ export const Questions = () => {
       <div className="d-flex justify-content-between my-3">
         <Form.Control
           type="search"
-          placeholder="Buscar Por Nombre"
+          placeholder="Buscar por email"
           className="me-2 w-50"
           aria-label="Search"
           value={searchValue}
           onChange={onSearchChange}
         />
+        <div className="d-flex text-nowrap align-items-center">
+          <span>Filtrar por: </span>
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            value={filtroSelected}
+            onChange={handleFiltro}
+          >
+            <option selected>Todo</option>
+            <option value="1">Pendientes</option>
+            <option value="2">Resueltos</option>
+          </select>
+        </div>
       </div>
       <ListGroupStyle>
         {isLoading && <div>Loading...</div>}

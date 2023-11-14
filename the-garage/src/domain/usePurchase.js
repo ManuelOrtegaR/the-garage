@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { getPurchaseDetails } from '../api/orders';
 import { useLocation } from 'react-router-dom';
+
+import { getPurchaseDetails } from '../api/orders';
 
 export const usePurchase = () => {
   const location = useLocation();

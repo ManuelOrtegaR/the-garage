@@ -66,7 +66,7 @@ export const CardTitleStyle = styled(Card.Title)(({ theme }) => ({
   borderBottom: `solid 1px ${theme.colors.gray200}`,
 }));
 
-export const CardAvalaibleStyle = styled(Card.Text)(({ theme }) => ({
+export const CardAvalaibleStyle = styled(Card.Text)(() => ({
   fontSize: '12px',
 }));
 
@@ -79,14 +79,14 @@ export const ContainerBreadcumStyled = styled('div')(({ theme }) => ({
   },
 }));
 
-export const ContainerBadgeStyled = styled('div')(({ theme }) => ({
+export const ContainerBadgeStyled = styled('div')(() => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'flex-end',
   gap: 3,
 }));
 
-export const Badgestyled = styled(Badge)(({ theme }) => ({
+export const Badgestyled = styled(Badge)(() => ({
   color: 'white',
 }));
 
@@ -153,19 +153,19 @@ export const IconStyled = styled(Navbar.Brand)(() => ({
 }));
 
 export const IconStyledNot = styled(Navbar.Brand)(() => ({
-  color: "#FF0000",
-  "&:hover": {
-    color: "#ECA206",
+  color: '#FF0000',
+  '&:hover': {
+    color: '#ECA206',
   },
 }));
 
 export const ButtonNotification = styled(Button)(({ theme }) => ({
   color: theme.colors.mainColor,
-  background: "transparent",
+  background: 'transparent',
   borderColor: theme.colors.mainColor,
-  "&:hover": {
+  '&:hover': {
     background: theme.colors.mainColor,
-    color: "white",
+    color: 'white',
   },
 }));
 

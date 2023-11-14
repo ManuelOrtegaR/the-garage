@@ -1,19 +1,20 @@
 /* eslint-disable react/prop-types */
-import { Button, Card, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+
 import { BtnDangerSubmitStyled, BtnSubmitStyled } from '../../../components';
 import {
-  AlertStyled,
   ButtonCountStyled,
-  CardStoreDescriptionStyle,
   CardStoreStyle,
   IconStyled,
 } from './StyledsComponentsProducts';
-import { useNavigate } from 'react-router-dom';
 import { useCounter } from '../../../hooks/useCounter';
 import { promedioValoraciones } from './utils';
 import { useCart } from '../../store';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export const CardProduct_store = ({ item }) => {
   const { dispatch } = useCart();

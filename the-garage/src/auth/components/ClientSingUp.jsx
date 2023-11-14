@@ -1,12 +1,14 @@
-import Form from 'react-bootstrap/Form';
-import Spinner from 'react-bootstrap/Spinner';
+import { useNavigate } from 'react-router-dom';
+
+import { z } from 'zod';
 import { Formik, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { z } from 'zod';
-import { BtnSubmitStyled } from '../../components/StyledButtons';
-import { signUp } from '../../api/auth';
-import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
+
 import { useAdressLocation } from '../../domain/useAddressLocation';
+import { signUp } from '../../api/auth';
+import { BtnSubmitStyled } from '../../components/StyledButtons';
 
 const clientSignUpSchema = z
   .object({
@@ -77,6 +79,7 @@ function ClientSingUp() {
   };
 
   const onClientSignUp = async (formData) => {
+    // eslint-disable-next-line no-unused-vars
     const { cpassword, ...data } = formData;
     const response = await signUp(data, 'cliente');
     navigate('/confirmacion', { state: response });
@@ -255,7 +258,7 @@ function ClientSingUp() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPhone">
-              <Form.Label>Ingrese su telefono</Form.Label>
+              <Form.Label>Ingrese su teléfono</Form.Label>
               <Form.Control
                 type="texto"
                 placeholder="Ingrese su número de teléfono"
@@ -343,7 +346,7 @@ function ClientSingUp() {
                 className="w-100 p-2"
               >
                 {!isSubmitting ? (
-                  'Registrate'
+                  'Regístrate'
                 ) : (
                   <Spinner
                     as="span"

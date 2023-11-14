@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import Card from 'react-bootstrap/Card';
+
 import { BtnSubmitStyled } from '../../../components';
 import { CardChekoutStyle } from './StylesComponentsCar';
-
 import { createOrdenProducts } from '../../../api/Car';
 
 const CarCheckout = ({ cart, total, id_empresa, dispatch }) => {

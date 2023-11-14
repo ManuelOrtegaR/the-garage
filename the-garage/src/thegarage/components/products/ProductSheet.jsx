@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { Accordion, Image } from 'react-bootstrap';
+import Accordion from 'react-bootstrap/Accordion';
+import Image from 'react-bootstrap/Image';
+
 import {
   AccordionStyle,
   ColumnSheetStyle,

@@ -1,7 +1,9 @@
+import Alert from 'react-bootstrap/Alert';
+import Spinner from 'react-bootstrap/Spinner';
+
 import { SubTitleStyled, TextStyled } from './ComponentsStyles';
 import { IconContainer } from '../../../ui/components/ComponentsStyles';
 import { useCompanys } from '../../../domain/useEmpresas';
-import { Alert, Spinner } from 'react-bootstrap';
 
 export const OurCompanys = () => {
   const { data, loading, error } = useCompanys();

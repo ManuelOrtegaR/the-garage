@@ -1,5 +1,6 @@
-import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+
+import styled from '@emotion/styled';
 import Carousel from 'react-bootstrap/Carousel';
 
 export const SubTitleStyled = styled('h2')(({ theme, ...props }) => ({

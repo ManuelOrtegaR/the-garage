@@ -1,16 +1,20 @@
+/* eslint-disable no-unused-vars */
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
+
+import { AuthContext } from '../../../auth/context/AuthContext';
+import { useOrders } from '../../../domain/useOrders';
+import { PaginationProfiles } from './PaginationProfiles';
 import {
   ItemStyle,
   ListGroupStyle,
   ShowOrder,
   StatusStyle,
 } from './StylesComponentsProfiles';
-import { useContext, useEffect, useRef, useState } from 'react';
-import { PaginationProfiles } from './PaginationProfiles';
-import { useNavigate } from 'react-router-dom';
-import { useOrders } from '../../../domain/useOrders';
-import { AuthContext } from '../../../auth/context/AuthContext';
-import { Col, Row } from 'react-bootstrap';
 
 export const Orders = () => {
   const navigate = useNavigate();

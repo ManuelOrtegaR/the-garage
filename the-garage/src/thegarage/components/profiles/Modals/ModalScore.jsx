@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
-import { Form, Modal } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 import Image from 'react-bootstrap/Image';
+
 import { BtnSubmitStyled } from '../../../../components';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { StarRating } from '../../home';
 import { createRating } from '../../../../api/rating';
 import { useState } from 'react';
 import { useRatings } from '../../../../domain/useRatings';
 
 export function ModalScore(props) {
-  const { data: response } = useRatings(props.items, props.id);
+  useRatings(props.items, props.id);
   const [items, setItems] = useState(props.items);
 
   const onRating = async (event, id, index) => {

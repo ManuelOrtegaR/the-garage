@@ -1,18 +1,20 @@
 /* eslint-disable react/prop-types */
-import Image from 'react-bootstrap/Image';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { z } from 'zod';
-import { NavLinkProfile, SpanForm } from './StylesComponentsProfiles';
-import { Formik, ErrorMessage } from 'formik';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { BtnSubmitStyled } from '../../../components';
-import { getSession } from '../../../api/session';
-import { updateCompanyProfile } from '../../../api/profile';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { z } from 'zod';
+import { ErrorMessage, Formik } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+
+import { updateCompanyProfile } from '../../../api/profile';
+import { getSession } from '../../../api/session';
+import { BtnSubmitStyled } from '../../../components';
+import { NavLinkProfile, SpanForm } from './StylesComponentsProfiles';
 
 export const CompanyProfile = ({
   user,
@@ -44,6 +46,8 @@ export const CompanyProfile = ({
     correo: user.profileData.correo,
     telefono: user.profileData.telefono,
   };
+
+  const [profilePhoto, setProfilePhoto] = useState(user.profileData.url_foto);
 
   const fileInputRef = useRef(null);
 
@@ -110,7 +114,7 @@ export const CompanyProfile = ({
               <Col className="d-flex col-12 col-md-2 mb-3 align-items-center justify-content-center">
                 <div className="position-relative">
                   <Image
-                    src={user.profileData.url_foto}
+                    src={profilePhoto}
                     style={{ height: 125, width: 125 }}
                     roundedCircle
                   />
@@ -124,6 +128,7 @@ export const CompanyProfile = ({
                     accept=".jpg, .jpeg"
                     onChange={(e) => {
                       const file = e.target.files[0];
+                      setProfilePhoto(URL.createObjectURL(file));
                       setFieldValue('profile_photo', file);
                     }}
                   />
@@ -461,6 +466,7 @@ export const CompanyProfile = ({
                   hidden={!handelUpdate}
                   disabled={isSubmitting}
                   onClick={() => {
+                    setProfilePhoto(user.profileData.url_foto);
                     setHandelUpdate(false);
                   }}
                 >

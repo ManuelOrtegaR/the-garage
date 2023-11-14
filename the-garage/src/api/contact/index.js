@@ -1,4 +1,9 @@
 import { instance as http } from '../http';
+import {
+  decodeAllQuestion,
+  decodeCreateQuestion,
+  decodeQuestionId,
+} from './decoder';
 
 export const sendQuestion = async ({ nombre, correo, mensaje }) => {
   const body = {
@@ -8,12 +13,17 @@ export const sendQuestion = async ({ nombre, correo, mensaje }) => {
   };
   const { data: response } = await http.post('/consultas', body);
 
-  return response;
+  const data = await decodeCreateQuestion(response);
+
+  return data;
 };
 
 export const getQuestions = async () => {
   try {
-    const { data } = await http.get('/consultas');
+    const { data: response } = await http.get('/consultas');
+
+    const data = await decodeAllQuestion(response);
+
     return data;
   } catch (error) {
     return Promise.reject(error.message);
@@ -22,7 +32,10 @@ export const getQuestions = async () => {
 
 export const getQuestionById = async ({ id }) => {
   try {
-    const { data } = await http.get(`/consultas/${id}`);
+    const { data: response } = await http.get(`/consultas/${id}`);
+
+    const data = await decodeQuestionId(response);
+
     return data;
   } catch (error) {
     return Promise.reject(error.message);
@@ -35,5 +48,7 @@ export const sendResponse = async ({ id, respuesta }) => {
   };
   const { data: response } = await http.put(`/consultas/${id}`, body);
 
-  return response;
+  const data = await decodeQuestionId(response);
+
+  return data;
 };

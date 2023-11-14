@@ -1,20 +1,16 @@
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Form,
-  Button,
-  Stack,
-  Navbar,
-} from "react-bootstrap";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+import Stack from 'react-bootstrap/Stack';
+
 import {
   ButtonStyledDetail,
   ButtonStyledSuccess,
   MessageBrandStyled,
-  MessageDivStyled,
   MessageNavbarStyled,
-} from "../components";
+} from '../components';
 
 export const Chat = () => {
   return (
@@ -65,7 +61,7 @@ export const Chat = () => {
               />
               <Card>
                 <Card.Header className="d-flex justify-content-between ">
-                  <p className="fw-bold">{"Usuario Prueba"}</p>
+                  <p className="fw-bold">{'Usuario Prueba'}</p>
                 </Card.Header>
                 <Card.Body>
                   <p>
@@ -79,7 +75,7 @@ export const Chat = () => {
             <div className=" d-flex justify-content-between mb-3">
               <Card>
                 <Card.Header className="d-flex justify-content-between ">
-                  <p className="fw-bold">{"Usuario Prueba"}</p>
+                  <p className="fw-bold">{'Usuario Prueba'}</p>
                 </Card.Header>
                 <Card.Body>
                   <p>
@@ -103,7 +99,7 @@ export const Chat = () => {
               />
               <Card>
                 <Card.Header className="d-flex justify-content-between ">
-                  <p className="fw-bold">{"Usuario Prueba"}</p>
+                  <p className="fw-bold">{'Usuario Prueba'}</p>
                 </Card.Header>
                 <Card.Body>
                   <p>

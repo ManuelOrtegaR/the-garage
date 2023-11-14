@@ -1,4 +1,7 @@
-import { Alert, Carousel, Spinner } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
+import Carousel from 'react-bootstrap/Carousel';
+import Spinner from 'react-bootstrap/Spinner';
+
 import { CarouselStyled, SubTitleStyled } from './ComponentsStyles';
 import { ReviewCard } from './ReviewCard';
 import { useAllRatings } from '../../../domain/useRatings';

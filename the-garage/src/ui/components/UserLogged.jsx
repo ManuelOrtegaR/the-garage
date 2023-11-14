@@ -1,11 +1,16 @@
 /* eslint-disable react/prop-types */
-import { NavLinkStyled, IconContainer } from './ComponentsStyles';
-import basketIcon from '../../../assets/images/nav/basketIconW.svg';
-import { useNavigate } from 'react-router-dom';
-import { Badge, Dropdown, Col, Row } from 'react-bootstrap';
-import { useCart } from '../../thegarage/store';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import socket from '../../../src/socket';
+
+import Badge from 'react-bootstrap/Badge';
+import Col from 'react-bootstrap/Col';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Row from 'react-bootstrap/Row';
+
+import basketIcon from '../../../assets/images/nav/basketIconW.svg';
+import { useCart } from '../../thegarage/store';
+import { IconContainer, NavLinkStyled } from './ComponentsStyles';
 
 export const UserLogged = ({ user }) => {
   const { state } = useCart();

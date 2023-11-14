@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { getCompanies } from '../api/admin';
 
 export const useCompanyApprove = () => {

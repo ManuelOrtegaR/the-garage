@@ -1,7 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useReducer, useEffect } from 'react';
-import { Breadcrumb } from 'react-bootstrap';
-import { ContainerBreadcumStyled } from './StyledsComponentsProducts';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+
+import { ContainerBreadcumStyled } from './StyledsComponentsProducts';
 import { historyReducer } from './reducers/BreadCrumbReducer';
 import { types } from './reducers/types';
 

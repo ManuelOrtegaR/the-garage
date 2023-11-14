@@ -1,4 +1,6 @@
-import { useEffect, useReducer, useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useReducer, useState } from 'react';
+
 import { AuthContext } from './AuthContext';
 import { authReducer } from './authReducer';
 import { types } from '../types/types';
@@ -14,7 +16,7 @@ const init = () => {
 
 export const AuthProvider = ({ children }) => {
   const [carElements, setCarElements] = useState([]);
-  const addCarElement = (item, cant) => {
+  const addCarElement = (item) => {
     setCarElements([item, ...carElements]);
   };
 

@@ -1,21 +1,22 @@
-import SingUpModal from '../components/SingUpModal';
-import Alert from 'react-bootstrap/Alert';
 import { useContext, useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+
+import { z } from 'zod';
+import { Formik, ErrorMessage } from 'formik';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import SingUpModal from '../components/SingUpModal';
 import {
   MainConteiner,
   TitlePg,
   ButtonStyled,
 } from '../components/StyledsComponents';
-import Form from 'react-bootstrap/Form';
-import Spinner from 'react-bootstrap/Spinner';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Formik, ErrorMessage } from 'formik';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { z } from 'zod';
 import { AuthContext } from '../context/AuthContext';
 import { signIn } from '../../api/auth';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const emailRqd = z.string({
   required_error: 'El correo es requerido',
@@ -172,7 +173,7 @@ export function Login() {
               <div className="d-flex gap-1 mt-3 justify-content-center">
                 <label>¿No tienes un usuario?</label>
                 <NavLink onClick={handleShow} data-cy="signup">
-                  Registrate
+                  Regístrate
                 </NavLink>
               </div>
             </Form>
@@ -191,7 +192,7 @@ export function Login() {
           theme="light"
         />
       </div>
-      {showModal ? <SingUpModal /> : <></>}
+      {showModal ? <SingUpModal setShowModal={setShowModal} /> : <></>}
     </MainConteiner>
   );
 }

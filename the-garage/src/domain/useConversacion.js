@@ -1,11 +1,13 @@
-import useSWR from "swr";
-import { getConversacion, update } from "../api/conversacion";
-import { useEffect, useState } from "react";
+import { useState } from 'react';
+
+import useSWR from 'swr';
+
+import { getConversacion, update } from '../api/conversacion';
 
 export const useConversacion = ({ id }) => {
   const { data, error, isLoading } = useSWR(
     id ? `/conversaciones/${id}` : null,
-    () => getConversacion({ id })
+    () => getConversacion({ id }),
   );
 
   return { data, loading: isLoading, error };
@@ -14,11 +16,11 @@ export const useConversacion = ({ id }) => {
 export const useUpdateConversacion = () => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   async function updateConversacion(id, payload) {
     setLoading(true);
-    setError("");
+    setError('');
 
     try {
       const response = await update(id, payload);

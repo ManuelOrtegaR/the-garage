@@ -1,7 +1,7 @@
-export * from "./ClientSingUp";
-export * from "./CompanySingUp_user";
-export * from "./CompanySingUp_contact";
-
-export * from "./SingUp";
-export * from "./CompanySingUp_LI";
-export * from "./PasswordRecovery";
+export * from './ClientSingUp';
+export * from './CompanySingUp';
+export * from './FailureAccountCreated';
+export * from './PasswordRecovery';
+export * from './SingUpModal';
+export * from './StyledsComponents';
+export * from './SuccessAccountCreated';

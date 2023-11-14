@@ -1,24 +1,32 @@
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { useState } from 'react';
-import { BtnSubmitStyled } from '../../components/StyledButtons';
-//import Button from "react-bootstrap/Button";
 import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from 'react-router-dom';
 
-function SingUpModal() {
+import { BtnSubmitStyled } from '../../components/StyledButtons';
+import logo from '../../../assets/logos/logo-icono.png';
+
+function SingUpModal({ setShowModal }) {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setShowModal(false);
+  };
 
   const handleShowCliente = () => {
     setShow(false);
+    setShowModal(false);
     navigate('/Singupclient');
   };
   const handleShowCompany = () => {
     setShow(false);
+    setShowModal(false);
     navigate('/Singupcompany');
   };
 
@@ -30,7 +38,7 @@ function SingUpModal() {
         </Modal.Header>
         <Modal.Body>
           <div className="login__logo d-flex justify-content-center">
-            <img src="/../assets/logos/logo-icono.png" alt="logo" />
+            <img src={logo} alt="logo" />
           </div>
 
           <Form>

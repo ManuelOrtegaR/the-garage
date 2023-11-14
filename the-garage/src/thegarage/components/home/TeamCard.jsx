@@ -2,17 +2,17 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Alejandro from '../../../../assets/images/home/Alejandro.jpg';
-import Diana from '../../../../assets/images/home/Diana.png';
-import Welinton from '../../../../assets/images/home/Welinton.png';
-import Manuel from '../../../../assets/images/home/Manuel.jpg';
-import userIcon from '../../../../assets/images/home/user.png';
-import htmlIcon from '../../../../assets/images/home/tecnologiesIcons/html-5.svg';
-import csslIcon from '../../../../assets/images/home/tecnologiesIcons/css-3.svg';
-import jsIcon from '../../../../assets/images/home/tecnologiesIcons/javascript-logo.svg';
-import reactIcon from '../../../../assets/images/home/tecnologiesIcons/react.svg';
-import gitIcon from '../../../../assets/images/home/tecnologiesIcons/git.svg';
-import nodeJsIcon from '../../../../assets/images/home/tecnologiesIcons/node-js.svg';
+
+import Alejandro from '../../../../assets/images/home/cardsPresentation/Alejandro.jpg';
+import Diana from '../../../../assets/images/home/cardsPresentation/Diana.png';
+import Welinton from '../../../../assets/images/home/cardsPresentation/Welinton.png';
+import Manuel from '../../../../assets/images/home/cardsPresentation/Manuel.jpg';
+import htmlIcon from '../../../../assets/images/home/cardsPresentation/html-5.svg';
+import csslIcon from '../../../../assets/images/home/cardsPresentation/css-3.svg';
+import jsIcon from '../../../../assets/images/home/cardsPresentation/javascript-logo.svg';
+import reactIcon from '../../../../assets/images/home/cardsPresentation/react.svg';
+import gitIcon from '../../../../assets/images/home/cardsPresentation/git.svg';
+import nodeJsIcon from '../../../../assets/images/home/cardsPresentation/node-js.svg';
 
 export const TeamCard = ({ name, description }) => {
   const userPhoto = (name) => {
@@ -30,8 +30,6 @@ export const TeamCard = ({ name, description }) => {
         } else {
           if (user == 'Manuel') {
             return Manuel;
-          } else {
-            return userIcon;
           }
         }
       }

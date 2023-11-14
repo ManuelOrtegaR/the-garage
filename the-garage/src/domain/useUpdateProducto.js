@@ -1,4 +1,4 @@
-import { updateProduct } from "../api/products";
+import { updateProduct } from '../api/products';
 
 export const useUpdateProducto = () => {
   async function actualizarProducto(payload, id) {

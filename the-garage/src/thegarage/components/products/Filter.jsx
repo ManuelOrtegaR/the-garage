@@ -1,16 +1,13 @@
-import { Accordion, Badge, Form, ListGroup } from 'react-bootstrap';
+/* eslint-disable react/prop-types */
+import Accordion from 'react-bootstrap/Accordion';
+import Form from 'react-bootstrap/Form';
+
 import {
   AccordionStyle,
   Badgestyled,
   H4Styled,
 } from './StyledsComponentsProducts';
-import {
-  generarQueryFiltros,
-  generarRangos,
-  medianaValoraciones,
-  promedioValoraciones,
-} from './utils';
-import { useNavigate } from 'react-router-dom';
+import { generarRangos, medianaValoraciones } from './utils';
 
 export function Filter({
   data,
@@ -21,7 +18,6 @@ export function Filter({
   filtrosSeleccionadosAgrupados,
   setFiltrosSeleccionadosAgrupados,
 }) {
-  const navigate = useNavigate();
   const handlerChange = (event, type) => {
     let label = event.target.labels[0].innerText;
     if (label.startsWith('$')) {
@@ -52,9 +48,6 @@ export function Filter({
         filtrosSeleccionadosAgrupadosAux2.join('-');
       setFiltrosSeleccionadosAgrupados(filtrosSeleccionadosAgrupadosAux);
     }
-    // const query = generarQueryFiltros(filtrosSeleccionadosAgrupados);
-
-    // navigate(`/productos?${query}`);
 
     setCheckFilter({ ...checkFilter, [label]: !checkFilter[label] });
   };
@@ -158,7 +151,7 @@ export function Filter({
         <div>
           <AccordionStyle>
             <Accordion.Item eventKey="0">
-              <Accordion.Header>Categorias</Accordion.Header>
+              <Accordion.Header>Categorías</Accordion.Header>
               <Accordion.Body>
                 {generateFilter(data, 'category')}
               </Accordion.Body>
@@ -169,7 +162,7 @@ export function Filter({
         <div>
           <AccordionStyle>
             <Accordion.Item eventKey="1">
-              <Accordion.Header>Almacen</Accordion.Header>
+              <Accordion.Header>Almacén</Accordion.Header>
               <Accordion.Body>{generateFilter(data, 'store')}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>
@@ -186,7 +179,7 @@ export function Filter({
         <div>
           <AccordionStyle>
             <Accordion.Item eventKey="3">
-              <Accordion.Header>Calificacion</Accordion.Header>
+              <Accordion.Header>Calificación</Accordion.Header>
               <Accordion.Body>{generateFilter(data, 'rating')}</Accordion.Body>
             </Accordion.Item>
           </AccordionStyle>

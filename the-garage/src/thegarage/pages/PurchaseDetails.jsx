@@ -1,17 +1,19 @@
+import { useLocation } from 'react-router-dom';
+
+import Image from 'react-bootstrap/Image';
+
+import { usePurchase } from '../../domain/usePurchase';
 import {
   SubTitleStyled,
   TextStyled,
 } from '../components/home/ComponentsStyles';
-import { usePurchase } from '../../domain/usePurchase';
 import { TableStyled } from '../components/purchasePage/StyledComponents';
-import { Image } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
 
 export const PurchaseDetails = () => {
   const location = useLocation();
   const purchaseStatus = new URLSearchParams(location.search).get('status');
 
-  const { data, loading, error } = usePurchase();
+  const { data } = usePurchase();
   const initialValues = {
     id: '',
     products: [],

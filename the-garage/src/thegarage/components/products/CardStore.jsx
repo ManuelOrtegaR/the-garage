@@ -1,12 +1,15 @@
-import { Card } from "react-bootstrap";
-import { BtnSubmitStyled } from "../../../components";
-import { CardStoreStyle } from "./StyledsComponentsProducts";
-import { useNavigate } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import { useNavigate } from 'react-router-dom';
+
+import Card from 'react-bootstrap/Card';
+
+import { BtnSubmitStyled } from '../../../components';
+import { CardStoreStyle } from './StyledsComponentsProducts';
 
 export const CardStore = ({ item }) => {
   const navigate = useNavigate();
   function handleClick() {
-    navigate("/productos");
+    navigate('/productos');
   }
   return (
     <>

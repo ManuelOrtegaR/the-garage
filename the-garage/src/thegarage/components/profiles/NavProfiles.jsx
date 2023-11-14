@@ -1,7 +1,9 @@
-import Nav from 'react-bootstrap/Nav';
-import { NavLinkStyled } from './StylesComponentsProfiles';
 import { useContext, useEffect, useState } from 'react';
+
+import Nav from 'react-bootstrap/Nav';
+
 import { AuthContext } from '../../../auth/context/AuthContext';
+import { NavLinkStyled } from './StylesComponentsProfiles';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const itemsProfiles = [
